@@ -1,0 +1,6 @@
+client ID 2431717954914.2515134587360
+
+client secret id 361ac2e921ebd160dc2dc2038fcb4fb2
+
+
+signing secrect  ec6c17796feacfe6847fe4eaf4e741af

@@ -1,0 +1,9 @@
+librarys
+
+pyton-binance
+TA-Lib -> Ler readme
+numpy
+websocket_client
+slackclient
+python-dotenv
+websocket

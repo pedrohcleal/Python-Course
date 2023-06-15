@@ -1,0 +1,43 @@
+Atalhos do teclado
+Completar código
+Windows/Linux: Ctrl + Space
+
+Criar novo arquivo
+Windows/Linux: Ctrl + n
+
+Fechar arquivo
+Windows/Linux: Ctrl + w
+
+Salvar arquivo
+Windows/Linux: Ctrl + s
+
+Localizar em todos arquivos
+Windows/Linux: Ctrl + Shift + F
+
+Localizar no arquivo
+Windows/Linux: Ctrl + f
+
+Indentar documento inteiro
+Windows/Linux: Shift + Alt + F
+
+Mover linhas
+Windows/Linux: Alt + Seta pra cima ou pra baixo para mover linhas.
+
+Copiar linhas
+Windows/Linux: Shift + Alt + Seta pra cima ou pra baixo
+
+Apagar linha
+Windows/Linux: Ctrl + shift + k
+
+Insira o cursor no final de cada linha selecionada
+Windows/Linux: Shift + Alt + i
+
+Listar todos os atalhos do vscode
+Windows/Linux: Ctrl + k Ctrl + s
+
+Comentar linhas
+Windows/Linux: Ctrl + k Ctrl + c
+
+Para saber todos os comandos nativos da ferramenta é Windows/Linux: Ctrl + shift+ p
+
+ou se preferir acesse o arquivo com os atalhos para linux

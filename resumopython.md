@@ -80,6 +80,51 @@ Em Python, os comandos de condição são usados para executar blocos de código
    ```
 
 
+Operadores de atribuição
+
+#são usados para atribuir valores a variáveis. Aqui estão todos os operadores de atribuição disponíveis em Python:
+
+1. Operador de atribuição simples: "="
+   Exemplo: ```x = 10```
+
+2. Operador de atribuição com adição: "+="
+   Exemplo: ```x += 5``` é equivalente a ```x = x + 5```
+
+3. Operador de atribuição com subtração: "-="
+   Exemplo: ```x -= 5``` é equivalente a ```x = x - 5```
+
+4. Operador de atribuição com multiplicação: "*="
+   Exemplo: ```x *= 5``` é equivalente a ```x = x * 5```
+
+5. Operador de atribuição com divisão: "/="
+   Exemplo: ```x /= 5``` é equivalente a ```x = x / 5```
+
+6. Operador de atribuição com divisão inteira: "//="
+   Exemplo: ```x //= 5``` é equivalente a ```x = x // 5```
+
+7. Operador de atribuição com resto: "%="
+   Exemplo: ```x %= 5``` é equivalente a ```x = x % 5```
+
+8. Operador de atribuição com exponenciação: "**="
+   Exemplo: ```x **= 5``` é equivalente a ```x = x ** 5```
+
+9. Operador de atribuição com operação bitwise AND: "&="
+   Exemplo: ```x &= 5``` é equivalente a ```x = x & 5```
+
+10. Operador de atribuição com operação bitwise OR: "|="
+    Exemplo: ```x |= 5``` é equivalente a ```x = x | 5```
+
+11. Operador de atribuição com operação bitwise XOR: "^="
+    Exemplo: ```x ^= 5``` é equivalente a ```x = x ^ 5```
+
+12. Operador de atribuição com operação bitwise de deslocamento à esquerda: "<<="
+    Exemplo: ```x <<= 5``` é equivalente a ```x = x << 5```
+
+13. Operador de atribuição com operação bitwise de deslocamento à direita: ">>="
+    Exemplo: ```x >>= 5``` é equivalente a ```x = x >> 5```
+
+Esses são os operadores de atribuição em Python, que podem ser usados para atualizar valores de variáveis de forma concisa.
+
 
 OPERADORES LÓGIOS:
 Em Python, existem três operadores lógicos principais: `and`, `or` e `not`. Aqui estão os operadores lógicos e exemplos de seu uso:

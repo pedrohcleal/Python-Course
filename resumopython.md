@@ -1,6 +1,6 @@
-Resumo PY
+##Resumo PY
 
-MANIPUÇÃO DE STRING:
+##MANIPUÇÃO DE STRING:
 
 1. Concatenação de strings:
    - `+`: Concatena duas strings.
@@ -39,7 +39,7 @@ MANIPUÇÃO DE STRING:
    - `str.isalpha()`: Verifica se a string contém apenas letras.
    - `str.isalnum()`: Verifica se a string contém apenas letras e dígitos.
 
-Comandos de CONDIÇÃO:
+##Comandos de CONDIÇÃO:
 Em Python, os comandos de condição são usados para executar blocos de código com base em condições lógicas. Os comandos de condição mais comuns são:
 
 1. Comando `if`:
@@ -78,7 +78,7 @@ Em Python, os comandos de condição são usados para executar blocos de código
    ```python
    variável = valor1 if condição else valor2
    ```
-Operadores de repetição:
+##Operadores de repetição:
 Os principais comandos de repetição em Python:
 
 1. Loop "while":
@@ -127,7 +127,7 @@ for elemento in sequência:
 
 Esses são os principais comandos de repetição em Python. Eles permitem que você execute um bloco de código várias vezes ou itere sobre elementos em uma sequência.
 
-Operadores de atribuição
+##Operadores de atribuição
 
 #são usados para atribuir valores a variáveis. Aqui estão todos os operadores de atribuição disponíveis em Python:
 
@@ -173,7 +173,7 @@ Operadores de atribuição
 Esses são os operadores de atribuição em Python, que podem ser usados para atualizar valores de variáveis de forma concisa.
 
 
-OPERADORES LÓGIOS:
+##OPERADORES LÓGIOS:
 Em Python, existem três operadores lógicos principais: `and`, `or` e `not`. Aqui estão os operadores lógicos e exemplos de seu uso:
 
 1. Operador `and`:
@@ -215,7 +215,7 @@ Em Python, existem três operadores lógicos principais: `and`, `or` e `not`. Aq
    ```
 
 
-Comandos de comparação
+##Comandos de comparação
 
 Aqui estão alguns comandos de comparação em Python:
 
@@ -249,6 +249,50 @@ Aqui estão alguns comandos de comparação em Python:
 10. Não identidade (`is not`): Verifica se dois objetos têm identidades diferentes.
     Exemplo: `x is not y` retorna `True` se `x` e `y` referenciarem objetos diferentes.
 
+## TRY-EXCEPT
+Peço desculpas pelo equívoco na minha resposta anterior. Obrigado por chamar a atenção para a falta de menção ao tipo de exceção genérica "Exception". 
+
+O comando "try-except" em Python permite capturar e tratar exceções (erros) que podem ocorrer durante a execução de um bloco de código. A classe "Exception" é a classe base para todas as exceções em Python, e é comumente usada para capturar todas as exceções de forma genérica.
+
+A estrutura básica do comando "try-except" com a captura genérica de exceções "Exception" é a seguinte:
+
+```python
+try:
+    # Bloco de código que pode gerar exceções
+    # ...
+except Exception:
+    # Tratamento para qualquer tipo de exceção
+    # ...
+else:
+    # Bloco de código executado se nenhuma exceção for gerada
+    # ...
+finally:
+    # Bloco de código executado sempre, independentemente de exceções
+    # ...
+```
+
+Neste caso, o bloco "except Exception" capturará qualquer tipo de exceção que ocorrer no bloco "try". Isso pode ser útil para lidar com exceções de forma genérica quando você não precisa tratar cada tipo de exceção de forma diferente.
+
+No entanto, é importante ressaltar que capturar todas as exceções de forma genérica pode ocultar erros e dificultar a depuração. Geralmente, é recomendado capturar exceções específicas sempre que possível, para tratar adequadamente cada tipo de erro de acordo com a lógica do programa.
+
+Exemplo:
+
+```python
+try:
+    x = int(input("Digite um número inteiro: "))
+    resultado = 10 / x
+    print("O resultado é:", resultado)
+except Exception:
+    print("Ocorreu um erro. Por favor, verifique sua entrada.")
+else:
+    print("Nenhuma exceção ocorreu.")
+finally:
+    print("Fim do programa.")
+```
+
+Neste exemplo, qualquer exceção que ocorra durante a conversão de entrada em um número inteiro ou a divisão por zero será capturada pelo bloco "except Exception". Uma mensagem genérica de erro será exibida. O bloco "else" será executado se nenhuma exceção ocorrer. O bloco "finally" será executado em qualquer caso para encerrar o programa.
+
+Lembre-se de que é preferível capturar exceções específicas sempre que possível, para lidar adequadamente com cada tipo de erro de acordo com a lógica do programa. A captura genérica de exceções usando "except Exception" deve ser usada com cautela.
 
 BIBLIOTECA PANDA
 

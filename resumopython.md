@@ -78,7 +78,54 @@ Em Python, os comandos de condição são usados para executar blocos de código
    ```python
    variável = valor1 if condição else valor2
    ```
+Operadores de repetição:
+Os principais comandos de repetição em Python:
 
+1. Loop "while":
+O loop "while" executa um bloco de código repetidamente enquanto uma condição especificada for verdadeira.
+
+```python
+while condição:
+    # código a ser executado enquanto a condição for verdadeira
+```
+
+2. Loop "for":
+O loop "for" é usado para iterar sobre uma sequência (como uma lista, tupla, string, etc.) ou qualquer objeto iterável.
+
+```python
+for elemento in sequência:
+    # código a ser executado para cada elemento da sequência
+```
+
+3. Comando "range":
+A função "range" é usada frequentemente em loops "for" para gerar uma sequência de números.
+
+```python
+for i in range(início, fim, passo):
+    # código a ser executado para cada valor gerado pela função range
+```
+
+4. Comando "break":
+O comando "break" é usado para interromper a execução de um loop prematuramente, mesmo que a condição do loop ainda seja verdadeira.
+
+```python
+while condição:
+    if condição_de_parada:
+        break
+    # código a ser executado
+```
+
+5. Comando "continue":
+O comando "continue" é usado para pular para a próxima iteração do loop, ignorando o restante do código dentro do bloco do loop.
+
+```python
+for elemento in sequência:
+    if condição:
+        continue
+    # código a ser executado, que será ignorado se a condição for verdadeira
+```
+
+Esses são os principais comandos de repetição em Python. Eles permitem que você execute um bloco de código várias vezes ou itere sobre elementos em uma sequência.
 
 Operadores de atribuição
 

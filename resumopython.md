@@ -1,6 +1,6 @@
-##Resumo PY
+# Resumo PY
 
-##MANIPUÇÃO DE STRING:
+# MANIPUÇÃO DE STRING:
 
 1. Concatenação de strings:
    - `+`: Concatena duas strings.
@@ -39,7 +39,7 @@
    - `str.isalpha()`: Verifica se a string contém apenas letras.
    - `str.isalnum()`: Verifica se a string contém apenas letras e dígitos.
 
-##Comandos de CONDIÇÃO:
+## Comandos de CONDIÇÃO:
 Em Python, os comandos de condição são usados para executar blocos de código com base em condições lógicas. Os comandos de condição mais comuns são:
 
 1. Comando `if`:
@@ -78,7 +78,7 @@ Em Python, os comandos de condição são usados para executar blocos de código
    ```python
    variável = valor1 if condição else valor2
    ```
-##Operadores de repetição:
+## Operadores de repetição:
 Os principais comandos de repetição em Python:
 
 1. Loop "while":
@@ -127,9 +127,9 @@ for elemento in sequência:
 
 Esses são os principais comandos de repetição em Python. Eles permitem que você execute um bloco de código várias vezes ou itere sobre elementos em uma sequência.
 
-##Operadores de atribuição
+## Operadores de atribuição
 
-#são usados para atribuir valores a variáveis. Aqui estão todos os operadores de atribuição disponíveis em Python:
+## são usados para atribuir valores a variáveis. Aqui estão todos os operadores de atribuição disponíveis em Python:
 
 1. Operador de atribuição simples: "="
    Exemplo: ```x = 10```
@@ -173,7 +173,7 @@ Esses são os principais comandos de repetição em Python. Eles permitem que vo
 Esses são os operadores de atribuição em Python, que podem ser usados para atualizar valores de variáveis de forma concisa.
 
 
-#OPERADORES LÓGIOS:
+# OPERADORES LÓGIOS:
 Em Python, existem três operadores lógicos principais: `and`, `or` e `not`. Aqui estão os operadores lógicos e exemplos de seu uso:
 
 1. Operador `and`:
@@ -215,7 +215,7 @@ Em Python, existem três operadores lógicos principais: `and`, `or` e `not`. Aq
    ```
 
 
-##Comandos de comparação
+## Comandos de comparação
 
 Aqui estão alguns comandos de comparação em Python:
 
@@ -430,7 +430,7 @@ lista.clear()
 As listas são uma parte fundamental da linguagem Python e são amplamente usadas em várias situações, desde o armazenamento de dados simples até a implementação de algoritmos mais complexos. Sua flexibilidade e variedade de métodos tornam-nas uma escolha poderosa para muitos cenários de programação.
 
 
-#BIBLIOTECA PANDA
+# BIBLIOTECA PANDA
 
 A biblioteca pandas é uma biblioteca poderosa para manipulação e análise de dados em Python. Aqui estão alguns dos principais comandos e recursos disponíveis na biblioteca pandas:
 
@@ -464,7 +464,7 @@ A biblioteca pandas é uma biblioteca poderosa para manipulação e análise de 
    - `df.to_excel()`: Salva o DataFrame em um arquivo Excel.
    - `df.to_sql()`: Salva o DataFrame em uma tabela de um banco de dados SQL.
 
-#biblioteca NumPy:
+# Biblioteca NumPy:
 
 1. `import numpy as np`: Importa a biblioteca NumPy e a renomeia para `np` para facilitar o uso.
 
@@ -507,7 +507,7 @@ A biblioteca pandas é uma biblioteca poderosa para manipulação e análise de 
    - `np.exp()`, `np.log()`, `np.sqrt()`: Funções exponenciais, logarítmicas e raiz quadrada.
    - `np.sum()`, `np.mean()`, `np.median()`: Funções de agregação aplicadas a um array.
   
-
+# Formtação do github(.md)
   Para criar um documento com resumos de Python em seu repositório do GitHub, você pode usar a formatação Markdown. O Markdown é uma linguagem de marcação leve e fácil de usar, adequada para criar conteúdo formatado em plataformas como o GitHub.
 
 Aqui está um exemplo de como você pode criar um documento em Markdown para seus resumos de Python:

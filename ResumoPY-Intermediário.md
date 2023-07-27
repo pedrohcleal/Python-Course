@@ -1,0 +1,1 @@
+# Resumo python intermediário

@@ -356,7 +356,7 @@ Neste exemplo, os argumentos `a` e `b` são passados normalmente para a função
 
 O empacotamento e desempacotamento em funções são técnicas poderosas em Python que oferecem flexibilidade no tratamento de argumentos e permitem que você crie funções mais versáteis e reutilizáveis. Eles são especialmente úteis quando você precisa lidar com um número desconhecido de valores ou quando deseja passar uma lista de valores como argumentos para uma função.
 
-## Uso de args em Funções
+## Uso de args & kwargs em Funções
 
 Em Python, `*args` é uma sintaxe especial usada em funções para permitir que elas aceitem um número variável de argumentos posicionais (não nomeados). O nome `args` é apenas uma convenção, e você pode escolher qualquer outro nome para o parâmetro, mas o asterisco (`*`) é obrigatório. Quando você utiliza `*args` como um parâmetro em uma função, ela pode receber zero ou mais argumentos posicionais, que são agrupados em uma tupla dentro da função.
 

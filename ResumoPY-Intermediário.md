@@ -292,3 +292,66 @@ Esses módulos são amplamente utilizados e podem ser importados em qualquer pro
 Além da biblioteca padrão, Python também possui uma vasta quantidade de módulos de terceiros disponíveis, que podem ser instalados através do gerenciador de pacotes `pip`. Esses módulos adicionais fornecem recursos adicionais que podem ser incorporados aos seus projetos, expandindo significativamente as capacidades da linguagem Python.
 
 Em resumo, os módulos em Python são uma forma poderosa de organizar, reutilizar e compartilhar código. Eles facilitam a modularização de programas e permitem que você tire proveito da biblioteca padrão e de módulos de terceiros para resolver uma ampla variedade de problemas de programação.
+
+## Empacotamento e Desempacotamento em Funções
+
+O empacotamento (packing) e desempacotamento (unpacking) em funções em Python permitem lidar com um número variável de argumentos de uma maneira mais flexível. Isso significa que você pode criar funções que aceitam um número desconhecido de argumentos ou passar múltiplos argumentos para uma função de forma mais conveniente.
+
+### Empacotamento em Funções:
+
+O empacotamento em funções é feito usando o operador `*` antes de um parâmetro na definição da função. Isso permite que a função aceite um número variável de argumentos, que são empacotados em uma tupla dentro da função.
+
+Exemplo de empacotamento em função:
+
+```python
+def imprimir_argumentos(*args):
+    for arg in args:
+        print(arg)
+
+imprimir_argumentos(1, 2, 3, "Olá", True)
+# Output:
+# 1
+# 2
+# 3
+# Olá
+# True
+```
+
+Nesse exemplo, a função `imprimir_argumentos` pode aceitar qualquer número de argumentos, que são empacotados na tupla `args`. Dentro da função, podemos iterar sobre `args` e imprimir cada valor.
+
+### Desempacotamento em Funções:
+
+O desempacotamento em funções é usado quando você tem uma lista, tupla ou outro iterável de valores e deseja passá-los como argumentos para uma função. Isso é feito usando o operador `*` novamente, mas desta vez na chamada da função.
+
+Exemplo de desempacotamento em função:
+
+```python
+def soma(a, b, c):
+    resultado = a + b + c
+    return resultado
+
+valores = [1, 2, 3]
+resultado_soma = soma(*valores)
+print(resultado_soma)  # Output: 6
+```
+
+Neste exemplo, a lista `valores` é desempacotada e seus elementos são passados como argumentos para a função `soma`, que os recebe nas variáveis `a`, `b` e `c`. O resultado é a soma dos valores contidos na lista.
+
+### Empacotamento e Desempacotamento Simultaneamente:
+
+Você também pode empacotar e desempacotar simultaneamente em funções. Por exemplo, você pode criar uma função que recebe alguns argumentos fixos e uma lista de valores adicionais:
+
+```python
+def somar_numeros(a, b, *args):
+    total = a + b
+    for numero in args:
+        total += numero
+    return total
+
+resultado = somar_numeros(1, 2, 3, 4, 5)
+print(resultado)  # Output: 15
+```
+
+Neste exemplo, os argumentos `a` e `b` são passados normalmente para a função, e o operador `*args` empacota o restante dos argumentos em uma tupla chamada `args`. A função então soma todos os valores, incluindo os valores empacotados em `args`.
+
+O empacotamento e desempacotamento em funções são técnicas poderosas em Python que oferecem flexibilidade no tratamento de argumentos e permitem que você crie funções mais versáteis e reutilizáveis. Eles são especialmente úteis quando você precisa lidar com um número desconhecido de valores ou quando deseja passar uma lista de valores como argumentos para uma função.

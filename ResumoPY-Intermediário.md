@@ -355,3 +355,47 @@ print(resultado)  # Output: 15
 Neste exemplo, os argumentos `a` e `b` são passados normalmente para a função, e o operador `*args` empacota o restante dos argumentos em uma tupla chamada `args`. A função então soma todos os valores, incluindo os valores empacotados em `args`.
 
 O empacotamento e desempacotamento em funções são técnicas poderosas em Python que oferecem flexibilidade no tratamento de argumentos e permitem que você crie funções mais versáteis e reutilizáveis. Eles são especialmente úteis quando você precisa lidar com um número desconhecido de valores ou quando deseja passar uma lista de valores como argumentos para uma função.
+
+## Uso de args em Funções
+
+Em Python, `*args` é uma sintaxe especial usada em funções para permitir que elas aceitem um número variável de argumentos posicionais (não nomeados). O nome `args` é apenas uma convenção, e você pode escolher qualquer outro nome para o parâmetro, mas o asterisco (`*`) é obrigatório. Quando você utiliza `*args` como um parâmetro em uma função, ela pode receber zero ou mais argumentos posicionais, que são agrupados em uma tupla dentro da função.
+
+Aqui está um exemplo simples para ilustrar o uso de `*args` em uma função:
+
+```python
+def somar(*args):
+    resultado = 0
+    for numero in args:
+        resultado += numero
+    return resultado
+
+# Chamada da função com diferentes quantidades de argumentos
+print(somar(1, 2, 3))  # Saída: 6
+print(somar(10, 20, 30, 40))  # Saída: 100
+print(somar())  # Saída: 0 (sem argumentos, resultando em uma tupla vazia)
+```
+
+Observe que, ao usar `*args`, você pode passar qualquer número de argumentos para a função `somar`, e eles serão somados corretamente.
+
+É importante notar que, apesar de `*args` ser útil para lidar com um número variável de argumentos posicionais, ele não permite que você passe argumentos nomeados. Para lidar com argumentos nomeados variáveis, você deve usar `**kwargs`, que é outra sintaxe especial, onde `kwargs` é apenas uma convenção (mas o duplo asterisco é obrigatório).
+
+Aqui está um exemplo que combina `*args` e `**kwargs` em uma função:
+
+```python
+def imprimir_argumentos(*args, **kwargs):
+    print("Argumentos posicionais (args):", args)
+    print("Argumentos nomeados (kwargs):", kwargs)
+
+# Chamada da função com diferentes tipos de argumentos
+imprimir_argumentos(1, 2, 3, nome="Alice", idade=30)
+# Saída:
+# Argumentos posicionais (args): (1, 2, 3)
+# Argumentos nomeados (kwargs): {'nome': 'Alice', 'idade': 30}
+
+imprimir_argumentos("hello", True, cor="azul", tamanho="grande")
+# Saída:
+# Argumentos posicionais (args): ('hello', True)
+# Argumentos nomeados (kwargs): {'cor': 'azul', 'tamanho': 'grande'}
+```
+
+Assim, `*args` é uma poderosa funcionalidade do Python para criar funções que possam lidar com quantidades variáveis de argumentos posicionais, tornando o código mais flexível e versátil.

@@ -399,3 +399,76 @@ imprimir_argumentos("hello", True, cor="azul", tamanho="grande")
 ```
 
 Assim, `*args` é uma poderosa funcionalidade do Python para criar funções que possam lidar com quantidades variáveis de argumentos posicionais, tornando o código mais flexível e versátil.
+
+## Funções de primeira classe - Higher Order Functions
+
+Em Python, as funções são tratadas como cidadãos de primeira classe (first-class citizens), o que significa que elas podem ser tratadas da mesma forma que qualquer outro objeto no idioma. Especificamente, as funções de primeira classe têm as seguintes características:
+
+1. Atribuição a variáveis: Você pode atribuir uma função a uma variável, assim como faria com um número ou uma string.
+
+2. Passagem como argumento: É possível passar uma função como argumento para outra função. Isso é muito útil para criar funções mais genéricas ou para aplicar funções em coleções de dados.
+
+3. Retorno de funções: As funções podem retornar outras funções como resultado, permitindo a criação de funções aninhadas ou funções de ordem superior (higher-order functions).
+
+4. Armazenamento em estruturas de dados: Você pode armazenar funções em listas, dicionários ou outras estruturas de dados.
+
+Vamos explorar cada uma dessas características com exemplos:
+
+1. Atribuição a variáveis:
+
+```python
+def saudacao(nome):
+    return f"Olá, {nome}!"
+
+# Atribuição da função a uma variável
+cumprimento = saudacao
+
+# Chamada da função através da variável
+print(cumprimento("João"))  # Saída: Olá, João!
+```
+
+2. Passagem como argumento:
+
+```python
+def dobrar(numero):
+    return numero * 2
+
+def triplicar(numero):
+    return numero * 3
+
+def aplicar_funcao(func, numero):
+    return func(numero)
+
+print(aplicar_funcao(dobrar, 5))  # Saída: 10
+print(aplicar_funcao(triplicar, 5))  # Saída: 15
+```
+
+3. Retorno de funções:
+
+```python
+def criar_multiplicador(n):
+    def multiplicador(x):
+        return x * n
+    return multiplicador
+
+multiplicador_por_5 = criar_multiplicador(5)
+print(multiplicador_por_5(3))  # Saída: 15
+print(multiplicador_por_5(7))  # Saída: 35
+```
+
+4. Armazenamento em estruturas de dados:
+
+```python
+def quadrado(x):
+    return x ** 2
+
+def cubo(x):
+    return x ** 3
+
+funcoes_matematicas = [quadrado, cubo]
+
+print(funcoes_matematicas[0](3))  # Saída: 9 (quadrado de 3)
+print(funcoes_matematicas[1](3))  # Saída: 27 (cubo de 3)
+```
+
+Essas características tornam as funções de primeira classe uma parte fundamental da programação funcional em Python, permitindo a criação de código mais conciso, flexível e modular.

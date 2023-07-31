@@ -116,62 +116,103 @@ copia_dict = meu_dict.copy()  # Copiar o dicionário para 'copia_dict'
 
 ### Métodos úteis em Dict
 
-1. `keys()`: Retorna uma visão (view) dos objetos-chave no dicionário.
+1. `dict.get(key, default=None)`:
 
 ```python
-meu_dict = {"idade": 30, "nome": "João", "cidade": "São Paulo"}
+my_dict = {"apple": 2, "orange": 3}
+apple_value = my_dict.get("apple")
+print(apple_value)  # Saída: 2
 
-chaves = meu_dict.keys()
-print(chaves)  # Saída: dict_keys(['idade', 'nome', 'cidade'])
+grape_value = my_dict.get("grape", 0)
+print(grape_value)  # Saída: 0 (chave "grape" não existe, então retorna o valor padrão 0)
 ```
 
-2. `values()`: Retorna uma visão (view) dos valores no dicionário.
+2. `dict.keys()`:
 
 ```python
-meu_dict = {"idade": 30, "nome": "João", "cidade": "São Paulo"}
-
-valores = meu_dict.values()
-print(valores)  # Saída: dict_values([30, 'João', 'São Paulo'])
+my_dict = {"apple": 2, "orange": 3}
+keys_list = my_dict.keys()
+print(keys_list)  # Saída: dict_keys(['apple', 'orange'])
 ```
 
-3. `items()`: Retorna uma visão (view) de tuplas contendo pares chave-valor no dicionário.
+3. `dict.values()`:
 
 ```python
-meu_dict = {"idade": 30, "nome": "João", "cidade": "São Paulo"}
-
-pares_chave_valor = meu_dict.items()
-print(pares_chave_valor)  # Saída: dict_items([('idade', 30), ('nome', 'João'), ('cidade', 'São Paulo')])
+my_dict = {"apple": 2, "orange": 3}
+values_list = my_dict.values()
+print(values_list)  # Saída: dict_values([2, 3])
 ```
 
-4. `update()`: Mescla dois dicionários, adicionando pares chave-valor do dicionário passado como argumento.
+4. `dict.items()`:
 
 ```python
-meu_dict = {"idade": 30, "nome": "João"}
-outro_dict = {"cidade": "São Paulo", "profissão": "Engenheiro"}
-
-meu_dict.update(outro_dict)
-print(meu_dict)  # Saída: {'idade': 30, 'nome': 'João', 'cidade': 'São Paulo', 'profissão': 'Engenheiro'}
+my_dict = {"apple": 2, "orange": 3}
+items_list = my_dict.items()
+print(items_list)  # Saída: dict_items([('apple', 2), ('orange', 3)])
 ```
 
-5. `fromkeys()`: Cria um novo dicionário com chaves fornecidas e um valor padrão (opcional).
+5. `dict.pop(key, default=None)`:
 
 ```python
-chaves = ["idade", "nome", "cidade"]
-valor_padrao = "N/A"
+my_dict = {"apple": 2, "orange": 3}
+orange_value = my_dict.pop("orange")
+print(orange_value)  # Saída: 3
 
-meu_dict = dict.fromkeys(chaves, valor_padrao)
-print(meu_dict)  # Saída: {'idade': 'N/A', 'nome': 'N/A', 'cidade': 'N/A'}
+grape_value = my_dict.pop("grape", 0)
+print(grape_value)  # Saída: 0 (chave "grape" não existe, então retorna o valor padrão 0)
 ```
 
-6. `get()`: Retorna o valor associado a uma chave especificada. Se a chave não existir, retorna um valor padrão (opcional) em vez de gerar um erro.
+6. `dict.popitem()`:
 
 ```python
-meu_dict = {"idade": 30, "nome": "João"}
-
-valor = meu_dict.get("idade")
-print(valor)  # Saída: 30
-
-valor = meu_dict.get("profissão", "Desconhecida")
-print(valor)  # Saída: Desconhecida
+my_dict = {"apple": 2, "orange": 3, "banana": 1}
+item = my_dict.popitem()
+print(item)  # Saída: ('banana', 1) ou ('apple', 2) ou ('orange', 3) - um par aleatório é retornado e removido do dicionário
 ```
 
+7. `dict.clear()`:
+
+```python
+my_dict = {"apple": 2, "orange": 3}
+my_dict.clear()
+print(my_dict)  # Saída: {}
+```
+
+8. `dict.update(other_dict)`:
+
+```python
+my_dict = {"apple": 2, "orange": 3}
+other_dict = {"banana": 1, "grape": 4}
+my_dict.update(other_dict)
+print(my_dict)  # Saída: {'apple': 2, 'orange': 3, 'banana': 1, 'grape': 4}
+```
+
+9. `dict.setdefault(key, default=None)`:
+
+```python
+my_dict = {"apple": 2, "orange": 3}
+grape_value = my_dict.setdefault("grape", 0)
+print(grape_value)  # Saída: 0 (chave "grape" não existe, então insere a chave com o valor padrão 0)
+
+banana_value = my_dict.setdefault("banana", 5)
+print(banana_value)  # Saída: 5 (chave "banana" já existe, retorna o valor existente 5)
+```
+
+10. `dict.fromkeys(keys, value=None)`:
+
+```python
+keys_list = ["apple", "orange", "banana"]
+my_dict = dict.fromkeys(keys_list, 0)
+print(my_dict)  # Saída: {'apple': 0, 'orange': 0, 'banana': 0}
+
+my_dict = dict.fromkeys(keys_list)
+print(my_dict)  # Saída: {'apple': None, 'orange': None, 'banana': None}
+```
+
+11. `dict.copy()`:
+
+```python
+my_dict = {"apple": 2, "orange": 3}
+my_dict_copy = my_dict.copy()
+print(my_dict_copy)  # Saída: {'apple': 2, 'orange': 3}
+```

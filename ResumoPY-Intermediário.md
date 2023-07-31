@@ -472,3 +472,34 @@ print(funcoes_matematicas[1](3))  # Saída: 27 (cubo de 3)
 ```
 
 Essas características tornam as funções de primeira classe uma parte fundamental da programação funcional em Python, permitindo a criação de código mais conciso, flexível e modular.
+
+## Closure
+
+Em Python, um closure é uma função que lembra e tem acesso a variáveis do escopo em que foi definida, mesmo depois que esse escopo não está mais ativo. O conceito de closure em Python é muito semelhante ao que discutimos anteriormente em JavaScript. Em outras palavras, um closure é uma função que "captura" variáveis ​​do ambiente em que foi criada, permitindo que essas variáveis ​​persistam e sejam acessadas mesmo após o término da execução do escopo em que foram definidas.
+
+Vamos ver um exemplo para entender melhor:
+
+```python
+def contador():
+    count = 0
+
+    def increment():
+        nonlocal count
+        count += 1
+        print(count)
+
+    return increment
+
+my_counter = contador()
+my_counter()  # Output: 1
+my_counter()  # Output: 2
+my_counter()  # Output: 3
+```
+
+Neste exemplo, a função `contador` define uma variável chamada `count` com valor inicial 0 e, em seguida, define uma função interna chamada `increment`. A função `increment` é um closure, pois lembra do escopo da função `contador` e tem acesso à variável `count` definida no escopo pai.
+
+Quando chamamos `my_counter()`, a função `increment` é invocada e incrementa o valor da variável `count`. Como `count` é uma variável capturada pelo closure, seu valor persiste entre as chamadas subsequentes de `my_counter()`. Isso ocorre porque a função `increment` "lembra" do ambiente em que foi criada, incluindo as variáveis ​​do escopo pai.
+
+Os closures em Python são usados em várias situações, como quando precisamos criar funções geradoras, decoradores ou quando queremos manter estados privados de uma função em vez de usar variáveis globais. Eles são uma parte importante da programação funcional em Python e podem ser poderosos para escrever código conciso e eficiente.
+
+

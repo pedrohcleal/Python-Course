@@ -1,4 +1,4 @@
-# Resumo PY
+# Resumo PY - Iniciante
 
 ### MANIPUÇÃO DE STRING:
 

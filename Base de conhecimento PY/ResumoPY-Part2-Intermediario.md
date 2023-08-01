@@ -216,3 +216,50 @@ my_dict = {"apple": 2, "orange": 3}
 my_dict_copy = my_dict.copy()
 print(my_dict_copy)  # Saída: {'apple': 2, 'orange': 3}
 ```
+
+## Shallow Copy & Deep Copy
+
+Em Python, os conceitos de "shallow copy" (cópia superficial) e "deep copy" (cópia profunda) referem-se à forma como os dicionários (dicts) são copiados ou clonados. Vamos entender as diferenças entre eles:
+
+**Shallow Copy (Cópia Superficial):**
+Uma shallow copy de um dicionário cria uma nova cópia do dicionário, mas os valores internos (objetos) não são copiados. Em vez disso, os objetos originais são referenciados na nova cópia. Isso significa que a nova cópia do dicionário compartilha as mesmas referências de objetos que o dicionário original. Portanto, alterações nos objetos internos dentro do dicionário copiado serão refletidas no dicionário original e vice-versa.
+
+Em Python, podemos fazer uma shallow copy usando o método `.copy()` ou a função `copy.copy()` do módulo `copy`.
+
+Exemplo de shallow copy:
+
+```python
+import copy
+
+original_dict = {'a': [1, 2, 3], 'b': [4, 5, 6]}
+shallow_copied_dict = original_dict.copy()
+
+# Modificando o valor dentro da cópia
+shallow_copied_dict['a'][0] = 100
+
+print(original_dict)      # Output: {'a': [100, 2, 3], 'b': [4, 5, 6]}
+print(shallow_copied_dict) # Output: {'a': [100, 2, 3], 'b': [4, 5, 6]}
+```
+
+**Deep Copy (Cópia Profunda):**
+Uma deep copy de um dicionário cria uma nova cópia do dicionário e também copia todos os objetos internos, criando novas referências independentes. Dessa forma, alterações nos objetos internos dentro do dicionário copiado não afetarão o dicionário original e vice-versa.
+
+Em Python, podemos fazer uma deep copy usando a função `copy.deepcopy()` do módulo `copy`.
+
+Exemplo de deep copy:
+
+```python
+import copy
+
+original_dict = {'a': [1, 2, 3], 'b': [4, 5, 6]}
+deep_copied_dict = copy.deepcopy(original_dict)
+
+# Modificando o valor dentro da cópia
+deep_copied_dict['a'][0] = 100
+
+print(original_dict)   # Output: {'a': [1, 2, 3], 'b': [4, 5, 6]}
+print(deep_copied_dict) # Output: {'a': [100, 2, 3], 'b': [4, 5, 6]}
+```
+
+Portanto, ao usar uma deep copy, você obtém uma cópia totalmente independente do dicionário original, garantindo que quaisquer alterações feitas na cópia não afetem o original e vice-versa.
+

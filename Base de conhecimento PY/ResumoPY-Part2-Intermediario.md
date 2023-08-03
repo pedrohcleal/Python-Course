@@ -325,4 +325,45 @@ e_subconjunto = meu_set.issubset(outro_set)
 # ou simplesmente: e_subconjunto = meu_set <= outro_set
 ```
 
+### Métodos em Sets:
+
+Claro! Vamos adicionar informações sobre os métodos `update`, `clear` e `discard` aos sets em Python:
+
+1. Método `update`:
+O método `update` é usado para adicionar elementos de outro conjunto (ou qualquer outra coleção iterável) ao conjunto atual. Isso é semelhante à união dos conjuntos, mas, em vez de criar um novo conjunto, ele modifica o conjunto atual adicionando os elementos do conjunto passado como argumento.
+
+Exemplo:
+```python
+meu_set = {1, 2, 3}
+outro_set = {3, 4, 5}
+meu_set.update(outro_set)
+print(meu_set)  # Resultado: {1, 2, 3, 4, 5}
+```
+
+2. Método `clear`:
+O método `clear` é usado para remover todos os elementos do conjunto, deixando-o vazio.
+
+Exemplo:
+```python
+meu_set = {1, 2, 3, 4}
+meu_set.clear()
+print(meu_set)  # Resultado: set()
+```
+
+3. Método `discard`:
+O método `discard` é usado para remover um elemento específico do conjunto. Se o elemento não estiver presente no conjunto, o método não gerará um erro (ao contrário do método `remove`, que gera um erro nessa situação).
+
+Exemplo:
+```python
+meu_set = {1, 2, 3, 4}
+meu_set.discard(3)
+print(meu_set)  # Resultado: {1, 2, 4}
+
+# Tentando remover um elemento inexistente
+meu_set.discard(5)
+print(meu_set)  # Resultado: {1, 2, 4} (não gera erro)
+```
+
+Lembre-se de que o conjunto será modificado diretamente após a execução desses métodos, e os resultados refletirão as mudanças realizadas. Certifique-se de usar os métodos de acordo com suas necessidades específicas.
+
 Sets podem ser uma ótima escolha quando você precisa garantir que não haja elementos duplicados em uma coleção e não precisa de uma ordem específica para os elementos. Eles também podem ser úteis para realizar operações matemáticas de conjuntos, como uniões, interseções e diferenças.

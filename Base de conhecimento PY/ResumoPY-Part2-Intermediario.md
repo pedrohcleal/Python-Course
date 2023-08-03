@@ -363,6 +363,79 @@ print(meu_set)  # Resultado: {1, 2, 4}
 meu_set.discard(5)
 print(meu_set)  # Resultado: {1, 2, 4} (não gera erro)
 ```
+### operadores nos sets
+
+Em Python, os sets possuem operadores que permitem realizar várias operações comuns entre conjuntos. Aqui estão os principais operadores utilizados com sets:
+
+1. Operador de pertencimento `in`:
+O operador `in` é usado para verificar se um elemento está presente em um conjunto.
+
+Exemplo:
+```python
+meu_set = {1, 2, 3, 4}
+print(2 in meu_set)  # Resultado: True
+print(5 in meu_set)  # Resultado: False
+```
+
+2. Operador de não pertencimento `not in`:
+O operador `not in` é usado para verificar se um elemento NÃO está presente em um conjunto.
+
+Exemplo:
+```python
+meu_set = {1, 2, 3, 4}
+print(2 not in meu_set)  # Resultado: False
+print(5 not in meu_set)  # Resultado: True
+```
+
+3. Operadores de conjuntos: `union`, `intersection`, `difference`, `symmetric_difference`:
+Esses operadores são usados para realizar operações matemáticas com conjuntos.
+
+- `union` (ou `|`): Retorna um novo conjunto contendo todos os elementos presentes em ambos os conjuntos.
+- `intersection` (ou `&`): Retorna um novo conjunto contendo apenas os elementos que estão presentes em ambos os conjuntos.
+- `difference` (ou `-`): Retorna um novo conjunto contendo os elementos presentes no primeiro conjunto, mas não no segundo.
+- `symmetric_difference` (ou `^`): Retorna um novo conjunto contendo os elementos que estão em apenas um dos conjuntos.
+
+Exemplo:
+```python
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+
+union_set = set1.union(set2)
+print(union_set)  # Resultado: {1, 2, 3, 4, 5}
+
+intersection_set = set1.intersection(set2)
+print(intersection_set)  # Resultado: {3}
+
+difference_set = set1.difference(set2)
+print(difference_set)  # Resultado: {1, 2}
+
+symmetric_difference_set = set1.symmetric_difference(set2)
+print(symmetric_difference_set)  # Resultado: {1, 2, 4, 5}
+```
+
+4. Operadores de atualização: `update`, `intersection_update`, `difference_update`, `symmetric_difference_update`:
+Esses operadores atualizam o conjunto atual com os resultados das operações de conjuntos correspondentes. Em vez de criar um novo conjunto, eles modificam o conjunto existente.
+
+Exemplo:
+```python
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+
+set1.update(set2)
+print(set1)  # Resultado: {1, 2, 3, 4, 5}
+
+set1.intersection_update(set2)
+print(set1)  # Resultado: {3}
+
+set1.difference_update(set2)
+print(set1)  # Resultado: set()
+
+set1 = {1, 2, 3}
+set1.symmetric_difference_update(set2)
+print(set1)  # Resultado: {1, 2, 4, 5}
+```
+
+Esses operadores facilitam muito a manipulação e comparação de conjuntos em Python, permitindo que você realize operações comuns de conjuntos de forma eficiente e concisa.
 
 Lembre-se de que o conjunto será modificado diretamente após a execução desses métodos, e os resultados refletirão as mudanças realizadas. Certifique-se de usar os métodos de acordo com suas necessidades específicas.
 

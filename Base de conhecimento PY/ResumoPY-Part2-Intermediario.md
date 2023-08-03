@@ -263,3 +263,66 @@ print(deep_copied_dict) # Output: {'a': [100, 2, 3], 'b': [4, 5, 6]}
 
 Portanto, ao usar uma deep copy, você obtém uma cópia totalmente independente do dicionário original, garantindo que quaisquer alterações feitas na cópia não afetem o original e vice-versa.
 
+## Sets
+
+Em Python, um set (conjunto) é uma coleção de elementos não ordenada, não indexada e que não permite elementos duplicados. Ele é definido usando chaves `{}` e pode conter elementos de diferentes tipos de dados, como inteiros, strings, floats, entre outros.
+
+Principais características dos sets em Python:
+
+1. Elementos únicos: Os sets não podem conter elementos duplicados. Se você tentar adicionar um elemento que já existe no conjunto, ele será ignorado.
+
+2. Desordem: Os elementos dentro de um set não possuem uma ordem específica. Isso significa que você não pode acessá-los por meio de índices, como em listas ou tuplas.
+
+3. Mutabilidade: Os sets são mutáveis, o que significa que você pode adicionar e remover elementos depois de criá-los.
+
+4. Imutabilidade dos elementos: Os elementos dentro do set devem ser imutáveis, ou seja, você não pode ter listas ou outros sets como elementos, mas pode ter tuplas, inteiros, strings, entre outros.
+
+Aqui estão algumas operações comuns que você pode realizar com sets em Python:
+
+1. Criar um set:
+```python
+meu_set = {1, 2, 3, 4}
+```
+
+2. Adicionar elementos:
+```python
+meu_set.add(5)
+```
+
+3. Remover elementos:
+```python
+meu_set.remove(3)
+```
+
+4. Verificar se um elemento está no set:
+```python
+if 4 in meu_set:
+    print("O elemento 4 está no set.")
+```
+
+5. União de sets:
+```python
+outro_set = {3, 4, 5, 6}
+uniao = meu_set.union(outro_set)
+# ou simplesmente: uniao = meu_set | outro_set
+```
+
+6. Interseção de sets:
+```python
+intersecao = meu_set.intersection(outro_set)
+# ou simplesmente: intersecao = meu_set & outro_set
+```
+
+7. Diferença entre sets:
+```python
+diferenca = meu_set.difference(outro_set)
+# ou simplesmente: diferenca = meu_set - outro_set
+```
+
+8. Verificar se um set é subconjunto de outro:
+```python
+e_subconjunto = meu_set.issubset(outro_set)
+# ou simplesmente: e_subconjunto = meu_set <= outro_set
+```
+
+Sets podem ser uma ótima escolha quando você precisa garantir que não haja elementos duplicados em uma coleção e não precisa de uma ordem específica para os elementos. Eles também podem ser úteis para realizar operações matemáticas de conjuntos, como uniões, interseções e diferenças.

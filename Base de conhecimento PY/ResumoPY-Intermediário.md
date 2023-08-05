@@ -148,7 +148,37 @@ Exemplo de função lambda:
 dobro = lambda x: x * 2
 print(dobro(5))  # Output: 10
 ```
+A função `key` é um argumento opcional que pode ser fornecido à função `sorted()` em Python (e também à função `sort()` aplicada a listas). Essa função `key` é usada para extrair um valor de cada elemento da lista ou sequência antes que ocorra a comparação e ordenação dos elementos. Em outras palavras, a função `key` define uma base de comparação personalizada para a ordenação dos elementos.
 
+### Função Key
+
+A função `key` espera receber uma função como argumento, geralmente uma função lambda, que será aplicada a cada elemento da lista para extrair o valor relevante usado na comparação. O resultado da aplicação dessa função determina como os elementos serão ordenados.
+
+Vamos dar um exemplo simples:
+
+```python
+nomes = ['Ana', 'João', 'Pedro', 'Maria']
+
+# Ordena a lista de nomes alfabeticamente
+nomes_ordenados = sorted(nomes)
+print(nomes_ordenados)
+```
+
+Neste exemplo, os nomes são ordenados alfabeticamente por padrão.
+
+Agora, vamos usar a função `key` para realizar uma ordenação personalizada:
+
+```python
+nomes = ['Ana', 'João', 'Pedro', 'Maria']
+
+# Ordena a lista de nomes pelo comprimento de cada nome
+nomes_ordenados_por_comprimento = sorted(nomes, key=lambda x: len(x))
+print(nomes_ordenados_por_comprimento)
+```
+
+Neste segundo exemplo, usamos a função `key` para extrair o comprimento de cada nome (usando a função `len()`) e, em seguida, a lista é ordenada com base nesses valores. Portanto, a saída será: `['Ana', 'João', 'Maria', 'Pedro']`, que é a ordem crescente de acordo com o comprimento dos nomes.
+
+No seu código original, a função `key` é usada nas chamadas a `sorted()` para extrair os valores das chaves `'nome'` e `'sobrenome'` de cada dicionário da lista, e é com base nesses valores que os dicionários são ordenados alfabeticamente.
 As funções em Python são um dos conceitos mais poderosos da linguagem, permitindo que você crie blocos de código reutilizáveis e organizados para resolver tarefas específicas. Com funções bem projetadas, você pode criar programas mais modulares, fáceis de manter e extensíveis.
 ## Escopo Global & Local
 

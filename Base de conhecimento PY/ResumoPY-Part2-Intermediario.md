@@ -216,6 +216,56 @@ my_dict = {"apple": 2, "orange": 3}
 my_dict_copy = my_dict.copy()
 print(my_dict_copy)  # Saída: {'apple': 2, 'orange': 3}
 ```
+## Packing e Unpacking das Dict
+Em Python, o empacotamento (packing) e desempacotamento (unpacking) se referem a técnicas para manipular elementos em estruturas de dados, como dicionários (Dict), tuplas (Tuple) e listas (List), de uma maneira mais conveniente e eficiente. Vou focar especificamente no empacotamento e desempacotamento de dicionários (Dict).
+
+**Empacotamento de Dicionários:**
+
+O empacotamento de dicionários envolve criar um dicionário usando variáveis e valores existentes. Isso é útil quando você deseja criar um dicionário a partir de várias variáveis sem precisar definir explicitamente cada chave e valor.
+
+```python
+nome = "João"
+idade = 30
+cidade = "São Paulo"
+
+pessoa = {"nome": nome, "idade": idade, "cidade": cidade}
+```
+
+Neste exemplo, estamos empacotando as variáveis `nome`, `idade` e `cidade` em um dicionário chamado `pessoa`.
+
+**Desempacotamento de Dicionários:**
+
+O desempacotamento de dicionários permite extrair os valores associados às chaves do dicionário em variáveis individuais. Isso é especialmente útil quando você deseja trabalhar com os valores do dicionário de forma separada e mais legível.
+
+```python
+pessoa = {"nome": "Maria", "idade": 25, "cidade": "Rio de Janeiro"}
+
+nome = pessoa["nome"]
+idade = pessoa["idade"]
+cidade = pessoa["cidade"]
+
+print(nome, idade, cidade)
+```
+
+Em vez de acessar os valores do dicionário usando `pessoa["nome"]`, `pessoa["idade"]` e `pessoa["cidade"]` repetidamente, estamos desempacotando esses valores em variáveis separadas.
+
+**Desempacotamento com `**` (Desempacotamento de Dicionário):**
+
+Uma técnica avançada de desempacotamento envolve o uso do operador `**`, que permite desempacotar um dicionário diretamente em uma chamada de função. Isso é útil quando você deseja passar os elementos de um dicionário como argumentos nomeados para uma função.
+
+```python
+def saudacao(nome, idade, cidade):
+    return f"Olá, {nome}! Você tem {idade} anos e mora em {cidade}."
+
+pessoa = {"nome": "Pedro", "idade": 28, "cidade": "Belo Horizonte"}
+
+mensagem = saudacao(**pessoa)
+print(mensagem)
+```
+
+Neste exemplo, o dicionário `pessoa` é desempacotado e seus valores são passados como argumentos nomeados para a função `saudacao`.
+
+O empacotamento e desempacotamento são técnicas poderosas que tornam o código mais limpo, legível e eficiente, permitindo trabalhar com estruturas de dados complexas de maneira mais conveniente.
 
 ## Shallow Copy & Deep Copy
 

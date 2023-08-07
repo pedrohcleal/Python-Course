@@ -50,3 +50,44 @@ print(resultado)  # Saída: True
 ```
 
 O método `isinstance()` é útil quando você deseja verificar o tipo de um objeto de forma dinâmica e tomar decisões com base nessa verificação. Isso é particularmente útil em situações em que você está lidando com herança de classes e polimorfismo.
+
+## Truthy & False
+
+Em Python, os termos "Truthy" e "Falsy" referem-se a valores booleanos implícitos que são usados ​​em contextos de avaliação de expressões condicionais. Valores "Truthy" são aqueles que são considerados verdadeiros em avaliações booleanas, enquanto valores "Falsy" são aqueles que são considerados falsos.
+
+Os seguintes valores são considerados "Falsy" em Python:
+
+1. `False`: O valor booleano `False` é sempre considerado falso.
+
+2. `None`: O objeto `None` é usado para representar a ausência de um valor. Ele é considerado falso em contextos booleanos.
+
+3. `0`: O inteiro zero é considerado falso.
+
+4. `0.0`: O número de ponto flutuante zero também é considerado falso.
+
+5. `""` (String vazia): Uma string vazia é considerada falsa.
+
+6. `[]` (Lista vazia): Uma lista vazia é considerada falsa.
+
+7. `{}` (Dicionário vazio): Um dicionário vazio é considerado falso.
+
+8. `()` (Tupla vazia): Uma tupla vazia é considerada falsa.
+
+9. `set()` (Conjunto vazio): Um conjunto vazio é considerado falso.
+
+Além desses valores "Falsy", todos os outros valores em Python são considerados "Truthy". Isso inclui números diferentes de zero, strings não vazias, listas, dicionários, tuplas, conjuntos e outros objetos.
+
+A ideia de valores "Truthy" e "Falsy" é frequentemente usada em avaliações condicionais, como em estruturas de controle `if`, `while`, `for`, entre outras. Por exemplo:
+
+```python
+value = 0
+
+if value:
+    print("Value is truthy")
+else:
+    print("Value is falsy")
+```
+
+Nesse exemplo, a saída será "Value is falsy" porque o valor de `value` é zero, que é um valor "Falsy".
+
+É importante entender esses conceitos ao lidar com expressões condicionais e avaliações booleanas em Python, pois eles podem afetar o fluxo de controle do seu programa.

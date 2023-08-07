@@ -186,3 +186,34 @@ for num in nums:
 As expressões geradoras são especialmente úteis quando você deseja iterar sobre grandes conjuntos de dados, uma vez que elas não precisam armazenar todos os valores na memória de uma vez, ao contrário das listas.
 
 Em resumo, "Iteráveis" são objetos que podem ser iterados, "Iteradores" são objetos que permitem a iteração sobre iteráveis e "Expressões Geradoras" são uma forma concisa de criar iteradores usando compreensões de lista entre parênteses.
+
+### Yield
+A palavra-chave `yield` é usada em Python para criar geradores, que são uma forma mais elegante e eficiente de criar iteradores do que usar classes de iterador tradicionais. Um gerador é uma função especial que produz uma série de valores ao longo do tempo, de acordo com a necessidade, em vez de gerar todos os valores de uma vez e armazená-los em memória.
+
+Ao usar a instrução `yield` em uma função, você está definindo um ponto de suspensão na execução da função. A função não é executada completamente; em vez disso, ela pausa em cada ponto `yield` e retorna um valor para o chamador. Quando a função é chamada novamente, ela retoma sua execução a partir do ponto em que foi suspensa, mantendo o estado interno da função.
+
+Aqui está um exemplo simples de uma função geradora que produz uma série de números pares:
+
+```python
+def gerador_de_pares(limite):
+    num = 0
+    while num < limite:
+        yield num
+        num += 2
+
+pares = gerador_de_pares(10)
+
+for par in pares:
+    print(par)
+```
+
+Neste exemplo, a função `gerador_de_pares` é uma função geradora que produz uma série de números pares menores que o limite especificado. A cada iteração, a função pausa na instrução `yield num`, retornando o valor atual de `num` para o chamador. Quando a função é chamada novamente (no loop `for`), ela continua a partir do ponto onde pausou, mantendo o valor de `num` e calculando o próximo número par.
+
+O uso de geradores é vantajoso em várias situações:
+
+1. **Eficiência de memória:** Como os valores não são gerados e armazenados em memória de uma vez, os geradores são ideais para lidar com conjuntos de dados grandes ou infinitos.
+2. **Desempenho:** A geração de valores sob demanda evita cálculos desnecessários e torna o código mais eficiente.
+3. **Iteração preguiçosa:** Os geradores permitem a iteração preguiçosa, em que os valores são produzidos e consumidos sob demanda, economizando recursos.
+4. **Estado interno:** Os geradores mantêm o estado interno entre as chamadas, tornando possível a implementação de algoritmos iterativos complexos de forma mais simples e legível.
+
+Portanto, o uso da palavra-chave `yield` em Python é fundamental para criar funções geradoras e implementar iteração eficiente e flexível.

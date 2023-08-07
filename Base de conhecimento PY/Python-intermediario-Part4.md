@@ -139,3 +139,50 @@ print(getattr(person, 'age', 25))  # Retorna 25, pois 'age' não existe no objet
 ```
 
 Essas funções são úteis para inspecionar e interagir com objetos em tempo de execução, permitindo uma maior flexibilidade e dinamismo na programação Python.
+
+## Generator expression, Iterables e Iterators
+
+Claro, vou explicar sobre "Generator expressions", "Iterables" e "Iterators" em Python.
+
+**Iteráveis (Iterables):**
+Iteráveis são objetos que podem ser percorridos ou iterados, ou seja, você pode percorrer seus elementos um por um. Em Python, muitas estruturas de dados são iteráveis, como listas, tuplas, strings e dicionários. Um objeto iterável deve implementar o método especial `__iter__()` que retorna um iterador.
+
+**Iteradores (Iterators):**
+Iteradores são objetos que permitem a iteração sobre os elementos de um iterável. Eles mantêm o estado da iteração e sabem qual é o próximo elemento a ser retornado. Um iterador deve implementar os métodos especiais `__iter__()` e `__next__()`.
+
+Exemplo de criação de um iterador simples:
+
+```python
+class MeuIterador:
+    def __init__(self, limite):
+        self.limite = limite
+        self.valor = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.valor >= self.limite:
+            raise StopIteration
+        self.valor += 1
+        return self.valor - 1
+
+meu_iterador = MeuIterador(5)
+for num in meu_iterador:
+    print(num)
+```
+
+**Generator Expressions (Expressões Geradoras):**
+As expressões geradoras são uma forma concisa e eficiente de criar iteradores em Python. Elas permitem criar iteradores de maneira mais compacta, sem a necessidade de definir uma classe de iterador separada. As expressões geradoras são definidas usando a sintaxe de compreensão de listas, mas dentro de parênteses `()`. Elas são avaliadas de forma preguiçosa, ou seja, os valores são gerados sob demanda conforme a iteração.
+
+Exemplo de uso de uma expressão geradora:
+
+```python
+nums = (x ** 2 for x in range(5))
+for num in nums:
+    print(num)
+```
+
+As expressões geradoras são especialmente úteis quando você deseja iterar sobre grandes conjuntos de dados, uma vez que elas não precisam armazenar todos os valores na memória de uma vez, ao contrário das listas.
+
+Em resumo, "Iteráveis" são objetos que podem ser iterados, "Iteradores" são objetos que permitem a iteração sobre iteráveis e "Expressões Geradoras" são uma forma concisa de criar iteradores usando compreensões de lista entre parênteses.

@@ -1,4 +1,4 @@
-# Resumo PYthon intermediário
+# Resumo PYthon intermediário - part 3 
 
 ## List Comprehension
 
@@ -132,3 +132,42 @@ print(combined_dict)  # Saída: {'a': 1, 'b': 2, 'c': 3}
 Lembre-se de que as chaves em um dicionário devem ser únicas. Se houver chaves duplicadas na compreensão de dicionário, o último valor correspondente será mantido.
 
 A compreensão de dicionário é uma maneira elegante e eficiente de criar dicionários em Python, reduzindo a necessidade de loops explícitos e simplificando o código. Ela é amplamente utilizada em situações onde você precisa transformar ou filtrar dados em um dicionário.
+
+## Set comprehension
+
+A compreensão de conjunto (set comprehension) é uma construção em Python que permite criar conjuntos de forma concisa e eficiente. Assim como as compreensões de lista e dicionário, a compreensão de conjunto permite criar conjuntos a partir de uma expressão iterada. A principal característica dos conjuntos é que eles não permitem duplicatas, ou seja, cada elemento em um conjunto é único.
+
+A sintaxe básica da compreensão de conjunto é semelhante à compreensão de lista e à compreensão de dicionário:
+
+```python
+{expressão for item in sequência}
+```
+
+Aqui está um exemplo simples para ilustrar o conceito:
+
+```python
+numbers = [1, 2, 2, 3, 3, 4, 5, 5]
+unique_squares = {num ** 2 for num in numbers}
+print(unique_squares)  # Saída: {16, 1, 4, 9, 25}
+```
+
+Observe que os elementos duplicados foram automaticamente removidos no conjunto resultante.
+
+Você também pode adicionar uma condição para filtrar os itens antes de adicioná-los ao conjunto:
+
+```python
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_squares = {num ** 2 for num in numbers if num % 2 == 0}
+print(even_squares)  # Saída: {64, 4, 100, 16, 36}
+```
+
+Assim como nas outras compreensões, você também pode usar a função `zip()` para combinar elementos de duas sequências em um conjunto:
+
+```python
+letters = ['a', 'b', 'c']
+numbers = [1, 2, 3]
+combined_set = {letter + str(number) for letter, number in zip(letters, numbers)}
+print(combined_set)  # Saída: {'a1', 'c3', 'b2'}
+```
+
+A compreensão de conjunto é uma maneira eficaz de criar conjuntos únicos a partir de expressões iteradas. Ela é útil quando você deseja remover duplicatas e criar coleções de elementos únicos.

@@ -217,3 +217,61 @@ O uso de geradores é vantajoso em várias situações:
 4. **Estado interno:** Os geradores mantêm o estado interno entre as chamadas, tornando possível a implementação de algoritmos iterativos complexos de forma mais simples e legível.
 
 Portanto, o uso da palavra-chave `yield` em Python é fundamental para criar funções geradoras e implementar iteração eficiente e flexível.
+
+### yield from
+A expressão `yield from` é uma funcionalidade avançada em Python que permite simplificar e melhorar a legibilidade ao trabalhar com geradores aninhados ou delegação de tarefas de iteração. Introduzida na versão Python 3.3, o `yield from` simplifica o código necessário para criar um iterador ou gerador que delega parte ou todo o seu trabalho a outro gerador.
+
+A sintaxe básica do `yield from` é a seguinte:
+
+```python
+yield from iterável
+```
+
+Aqui estão algumas situações em que o `yield from` é útil:
+
+1. **Geradores Aninhados:**
+   Suponha que você tenha um gerador dentro de outro gerador. Em vez de iterar manualmente sobre o gerador interno e fazer `yield` em cada elemento, você pode usar `yield from` para delegar a iteração ao gerador interno de forma mais concisa:
+
+```python
+def gerador_exterior():
+    yield from gerador_interno()
+
+def gerador_interno():
+    for i in range(5):
+        yield i
+
+for valor in gerador_exterior():
+    print(valor)
+```
+
+2. **Delegação de Tarefas:**
+   O `yield from` também é útil quando você está criando um gerador que encapsula a lógica de outros geradores, permitindo que a tarefa de iteração seja delegada de maneira mais direta:
+
+```python
+def gerador_maior():
+    yield from range(3)
+    yield from range(10, 13)
+
+for valor in gerador_maior():
+    print(valor)
+```
+
+3. **Trabalhando com Subgeradores:**
+   Usar `yield from` é particularmente útil quando você está trabalhando com subgeradores criados por meio de funções geradoras. Isso elimina a necessidade de duplicar a lógica de iteração.
+
+```python
+def gerador_filho():
+    yield "A"
+    yield "B"
+
+def gerador_pai():
+    yield "X"
+    yield from gerador_filho()
+    yield "Y"
+    yield "Z"
+
+for letra in gerador_pai():
+    print(letra)
+```
+
+Em resumo, a expressão `yield from` é uma poderosa ferramenta que simplifica a criação e o uso de geradores aninhados, delegação de iteração e trabalho com subgeradores em Python. Ela melhora a legibilidade do código e reduz a complexidade ao lidar com cenários envolvendo geradores.

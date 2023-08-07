@@ -93,3 +93,42 @@ cubos_impares = [x**3 for x in range(1, 11) if x % 2 != 0]
 A combinação de mapeamento e filtros em list comprehensions permite que você crie listas de forma eficiente e elegante, reduzindo a necessidade de loops explícitos e tornando o código mais legível.
 
 Lembre-se de que, embora list comprehensions sejam poderosas, você deve usá-las com moderação e considerar a clareza do código. Às vezes, para operações mais complexas ou quando a legibilidade é mais importante, pode ser mais apropriado usar loops regulares ou funções separadas.
+
+## Dict Comprehension
+
+A compreensão de dicionário (dictionary comprehension) é uma construção poderosa em Python que permite criar dicionários de forma concisa e eficiente. Ela é semelhante à compreensão de lista (list comprehension), mas em vez de criar listas, você cria dicionários. A compreensão de dicionário pode ser útil quando você precisa transformar ou filtrar dados para criar um novo dicionário.
+
+A sintaxe básica da compreensão de dicionário é a seguinte:
+
+```python
+{chave: valor for item in sequência}
+```
+
+Aqui está um exemplo simples para ilustrar o conceito:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+squared_dict = {num: num ** 2 for num in numbers}
+print(squared_dict)  # Saída: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+```
+
+Você também pode adicionar uma condição para filtrar os itens antes de adicioná-los ao dicionário:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+even_squares = {num: num ** 2 for num in numbers if num % 2 == 0}
+print(even_squares)  # Saída: {2: 4, 4: 16}
+```
+
+Além disso, você pode iterar sobre duas sequências simultaneamente usando a função `zip()`:
+
+```python
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+combined_dict = {key: value for key, value in zip(keys, values)}
+print(combined_dict)  # Saída: {'a': 1, 'b': 2, 'c': 3}
+```
+
+Lembre-se de que as chaves em um dicionário devem ser únicas. Se houver chaves duplicadas na compreensão de dicionário, o último valor correspondente será mantido.
+
+A compreensão de dicionário é uma maneira elegante e eficiente de criar dicionários em Python, reduzindo a necessidade de loops explícitos e simplificando o código. Ela é amplamente utilizada em situações onde você precisa transformar ou filtrar dados em um dicionário.

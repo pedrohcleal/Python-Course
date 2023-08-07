@@ -91,3 +91,51 @@ else:
 Nesse exemplo, a saída será "Value is falsy" porque o valor de `value` é zero, que é um valor "Falsy".
 
 É importante entender esses conceitos ao lidar com expressões condicionais e avaliações booleanas em Python, pois eles podem afetar o fluxo de controle do seu programa.
+
+## dir, hasattr e getattr
+
+Claro, vou explicar sobre as funções `dir`, `hasattr` e `getattr` em Python.
+
+1. **`dir()`**:
+
+A função `dir()` é uma função embutida em Python que retorna uma lista de nomes de atributos e métodos de um objeto. Ela pode ser usada para explorar o conteúdo de um objeto e descobrir quais métodos e atributos estão disponíveis para ele. Se você chamar `dir()` sem argumentos, ela retornará uma lista dos nomes no escopo atual.
+
+Exemplo:
+```python
+my_list = [1, 2, 3]
+print(dir(my_list))
+```
+
+2. **`hasattr()`**:
+
+A função `hasattr()` é usada para verificar se um objeto possui um atributo específico. Ela recebe dois argumentos: o objeto e o nome do atributo como uma string. Ela retorna `True` se o objeto tiver o atributo e `False` caso contrário.
+
+Exemplo:
+```python
+class MyClass:
+    def __init__(self):
+        self.my_attribute = 42
+
+obj = MyClass()
+
+print(hasattr(obj, 'my_attribute'))  # True
+print(hasattr(obj, 'nonexistent_attribute'))  # False
+```
+
+3. **`getattr()`**:
+
+A função `getattr()` é usada para obter o valor de um atributo de um objeto. Ela recebe três argumentos: o objeto, o nome do atributo como uma string e, opcionalmente, um valor padrão para retornar se o atributo não estiver presente no objeto. Se o atributo não existir e nenhum valor padrão for fornecido, `getattr()` lançará uma exceção AttributeError.
+
+Exemplo:
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+person = Person("Alice")
+
+print(getattr(person, 'name'))  # Retorna o valor do atributo 'name' ('Alice')
+print(getattr(person, 'age', 25))  # Retorna 25, pois 'age' não existe no objeto
+```
+
+Essas funções são úteis para inspecionar e interagir com objetos em tempo de execução, permitindo uma maior flexibilidade e dinamismo na programação Python.

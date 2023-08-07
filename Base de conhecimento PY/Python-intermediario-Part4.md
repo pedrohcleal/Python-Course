@@ -94,7 +94,7 @@ Nesse exemplo, a saída será "Value is falsy" porque o valor de `value` é zero
 
 ## dir, hasattr e getattr
 
-Claro, vou explicar sobre as funções `dir`, `hasattr` e `getattr` em Python.
+Funções `dir`, `hasattr` e `getattr` em Python.
 
 1. **`dir()`**:
 

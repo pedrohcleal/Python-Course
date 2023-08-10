@@ -275,3 +275,35 @@ for letra in gerador_pai():
 ```
 
 Em resumo, a expressão `yield from` é uma poderosa ferramenta que simplifica a criação e o uso de geradores aninhados, delegação de iteração e trabalho com subgeradores em Python. Ela melhora a legibilidade do código e reduz a complexidade ao lidar com cenários envolvendo geradores.
+
+## Raise
+
+Em Python, a palavra-chave "raise" é utilizada para levantar (lançar) exceções manualmente dentro de um programa. Uma exceção é um evento que ocorre durante a execução de um programa e interrompe o fluxo normal do código. Isso pode acontecer quando algo inesperado acontece ou quando uma condição de erro é atingida. Através do uso do "raise", você pode criar e lançar suas próprias exceções personalizadas ou lidar com exceções já existentes de forma mais específica.
+
+A sintaxe básica do "raise" é a seguinte:
+
+```python
+raise TipoDeExcecao("Mensagem de erro opcional")
+```
+
+Aqui está um exemplo simples que ilustra como usar o "raise" para criar e lançar uma exceção personalizada:
+
+```python
+def dividir(a, b):
+    if b == 0:
+        raise ValueError("Não é possível dividir por zero")
+    return a / b
+
+try:
+    resultado = dividir(10, 0)
+except ValueError as erro:
+    print(f"Ocorreu um erro: {erro}")
+else:
+    print("Resultado:", resultado)
+```
+
+Neste exemplo, a função "dividir" verifica se o divisor é zero e, se for o caso, lança uma exceção do tipo "ValueError" com a mensagem "Não é possível dividir por zero". No bloco "try", a função "dividir" é chamada, mas como o divisor é zero, a exceção é lançada. A exceção é então capturada no bloco "except", onde a mensagem de erro é impressa.
+
+Além de criar suas próprias exceções, você também pode usar a palavra-chave "raise" para relançar exceções existentes, permitindo que você trate ou manipule a exceção de maneira mais específica em diferentes partes do seu código.
+
+Lembre-se de que o uso cuidadoso das exceções é importante para lidar com erros de forma elegante e manter o código mais legível e robusto.

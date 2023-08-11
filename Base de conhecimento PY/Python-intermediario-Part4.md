@@ -440,3 +440,59 @@ print(mensagem)
 Neste caso, ao executar `main.py`, o bloco `if __name__ == "__main__":` no módulo `meu_modulo` não será executado, porque o atributo `__name__` será diferente de `"__main__"`.
 
 Em resumo, o uso do atributo `__name__` permite que você escreva código que pode ser tanto um módulo reutilizável quanto um programa independente, dependendo de como ele é executado. Isso oferece flexibilidade e organização aos seus projetos Python.
+
+Em Python, um "package" (pacote) é uma forma de organizar módulos relacionados em um diretório hierárquico. Ele permite agrupar funcionalidades relacionadas em um único espaço de nomes, facilitando a organização, manutenção e reutilização de código. Um package é simplesmente um diretório que contém um arquivo especial chamado `__init__.py`, que é executado quando o pacote é importado.
+
+Aqui está uma visão geral de como os packages funcionam no Python:
+
+1. **Estrutura de diretório:**
+Um package é um diretório que contém um ou mais arquivos `.py` (módulos) e o arquivo `__init__.py`. A estrutura do diretório pode ser aninhada para criar pacotes hierárquicos.
+
+```
+meu_package/
+    __init__.py
+    modulo1.py
+    modulo2.py
+    subpackage/
+        __init__.py
+        modulo3.py
+```
+
+2. **Arquivo `__init__.py`:**
+O arquivo `__init__.py` é executado quando o pacote é importado. Ele pode conter código de inicialização, variáveis, funções e importações para tornar o pacote pronto para uso.
+
+3. **Importação de pacotes e módulos:**
+Para importar um módulo de um pacote, você pode usar a sintaxe `import pacote.nome_do_modulo`. Se você quiser importar uma função específica do módulo, pode usar `from pacote.nome_do_modulo import funcao`.
+
+4. **Namespace e Acesso:**
+Um pacote atua como um espaço de nomes, evitando conflitos de nomes entre módulos de diferentes pacotes. Para acessar um módulo ou função de um pacote, você deve usar o nome completo, como `pacote.modulo.funcao`.
+
+5. **Subpackages:**
+Pacotes podem conter subpackages, permitindo a criação de hierarquias complexas de organização de código.
+
+6. **Utilizando o pacote:**
+Depois de criar um pacote, você pode usá-lo em seus programas simplesmente importando-o e utilizando suas funcionalidades. Isso ajuda a modularizar seu código e facilita a manutenção.
+
+Exemplo de uso de um pacote:
+
+Suponha que você tenha o seguinte diretório:
+
+```
+meu_projeto/
+    main.py
+    mypackage/
+        __init__.py
+        module1.py
+        module2.py
+```
+
+No arquivo `main.py`, você pode importar e usar os módulos do pacote `mypackage` da seguinte maneira:
+
+```python
+from mypackage import module1, module2
+
+module1.funcao_do_modulo1()
+module2.funcao_do_modulo2()
+```
+
+Os pacotes são uma maneira poderosa de organizar e estruturar projetos Python, tornando o código mais legível, reutilizável e escalonável.

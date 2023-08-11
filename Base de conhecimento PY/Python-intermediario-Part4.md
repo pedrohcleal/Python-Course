@@ -441,6 +441,8 @@ Neste caso, ao executar `main.py`, o bloco `if __name__ == "__main__":` no módu
 
 Em resumo, o uso do atributo `__name__` permite que você escreva código que pode ser tanto um módulo reutilizável quanto um programa independente, dependendo de como ele é executado. Isso oferece flexibilidade e organização aos seus projetos Python.
 
+## Packages 
+
 Em Python, um "package" (pacote) é uma forma de organizar módulos relacionados em um diretório hierárquico. Ele permite agrupar funcionalidades relacionadas em um único espaço de nomes, facilitando a organização, manutenção e reutilização de código. Um package é simplesmente um diretório que contém um arquivo especial chamado `__init__.py`, que é executado quando o pacote é importado.
 
 Aqui está uma visão geral de como os packages funcionam no Python:

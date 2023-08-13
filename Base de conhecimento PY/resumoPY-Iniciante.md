@@ -427,9 +427,38 @@ lista.clear()
 # lista agora é []
 ```
 
+### Como classificar listas por ordens:
+
+Você pode classificar a lista de dicionários com base nos valores das chaves dos dicionários. Para isso, você pode usar a função `sorted()` e fornecer uma função `key` que determine com base em qual chave você deseja ordenar. Aqui está um exemplo de como classificar a lista de dicionários com base na chave 'idade':
+
+```python
+pessoas = [
+    {'nome': 'Alice', 'idade': 25},
+    {'nome': 'Bob', 'idade': 30},
+    {'nome': 'Eve', 'idade': 28}
+]
+
+pessoas_ordenadas = sorted(pessoas, key=lambda x: x['idade'])
+print(pessoas_ordenadas)
+```
+
+Neste exemplo, `key=lambda x: x['idade']` especifica que queremos ordenar com base na chave 'idade' de cada dicionário. O resultado será uma nova lista chamada `pessoas_ordenadas` que conterá os dicionários da lista original `pessoas` ordenados por idade em ordem ascendente.
+
+Se você deseja ordenar em ordem decrescente, você pode adicionar o parâmetro `reverse=True` à função `sorted()`:
+
+```python
+pessoas_ordenadas_desc = sorted(pessoas, key=lambda x: x['idade'], reverse=True)
+print(pessoas_ordenadas_desc)
+```
+
+Este exemplo irá criar uma nova lista `pessoas_ordenadas_desc` com os dicionários ordenados por idade em ordem decrescente.
+
+Lembre-se de que a função `sorted()` não modifica a lista original; ela retorna uma nova lista ordenada. Se você quiser modificar a lista original, você pode usar o método `.sort()` diretamente na lista, mas isso irá alterar a ordem dos elementos na lista original.
+
 As listas são uma parte fundamental da linguagem Python e são amplamente usadas em várias situações, desde o armazenamento de dados simples até a implementação de algoritmos mais complexos. Sua flexibilidade e variedade de métodos tornam-nas uma escolha poderosa para muitos cenários de programação.
 
 Quando se trabalha com dados mutáveis em Python, é essencial ter alguns cuidados específicos para garantir a integridade dos dados e evitar efeitos colaterais indesejados em seu código. Dados mutáveis são aqueles cujo valor pode ser alterado após sua criação, como listas, dicionários e conjuntos. Abaixo estão alguns cuidados importantes a serem considerados:
+
 
 ### Cuidados com os dados mutáveis em Python:
 1. **Cópia de objetos:** Ao fazer cópias de objetos mutáveis, é importante entender a diferença entre cópias superficiais (shallow copies) e cópias profundas (deep copies). A cópia superficial cria uma nova lista, mas ainda faz referência aos mesmos objetos internos. Já a cópia profunda cria uma nova lista e copia todos os elementos internos também. Isso é especialmente importante quando você tem listas aninhadas ou dicionários dentro de listas.

@@ -114,3 +114,83 @@ Vamos entender o conceito de decoradores passo a passo:
    Nesse caso, `decorator3` será aplicado primeiro, seguido por `decorator2` e, por fim, `decorator1`.
 
 Decoradores são uma ferramenta poderosa para melhorar a modularidade e a reutilização de código em Python. Eles permitem separar as preocupações, mantendo a funcionalidade adicional fora das funções principais e facilitando a manutenção do código.
+
+## zip & zip_longest
+
+A função `zip()` em Python é utilizada para combinar elementos de duas ou mais sequências (listas, tuplas, etc.) em pares ordenados. Ela cria um iterador que gera tuplas contendo um elemento de cada sequência fornecida. Essa função é frequentemente usada quando você deseja percorrer múltiplas sequências ao mesmo tempo e operar em seus elementos correspondentes.
+
+A sintaxe básica da função `zip()` é a seguinte:
+
+```python
+zip(iterable1, iterable2, ...)
+```
+
+- `iterable1`, `iterable2`, etc.: São as sequências que você deseja combinar. Isso pode incluir listas, tuplas, strings ou qualquer outra sequência iterável.
+
+Aqui está um exemplo de como a função `zip()` funciona:
+
+```python
+nomes = ['Alice', 'Bob', 'Carol']
+idades = [25, 30, 28]
+
+for nome, idade in zip(nomes, idades):
+    print(nome, idade)
+```
+
+Neste exemplo, a função `zip()` combina os elementos de `nomes` e `idades` para criar pares ordenados e o loop `for` percorre esses pares, imprimindo o nome e a idade correspondentes.
+
+É importante notar que se as sequências fornecidas para a função `zip()` tiverem tamanhos diferentes, o iterador gerado será interrompido quando a sequência mais curta for completamente percorrida. Isso significa que os elementos excedentes da sequência mais longa não serão considerados.
+
+Além disso, você pode desempacotar as tuplas geradas pelo `zip()` para obter os elementos individuais:
+
+```python
+pares = zip(nomes, idades)
+for par in pares:
+    nome, idade = par
+    print(nome, idade)
+```
+
+Ou ainda, usar a desempacotamento direto no loop:
+
+```python
+pares = zip(nomes, idades)
+for nome, idade in pares:
+    print(nome, idade)
+```
+
+A função `zip()` é uma ferramenta útil para combinar informações de diferentes fontes de dados e é amplamente usada em Python para simplificar o processamento paralelo de dados.
+
+Claro! O módulo `itertools` em Python oferece uma função chamada `zip_longest()` que é semelhante à função `zip()`, mas lida de maneira mais flexível com sequências de tamanhos diferentes. Além disso, `zip_longest()` permite definir um valor de preenchimento (`fillvalue`) para ser usado quando uma sequência é mais curta do que outras durante a combinação. Essa função é útil quando você deseja garantir que todos os elementos de todas as sequências sejam considerados, preenchendo os espaços vazios com um valor específico.
+
+Aqui está a sintaxe da função `zip_longest()` com o uso do argumento `fillvalue`:
+
+```python
+itertools.zip_longest(iterable1, iterable2, ..., fillvalue=None)
+```
+
+- `iterable1`, `iterable2`, etc.: As sequências que você deseja combinar.
+- `fillvalue`: O valor a ser usado como preenchimento para as sequências mais curtas. O valor padrão é `None`.
+
+Aqui está um exemplo de uso da função `zip_longest()` com o argumento `fillvalue`:
+
+```python
+from itertools import zip_longest
+
+nomes = ['Alice', 'Bob', 'Carol']
+idades = [25, 30]
+
+for nome, idade in zip_longest(nomes, idades, fillvalue='Desconhecido'):
+    print(nome, idade)
+```
+
+Neste exemplo, a saída será:
+
+```
+Alice 25
+Bob 30
+Carol Desconhecido
+```
+
+Observe que a sequência `idades` é mais curta do que a sequência `nomes`, mas a função `zip_longest()` preencheu o valor ausente com "Desconhecido".
+
+O uso do `fillvalue` é especialmente útil quando você está lidando com dados tabulares ou estruturas em que é importante manter uma estrutura uniforme, mesmo que algumas informações estejam faltando em certos pontos.

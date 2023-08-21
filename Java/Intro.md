@@ -1,7 +1,5 @@
 ### Intro a JAVA
 
-Claro, vou lhe fornecer uma introdução explicativa sobre a linguagem de programação Java.
-
 **Introdução à Linguagem Java:**
 
 Java é uma linguagem de programação de alto nível amplamente usada, conhecida por sua portabilidade, orientação a objetos e segurança. Ela foi desenvolvida pela Sun Microsystems (agora propriedade da Oracle Corporation) e lançada em 1995. Desde então, Java se tornou uma das linguagens de programação mais populares e influentes na indústria de desenvolvimento de software.

@@ -473,31 +473,23 @@ Essas características tornam as funções de primeira classe uma parte fundamen
 
 ## Closure
 
-Em Python, um closure é uma função que lembra e tem acesso a variáveis do escopo em que foi definida, mesmo depois que esse escopo não está mais ativo. O conceito de closure em Python é muito semelhante ao que discutimos anteriormente em JavaScript. Em outras palavras, um closure é uma função que "captura" variáveis ​​do ambiente em que foi criada, permitindo que essas variáveis ​​persistam e sejam acessadas mesmo após o término da execução do escopo em que foram definidas.
+Um closure em Python é uma função que é definida dentro de outra função e captura (ou "fecha") as variáveis locais dessa função exterior, mesmo que essa função exterior já tenha terminado sua execução. Em outras palavras, um closure é uma função que "lembra" o ambiente em que foi criada, permitindo que ela acesse e manipule as variáveis da função externa, mesmo quando essa função externa não está mais em execução.
 
-Vamos ver um exemplo para entender melhor:
+Aqui está um exemplo simples de closure em Python:
 
 ```python
-def contador():
-    count = 0
+def outer_function(x):
+    def inner_function(y):
+        return x + y
+    return inner_function
 
-    def increment():
-        nonlocal count
-        count += 1
-        print(count)
-
-    return increment
-
-my_counter = contador()
-my_counter()  # Output: 1
-my_counter()  # Output: 2
-my_counter()  # Output: 3
+closure = outer_function(10)
+result = closure(5)
+print(result)  # Isso imprimirá 15
 ```
 
-Neste exemplo, a função `contador` define uma variável chamada `count` com valor inicial 0 e, em seguida, define uma função interna chamada `increment`. A função `increment` é um closure, pois lembra do escopo da função `contador` e tem acesso à variável `count` definida no escopo pai.
+No exemplo acima, a função `inner_function` é um closure, pois ela é definida dentro da função `outer_function` e acessa a variável local `x` da função externa. Mesmo após a execução da função `outer_function`, o closure `inner_function` ainda "lembra" o valor de `x` que foi passado para a função externa. Quando chamamos `closure(5)`, a função interna utiliza o valor de `x` (que é 10) e retorna a soma de `x` e `y`, resultando em 15.
 
-Quando chamamos `my_counter()`, a função `increment` é invocada e incrementa o valor da variável `count`. Como `count` é uma variável capturada pelo closure, seu valor persiste entre as chamadas subsequentes de `my_counter()`. Isso ocorre porque a função `increment` "lembra" do ambiente em que foi criada, incluindo as variáveis ​​do escopo pai.
+Os closures são frequentemente usados para criar funções auxiliares que compartilham algum estado com a função que as cria. Eles são úteis para encapsular comportamentos e dados relacionados em um escopo limitado, evitando a necessidade de criar variáveis globais.
 
-Os closures em Python são usados em várias situações, como quando precisamos criar funções geradoras, decoradores ou quando queremos manter estados privados de uma função em vez de usar variáveis globais. Eles são uma parte importante da programação funcional em Python e podem ser poderosos para escrever código conciso e eficiente.
-
-
+É importante notar que closures podem ser poderosos, mas também podem levar a bugs sutis se não forem compreendidos e gerenciados corretamente, especialmente em situações onde as variáveis capturadas mudam de valor após a criação do closure.

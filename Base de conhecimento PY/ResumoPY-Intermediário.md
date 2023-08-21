@@ -55,38 +55,6 @@ resultado = calcular_quadrado(4)
 print(resultado)  # Output: 16
 ```
 
-### Escopo Local:
-
-As variáveis definidas dentro de uma função têm escopo local, o que significa que elas só podem ser acessadas dentro dessa função. Elas não estão disponíveis fora do escopo da função.
-
-Exemplo de variável local:
-
-```python
-def funcao_local():
-    variavel_local = "Isso é uma variável local"
-    print(variavel_local)
-
-funcao_local()  # Output: Isso é uma variável local
-
-# Tentar acessar a variável_local fora da função causará um erro:
-# print(variavel_local)  # NameError: name 'variavel_local' is not defined
-```
-
-### Escopo Global:
-
-Variáveis declaradas fora de qualquer função têm escopo global e podem ser acessadas de qualquer lugar no programa, incluindo dentro de funções.
-
-Exemplo de variável global:
-
-```python
-variavel_global = 42
-
-def funcao_global():
-    print(variavel_global)
-
-funcao_global()  # Output: 42
-```
-
 ### Funções sem Retorno:
 
 Uma função pode não ter um valor de retorno explícito. Nesse caso, ela retorna `None` por padrão.

@@ -237,3 +237,31 @@ Lembre-se de que, como a função `count` gera uma sequência infinita, é impor
 Observe que a sequência `idades` é mais curta do que a sequência `nomes`, mas a função `zip_longest()` preencheu o valor ausente com "Desconhecido".
 
 O uso do `fillvalue` é especialmente útil quando você está lidando com dados tabulares ou estruturas em que é importante manter uma estrutura uniforme, mesmo que algumas informações estejam faltando em certos pontos.
+
+### Qual a diferença entre um objeto iterável e iterador
+
+Em Python, tanto os objetos iteráveis quanto os iteradores estão relacionados à iteração sobre elementos em uma sequência, mas eles têm propósitos e comportamentos ligeiramente diferentes.
+
+1. **Objeto Iterável:**
+Um objeto iterável é qualquer objeto que pode ser percorrido ou iterado, ou seja, você pode usar um loop (como `for`) para percorrer seus elementos. Os objetos iteráveis podem ser coleções de elementos, como listas, tuplas, conjuntos e dicionários, mas também podem ser sequências geradas sob demanda, como geradores. Um objeto iterável deve implementar o método especial `__iter__()` que retorna um iterador.
+
+Exemplo de um objeto iterável (lista):
+
+```python
+my_list = [1, 2, 3, 4, 5]
+```
+
+2. **Iterador:**
+Um iterador é um objeto que mantém um estado de iteração e fornece um método `__next__()` para obter o próximo elemento da sequência. Um iterador mantém informações sobre o estado atual da iteração, o que permite retomar de onde parou na próxima chamada do método `__next__()`. Iteradores são frequentemente criados a partir de objetos iteráveis usando o método `iter()`.
+
+Exemplo de um iterador (usando a função `iter()` para criar um iterador a partir da lista anterior):
+
+```python
+my_iterator = iter(my_list)
+```
+
+Em resumo:
+- Um objeto iterável é algo que pode ser percorrido.
+- Um iterador é um objeto que mantém o controle do estado de iteração e fornece os próximos elementos.
+
+Um detalhe importante é que, em geral, um objeto iterável pode ser transformado em um iterador usando a função `iter()`. Isso acontece quando você percorre um objeto iterável usando um loop `for`, por exemplo. O loop cria automaticamente um iterador temporário a partir do objeto iterável para realizar a iteração. Portanto, enquanto os iteradores são usados principalmente para iteração controlada e manutenção de estado, os objetos iteráveis são mais comuns na programação cotidiana.

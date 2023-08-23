@@ -191,6 +191,49 @@ Bob 30
 Carol Desconhecido
 ```
 
+## Função Count - itertools
+
+A função `count` da biblioteca `itertools` em Python gera um iterador que produz uma sequência infinita de valores inteiros começando a partir de um valor inicial (padrão é 0) e incrementando em um passo (padrão é 1). Como a sequência é infinita, é necessário limitar o uso dessa função com alguma condição de parada, caso contrário, ela continuará gerando valores indefinidamente.
+
+Aqui está a assinatura básica da função `count`:
+
+```python
+itertools.count(start=0, step=1)
+```
+
+Parâmetros:
+- `start`: Valor inicial da contagem. O padrão é 0.
+- `step`: Valor a ser adicionado a cada iteração. O padrão é 1.
+
+Essa função é geralmente usada em combinação com outras funções e ferramentas de programação funcional para criar sequências personalizadas. Por exemplo, você pode usar `count` em conjunto com a função `islice` para criar uma sequência finita de valores, definindo um limite para a contagem.
+
+Aqui está um exemplo de como você poderia usar a função `count`:
+
+```python
+import itertools
+
+# Criar um iterador de contagem começando em 5 e incrementando de 2 em 2
+contador = itertools.count(start=5, step=2)
+
+# Imprimir os próximos 5 valores da contagem
+for _ in range(5):
+    print(next(contador))
+```
+
+Saída:
+
+```
+5
+7
+9
+11
+13
+```
+
+Neste exemplo, o iterador `contador` gera uma sequência de números ímpares a partir do valor inicial 5, incrementando de 2 em 2. O loop `for` imprime os próximos 5 valores dessa contagem.
+
+Lembre-se de que, como a função `count` gera uma sequência infinita, é importante ter cuidado ao usá-la para evitar loops infinitos e consumir muita memória ou recursos do sistema.
+
 Observe que a sequência `idades` é mais curta do que a sequência `nomes`, mas a função `zip_longest()` preencheu o valor ausente com "Desconhecido".
 
 O uso do `fillvalue` é especialmente útil quando você está lidando com dados tabulares ou estruturas em que é importante manter uma estrutura uniforme, mesmo que algumas informações estejam faltando em certos pontos.

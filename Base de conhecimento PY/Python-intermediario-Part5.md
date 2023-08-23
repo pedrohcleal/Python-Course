@@ -265,3 +265,74 @@ Em resumo:
 - Um iterador é um objeto que mantém o controle do estado de iteração e fornece os próximos elementos.
 
 Um detalhe importante é que, em geral, um objeto iterável pode ser transformado em um iterador usando a função `iter()`. Isso acontece quando você percorre um objeto iterável usando um loop `for`, por exemplo. O loop cria automaticamente um iterador temporário a partir do objeto iterável para realizar a iteração. Portanto, enquanto os iteradores são usados principalmente para iteração controlada e manutenção de estado, os objetos iteráveis são mais comuns na programação cotidiana.
+
+##  Combinations, Permutations e Product da biblioteca Itertools
+
+A biblioteca `itertools` em Python é uma poderosa ferramenta para trabalhar com iterações e permutações de elementos. Ela fornece várias funções que facilitam a geração de combinações, permutações e produtos de sequências. Vamos dar uma olhada nas três funções específicas que você mencionou: `combinations`, `permutations` e `product`.
+
+1. **Combinations:**
+A função `combinations` gera todas as combinações possíveis de tamanho específico a partir de uma sequência dada, sem repetir elementos. Ela retorna um objeto iterável que pode ser transformado em uma lista, se necessário.
+
+Exemplo:
+```python
+from itertools import combinations
+
+seq = [1, 2, 3]
+comb = combinations(seq, 2)
+
+for c in comb:
+    print(c)
+```
+Saída:
+```
+(1, 2)
+(1, 3)
+(2, 3)
+```
+
+2. **Permutations:**
+A função `permutations` gera todas as permutações possíveis de uma sequência, com um tamanho específico ou igual ao tamanho da sequência. Ela também retorna um objeto iterável.
+
+Exemplo:
+```python
+from itertools import permutations
+
+seq = [1, 2, 3]
+perm = permutations(seq, 2)
+
+for p in perm:
+    print(p)
+```
+Saída:
+```
+(1, 2)
+(1, 3)
+(2, 1)
+(2, 3)
+(3, 1)
+(3, 2)
+```
+
+3. **Product:**
+A função `product` calcula o produto cartesiano de duas ou mais sequências, gerando todas as combinações possíveis dos elementos entre as sequências fornecidas. Ela também retorna um objeto iterável.
+
+Exemplo:
+```python
+from itertools import product
+
+seq1 = [1, 2]
+seq2 = ['a', 'b']
+prod = product(seq1, seq2)
+
+for p in prod:
+    print(p)
+```
+Saída:
+```
+(1, 'a')
+(1, 'b')
+(2, 'a')
+(2, 'b')
+```
+
+Essas funções da biblioteca `itertools` são extremamente úteis para gerar combinações, permutações e produtos de maneira eficiente, especialmente quando lidando com grandes conjuntos de dados. Elas facilitam tarefas como a geração de todas as possíveis combinações para resolver problemas de otimização, a criação de testes abrangentes ou a exploração de cenários variados.

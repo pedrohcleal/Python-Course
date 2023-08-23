@@ -160,7 +160,9 @@ for nome, idade in pares:
 
 A função `zip()` é uma ferramenta útil para combinar informações de diferentes fontes de dados e é amplamente usada em Python para simplificar o processamento paralelo de dados.
 
-Claro! O módulo `itertools` em Python oferece uma função chamada `zip_longest()` que é semelhante à função `zip()`, mas lida de maneira mais flexível com sequências de tamanhos diferentes. Além disso, `zip_longest()` permite definir um valor de preenchimento (`fillvalue`) para ser usado quando uma sequência é mais curta do que outras durante a combinação. Essa função é útil quando você deseja garantir que todos os elementos de todas as sequências sejam considerados, preenchendo os espaços vazios com um valor específico.
+### zip_longest
+
+O módulo `itertools` em Python oferece uma função chamada `zip_longest()` que é semelhante à função `zip()`, mas lida de maneira mais flexível com sequências de tamanhos diferentes. Além disso, `zip_longest()` permite definir um valor de preenchimento (`fillvalue`) para ser usado quando uma sequência é mais curta do que outras durante a combinação. Essa função é útil quando você deseja garantir que todos os elementos de todas as sequências sejam considerados, preenchendo os espaços vazios com um valor específico.
 
 Aqui está a sintaxe da função `zip_longest()` com o uso do argumento `fillvalue`:
 

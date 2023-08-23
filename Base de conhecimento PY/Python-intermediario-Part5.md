@@ -336,3 +336,42 @@ Saída:
 ```
 
 Essas funções da biblioteca `itertools` são extremamente úteis para gerar combinações, permutações e produtos de maneira eficiente, especialmente quando lidando com grandes conjuntos de dados. Elas facilitam tarefas como a geração de todas as possíveis combinações para resolver problemas de otimização, a criação de testes abrangentes ou a exploração de cenários variados.
+
+### groupby -itertools
+A função `groupby` da biblioteca `itertools` em Python é usada para agrupar elementos consecutivos em uma sequência com base em uma função de chave. Ela retorna um iterador que gera pares contendo a chave e um iterador de elementos que têm a mesma chave. Isso é particularmente útil quando você deseja agrupar elementos semelhantes em uma sequência com base em algum critério.
+
+Aqui está a assinatura da função `groupby`:
+
+```python
+itertools.groupby(iterable, key=None)
+```
+
+- `iterable`: A sequência de entrada que você deseja agrupar.
+- `key`: Uma função opcional que define a chave de agrupamento para cada elemento. Se não for fornecida, os elementos serão agrupados com base na igualdade direta.
+
+A função `groupby` agrupa elementos consecutivos na sequência com base na chave especificada. Ela retorna um iterador onde cada elemento é um par contendo a chave e um iterador dos elementos correspondentes a essa chave.
+
+Exemplo de uso:
+
+```python
+from itertools import groupby
+
+data = [('a', 1), ('a', 2), ('b', 3), ('b', 4), ('c', 5)]
+
+# Agrupa os elementos com base na chave (primeiro elemento da tupla)
+grouped_data = groupby(data, key=lambda x: x[0])
+
+for key, group in grouped_data:
+    print(key, list(group))
+```
+
+Saída:
+```
+a [('a', 1), ('a', 2)]
+b [('b', 3), ('b', 4)]
+c [('c', 5)]
+```
+
+Neste exemplo, a função `groupby` agrupa os elementos da lista `data` com base no primeiro elemento de cada tupla. Isso resulta em três grupos: 'a', 'b' e 'c'. Cada grupo é um iterador que contém os elementos correspondentes a essa chave.
+
+Lembre-se de que a sequência de entrada deve estar ordenada pela chave de agrupamento para que o `groupby` funcione corretamente, já que ele agrupa elementos consecutivos com chaves iguais.

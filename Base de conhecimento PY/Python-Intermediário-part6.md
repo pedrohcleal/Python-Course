@@ -34,3 +34,42 @@ print(numeros_pares_lista)  # Saída: [2, 4, 6, 8, 10]
 ```
 
 A função `filter()` é útil quando você deseja extrair elementos de uma sequência com base em algum critério específico, economizando tempo e código comparado a loops explícitos de iteração.
+
+### Reduce
+A função `reduce()` também é uma função integrada em Python, mas, diferente das funções `map()` e `filter()`, ela não faz parte das funções built-in a partir do Python 3. A partir da versão 3, a função `reduce()` foi movida para o módulo `functools`, portanto, para usá-la, é necessário importá-la primeiro.
+
+A função `reduce()` é projetada para acumular ou reduzir uma sequência de elementos a um único valor aplicando uma função repetidamente aos elementos da sequência. Ela foi inspirada por uma operação comum em programação funcional chamada "fold" ou "fold/reduce". A ideia é aplicar uma operação binária iterativa a todos os elementos da sequência, acumulando um resultado.
+
+A sintaxe básica da função `reduce()` é a seguinte:
+
+```python
+functools.reduce(função, sequência, valor_inicial)
+```
+
+- `função`: Uma função que recebe dois argumentos e realiza a operação binária entre eles.
+- `sequência`: A sequência de elementos que você deseja reduzir.
+- `valor_inicial`: O valor inicial para o acumulador. Esse argumento é opcional.
+
+Aqui está um exemplo simples de uso da função `reduce()`:
+
+```python
+from functools import reduce
+
+def soma(x, y):
+    return x + y
+
+numeros = [1, 2, 3, 4, 5]
+soma_total = reduce(soma, numeros)
+print(soma_total)  # Saída: 15 (1 + 2 + 3 + 4 + 5)
+```
+
+Neste exemplo, a função `soma()` é aplicada repetidamente aos elementos da lista `numeros`, acumulando um valor total.
+
+Se você quiser fornecer um valor inicial para o acumulador, você pode fazer assim:
+
+```python
+soma_total_com_inicial = reduce(soma, numeros, 10)
+print(soma_total_com_inicial)  # Saída: 25 (10 + 1 + 2 + 3 + 4 + 5)
+```
+
+A função `reduce()` pode ser poderosa para situações em que você precisa combinar todos os elementos de uma sequência usando uma operação específica, como cálculos matemáticos ou manipulação de dados. No entanto, observe que a função `reduce()` não é tão comum quanto as funções `map()` e `filter()`, pois sua funcionalidade pode muitas vezes ser atingida de maneira mais clara e legível com loops simples ou list comprehensions.

@@ -100,3 +100,39 @@ No entanto, é importante ter em mente que a recursão pode levar a problemas co
 Além disso, em alguns casos, a recursão pode ser menos eficiente do que uma abordagem iterativa (usando loops). Portanto, é bom considerar outras alternativas de implementação, dependendo do problema que você está resolvendo.
 
 Em resumo, a recursão em Python permite que as funções chamem a si mesmas para resolver problemas divididos em subproblemas menores. É uma ferramenta poderosa, mas que deve ser usada com cuidado e atenção aos detalhes para evitar problemas de desempenho e lógicos.
+
+## Context Manager with
+Um "context manager" em Python é uma ferramenta que ajuda a gerenciar recursos, como arquivos, conexões de rede ou qualquer outro objeto que precise ser configurado e liberado de maneira apropriada. O gerenciamento adequado desses recursos é importante para evitar vazamentos de memória e garantir que eles sejam tratados corretamente, mesmo quando ocorrem exceções.
+
+O gerenciador de contexto é definido usando os blocos `with` (com) em Python. Ele fornece um contexto no qual um objeto é criado e configurado no início do bloco `with`, e é automaticamente liberado (ou finalizado) no final do bloco `with`, independentemente de qualquer exceção que possa ter ocorrido durante a execução desse bloco.
+
+A sintaxe básica é a seguinte:
+
+```python
+with GerenciadorDeContexto() as objeto:
+    # Código dentro do contexto
+    # O objeto está configurado e disponível aqui
+
+# Fora do bloco 'with'
+# O objeto foi liberado e os recursos foram tratados
+```
+
+Aqui está um exemplo prático usando um contexto para abrir e fechar automaticamente um arquivo:
+
+```python
+# Sem contexto
+arquivo = open("arquivo.txt", "r")
+conteudo = arquivo.read()
+arquivo.close()
+
+# Com contexto
+with open("arquivo.txt", "r") as arquivo:
+    conteudo = arquivo.read()
+# O arquivo é automaticamente fechado ao sair do bloco 'with'
+```
+
+Neste exemplo, o arquivo é aberto dentro do bloco `with` e o Python se encarregará de fechá-lo automaticamente quando o bloco `with` for concluído, independentemente de ocorrerem exceções ou não.
+
+Você também pode criar seus próprios gerenciadores de contexto definindo classes com os métodos `__enter__` e `__exit__`. Isso permite personalizar o comportamento do contexto conforme suas necessidades.
+
+O uso de context managers torna o código mais limpo, mais seguro e menos suscetível a erros relacionados à gestão inadequada de recursos. Eles são amplamente utilizados em Python para trabalhar com arquivos, bancos de dados, conexões de rede, transações e outras situações que envolvem aquisição e liberação de recursos.

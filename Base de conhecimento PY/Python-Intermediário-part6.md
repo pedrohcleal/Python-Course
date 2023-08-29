@@ -133,6 +133,7 @@ with open("arquivo.txt", "r") as arquivo:
 
 Neste exemplo, o arquivo é aberto dentro do bloco `with` e o Python se encarregará de fechá-lo automaticamente quando o bloco `with` for concluído, independentemente de ocorrerem exceções ou não.
 
+### Modos
 Em Python, ao trabalhar com arquivos, os modos são parâmetros que você pode passar para a função `open()` para especificar como o arquivo será aberto e manipulado. Os modos determinam se você está lendo, escrevendo, acrescentando ou executando outras operações no arquivo. Aqui estão os principais modos de abertura de arquivo:
 
 1. Modo de Leitura (`'r'`): Este é o modo padrão de abertura de arquivo. Ele permite que você leia o conteúdo do arquivo. Se o arquivo não existir, uma exceção `FileNotFoundError` será levantada.
@@ -168,3 +169,41 @@ with open("arquivo_binario", "wb+") as binario:
 ```
 
 Lembre-se de que ao usar o gerenciador de contexto `with`, o arquivo será fechado automaticamente quando sair do bloco `with`, independentemente do modo de abertura utilizado..
+### Métodos
+Quando você abre um arquivo em Python usando a função `open()`, o objeto retornado possui diversos métodos que permitem interagir com o arquivo de várias maneiras. Aqui estão alguns dos métodos mais comuns associados a objetos de arquivo:
+
+1. `read(size=-1)`: Lê e retorna o conteúdo do arquivo como uma string. Se o argumento `size` for especificado, apenas essa quantidade de caracteres será lida. Se `size` não for especificado ou for negativo, o arquivo inteiro é lido. 
+
+2. `readline()`: Lê e retorna uma linha do arquivo como uma string. A próxima linha é lida a cada chamada subsequente.
+
+3. `readlines()`: Lê todas as linhas do arquivo e retorna uma lista de strings, onde cada string representa uma linha.
+
+4. `write(string)`: Escreve a string fornecida no arquivo. Retorna o número de caracteres escritos.
+
+5. `writelines(lines)`: Escreve uma lista de strings no arquivo. Cada string representa uma linha. Não adiciona automaticamente quebras de linha entre as linhas, então você deve incluí-las se necessário.
+
+6. `seek(offset, whence=0)`: Move a posição do "cursor" de leitura/escrita no arquivo. O argumento `offset` define o deslocamento em relação ao ponto de referência especificado por `whence`. Os valores possíveis para `whence` são 0 (início do arquivo), 1 (posição atual) e 2 (fim do arquivo).
+
+7. `tell()`: Retorna a posição atual do cursor no arquivo.
+
+8. `close()`: Fecha o arquivo, liberando os recursos associados a ele.
+
+9. `flush()`: Força a gravação de qualquer conteúdo em buffer para o arquivo.
+
+10. `truncate(size=None)`: Reduz o tamanho do arquivo para `size` bytes. Se o tamanho não for especificado, o arquivo será truncado na posição atual do cursor.
+
+11. `__enter__()` e `__exit__()`: Esses métodos especiais permitem que o objeto de arquivo seja usado como um gerenciador de contexto usando o bloco `with`. O método `__enter__()` pode ser usado para configurar o contexto (por exemplo, abrir o arquivo), e o método `__exit__()` pode ser usado para liberar recursos (por exemplo, fechar o arquivo).
+
+Aqui está um exemplo de uso de alguns desses métodos:
+
+```python
+with open("exemplo.txt", "r") as arquivo:
+    conteudo = arquivo.read()
+    print(conteudo)
+
+with open("novo_arquivo.txt", "w") as novo_arquivo:
+    novo_arquivo.write("Olá, mundo!\n")
+    novo_arquivo.write("Essa é uma nova linha.\n")
+```
+
+Lembrando que usar o bloco `with` é recomendado para garantir que o arquivo seja fechado corretamente após o uso.

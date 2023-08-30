@@ -1,6 +1,6 @@
 # Part 7
 
-## problemas dos parametros mutáveis em funções
+## Problemas dos parametros mutáveis em funções
 
 Em Python, os parâmetros mutáveis em funções podem levar a comportamentos inesperados e erros difíceis de depurar. Os problemas decorrem da natureza mutável desses parâmetros, como listas ou dicionários, que podem ser alterados dentro da função sem que a chamada original perceba essas mudanças. Aqui estão alguns dos principais problemas associados aos parâmetros mutáveis em funções:
 
@@ -29,3 +29,39 @@ Para mitigar esses problemas, considere seguir as boas práticas ao lidar com pa
 - **Use técnicas de programação funcional**: Técnicas da programação funcional, como evitar o uso de variáveis globais e minimizar o compartilhamento de estado, podem ajudar a reduzir os problemas associados aos parâmetros mutáveis.
 
 Em resumo, enquanto o Python permite o uso de parâmetros mutáveis em funções, é importante estar ciente dos problemas potenciais e adotar abordagens para minimizar os riscos associados a esses parâmetros.
+
+## Guard Clause em Py
+Uma "Guard Clause" (também conhecida como "Early Return" ou "Bouncer Pattern") é um padrão de programação utilizado para melhorar a legibilidade e a manutenção do código, evitando aninhar uma lógica complexa dentro de uma estrutura de controle condicional (como um `if`) e, em vez disso, tratando as condições de erro ou casos especiais primeiro. Isso resulta em um código mais limpo, fácil de entender e com menos indentação.
+
+No contexto de Python, uma Guard Clause é frequentemente implementada usando uma instrução `return` ou `raise` para sair da função ou método assim que uma condição for atendida. Isso ajuda a evitar o aninhamento excessivo de blocos de código e melhora a legibilidade do programa.
+
+Aqui está um exemplo simples de uma função que calcula a divisão de dois números usando uma Guard Clause:
+
+```python
+def divide(a, b):
+    if b == 0:
+        raise ValueError("Denominator cannot be zero")  # Guard Clause
+    return a / b
+```
+
+Nesse exemplo, a Guard Clause verifica se o denominador (`b`) é igual a zero. Se for, a função levanta um erro com uma mensagem apropriada. Caso contrário, a divisão é realizada e o resultado é retornado. Essa abordagem evita a necessidade de indentar todo o código da função dentro do bloco `if`, o que tornaria o código mais difícil de ler à medida que a lógica se torna mais complexa.
+
+Aqui está outro exemplo mais detalhado, ilustrando como uma Guard Clause pode melhorar a legibilidade do código:
+
+```python
+def calculate_grade(score):
+    if score < 0:
+        return "Invalid score"  # Guard Clause
+    if score < 50:
+        return "F"
+    elif score < 70:
+        return "C"
+    elif score < 90:
+        return "B"
+    else:
+        return "A"
+```
+
+Neste exemplo, a primeira Guard Clause lida com o caso em que o valor do `score` é inválido. Se o valor for negativo, a função retorna imediatamente com uma mensagem de erro. Isso evita a necessidade de aninhar o restante da lógica dentro de um bloco `if`.
+
+Em resumo, as Guard Clauses em Python são uma técnica que visa tornar o código mais legível e menos aninhado, tratando condições de erro ou casos especiais no início de uma função ou método antes de prosseguir com a lógica principal. Isso contribui para um código mais claro, mais organizado e mais fácil de manter.

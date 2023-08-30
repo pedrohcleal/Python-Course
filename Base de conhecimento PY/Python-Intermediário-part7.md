@@ -65,3 +65,45 @@ def calculate_grade(score):
 Neste exemplo, a primeira Guard Clause lida com o caso em que o valor do `score` é inválido. Se o valor for negativo, a função retorna imediatamente com uma mensagem de erro. Isso evita a necessidade de aninhar o restante da lógica dentro de um bloco `if`.
 
 Em resumo, as Guard Clauses em Python são uma técnica que visa tornar o código mais legível e menos aninhado, tratando condições de erro ou casos especiais no início de uma função ou método antes de prosseguir com a lógica principal. Isso contribui para um código mais claro, mais organizado e mais fácil de manter.
+
+## Controlando a quantidade de argumentos posicionais e nomeados em funções
+
+Em Python, a capacidade de controlar a quantidade e o tipo de argumentos passados para uma função é fundamental para escrever código flexível e legível. Você pode usar diferentes técnicas para controlar os argumentos em funções, incluindo a definição de parâmetros posicionais somente ("/"), argumentos somente por palavra-chave e padrões padrão. Vou explicar como usar essas técnicas.
+
+### Parâmetros Posicionais Somente ("/"):
+
+O caractere "/" é usado para indicar que todos os parâmetros antes dele na lista de parâmetros de uma função devem ser passados por posição, sem a possibilidade de usar palavras-chave. Isso ajuda a criar uma separação clara entre os argumentos posicionais e os argumentos que devem ser passados por palavra-chave. Veja um exemplo:
+
+```python
+def positional_only_example(a, b, /):
+    return a + b
+
+result = positional_only_example(3, 5)  # Válido, pois passamos a e b por posição
+# result = positional_only_example(a=3, b=5)  # Inválido, pois não podemos usar palavras-chave
+```
+
+### Argumentos Somente por Palavra-chave:
+
+Você também pode definir argumentos que só podem ser passados por palavra-chave, o que significa que eles não podem ser passados por posição. Isso é útil quando você tem argumentos opcionais que podem não estar na ordem certa. Você define essa restrição usando o caractere "*" antes deles. Veja um exemplo:
+
+```python
+def keyword_only_example(*, x, y):
+    return x * y
+
+# result = keyword_only_example(2, 3)  # Inválido, pois os argumentos são apenas por palavra-chave
+result = keyword_only_example(x=2, y=3)  # Válido, passando os argumentos corretamente
+```
+
+### Parâmetros Padrão:
+
+Parâmetros padrão permitem que você defina valores predefinidos para os argumentos de uma função. Isso é útil quando você deseja que um argumento seja opcional. No entanto, você precisa garantir que os parâmetros com valores padrão estejam após todos os parâmetros posicionais (antes do "/") ou após o caractere "*" (para argumentos somente por palavra-chave). Exemplo:
+
+```python
+def default_arguments_example(a, b, c=0):
+    return a + b + c
+
+result1 = default_arguments_example(1, 2)  # c assume o valor padrão 0
+result2 = default_arguments_example(1, 2, 3)  # c assume o valor 3 passado explicitamente
+```
+
+Combinar essas técnicas permite que você controle cuidadosamente como os argumentos são passados para suas funções, criando um código mais legível e claro, além de prevenir erros comuns de passagem de argumentos. Certifique-se de compreender bem as regras de sintaxe para cada caso antes de aplicá-las em seu código.

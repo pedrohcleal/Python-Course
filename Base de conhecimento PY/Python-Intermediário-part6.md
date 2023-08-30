@@ -207,3 +207,61 @@ with open("novo_arquivo.txt", "w") as novo_arquivo:
 ```
 
 Lembrando que usar o bloco `with` é recomendado para garantir que o arquivo seja fechado corretamente após o uso.
+
+## JSON - py
+
+JSON (JavaScript Object Notation) é um formato leve e amplamente utilizado para troca de dados entre sistemas. Ele é legível tanto por humanos quanto por máquinas e é frequentemente utilizado para representar estruturas de dados simples e complexas. No Python, o JSON é suportado nativamente por meio do módulo `json`.
+
+O módulo `json` fornece funções para codificar (serializar) e decodificar (desserializar) dados JSON. Isso permite que você converta objetos Python em strings JSON e vice-versa. Aqui estão algumas funções importantes do módulo `json`:
+
+1. `json.dumps()`: Esta função é usada para serializar objetos Python em strings JSON. Ela aceita um objeto Python como argumento e retorna uma string JSON correspondente.
+
+Exemplo:
+```python
+import json
+
+data = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+json_string = json.dumps(data)
+print(json_string)
+```
+
+2. `json.dump()`: Semelhante ao `json.dumps()`, esta função também serializa objetos Python em strings JSON, mas escreve diretamente em um arquivo (ou em um objeto semelhante a arquivo). Isso é útil para salvar dados em um arquivo JSON.
+
+Exemplo:
+```python
+data = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+with open("data.json", "w") as json_file:
+    json.dump(data, json_file)
+```
+
+3. `json.loads()`: Essa função é usada para desserializar uma string JSON em um objeto Python. Ela aceita uma string JSON como argumento e retorna um objeto Python correspondente.
+
+Exemplo:
+```python
+json_string = '{"name": "John", "age": 30, "city": "New York"}'
+data = json.loads(json_string)
+print(data["name"])
+```
+
+4. `json.load()`: Essa função lê um arquivo JSON e desserializa seu conteúdo diretamente em um objeto Python.
+
+Exemplo:
+```python
+with open("data.json", "r") as json_file:
+    data = json.load(json_file)
+    print(data["name"])
+```
+
+Lembrando que o JSON suporta tipos de dados simples como números, strings, booleanos e valores nulos, bem como listas e dicionários aninhados. Ao lidar com tipos de dados mais complexos, como objetos personalizados em Python, pode ser necessário fornecer funções de serialização e desserialização personalizadas usando o parâmetro `default` do `json.dumps()` ou o parâmetro `object_hook` do `json.loads()`.
+
+Em resumo, o módulo `json` no Python é uma ferramenta poderosa para trabalhar com dados no formato JSON, permitindo que você converta facilmente entre objetos Python e strings JSON, tornando a troca de dados entre diferentes sistemas mais eficiente e conveniente.

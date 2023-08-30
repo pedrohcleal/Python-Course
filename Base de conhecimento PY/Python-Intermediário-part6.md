@@ -208,6 +208,28 @@ with open("novo_arquivo.txt", "w") as novo_arquivo:
 
 Lembrando que usar o bloco `with` é recomendado para garantir que o arquivo seja fechado corretamente após o uso.
 
+### Enconding
+
+O UTF-8 utiliza de 1 a 4 bytes para representar diferentes caracteres, permitindo que caracteres comuns em línguas ocidentais (como inglês, francês, alemão, etc.) sejam representados em um único byte, enquanto caracteres menos comuns em scripts e idiomas diversos são representados em múltiplos bytes.
+
+Em Python, você pode especificar o encoding UTF-8 ao abrir um arquivo usando a função `open()` e o argumento `encoding`. Por exemplo:
+
+```python
+with open("arquivo.txt", "r", encoding="utf-8") as arquivo:
+    conteudo = arquivo.read()
+    print(conteudo)
+```
+
+Da mesma forma, ao escrever em um arquivo, você pode usar o mesmo argumento `encoding` para garantir que o texto seja salvo em formato UTF-8:
+
+```python
+with open("novo_arquivo.txt", "w", encoding="utf-8") as novo_arquivo:
+    novo_arquivo.write("Olá, mundo!\n")
+    novo_arquivo.write("こんにちは、世界！\n")  # Texto em japonês
+```
+
+Lembre-se de que usar a codificação correta é importante para garantir que os caracteres sejam interpretados e exibidos corretamente, especialmente quando se lida com textos em diferentes idiomas. O UTF-8 é uma escolha amplamente recomendada, pois oferece suporte a uma ampla gama de caracteres Unicode.
+
 ## JSON - py
 
 JSON (JavaScript Object Notation) é um formato leve e amplamente utilizado para troca de dados entre sistemas. Ele é legível tanto por humanos quanto por máquinas e é frequentemente utilizado para representar estruturas de dados simples e complexas. No Python, o JSON é suportado nativamente por meio do módulo `json`.

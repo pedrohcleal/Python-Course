@@ -1,3 +1,5 @@
+# Python Intermediário part 6
+
 ## filter()
 A função `filter()` é outra função integrada em Python que permite filtrar elementos de uma sequência (como uma lista, tupla ou outro iterável) com base em uma função de teste. Ela retorna um iterador contendo os elementos da sequência original que passam no teste definido pela função.
 

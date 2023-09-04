@@ -274,3 +274,69 @@ Aqui estão algumas considerações importantes relacionadas ao encoding no cont
    ```
 
 Em resumo, entender e gerenciar encoding é crucial ao lidar com texto em programação, pois isso garante que os dados sejam interpretados corretamente, evitando problemas de caracteres inválidos e garantindo a portabilidade de seus aplicativos em diferentes ambientes e idiomas. UTF-8 é geralmente a escolha recomendada de encoding devido à sua capacidade de suportar uma ampla gama de caracteres.
+
+## Sobre 'ensure_ascii' & 'indent'
+
+`ensure_ascii` e `indent` são parâmetros opcionais que podem ser usados ao serializar um objeto Python em formato JSON usando a função `json.dump()` ou `json.dumps()` da biblioteca padrão `json` em Python.
+
+1. **`ensure_ascii`**:
+
+   - O parâmetro `ensure_ascii` é um parâmetro booleano que controla se os caracteres não-ASCII devem ser escapados (codificados) como sequências de escape Unicode ou não ao serializar em JSON.
+   - Se `ensure_ascii` for definido como `True` (o padrão), os caracteres não-ASCII serão escapados, ou seja, representados como sequências de escape Unicode, garantindo que o JSON resultante seja ASCII válido.
+   - Se `ensure_ascii` for definido como `False`, os caracteres não-ASCII serão incluídos diretamente no JSON sem serem escapados, resultando em um JSON que pode conter caracteres não-ASCII.
+   - Use `ensure_ascii=False` quando você quiser preservar caracteres não-ASCII em seu JSON, mas esteja ciente de que isso pode não ser compatível com todos os parsers JSON.
+
+   Exemplo:
+
+   ```python
+   import json
+
+   dados = {"nome": "José", "idade": 30}
+   
+   # Com ensure_ascii=True (padrão)
+   json_com_ensure_ascii = json.dumps(dados, ensure_ascii=True)
+   # Resultado: '{"nome": "Jos\u00e9", "idade": 30}'
+
+   # Com ensure_ascii=False
+   json_sem_ensure_ascii = json.dumps(dados, ensure_ascii=False)
+   # Resultado: '{"nome": "José", "idade": 30}'
+   ```
+
+2. **`indent`**:
+
+   - O parâmetro `indent` é usado para controlar a formatação (indentação) do JSON resultante, tornando-o mais legível para os humanos. Ele define o número de espaços ou caracteres de tabulação usados para cada nível de aninhamento no JSON.
+   - Se `indent` for definido como `None` (o padrão), o JSON será compacto, sem espaços em branco adicionais.
+   - Se `indent` for um número inteiro, esse número de espaços em branco será usado para indentar cada nível de aninhamento no JSON.
+   - Se `indent` for uma string, essa string será usada para indentação em cada nível.
+
+   Exemplo:
+
+   ```python
+   import json
+
+   dados = {"nome": "Alice", "idade": 25}
+
+   # JSON compacto (sem indentação)
+   json_compacto = json.dumps(dados, indent=None)
+   # Resultado: '{"nome": "Alice", "idade": 25}'
+
+   # JSON com indentação usando 4 espaços
+   json_com_indentacao = json.dumps(dados, indent=4)
+   # Resultado:
+   # '{
+   #     "nome": "Alice",
+   #     "idade": 25
+   # }'
+
+   # JSON com indentação usando uma tabulação
+   json_com_tabulacao = json.dumps(dados, indent='\t')
+   # Resultado:
+   # '{
+   #     "nome": "Alice",
+   #     "idade": 25
+   # }'
+   ```
+
+O uso desses parâmetros é útil para controlar a aparência e a representação de JSON gerado a partir de objetos Python, tornando-o mais adequado para leitura e depuração por humanos ou adaptando-o às necessidades de parsers JSON específicos.
+
+

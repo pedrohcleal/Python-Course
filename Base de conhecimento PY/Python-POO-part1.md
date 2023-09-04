@@ -210,3 +210,62 @@ print(f"Nome: {loaded_person.name}, Idade: {loaded_person.age}")
 ```
 
 Ao executar este código, ele carregará os dados do arquivo JSON `person.json` e criará uma instância da classe `Person` com esses dados, permitindo que você acesse e utilize os atributos da classe normalmente. Certifique-se de que o arquivo JSON tenha a mesma estrutura esperada para a classe `Person` para que a reconstrução funcione corretamente.
+
+## Métodos em classe:
+Em Python, métodos em classe são funções que são definidas dentro de uma classe e operam em instâncias dessa classe. Eles são usados para definir o comportamento das instâncias da classe e são acessados através de uma instância da classe ou da própria classe. Existem três tipos principais de métodos em classe em Python:
+
+1. **Métodos de Instância:**
+   - Métodos de instância são os mais comuns em Python. Eles operam em instâncias específicas da classe e são chamados usando uma instância da classe.
+   - A primeira variável em um método de instância é geralmente chamada de `self` por convenção, e ela se refere à instância atual da classe. Isso permite que você acesse os atributos e outros métodos da instância dentro do método.
+   - Exemplo:
+
+   ```python
+   class MinhaClasse:
+       def __init__(self, valor):
+           self.valor = valor
+
+       def imprimir_valor(self):
+           print(self.valor)
+
+   instancia = MinhaClasse(42)
+   instancia.imprimir_valor()  # Chama o método de instância
+   ```
+
+2. **Métodos de Classe:**
+   - Métodos de classe são métodos que operam na classe em si, em vez de em instâncias específicas. Eles são decorados com o decorador `@classmethod`.
+   - Esses métodos recebem a própria classe como o primeiro argumento, geralmente chamado de `cls` por convenção, em vez da instância.
+   - Eles são usados para operações relacionadas à classe e podem ser chamados diretamente na classe ou em uma instância da classe.
+   - Exemplo:
+
+   ```python
+   class MinhaClasse:
+       contador = 0
+
+       def __init__(self):
+           MinhaClasse.contador += 1
+
+       @classmethod
+       def obter_contador(cls):
+           return cls.contador
+
+   instancia1 = MinhaClasse()
+   instancia2 = MinhaClasse()
+   print(MinhaClasse.obter_contador())  # Chama o método de classe
+   ```
+
+3. **Métodos Estáticos:**
+   - Métodos estáticos são métodos que não dependem de instâncias específicas ou da classe em si. Eles são decorados com o decorador `@staticmethod`.
+   - Eles são usados quando você precisa de uma função relacionada à classe, mas não precisa acessar seus atributos ou métodos.
+   - Eles podem ser chamados diretamente na classe, sem criar uma instância.
+   - Exemplo:
+
+   ```python
+   class Calculadora:
+       @staticmethod
+       def somar(a, b):
+           return a + b
+
+   resultado = Calculadora.somar(5, 3)  # Chama o método estático
+   ```
+
+Em resumo, os métodos em classe em Python permitem que você defina o comportamento das instâncias de uma classe e manipule operações relacionadas à classe em si. Métodos de instância operam em instâncias específicas, métodos de classe operam na classe e métodos estáticos são independentes de instâncias e classes, sendo usados quando a lógica não está diretamente ligada aos atributos ou métodos da classe.

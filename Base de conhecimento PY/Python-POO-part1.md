@@ -269,3 +269,68 @@ Em Python, métodos em classe são funções que são definidas dentro de uma cl
    ```
 
 Em resumo, os métodos em classe em Python permitem que você defina o comportamento das instâncias de uma classe e manipule operações relacionadas à classe em si. Métodos de instância operam em instâncias específicas, métodos de classe operam na classe e métodos estáticos são independentes de instâncias e classes, sendo usados quando a lógica não está diretamente ligada aos atributos ou métodos da classe.
+
+## Sobre @classmethod, factories e cLs
+No contexto de programação orientada a objetos, as fábricas (factories) e o uso do parâmetro `cls` têm a ver com a criação de objetos e a manipulação de classes. Vou explicar cada um deles separadamente:
+
+1. **Fábricas (Factories):**
+   - As fábricas são funções ou métodos que são usados para criar e retornar instâncias de classes. Elas são usadas quando a criação de um objeto envolve alguma lógica complicada ou quando você deseja encapsular a criação de objetos em um local centralizado.
+   - O objetivo das fábricas é esconder a complexidade da criação de objetos do restante do código e fornecer uma interface mais simples para criar objetos.
+   - Exemplo:
+
+   ```python
+   class Pessoa:
+       def __init__(self, nome, idade):
+           self.nome = nome
+           self.idade = idade
+
+   def criar_pessoa(nome, idade):
+       if idade >= 18:
+           return Pessoa(nome, idade)
+       else:
+           return None
+
+   pessoa1 = criar_pessoa("Alice", 25)
+   pessoa2 = criar_pessoa("Bob", 15)
+
+   if pessoa1:
+       print(f"{pessoa1.nome} tem {pessoa1.idade} anos.")
+   else:
+       print("Pessoa não é maior de idade.")
+
+   if pessoa2:
+       print(f"{pessoa2.nome} tem {pessoa2.idade} anos.")
+   else:
+       print("Pessoa não é maior de idade.")
+   ```
+
+2. **Parâmetro `cls` (Classe):**
+   - O parâmetro `cls` é frequentemente usado em métodos de classe e métodos de fábrica para se referir à própria classe onde o método é definido.
+   - É uma convenção comum nomear esse parâmetro como `cls`, mas você pode usar qualquer nome, desde que mantenha a mesma convenção no código.
+   - Usar `cls` permite que você acesse ou crie instâncias da classe, mesmo quando você não sabe o nome da classe antecipadamente. Isso é útil em herança e em métodos de fábrica que criam instâncias da classe atual ou de subclasses.
+   - Exemplo:
+
+   ```python
+   class Veiculo:
+       veiculos = []
+
+       def __init__(self, nome):
+           self.nome = nome
+           Veiculo.veiculos.append(self)
+
+       @classmethod
+       def criar_veiculo(cls, nome):
+           return cls(nome)
+
+   class Carro(Veiculo):
+       pass
+
+   carro1 = Veiculo.criar_veiculo("Carro A")
+   carro2 = Carro.criar_veiculo("Carro B")
+
+   print(Veiculo.veiculos)  # [Veiculo(nome='Carro A'), Carro(nome='Carro B')]
+   ```
+
+   Neste exemplo, o parâmetro `cls` é usado no método de classe `criar_veiculo` para criar instâncias da classe atual (`Veiculo` ou `Carro`) com base na classe que o chama.
+
+Em resumo, fábricas são usadas para criar objetos de forma mais flexível e encapsulada, enquanto o parâmetro `cls` é usado em métodos de classe e fábricas para se referir à classe atual, tornando-os úteis em situações em que a herança está envolvida ou quando você precisa criar instâncias de classes dinamicamente.

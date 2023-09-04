@@ -188,3 +188,53 @@ print(f"Nome: {loaded_person.name}, Idade: {loaded_person.age}")
 ```
 
 Ao executar este código, ele carregará os dados do arquivo JSON `person.json` e criará uma instância da classe `Person` com esses dados, permitindo que você acesse e utilize os atributos da classe normalmente. Certifique-se de que o arquivo JSON tenha a mesma estrutura esperada para a classe `Person` para que a reconstrução funcione corretamente.
+
+## TextIOWrapper
+
+`TextIOWrapper` é uma classe em Python que fornece uma interface para trabalhar com arquivos de texto. Você pode criar um arquivo e escrever nele usando métodos úteis da classe `TextIOWrapper`. Aqui estão os passos para criar um arquivo e escrever nele:
+
+1. **Abra o arquivo para escrita**:
+
+   Você pode usar a função `open()` para criar um arquivo em modo de escrita. O modo de escrita é representado pelo argumento `"w"`.
+
+   ```python
+   with open('arquivo.txt', 'w') as arquivo:
+       # Aqui você pode escrever no arquivo
+   ```
+
+2. **Escreva no arquivo**:
+
+   Agora que você abriu o arquivo, pode escrever nele usando métodos da classe `TextIOWrapper`, como `write()` ou `writelines()`. Aqui estão alguns exemplos:
+
+   - **`write()`**: Escreve uma string no arquivo.
+
+     ```python
+     with open('arquivo.txt', 'w') as arquivo:
+         arquivo.write('Este é um exemplo de escrita em arquivo.\n')
+     ```
+
+   - **`writelines()`**: Escreve uma lista de strings no arquivo, cada elemento da lista se torna uma linha no arquivo.
+
+     ```python
+     linhas = ['Linha 1\n', 'Linha 2\n', 'Linha 3\n']
+     with open('arquivo.txt', 'w') as arquivo:
+         arquivo.writelines(linhas)
+     ```
+
+3. **Feche o arquivo automaticamente**:
+
+   Usar o bloco `with` como mostrado nos exemplos acima é uma prática recomendada, pois ele garante que o arquivo seja fechado automaticamente após o bloco `with`. Isso é importante para garantir que os recursos do sistema sejam gerenciados adequadamente e que as alterações sejam gravadas no arquivo.
+
+4. **Manipulação de exceções**:
+
+   Lembre-se de lidar com exceções ao trabalhar com arquivos, pois podem ocorrer erros durante a escrita, como falta de espaço em disco ou permissões insuficientes. Você pode usar um bloco `try...except` para capturar e lidar com exceções, se necessário.
+
+   ```python
+   try:
+       with open('arquivo.txt', 'w') as arquivo:
+           arquivo.write('Este é um exemplo de escrita em arquivo.\n')
+   except IOError as e:
+       print(f"Erro ao escrever no arquivo: {e}")
+   ```
+
+Certifique-se de adaptar o código acima para suas necessidades específicas. Com esses passos, você pode criar um arquivo e escrever nele de forma eficiente em Python usando a classe `TextIOWrapper`.

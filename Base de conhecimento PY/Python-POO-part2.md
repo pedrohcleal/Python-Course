@@ -50,3 +50,45 @@ Neste exemplo, `@property` é usado para criar métodos `nome` e `idade` que per
 O método `@idade.setter` é usado para permitir a modificação controlada do atributo `idade`. Isso permite que você defina regras ou verificações ao atribuir um novo valor à idade, como garantir que a idade não seja negativa.
 
 O uso de `@property` ajuda a manter o encapsulamento e fornece um controle mais preciso sobre o acesso e a modificação dos atributos de uma classe, tornando o código mais robusto e mais fácil de manter.
+
+## Encapsulamento - public, protectec and private
+
+Em Python, o encapsulamento é um conceito fundamental da Programação Orientada a Objetos (POO) que se refere à forma como os atributos e métodos de uma classe são acessados e modificados a partir de fora da classe. Python não implementa o encapsulamento da mesma forma que algumas outras linguagens de programação, como Java ou C++, mas oferece certos mecanismos para controlar o acesso aos membros de uma classe.
+
+Os modificadores de acesso em Python não são tão rígidos quanto em algumas outras linguagens, como o Java, mas eles são baseados em convenções de nomenclatura e não em palavras-chave específicas. Os três principais níveis de acesso em Python são:
+
+1. **Public**: Em Python, por padrão, todos os membros de uma classe são públicos, o que significa que eles podem ser acessados e modificados a partir de qualquer lugar no código. Os membros públicos são acessados diretamente pelo nome, sem nenhuma restrição.
+
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.valor_publico = 10
+
+obj = MinhaClasse()
+print(obj.valor_publico)  # Acesso direto ao membro público
+```
+
+2. **Protected**: Em Python, para indicar que um membro deve ser tratado como protegido, você pode usar uma convenção de nomenclatura com um sublinhado simples no início do nome do membro. No entanto, isso é apenas uma convenção e não impede o acesso direto ao membro. O programador é encorajado a não acessar membros protegidos diretamente, mas nada impede que isso seja feito.
+
+```python
+class MinhaClasse:
+    def __init__(self):
+        self._valor_protegido = 20
+
+obj = MinhaClasse()
+print(obj._valor_protegido)  # Acesso direto ao membro protegido (convenção)
+```
+
+3. **Private**: Em Python, para indicar que um membro deve ser tratado como privado, você pode usar uma convenção de nomenclatura com dois sublinhados no início do nome do membro. Novamente, isso é apenas uma convenção, e o membro privado ainda pode ser acessado diretamente, mas com uma pequena modificação no nome, que inclui o nome da classe.
+
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.__valor_privado = 30
+
+obj = MinhaClasse()
+# Acesso ao membro privado (com modificação no nome)
+print(obj._MinhaClasse__valor_privado)
+```
+
+É importante notar que, em Python, a ênfase está na responsabilidade do programador em seguir as convenções de nomenclatura e respeitar os membros protegidos e privados, em vez de impor restrições rígidas de acesso. O objetivo é fornecer flexibilidade e confiança no programador, em vez de impor restrições estritas como em algumas outras linguagens de programação. Portanto, o encapsulamento em Python é mais uma questão de convenção e boas práticas do que de restrições de acesso.

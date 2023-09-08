@@ -240,3 +240,45 @@ Em programação orientada a objetos (POO) em Python, as heranças desempenham u
    Nesse exemplo, a classe Filho herda de tanto Mae quanto Pai, mas a ordem em que as classes pai são listadas na definição da classe filha determina qual método falar será chamado.
 
 As heranças são uma parte importante do paradigma de programação orientada a objetos e Python oferece flexibilidade e recursos poderosos para trabalhar com heranças de maneira eficaz. No entanto, é importante usá-las com cuidado para manter um código claro e fácil de entender.
+
+## A super e a sobreposição de membros
+
+Em programação orientada a objetos (POO) em Python, a super e a sobreposição de membros são conceitos importantes para entender como as classes podem herdar e substituir comportamentos de outras classes. Vamos explorar esses conceitos em detalhes:
+
+1. **Herança:**
+   A herança é um princípio fundamental na POO, que permite que uma classe (chamada classe derivada ou subclasse) herde os atributos e métodos de outra classe (chamada classe base ou superclasse). A classe derivada pode estender ou modificar o comportamento da classe base, mas ela herda os membros da classe base.
+
+2. **Método `super()`:**
+   O método `super()` é usado para chamar métodos da classe base a partir da classe derivada. Isso é útil quando você deseja estender o comportamento de um método da classe base na classe derivada, mas também deseja executar o código do método da classe base. O método `super()` é comumente usado dentro do método da classe derivada para chamar o método correspondente da classe base.
+
+   Exemplo:
+
+   ```python
+   class ClasseBase:
+       def __init__(self, valor):
+           self.valor = valor
+
+       def imprimir(self):
+           print(self.valor)
+
+   class ClasseDerivada(ClasseBase):
+       def __init__(self, valor, novo_valor):
+           super().__init__(valor)  # Chama o construtor da ClasseBase
+           self.novo_valor = novo_valor
+
+       def imprimir(self):
+           super().imprimir()  # Chama o método imprimir da ClasseBase
+           print(self.novo_valor)
+
+   obj = ClasseDerivada(10, 20)
+   obj.imprimir()
+   ```
+
+   Neste exemplo, `super().__init__(valor)` chama o construtor da classe base `ClasseBase`, e `super().imprimir()` chama o método `imprimir()` da classe base, permitindo que o comportamento da classe base seja estendido na classe derivada.
+
+3. **Sobreposição (Override):**
+   A sobreposição é o conceito de substituir um método da classe base na classe derivada. Isso permite que a classe derivada forneça sua própria implementação para um método que foi herdado da classe base. No exemplo acima, a classe derivada `ClasseDerivada` sobrepôs o método `imprimir()` da classe base.
+
+   A sobreposição é uma maneira poderosa de personalizar o comportamento de uma classe derivada sem modificar a classe base.
+
+Em resumo, a `super()` é usada para acessar os membros da classe base em uma classe derivada, enquanto a sobreposição permite substituir os métodos herdados da classe base por implementações personalizadas na classe derivada. Esses conceitos são fundamentais para criar hierarquias de classes flexíveis e reutilizáveis em Python e em outras linguagens orientadas a objetos.

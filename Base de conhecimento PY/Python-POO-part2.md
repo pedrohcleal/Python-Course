@@ -92,3 +92,83 @@ print(obj._MinhaClasse__valor_privado)
 ```
 
 É importante notar que, em Python, a ênfase está na responsabilidade do programador em seguir as convenções de nomenclatura e respeitar os membros protegidos e privados, em vez de impor restrições rígidas de acesso. O objetivo é fornecer flexibilidade e confiança no programador, em vez de impor restrições estritas como em algumas outras linguagens de programação. Portanto, o encapsulamento em Python é mais uma questão de convenção e boas práticas do que de restrições de acesso.
+
+## Associaçãao, agregação e composição - POO
+
+Na programação orientada a objetos (POO) em Python, a associação, agregação e composição são três formas de relacionar objetos entre si. Elas descrevem como os objetos se conectam e interagem em um sistema orientado a objetos. Vamos explorar cada uma delas:
+
+1. **Associação**:
+
+   A associação é o relacionamento mais simples entre objetos. Ela ocorre quando um objeto faz referência a outro objeto, geralmente por meio de um atributo que armazena uma referência a esse objeto. Essa associação não implica que um objeto seja parte integrante do outro, apenas que eles têm conhecimento mútuo. Por exemplo:
+
+   ```python
+   class Pessoa:
+       def __init__(self, nome):
+           self.nome = nome
+
+   class Carro:
+       def __init__(self, marca):
+           self.marca = marca
+
+   pessoa = Pessoa("Alice")
+   carro = Carro("Toyota")
+
+   pessoa.carro = carro  # Associação entre a pessoa e o carro
+   ```
+
+   Nesse exemplo, a pessoa e o carro estão associados, mas nenhum é parte essencial do outro.
+
+2. **Agregação**:
+
+   A agregação é um relacionamento mais forte do que a associação. Ela ocorre quando um objeto é composto por outros objetos, mas esses objetos ainda podem existir independentemente do objeto principal. Isso significa que a destruição do objeto principal não afeta necessariamente os objetos agregados. Por exemplo:
+
+   ```python
+   class SalaDeAula:
+       def __init__(self, numero):
+           self.numero = numero
+           self.alunos = []
+
+       def adicionar_aluno(self, aluno):
+           self.alunos.append(aluno)
+
+   class Aluno:
+       def __init__(self, nome):
+           self.nome = nome
+
+   sala = SalaDeAula(101)
+   aluno1 = Aluno("João")
+   aluno2 = Aluno("Maria")
+
+   sala.adicionar_aluno(aluno1)
+   sala.adicionar_aluno(aluno2)
+
+   # A sala de aula possui uma agregação de alunos
+   ```
+
+   Nesse caso, a sala de aula "agrega" alunos, mas eles ainda são objetos independentes que podem existir fora da sala de aula.
+
+3. **Composição**:
+
+   A composição é o relacionamento mais forte entre objetos e implica que um objeto é parte essencial de outro objeto. Em outras palavras, a destruição do objeto principal também implica a destruição dos objetos compostos. Um exemplo típico de composição é quando um objeto é criado como parte do construtor de outro objeto. Por exemplo:
+
+   ```python
+   class CorpoHumano:
+       def __init__(self):
+           self.cerebro = Cerebro()
+
+   class Cerebro:
+       def __init__(self):
+           self.pensamentos = []
+
+       def adicionar_pensamento(self, pensamento):
+           self.pensamentos.append(pensamento)
+
+   meu_corpo = CorpoHumano()
+   meu_corpo.cerebro.adicionar_pensamento("Estou com fome")
+
+   # O Cérebro é uma parte essencial do CorpoHumano (composição)
+   ```
+
+   Nesse exemplo, o objeto `Cerebro` é uma parte essencial do objeto `CorpoHumano`, e a destruição do corpo também implica a destruição do cérebro.
+
+Em resumo, a associação é um relacionamento mais fraco, a agregação é um relacionamento intermediário e a composição é um relacionamento mais forte entre objetos em programação orientada a objetos em Python. A escolha entre esses tipos de relacionamentos depende dos requisitos do seu sistema e da forma como os objetos devem interagir.

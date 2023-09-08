@@ -172,3 +172,71 @@ Na programação orientada a objetos (POO) em Python, a associação, agregaçã
    Nesse exemplo, o objeto `Cerebro` é uma parte essencial do objeto `CorpoHumano`, e a destruição do corpo também implica a destruição do cérebro.
 
 Em resumo, a associação é um relacionamento mais fraco, a agregação é um relacionamento intermediário e a composição é um relacionamento mais forte entre objetos em programação orientada a objetos em Python. A escolha entre esses tipos de relacionamentos depende dos requisitos do seu sistema e da forma como os objetos devem interagir.
+
+## Heranças:
+
+Em programação orientada a objetos (POO) em Python, as heranças desempenham um papel fundamental. A herança é um conceito que permite que uma classe herde atributos e métodos de outra classe. Isso promove a reutilização de código e facilita a criação de hierarquias de classes, onde classes filhas herdam características e comportamentos de classes pai (ou superclasses). Vamos explorar alguns aspectos importantes sobre heranças em Python:
+
+1. Sintaxe de Herança:
+   Para criar uma classe filha que herda de uma classe pai, você define a classe filha e coloca o nome da classe pai entre parênteses na definição da classe filha. Aqui está um exemplo básico:
+
+   ```python
+   class Pai:
+       def __init__(self):
+           self.nome = "Pai"
+       
+       def falar(self):
+           print(f"{self.nome} diz: Olá!")
+
+   class Filho(Pai):
+       def __init__(self):
+           super().__init__()
+           self.nome = "Filho"
+   
+   filho = Filho()
+   filho.falar()  # Saída: "Filho diz: Olá!"
+   ```
+
+   Observe o uso de `super().__init__()` na classe Filho para chamar o construtor da classe Pai.
+
+2. Métodos e Atributos Herdados:
+   Quando uma classe filha herda de uma classe pai, ela obtém todos os métodos e atributos da classe pai. A classe filha pode então adicionar novos métodos ou substituir (sobrescrever) os métodos herdados.
+
+3. Sobrescrita de Métodos:
+   A sobrescrita de métodos permite que uma classe filha substitua a implementação de um método herdado da classe pai. Isso é útil quando você deseja que a classe filha tenha um comportamento ligeiramente diferente. Veja um exemplo:
+
+   ```python
+   class Pai:
+       def falar(self):
+           print("Pai diz: Olá!")
+
+   class Filho(Pai):
+       def falar(self):
+           print("Filho diz: Olá, Papai!")
+
+   filho = Filho()
+   filho.falar()  # Saída: "Filho diz: Olá, Papai!"
+   ```
+
+4. Múltipla Herança:
+   Python permite a múltipla herança, onde uma classe pode herdar de várias classes pai. No entanto, isso pode levar a complexidades de resolução de métodos e deve ser usado com cuidado.
+
+   ```python
+   class Mae:
+       def falar(self):
+           print("Mãe diz: Olá!")
+
+   class Pai:
+       def falar(self):
+           print("Pai diz: Olá!")
+
+   class Filho(Mae, Pai):
+       pass
+
+   filho = Filho()
+   filho.falar()  # Saída: "Mãe diz: Olá!"
+   ```
+
+   Nesse exemplo, a classe Filho herda de tanto Mae quanto Pai, mas a ordem em que as classes pai são listadas na definição da classe filha determina qual método falar será chamado.
+
+As heranças são uma parte importante do paradigma de programação orientada a objetos e Python oferece flexibilidade e recursos poderosos para trabalhar com heranças de maneira eficaz. No entanto, é importante usá-las com cuidado para manter um código claro e fácil de entender.

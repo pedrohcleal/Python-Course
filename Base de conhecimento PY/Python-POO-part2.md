@@ -345,7 +345,7 @@ No Python, a MRO é calculada usando o algoritmo C3, que é uma adaptação do a
 
 A ordem de resolução de métodos é um mecanismo poderoso para gerenciar herança em Python e outras linguagens de programação orientadas a objetos. Ele ajuda a evitar problemas de ambiguidade e garante que os métodos sejam chamados na ordem correta, tornando o código mais previsível e fácil de entender.
 
-## **`mro()`*** & **`__mro__` (Dunder MRO)**
+## **`mro()`** & **`__mro__` (Dunder MRO)**
 
 1. **`mro()`**:
 

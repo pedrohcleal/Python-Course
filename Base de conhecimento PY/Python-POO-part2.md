@@ -344,3 +344,51 @@ No Python, a MRO é calculada usando o algoritmo C3, que é uma adaptação do a
 6. **Visualização do MRO**: Você pode usar a função `mro()` ou a propriedade `.__mro__` de uma classe para visualizar a ordem de resolução de métodos. Isso pode ser útil para entender como o Python determina a ordem de pesquisa das classes base.
 
 A ordem de resolução de métodos é um mecanismo poderoso para gerenciar herança em Python e outras linguagens de programação orientadas a objetos. Ele ajuda a evitar problemas de ambiguidade e garante que os métodos sejam chamados na ordem correta, tornando o código mais previsível e fácil de entender.
+
+## **`mro()`*** & **`__mro__` (Dunder MRO)**
+
+1. **`mro()`**:
+
+   O método `mro()` é uma função que pode ser chamada em uma classe e retorna a ordem de resolução de métodos (MRO) dessa classe como uma lista de classes. Ele permite que você veja a ordem exata em que as classes base serão pesquisadas quando você chamar um método em uma instância dessa classe. Aqui está um exemplo simples:
+
+   ```python
+   class A:
+       pass
+
+   class B(A):
+       pass
+
+   class C(A):
+       pass
+
+   class D(B, C):
+       pass
+
+   print(D.mro())
+   ```
+
+   A saída será uma lista que representa a ordem de resolução de métodos para a classe `D`. A ordem será `[D, B, C, A, object]`, indicando que primeiro será verificada a própria classe `D`, depois a classe base `B`, em seguida a classe base `C`, depois a classe base `A` e, finalmente, a classe base `object`.
+
+2. **`__mro__` (Dunder MRO)**:
+
+   A propriedade `__mro__`, também conhecida como dunder MRO, é uma propriedade especial que está disponível em todas as classes em Python. Ela fornece a mesma informação que o método `mro()`, mas como uma tupla. Você pode acessá-la diretamente usando a notação de ponto em uma classe. Aqui está um exemplo de como você pode usá-la:
+
+   ```python
+   class A:
+       pass
+
+   class B(A):
+       pass
+
+   class C(A):
+       pass
+
+   class D(B, C):
+       pass
+
+   print(D.__mro__)
+   ```
+
+   A saída será uma tupla que representa a ordem de resolução de métodos para a classe `D`. A ordem será a mesma que no exemplo anterior: `(D, B, C, A, object)`.
+
+Ambas as formas, `mro()` e `__mro__`, fornecem informações sobre a ordem de resolução de métodos, mas você pode escolher a que melhor se adapta à sua preferência de uso no código. Geralmente, `mro()` é usado quando você deseja obter a MRO como uma lista, enquanto `__mro__` é usado quando você quer acessar a MRO como uma tupla diretamente a partir da classe.

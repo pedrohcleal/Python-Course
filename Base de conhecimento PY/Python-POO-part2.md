@@ -326,3 +326,21 @@ Quando criamos uma instância de `MamiferoVoador`, ela pode acessar os atributos
 
 No entanto, é importante notar que a herança múltipla pode tornar o código complexo e difícil de manter, especialmente quando há muitas classes envolvidas. Em alguns casos, é preferível usar outras técnicas de POO, como composição, para evitar problemas de herança múltipla. Além disso, a herança múltipla pode levar a ambiguidades se não for usada com cuidado, e é importante planejar a estrutura das classes com antecedência para evitar conflitos.
 
+## A ordem de resolução de métodos
+O MRO, que significa "Method Resolution Order" (Ordem de Resolução de Métodos), é um conceito crucial na programação orientada a objetos, especialmente quando se trata de herança múltipla. O MRO determina a ordem em que as classes base são pesquisadas quando um método é chamado em uma classe derivada. Ele ajuda a evitar ambiguidades e define qual implementação de método deve ser usada em caso de herança múltipla.
+
+No Python, a MRO é calculada usando o algoritmo C3, que é uma adaptação do algoritmo CLOS (Common Lisp Object System). Esse algoritmo é responsável por estabelecer uma ordem linear em que as classes base são pesquisadas quando um método é chamado em uma classe derivada. Aqui estão os principais pontos sobre como o MRO funciona:
+
+1. **Ordem de pesquisa das classes base**: O MRO determina a ordem em que as classes base de uma classe derivada são pesquisadas quando um método é chamado. A ordem é importante para garantir que a implementação correta do método seja usada, especialmente em casos de herança múltipla.
+
+2. **Ordem C3**: O algoritmo C3 calcula a ordem de pesquisa ideal para evitar ambiguidades. Ele leva em consideração as relações de herança entre as classes e suas subclasses para determinar a ordem.
+
+3. **Super():** O uso da função `super()` em uma classe derivada permite chamar o método da classe base seguinte na ordem de resolução de métodos. Isso é útil para garantir que todos os métodos das classes base sejam chamados corretamente, preservando a ordem do MRO.
+
+4. **Herança múltipla**: O MRO é particularmente importante em linguagens como o Python, que suportam herança múltipla. Herdar de várias classes pode criar situações onde os métodos têm o mesmo nome em classes diferentes, e o MRO determina qual método deve ser usado.
+
+5. **Caso de ambiguidade**: Se houver uma ambiguidade na ordem de resolução de métodos, o Python lançará um erro de tempo de execução para informar que a chamada de método é ambígua. Nesse caso, você precisará revisar a estrutura de herança e, se necessário, reorganizar as classes ou renomear métodos para resolver a ambiguidade.
+
+6. **Visualização do MRO**: Você pode usar a função `mro()` ou a propriedade `.__mro__` de uma classe para visualizar a ordem de resolução de métodos. Isso pode ser útil para entender como o Python determina a ordem de pesquisa das classes base.
+
+A ordem de resolução de métodos é um mecanismo poderoso para gerenciar herança em Python e outras linguagens de programação orientadas a objetos. Ele ajuda a evitar problemas de ambiguidade e garante que os métodos sejam chamados na ordem correta, tornando o código mais previsível e fácil de entender.

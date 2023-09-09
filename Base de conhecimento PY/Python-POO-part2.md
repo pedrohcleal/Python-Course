@@ -282,3 +282,47 @@ Em programação orientada a objetos (POO) em Python, a super e a sobreposição
    A sobreposição é uma maneira poderosa de personalizar o comportamento de uma classe derivada sem modificar a classe base.
 
 Em resumo, a `super()` é usada para acessar os membros da classe base em uma classe derivada, enquanto a sobreposição permite substituir os métodos herdados da classe base por implementações personalizadas na classe derivada. Esses conceitos são fundamentais para criar hierarquias de classes flexíveis e reutilizáveis em Python e em outras linguagens orientadas a objetos.
+
+## Herança múltipla
+
+A herança múltipla é um conceito da programação orientada a objetos (POO) que permite que uma classe herde atributos e métodos de várias classes pai. No Python, essa característica é suportada, o que significa que uma classe pode herdar de várias classes pai, combinando assim características de várias fontes diferentes. No entanto, a herança múltipla deve ser usada com cuidado, pois pode levar a complexidade e ambiguidade no código.
+
+Aqui está um exemplo simples de como a herança múltipla funciona em Python:
+
+```python
+class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def fazer_som(self):
+        pass
+
+class Mamifero(Animal):
+    def fazer_som(self):
+        return "Som de mamífero"
+
+class Ave(Animal):
+    def fazer_som(self):
+        return "Som de ave"
+
+class MamiferoVoador(Mamifero, Ave):
+    def __init__(self, nome):
+        super().__init__(nome)
+
+# Criando uma instância da classe MamiferoVoador
+morcego = MamiferoVoador("Branco")
+
+print(morcego.nome)  # Saída: Branco
+print(morcego.fazer_som())  # Saída: Som de mamífero
+```
+
+Neste exemplo, temos quatro classes:
+
+1. `Animal`: Uma classe base que define uma propriedade `nome` e um método `fazer_som`.
+2. `Mamifero` e `Ave`: Duas classes que herdam de `Animal` e substituem o método `fazer_som` com comportamentos específicos para mamíferos e aves, respectivamente.
+3. `MamiferoVoador`: Uma classe que herda de ambas `Mamifero` e `Ave` usando herança múltipla. Isso significa que `MamiferoVoador` herda as características de ambas as classes pai.
+
+Quando criamos uma instância de `MamiferoVoador`, ela pode acessar os atributos e métodos de ambas as classes pai, desde que não haja conflitos de nomes. Se houver conflitos, a ordem das classes na lista de herança determinará qual método ou atributo será usado. No exemplo acima, `Mamifero` vem antes de `Ave`, então o método `fazer_som` de `Mamifero` é chamado.
+
+No entanto, é importante notar que a herança múltipla pode tornar o código complexo e difícil de manter, especialmente quando há muitas classes envolvidas. Em alguns casos, é preferível usar outras técnicas de POO, como composição, para evitar problemas de herança múltipla. Além disso, a herança múltipla pode levar a ambiguidades se não for usada com cuidado, e é importante planejar a estrutura das classes com antecedência para evitar conflitos.
+

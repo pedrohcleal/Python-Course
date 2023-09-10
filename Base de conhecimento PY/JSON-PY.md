@@ -74,7 +74,7 @@ Aqui estão as principais operações que você pode realizar com JSON em Python
 
 Isso é um resumo das operações básicas com JSON em Python. A biblioteca `json` torna simples a tarefa de lidar com dados JSON, permitindo que você integre facilmente sistemas que compartilham informações nesse formato.
 
-## Métodos
+## Modos
 Em Python, ao trabalhar com arquivos, os modos são parâmetros que você pode passar para a função `open()` para especificar como o arquivo será aberto e manipulado. Os modos determinam se você está lendo, escrevendo, acrescentando ou executando outras operações no arquivo. Aqui estão os principais modos de abertura de arquivo:
 
 1. Modo de Leitura (`'r'`): Este é o modo padrão de abertura de arquivo. Ele permite que você leia o conteúdo do arquivo. Se o arquivo não existir, uma exceção `FileNotFoundError` será levantada.
@@ -110,7 +110,8 @@ with open("arquivo_binario", "wb+") as binario:
 ```
 
 Lembre-se de que ao usar o gerenciador de contexto `with`, o arquivo será fechado automaticamente quando sair do bloco `with`, independentemente do modo de abertura utilizado..
-### Métodos
+
+## Métodos
 Quando você abre um arquivo em Python usando a função `open()`, o objeto retornado possui diversos métodos que permitem interagir com o arquivo de várias maneiras. Aqui estão alguns dos métodos mais comuns associados a objetos de arquivo:
 
 1. `read(size=-1)`: Lê e retorna o conteúdo do arquivo como uma string. Se o argumento `size` for especificado, apenas essa quantidade de caracteres será lida. Se `size` não for especificado ou for negativo, o arquivo inteiro é lido. 

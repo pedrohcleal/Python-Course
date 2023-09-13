@@ -50,3 +50,44 @@ print(person_xml.to_xml())
 ```
 
 Neste exemplo, as classes `JSONMixin` e `XMLMixin` fornecem métodos de serialização JSON e XML, respectivamente. Esses mixins são então combinados com a classe `Person` para criar duas subclasses, `PersonJSON` e `PersonXML`, que podem serializar objetos `Person` em formatos JSON e XML, respectivamente. Isso permite a reutilização de código e a adição de funcionalidades específicas sem a necessidade de herança múltipla complicada.específicas do seu programa. Eles demonstram como classes podem herdar funcionalidades relacionadas a logs, seja escrevendo logs em arquivos ou imprimindo-os no console, para facilitar a depuração e o monitoramento do seu código.
+
+## Classes Abstratas ABC
+
+Em Python, uma classe abstrata é uma classe que não pode ser instanciada diretamente. Ela serve como um modelo ou esqueleto para outras classes que herdam dela. Uma classe abstrata é criada usando o módulo `abc` (Abstract Base Classes) da biblioteca padrão Python. A ideia principal por trás das classes abstratas é fornecer uma estrutura comum para outras classes derivadas, garantindo que essas classes derivadas implementem métodos específicos.
+
+Aqui está um exemplo básico de como criar uma classe abstrata em Python usando o módulo `abc`:
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def fazer_som(self):
+        pass
+
+class Cachorro(Animal):
+    def fazer_som(self):
+        return "Au Au!"
+
+class Gato(Animal):
+    def fazer_som(self):
+        return "Miau!"
+
+cachorro = Cachorro()
+gato = Gato()
+
+print(cachorro.fazer_som())  # Saída: Au Au!
+print(gato.fazer_som())      # Saída: Miau!
+```
+
+Aqui estão os principais pontos a serem observados sobre classes abstratas em Python:
+
+1. Uma classe abstrata é definida estendendo a classe `ABC` do módulo `abc`.
+
+2. Você pode definir métodos abstratos usando o decorador `@abstractmethod`. Os métodos abstratos não têm implementação real na classe abstrata e devem ser implementados em classes derivadas.
+
+3. Uma classe abstrata não pode ser instanciada diretamente. Ela só serve como um modelo para outras classes.
+
+4. Classes derivadas de uma classe abstrata devem implementar todos os métodos abstratos definidos na classe abstrata. Se uma classe derivada não implementar todos os métodos abstratos, ela também será considerada abstrata e não poderá ser instanciada.
+
+As classes abstratas são úteis para criar uma estrutura comum para um conjunto de classes relacionadas, garantindo que todas elas tenham uma interface consistente. Isso ajuda a escrever código mais claro, mais organizado e mais fácil de manter, especialmente em projetos complexos.

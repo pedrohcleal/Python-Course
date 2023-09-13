@@ -91,3 +91,54 @@ Aqui estão os principais pontos a serem observados sobre classes abstratas em P
 4. Classes derivadas de uma classe abstrata devem implementar todos os métodos abstratos definidos na classe abstrata. Se uma classe derivada não implementar todos os métodos abstratos, ela também será considerada abstrata e não poderá ser instanciada.
 
 As classes abstratas são úteis para criar uma estrutura comum para um conjunto de classes relacionadas, garantindo que todas elas tenham uma interface consistente. Isso ajuda a escrever código mais claro, mais organizado e mais fácil de manter, especialmente em projetos complexos.
+
+## Sobre polimorfismo e assinatura de método em POO
+
+Polimorfismo e assinatura de método são conceitos fundamentais da Programação Orientada a Objetos (POO) em Python e em outras linguagens de programação. Vamos explorar cada um deles:
+
+**Polimorfismo**:
+
+Polimorfismo é um dos quatro pilares da POO (os outros são encapsulamento, herança e abstração) e se refere à capacidade de objetos de diferentes classes responderem a chamadas de método de maneira similar. O polimorfismo permite tratar objetos de classes distintas de forma genérica, usando interfaces comuns. Isso é especialmente útil para escrever código mais flexível e reutilizável.
+
+Em Python, o polimorfismo é alcançado através do uso de interfaces comuns (métodos com o mesmo nome) em diferentes classes. Por exemplo:
+
+```python
+class Animal:
+    def fazer_som(self):
+        pass
+
+class Cachorro(Animal):
+    def fazer_som(self):
+        return "Au au!"
+
+class Gato(Animal):
+    def fazer_som(self):
+        return "Miau!"
+
+def fazer_som_do_animal(animal):
+    print(animal.fazer_som())
+
+cachorro = Cachorro()
+gato = Gato()
+
+fazer_som_do_animal(cachorro)  # Saída: "Au au!"
+fazer_som_do_animal(gato)      # Saída: "Miau!"
+```
+
+Neste exemplo, tanto a classe `Cachorro` quanto a classe `Gato` têm um método `fazer_som`, e podemos chamar `fazer_som_do_animal` com qualquer objeto que seja uma instância de `Animal`, demonstrando assim o polimorfismo.
+
+**Assinatura de Método**:
+
+A assinatura de método se refere à combinação do nome do método com a lista de tipos e quantidade de parâmetros que ele aceita. Em Python, a assinatura de um método não é estritamente definida pelo tipo dos parâmetros, pois Python é uma linguagem de tipagem dinâmica. No entanto, a assinatura ainda é importante para entender quais argumentos o método espera e como usá-lo corretamente.
+
+Por exemplo, considere a seguinte classe em Python:
+
+```python
+class Calculadora:
+    def somar(self, a, b):
+        return a + b
+```
+
+A assinatura do método `somar` é `(self, a, b)`, o que significa que ele espera três argumentos: o objeto `self` (que é uma referência à instância da classe), e dois valores `a` e `b` para realizar a soma.
+
+Ter uma assinatura clara para os métodos é importante para que os desenvolvedores saibam como usar corretamente os métodos das classes que eles criam ou usam. Além disso, muitas IDEs e ferramentas de análise de código podem se beneficiar de uma assinatura bem definida para fornecer sugestões e detecção de erros mais precisos.

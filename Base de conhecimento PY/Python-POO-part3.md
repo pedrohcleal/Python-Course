@@ -142,3 +142,59 @@ class Calculadora:
 A assinatura do método `somar` é `(self, a, b)`, o que significa que ele espera três argumentos: o objeto `self` (que é uma referência à instância da classe), e dois valores `a` e `b` para realizar a soma.
 
 Ter uma assinatura clara para os métodos é importante para que os desenvolvedores saibam como usar corretamente os métodos das classes que eles criam ou usam. Além disso, muitas IDEs e ferramentas de análise de código podem se beneficiar de uma assinatura bem definida para fornecer sugestões e detecção de erros mais precisos.
+
+## Princípo da substituição de Liskov
+
+O Princípio da Substituição de Liskov (Liskov Substitution Principle - LSP) é um dos cinco princípios SOLID da programação orientada a objetos e foi formulado por Barbara Liskov em 1987. O LSP estabelece uma regra fundamental para a herança em sistemas orientados a objetos, com o objetivo de garantir que as subclasses (classes derivadas) possam ser substituídas pelas suas superclasses (classes base) sem afetar a integridade do programa. Em outras palavras, uma subclasse deve ser uma extensão compatível da sua superclasse.
+
+O princípio pode ser resumido na seguinte afirmação:
+
+"Se para cada objeto `O1` do tipo `S` existe um objeto `O2` do tipo `T`, de forma que, para todos os programas `P`, as propriedades de `P` são preservadas quando `O1` é substituído por `O2`, então `T` é um subtipo de `S`."
+
+Em termos mais práticos, isso significa que uma subclasse deve:
+
+1. Ter uma assinatura compatível de métodos: Os métodos da subclasse devem ter a mesma assinatura (parâmetros e tipos de retorno) ou uma assinatura mais ampla do que os métodos da superclasse. Isso garante que você possa substituir uma instância da subclasse por uma instância da superclasse sem problemas.
+
+2. Preservar o comportamento da superclasse: A subclasse deve manter o comportamento definido pela superclasse. Isso significa que os métodos da subclasse devem obedecer às mesmas regras e invariáveis que os métodos da superclasse. A subclasse pode adicionar funcionalidade, mas não deve modificar o comportamento essencial da superclasse.
+
+Quando o Princípio da Substituição de Liskov é respeitado, o código tende a ser mais flexível, extensível e seguro, uma vez que permite a criação de hierarquias de classes que podem ser usadas de forma intercambiável, facilitando a manutenção e a evolução do sistema. Por outro lado, violações desse princípio podem levar a comportamentos inesperados e erros difíceis de depurar. Portanto, é importante aplicar o LSP ao projetar hierarquias de classes em seus sistemas orientados a objetos.
+
+Vamos criar um exemplo em Python que ilustra o Princípio da Substituição de Liskov. Suponha que temos uma hierarquia de classes representando formas geométricas, e queremos garantir que as subclasses possam ser substituídas pelas superclasses sem problemas. Vamos criar uma classe base `Forma` e duas subclasses, `Retangulo` e `Circulo`.
+
+```python
+class Forma:
+    def calcular_area(self):
+        pass
+
+class Retangulo(Forma):
+    def __init__(self, largura, altura):
+        self.largura = largura
+        self.altura = altura
+    
+    def calcular_area(self):
+        return self.largura * self.altura
+
+class Circulo(Forma):
+    def __init__(self, raio):
+        self.raio = raio
+    
+    def calcular_area(self):
+        return 3.14159265359 * self.raio * self.raio
+```
+
+Aqui, `Forma` é a classe base que define um método `calcular_area()`. `Retangulo` e `Circulo` são subclasses que herdam de `Forma` e implementam esse método de maneira específica para calcular a área de um retângulo e de um círculo, respectivamente.
+
+Agora, podemos criar instâncias dessas classes e usá-las de maneira intercambiável:
+
+```python
+def imprimir_area(forma):
+    print("Área:", forma.calcular_area())
+
+retangulo = Retangulo(5, 10)
+circulo = Circulo(4)
+
+imprimir_area(retangulo)  # Saída: Área: 50
+imprimir_area(circulo)    # Saída: Área: 50.26548245744
+```
+
+Neste exemplo, podemos ver que as instâncias de `Retangulo` e `Circulo` podem ser passadas para a função `imprimir_area`, que espera um objeto do tipo `Forma`. Isso demonstra a aplicação do Princípio da Substituição de Liskov, pois as subclasses podem ser substituídas pelas superclasses sem problemas, garantindo assim a compatibilidade e a flexibilidade do código.

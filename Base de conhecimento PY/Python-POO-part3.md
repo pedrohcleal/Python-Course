@@ -297,7 +297,7 @@ Aqui estão alguns dos Magic Methods mais comuns e seus propósitos:
 
 Esses são apenas alguns exemplos dos muitos métodos mágicos disponíveis em Python. Eles fornecem flexibilidade e personalização às suas classes, permitindo que você crie objetos que se comportam de maneira intuitiva e integrada com as operações comuns da linguagem.
 
-### __repr__
+### ```__repr__```
 
 O método `__repr__` é um dos métodos mágicos em Python e é usado para definir a representação "oficial" de uma instância de classe em forma de string. A palavra "repr" é uma abreviação de "representação", e o objetivo principal desse método é retornar uma representação de string que deve ser idealmente uma expressão Python válida que cria um objeto idêntico quando avaliada.
 
@@ -333,7 +333,7 @@ print(p2)  # Saída: Ponto(2, 3)
 
 O método `__repr__` é frequentemente usado para depuração e para criar representações úteis de objetos que podem ser usadas em logs ou para inspecionar objetos durante o desenvolvimento.
 
-### __new__
+### ```__new__```
 
 O método `__new__` é outro dos métodos mágicos em Python, mas ele é diferente dos métodos que discutimos anteriormente, como `__init__` e `__repr__`. O `__new__` é responsável por criar uma nova instância de uma classe antes que o método `__init__` seja chamado para inicializar essa instância. Enquanto o `__init__` lida com a inicialização dos atributos de uma instância, o `__new__` lida com a criação da própria instância.
 

@@ -1,14 +1,7 @@
-import numpy as np
-def zeros(n):
-    
-    contador = 0
-    soma = np.math.factorial(n)
 
-    for x in str(soma)[::-1]:
-        if x == '0':
-            contador += 1
-        else: break
-    return contador
+lista_1 = ['a','b','c','d','e','f','g','h', 'i']
+
+resto = len(lista_1) % 2
 
 
-print(zeros(6))
+print(resto,len(lista_1))

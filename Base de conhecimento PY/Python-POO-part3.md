@@ -332,3 +332,40 @@ print(p2)  # Saída: Ponto(2, 3)
 ```
 
 O método `__repr__` é frequentemente usado para depuração e para criar representações úteis de objetos que podem ser usadas em logs ou para inspecionar objetos durante o desenvolvimento.
+
+### __new__
+
+O método `__new__` é outro dos métodos mágicos em Python, mas ele é diferente dos métodos que discutimos anteriormente, como `__init__` e `__repr__`. O `__new__` é responsável por criar uma nova instância de uma classe antes que o método `__init__` seja chamado para inicializar essa instância. Enquanto o `__init__` lida com a inicialização dos atributos de uma instância, o `__new__` lida com a criação da própria instância.
+
+Aqui está a assinatura típica do método `__new__`:
+
+```python
+def __new__(cls, *args, **kwargs):
+    # Cria e retorna uma nova instância da classe
+```
+
+- `cls`: É a própria classe em que o método está sendo chamado.
+- `*args` e `**kwargs`: São argumentos passados para a classe quando você cria uma nova instância dela.
+
+O método `__new__` é normalmente usado em situações em que você precisa personalizar a criação de instâncias, como quando está trabalhando com classes imutáveis, herança de classes imutáveis ou quando deseja criar instâncias de classes que não podem ser modificadas diretamente no `__init__`.
+
+Aqui está um exemplo simples que mostra como o `__new__` pode ser usado para personalizar a criação de instâncias:
+
+```python
+class Singleton:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
+
+singleton1 = Singleton()
+singleton2 = Singleton()
+
+print(singleton1 is singleton2)  # Saída: True, ambos são a mesma instância
+```
+
+Neste exemplo, o `__new__` é usado para garantir que apenas uma única instância da classe `Singleton` seja criada, tornando-a um Singleton. Quando você cria múlticas instâncias da classe `Singleton`, elas acabam sendo a mesma instância, garantindo que seja verdadeira a afirmação de que `singleton1 is singleton2`.
+
+Lembre-se de que, em muitos casos, você não precisa se preocupar em implementar o `__new__`, a menos que tenha requisitos específicos para personalizar a criação de instâncias. O método `__init__` é mais comumente usado para inicializar atributos de objetos.

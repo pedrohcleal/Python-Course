@@ -198,3 +198,65 @@ imprimir_area(circulo)    # Saída: Área: 50.26548245744
 ```
 
 Neste exemplo, podemos ver que as instâncias de `Retangulo` e `Circulo` podem ser passadas para a função `imprimir_area`, que espera um objeto do tipo `Forma`. Isso demonstra a aplicação do Princípio da Substituição de Liskov, pois as subclasses podem ser substituídas pelas superclasses sem problemas, garantindo assim a compatibilidade e a flexibilidade do código.
+
+## Exceptions em POO
+
+Em Python, as exceptions (ou exceções) são eventos que podem ocorrer durante a execução de um programa e que interrompem o fluxo normal do programa. As exceções são usadas para lidar com erros e situações excepcionais que podem ocorrer durante a execução de um programa orientado a objetos (POO) ou não. No contexto de POO, as exceções podem ser usadas em métodos de classes e em manipulação de objetos para tratar erros específicos relacionados às operações de objetos.
+
+Aqui estão alguns conceitos-chave relacionados a exceções em Python no contexto de programação orientada a objetos:
+
+1. **Hierarquia de exceções:** Em Python, as exceções são organizadas em uma hierarquia de classes. A classe base para todas as exceções é `BaseException`, e outras classes de exceção derivam dela. Algumas exceções comuns incluem `Exception` (usada como base para exceções personalizadas), `TypeError` (para erros de tipo), `ValueError` (para erros de valor) e muitas outras.
+
+2. **Tratamento de exceções:** O tratamento de exceções em Python é realizado usando blocos `try` e `except`. O código que pode gerar uma exceção é colocado dentro de um bloco `try`, e as exceções específicas que você deseja capturar e tratar são especificadas em blocos `except`. Se uma exceção ocorrer dentro do bloco `try`, o fluxo do programa será desviado para o bloco `except` apropriado. Isso permite que você lide com erros de forma controlada e evite que seu programa quebre abruptamente.
+
+   ```python
+   try:
+       # Código que pode gerar uma exceção
+       resultado = 10 / 0
+   except ZeroDivisionError:
+       # Tratamento específico para a exceção ZeroDivisionError
+       print("Divisão por zero não é permitida.")
+   ```
+
+3. **Lançando exceções:** Além de capturar exceções, você também pode lançar exceções manualmente usando a instrução `raise`. Isso é útil quando você deseja indicar que ocorreu uma condição excepcional em seu código. Você pode criar exceções personalizadas derivando de `Exception` ou de uma classe de exceção existente.
+
+   ```python
+   def minha_funcao(valor):
+       if valor < 0:
+           raise ValueError("O valor não pode ser negativo")
+       # Outro código aqui
+   ```
+
+4. **Finalmente (finally):** Você pode usar a cláusula `finally` em conjunto com `try` e `except` para garantir que um bloco de código seja executado, independentemente de uma exceção ter sido lançada ou não. Isso é útil para tarefas de limpeza, como fechar arquivos ou conexões de banco de dados.
+
+   ```python
+   try:
+       arquivo = open("arquivo.txt", "r")
+       # Realize alguma operação no arquivo
+   except FileNotFoundError:
+       print("O arquivo não foi encontrado")
+   finally:
+       arquivo.close()  # Certifique-se de fechar o arquivo, independentemente do que aconteça
+   ```
+
+5. **Exceções específicas em POO:** Em programação orientada a objetos, você pode definir exceções personalizadas derivando da classe `Exception`. Isso é útil para criar exceções específicas do domínio do seu aplicativo. Por exemplo, você pode criar uma classe `SaldoInsuficienteError` para lidar com erros relacionados ao saldo insuficiente em uma conta bancária.
+
+   ```python
+   class SaldoInsuficienteError(Exception):
+       def __init__(self, saldo, valor):
+           self.saldo = saldo
+           self.valor = valor
+           super().__init__(f"Saldo insuficiente. Saldo atual: {saldo}, Valor a ser sacado: {valor}")
+   ```
+
+   Você pode então lançar e capturar essa exceção em métodos de classes que envolvam operações bancárias.
+
+   ```python
+   class ContaBancaria:
+       def sacar(self, valor):
+           if self.saldo < valor:
+               raise SaldoInsuficienteError(self.saldo, valor)
+           # Outro código aqui
+   ```
+
+Em resumo, as exceções em Python são usadas para lidar com erros e situações excepcionais em programas orientados a objetos, permitindo um tratamento controlado desses eventos para evitar falhas não tratadas e comportamento inesperado do programa.

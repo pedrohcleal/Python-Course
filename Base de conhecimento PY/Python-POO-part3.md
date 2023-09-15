@@ -296,3 +296,39 @@ Aqui estão alguns dos Magic Methods mais comuns e seus propósitos:
 14. `__enter__(self)` e `__exit__(self, exc_type, exc_value, traceback)`: Usado para criar objetos que podem ser usados com o gerenciamento de contexto usando a declaração `with`.
 
 Esses são apenas alguns exemplos dos muitos métodos mágicos disponíveis em Python. Eles fornecem flexibilidade e personalização às suas classes, permitindo que você crie objetos que se comportam de maneira intuitiva e integrada com as operações comuns da linguagem.
+
+### __repr__
+
+O método `__repr__` é um dos métodos mágicos em Python e é usado para definir a representação "oficial" de uma instância de classe em forma de string. A palavra "repr" é uma abreviação de "representação", e o objetivo principal desse método é retornar uma representação de string que deve ser idealmente uma expressão Python válida que cria um objeto idêntico quando avaliada.
+
+Aqui está a assinatura típica do método `__repr__`:
+
+```python
+def __repr__(self):
+    # Retorne uma representação da instância como string
+```
+
+Por exemplo, suponha que você tenha uma classe simples chamada `Ponto` para representar coordenadas em um plano cartesiano:
+
+```python
+class Ponto:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f'Ponto({self.x}, {self.y})'
+```
+
+Aqui, o método `__repr__` retorna uma string que é uma expressão Python válida para criar um objeto `Ponto` com as mesmas coordenadas. Isso permite que você obtenha uma representação legível do objeto, bem como a capacidade de criar um objeto igual por meio da expressão retornada. Exemplo de uso:
+
+```python
+p1 = Ponto(2, 3)
+print(repr(p1))  # Saída: 'Ponto(2, 3)'
+
+# Criar um novo objeto usando a expressão retornada por repr
+p2 = eval(repr(p1))
+print(p2)  # Saída: Ponto(2, 3)
+```
+
+O método `__repr__` é frequentemente usado para depuração e para criar representações úteis de objetos que podem ser usadas em logs ou para inspecionar objetos durante o desenvolvimento.

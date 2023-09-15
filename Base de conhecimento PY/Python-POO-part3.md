@@ -366,6 +366,6 @@ singleton2 = Singleton()
 print(singleton1 is singleton2)  # Saída: True, ambos são a mesma instância
 ```
 
-Neste exemplo, o `__new__` é usado para garantir que apenas uma única instância da classe `Singleton` seja criada, tornando-a um Singleton. Quando você cria múlticas instâncias da classe `Singleton`, elas acabam sendo a mesma instância, garantindo que seja verdadeira a afirmação de que `singleton1 is singleton2`.
+Neste exemplo, o `__new__` é usado para garantir que apenas uma única instância da classe `Singleton` seja criada, tornando-a um Singleton. Quando você cria múltiplas instâncias da classe `Singleton`, elas acabam sendo a mesma instância, garantindo que seja verdadeira a afirmação de que `singleton1 is singleton2`.
 
 Lembre-se de que, em muitos casos, você não precisa se preocupar em implementar o `__new__`, a menos que tenha requisitos específicos para personalizar a criação de instâncias. O método `__init__` é mais comumente usado para inicializar atributos de objetos.

@@ -369,3 +369,30 @@ print(singleton1 is singleton2)  # Saída: True, ambos são a mesma instância
 Neste exemplo, o `__new__` é usado para garantir que apenas uma única instância da classe `Singleton` seja criada, tornando-a um Singleton. Quando você cria múltiplas instâncias da classe `Singleton`, elas acabam sendo a mesma instância, garantindo que seja verdadeira a afirmação de que `singleton1 is singleton2`.
 
 Lembre-se de que, em muitos casos, você não precisa se preocupar em implementar o `__new__`, a menos que tenha requisitos específicos para personalizar a criação de instâncias. O método `__init__` é mais comumente usado para inicializar atributos de objetos.
+
+## ```__call__```
+
+Em Python, o método `__call__` é um método especial que pode ser definido em uma classe para permitir que uma instância dessa classe seja chamada como uma função. Isso significa que você pode usar objetos da classe como se fossem funções, aplicando os parênteses para invocá-los. Quando você chama um objeto como uma função, o método `__call__` da classe é executado automaticamente.
+
+Aqui está um exemplo simples que ilustra o uso do método `__call__`:
+
+```python
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+
+    def __call__(self, x):
+        # Este método será chamado quando uma instância de MyClass for chamada como uma função
+        return self.value * x
+
+# Criando uma instância de MyClass
+obj = MyClass(5)
+
+# Chamando a instância como uma função
+result = obj(10)
+print(result)  # Isso imprimirá 50, pois obj(10) chama obj.__call__(10)
+```
+
+Neste exemplo, a classe `MyClass` tem um método `__call__` que aceita um argumento `x` e retorna o produto do valor armazenado no objeto (`self.value`) e `x`. Quando chamamos `obj(10)`, o método `__call__` é chamado automaticamente, resultando em `5 * 10`, que é igual a 50.
+
+O uso do método `__call__` é útil quando você deseja que um objeto se comporte como uma função, permitindo que você personalize o comportamento da chamada desse objeto. Isso é especialmente útil em situações em que você deseja criar objetos que mantenham algum estado interno, como caches ou objetos que encapsulem uma lógica complexa, e você deseja tornar sua interação mais natural e similar à chamada de funções.

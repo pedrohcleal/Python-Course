@@ -279,3 +279,51 @@ print(person)  # Saída: PERSON('ALICE', 30)
 Neste exemplo, aplicamos o decorador `uppercase_repr` à classe `Person`, e quando chamamos `print(person)`, a representação é automaticamente convertida em maiúsculas.
 
 Essa é uma maneira de usar decoradores para modificar o comportamento de métodos de classe, como `__repr__`, em Python. Isso pode ser útil para adicionar funcionalidades adicionais ou personalizadas a classes existentes sem modificar seu código fonte diretamente.
+
+## Classes decoradoras:
+
+Em Python, as classes decoradoras são uma técnica avançada que permite modificar ou estender o comportamento de funções, métodos ou classes de uma maneira modular e reutilizável. As classes decoradoras são usadas principalmente em conjunto com funções decoradoras para adicionar funcionalidades extras a objetos de função ou métodos de classe sem modificar diretamente o código-fonte original.
+
+Aqui está uma visão geral de como as classes decoradoras funcionam em Python:
+
+1. Classes decoradoras:
+   - Uma classe decoradora é uma classe que implementa os métodos especiais `__init__` e `__call__`.
+   - O método `__init__` é usado para configurar a classe decoradora e armazenar qualquer estado necessário.
+   - O método `__call__` é invocado quando um objeto da classe decoradora é chamado como uma função.
+
+2. Funções decoradoras:
+   - Funções decoradoras são usadas para modificar o comportamento de funções ou métodos.
+   - Uma função decoradora recebe como argumento a função que ela está decorando e pode fazer qualquer manipulação desejada nessa função.
+   - A função decoradora geralmente retorna uma nova função (ou método) que é uma versão modificada da função original.
+
+Aqui está um exemplo simples de como criar e usar uma classe decoradora em Python:
+
+```python
+class MyDecorator:
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print("Antes da chamada da função")
+        result = self.func(*args, **kwargs)
+        print("Depois da chamada da função")
+        return result
+
+@MyDecorator
+def minha_funcao():
+    print("Executando minha_funcao")
+
+minha_funcao()
+```
+
+Neste exemplo, `MyDecorator` é uma classe decoradora que adiciona um comportamento adicional antes e depois da chamada da função `minha_funcao`. O uso do `@MyDecorator` acima da definição da função é uma forma de aplicar a decoração à função.
+
+Ao executar `minha_funcao()`, você verá a saída:
+
+```
+Antes da chamada da função
+Executando minha_funcao
+Depois da chamada da função
+```
+
+As classes decoradoras são úteis quando você precisa aplicar a mesma funcionalidade a várias funções ou métodos em seu código, pois permitem encapsular essa funcionalidade em uma classe reutilizável. Isso pode ser especialmente útil em situações como loggin, autenticação, validação de entrada e muito mais.

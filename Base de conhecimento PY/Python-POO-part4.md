@@ -171,3 +171,57 @@ Saindo do contexto
 ```
 
 O uso de `contextlib.contextmanager` é uma maneira conveniente de criar context managers para gerenciar recursos e garantir a execução correta de código de configuração e limpeza dentro de um bloco `with`.
+
+## Funções decoradores com Classes
+
+Em Python, os decoradores são uma maneira poderosa de modificar o comportamento de funções ou métodos. Eles também podem ser usados em classes para modificar o comportamento de métodos de classe, como `__init__`, `__str__`, `__repr__` e outros. Vou explicar como você pode usar um decorador para modificar o método `__repr__` de uma classe.
+
+Primeiro, vamos entender o que é o método `__repr__` em Python. O método `__repr__` é usado para fornecer uma representação de string "oficial" de um objeto. Isso significa que o resultado do método `__repr__` deve ser uma string que, quando passada para a função `eval()`, deve criar um objeto idêntico ao original. O objetivo principal do método `__repr__` é fornecer uma representação legível para programadores.
+
+Aqui está um exemplo simples de uma classe com o método `__repr__`:
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"Person('{self.name}', {self.age})"
+```
+
+Neste exemplo, o método `__repr__` retorna uma string que representa uma instância da classe `Person`.
+
+Agora, vamos criar um decorador que modifica o comportamento do método `__repr__` de uma classe:
+
+```python
+def uppercase_repr(cls):
+    original_repr = cls.__repr__
+
+    def new_repr(self):
+        original_result = original_repr(self)
+        return original_result.upper()
+
+    cls.__repr__ = new_repr
+    return cls
+```
+
+O decorador `uppercase_repr` pega a classe como argumento, obtém o método `__repr__` original, cria um novo método `new_repr` que chama o método original e converte a representação em maiúsculas, em seguida, atribui o novo método `new_repr` à classe. Agora, quando você aplica esse decorador a uma classe, ele transformará automaticamente a representação em maiúsculas:
+
+```python
+@uppercase_repr
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"Person('{self.name}', {self.age})"
+
+person = Person("Alice", 30)
+print(person)  # Saída: PERSON('ALICE', 30)
+```
+
+Neste exemplo, aplicamos o decorador `uppercase_repr` à classe `Person`, e quando chamamos `print(person)`, a representação é automaticamente convertida em maiúsculas.
+
+Essa é uma maneira de usar decoradores para modificar o comportamento de métodos de classe, como `__repr__`, em Python. Isso pode ser útil para adicionar funcionalidades adicionais ou personalizadas a classes existentes sem modificar seu código fonte diretamente.

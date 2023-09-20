@@ -327,3 +327,37 @@ Depois da chamada da função
 ```
 
 As classes decoradoras são úteis quando você precisa aplicar a mesma funcionalidade a várias funções ou métodos em seu código, pois permitem encapsular essa funcionalidade em uma classe reutilizável. Isso pode ser especialmente útil em situações como loggin, autenticação, validação de entrada e muito mais.
+
+## Metaclasses
+
+Em Python, metaclasses são classes especiais que definem o comportamento de outras classes, conhecidas como "classes de instância". Basicamente, uma metaclasse é uma classe de uma classe, o que significa que ela controla como as classes são criadas e se comportam. As metaclasses são uma parte avançada da linguagem Python e não são frequentemente utilizadas na programação cotidiana, mas podem ser poderosas quando necessário.
+
+Aqui estão alguns conceitos e informações importantes sobre metaclasses em Python:
+
+1. **Classes são objetos:** Em Python, as classes são objetos de primeira classe. Isso significa que você pode atribuí-las a variáveis, passá-las como argumentos de funções e criar novas classes em tempo de execução. Isso é fundamental para entender metaclasses.
+
+2. **type - A metaclass padrão:** Todas as classes em Python têm uma metaclass associada, e por padrão, essa metaclass é a classe `type`. `type` é uma metaclass embutida que é responsável por criar todas as classes em Python. Você pode usar `type` para criar novas classes também.
+
+   Exemplo de criação de classe usando `type`:
+
+   ```python
+   MinhaClasse = type('MinhaClasse', (object,), {'atributo': 42})
+   ```
+
+3. **Personalizando metaclasses:** Você pode criar suas próprias metaclasses personalizadas definindo uma classe que herda de `type` e sobrescrevendo seus métodos especiais, como `__new__` e `__init__`. Esses métodos permitem que você controle como as classes são criadas e personalizem seu comportamento.
+
+   ```python
+   class MinhaMetaclasse(type):
+       def __new__(cls, nome, bases, attrs):
+           # Personalize a criação da classe aqui
+           return super().__new__(cls, nome, bases, attrs)
+
+   class MinhaClasse(metaclass=MinhaMetaclasse):
+       pass
+   ```
+
+4. **Uso de metaclasses:** As metaclasses podem ser usadas para várias finalidades, como a aplicação de regras de validação, a injeção automática de métodos ou atributos em classes, a criação de classes de registro, entre outras. Elas são frequentemente usadas em estruturas e bibliotecas avançadas que precisam de metadados adicionais sobre as classes.
+
+5. **Cuidado ao usar metaclasses:** Embora as metaclasses ofereçam um poder considerável, é importante usá-las com cautela. O código que faz uso extensivo de metaclasses pode se tornar complexo e difícil de entender. Portanto, é geralmente recomendado recorrer a metaclasses apenas quando não há alternativa mais simples para atingir o objetivo desejado.
+
+Em resumo, metaclasses são uma ferramenta avançada em Python que permite personalizar a criação e o comportamento das classes. Elas são mais úteis em cenários complexos onde é necessário controlar o comportamento das classes de forma mais profunda. Para a maioria dos casos, o uso de classes normais é suficiente.

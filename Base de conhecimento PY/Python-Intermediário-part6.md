@@ -102,3 +102,54 @@ No entanto, é importante ter em mente que a recursão pode levar a problemas co
 Além disso, em alguns casos, a recursão pode ser menos eficiente do que uma abordagem iterativa (usando loops). Portanto, é bom considerar outras alternativas de implementação, dependendo do problema que você está resolvendo.
 
 Em resumo, a recursão em Python permite que as funções chamem a si mesmas para resolver problemas divididos em subproblemas menores. É uma ferramenta poderosa, mas que deve ser usada com cuidado e atenção aos detalhes para evitar problemas de desempenho e lógicos.
+
+## ```Help()```
+
+O comando `help` em Python é uma função embutida que fornece informações e documentação sobre objetos, módulos, classes, métodos e funções disponíveis na linguagem. O objetivo principal do `help` é ajudar os desenvolvedores a entenderem como usar esses elementos corretamente e a obter informações sobre suas funcionalidades.
+
+A sintaxe básica do comando `help` é a seguinte:
+
+```python
+help(objeto)
+```
+
+Onde `objeto` pode ser qualquer coisa para a qual você deseja obter informações, como uma função, classe, método, módulo ou até mesmo um objeto específico.
+
+Aqui estão alguns exemplos de como usar o comando `help` em Python:
+
+1. Ajuda sobre um objeto embutido:
+
+   ```python
+   help(print)
+   ```
+
+   Isso fornecerá informações sobre a função `print`, incluindo sua sintaxe e uma breve descrição de como ela funciona.
+
+2. Ajuda sobre um módulo:
+
+   ```python
+   import math
+   help(math)
+   ```
+
+   Isso fornecerá informações sobre o módulo `math`, incluindo uma lista de funções e constantes disponíveis no módulo.
+
+3. Ajuda sobre uma classe:
+
+   ```python
+   from datetime import datetime
+   help(datetime)
+   ```
+
+   Isso fornecerá informações sobre a classe `datetime` do módulo `datetime`, incluindo detalhes sobre seus métodos e atributos.
+
+4. Ajuda sobre um método específico:
+
+   ```python
+   lista = [1, 2, 3]
+   help(lista.append)
+   ```
+
+   Isso fornecerá informações detalhadas sobre o método `append` da lista, incluindo sua sintaxe e uma descrição do que ele faz.
+
+Ao usar o comando `help`, você pode explorar a documentação integrada do Python e obter informações detalhadas sobre os elementos que está usando em seu código, o que pode ser extremamente útil para aprender a usar novas bibliotecas, depurar problemas ou simplesmente entender melhor o funcionamento de determinados componentes do Python.

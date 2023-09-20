@@ -153,3 +153,55 @@ Aqui estão alguns exemplos de como usar o comando `help` em Python:
    Isso fornecerá informações detalhadas sobre o método `append` da lista, incluindo sua sintaxe e uma descrição do que ele faz.
 
 Ao usar o comando `help`, você pode explorar a documentação integrada do Python e obter informações detalhadas sobre os elementos que está usando em seu código, o que pode ser extremamente útil para aprender a usar novas bibliotecas, depurar problemas ou simplesmente entender melhor o funcionamento de determinados componentes do Python.
+
+## DocStrings
+
+Em Python, uma docstring é uma string de documentação associada a um módulo, função, classe ou método. Ela é usada para descrever o propósito e a funcionalidade do código para ajudar os desenvolvedores a entender como usar e interagir com o código. Docstrings são usadas para documentação interna e podem ser acessadas por meio de várias ferramentas de documentação e IDEs para fornecer informações úteis aos desenvolvedores.
+
+Existem três tipos principais de docstrings em Python:
+
+1. **Docstrings de Módulo**:
+   Estas docstrings são usadas para documentar o módulo como um todo. Normalmente, são colocadas no início do arquivo do módulo. Um exemplo de docstring de módulo:
+
+   ```python
+   """
+   Este é um exemplo de docstring de módulo.
+   Ele fornece informações sobre o que este módulo faz.
+   """
+   ```
+
+2. **Docstrings de Função/Método**:
+   Docstrings de função ou método são usadas para documentar uma função ou método específico. Elas são colocadas logo após a definição da função ou método. Aqui está um exemplo:
+
+   ```python
+   def calcular_soma(a, b):
+       """
+       Esta função calcula a soma de dois números.
+       
+       :param a: O primeiro número.
+       :param b: O segundo número.
+       :return: A soma de a e b.
+       """
+       return a + b
+   ```
+
+3. **Docstrings de Classe**:
+   Docstrings de classe são usadas para documentar uma classe e seus atributos. Elas são colocadas logo após a definição da classe. Aqui está um exemplo:
+
+   ```python
+   class Pessoa:
+       """
+       Esta classe representa uma pessoa com atributos como nome e idade.
+       """
+       def __init__(self, nome, idade):
+           self.nome = nome
+           self.idade = idade
+   ```
+
+As docstrings podem ser acessadas em tempo de execução usando o atributo `__doc__` do objeto, como no seguinte exemplo:
+
+```python
+print(calcular_soma.__doc__)  # Exibe a docstring da função calcular_soma
+```
+
+Além de servir como documentação legível para humanos, docstrings também podem ser processadas por ferramentas de documentação, como o Sphinx, que permite gerar documentação automática a partir do código-fonte. Portanto, é uma boa prática escrever docstrings claras e informativas para facilitar a compreensão e o uso do seu código Python.

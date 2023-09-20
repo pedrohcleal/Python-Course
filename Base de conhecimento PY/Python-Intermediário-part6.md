@@ -205,3 +205,45 @@ print(calcular_soma.__doc__)  # Exibe a docstring da função calcular_soma
 ```
 
 Além de servir como documentação legível para humanos, docstrings também podem ser processadas por ferramentas de documentação, como o Sphinx, que permite gerar documentação automática a partir do código-fonte. Portanto, é uma boa prática escrever docstrings claras e informativas para facilitar a compreensão e o uso do seu código Python.
+
+## Type Annotations
+
+Type annotations, em português "anotações de tipo", são uma característica do Python 3 que permite aos desenvolvedores especificar os tipos de variáveis, argumentos de função e valores de retorno de funções, métodos e classes. Embora o Python seja uma linguagem de programação dinamicamente tipada, o uso de type annotations ajuda a tornar o código mais legível, auto-documentado e pode ser útil para detectar erros de tipo durante a análise estática do código.
+
+A sintaxe básica para type annotations envolve o uso do operador de dois pontos (`:`) após o nome da variável, argumento ou valor de retorno, seguido pelo tipo desejado. Aqui estão alguns exemplos:
+
+1. **Anotações de variáveis**:
+   
+   ```python
+   nome: str = "Alice"
+   idade: int = 30
+   preco: float = 19.99
+   ```
+
+2. **Anotações de argumentos de função**:
+
+   ```python
+   def calcular_soma(a: int, b: int) -> int:
+       return a + b
+   ```
+
+3. **Anotações de valores de retorno de função**:
+
+   ```python
+   def dividir(a: float, b: float) -> float:
+       return a / b
+   ```
+
+É importante observar que as anotações de tipo são opcionais e não afetam o comportamento em tempo de execução do código Python. No entanto, elas podem ser usadas por ferramentas e IDEs para fornecer recursos adicionais, como:
+
+- **Deteção de erros de tipo**: Algumas ferramentas de análise estática, como o `mypy`, podem verificar se o código está em conformidade com as anotações de tipo e relatar erros de tipo em tempo de desenvolvimento.
+
+- **Melhor legibilidade e documentação**: As anotações de tipo tornam o código mais fácil de entender e documentam as expectativas de tipo, tornando-o mais auto-explicativo para outros desenvolvedores que possam ler o código.
+
+- **Melhores sugestões de autocompletar**: IDEs, como o Visual Studio Code, podem usar anotações de tipo para fornecer sugestões mais precisas durante a digitação do código.
+
+- **Facilitação da manutenção do código**: As anotações de tipo ajudam a evitar que você mesmo ou outros desenvolvedores cometam erros de tipo ao trabalhar com o código.
+
+- **Documentação automática**: Ferramentas de documentação, como o Sphinx, podem usar anotações de tipo para gerar documentação automática mais detalhada.
+
+É importante observar que as anotações de tipo são uma adição opcional ao Python, e o interpretador Python não faz verificações de tipo em tempo de execução com base nessas anotações. Portanto, a responsabilidade de garantir a conformidade com os tipos especificados recai sobre o desenvolvedor e as ferramentas de análise estática que podem ser usadas durante o desenvolvimento.

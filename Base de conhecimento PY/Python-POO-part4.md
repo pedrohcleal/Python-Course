@@ -328,7 +328,7 @@ Depois da chamada da função
 
 As classes decoradoras são úteis quando você precisa aplicar a mesma funcionalidade a várias funções ou métodos em seu código, pois permitem encapsular essa funcionalidade em uma classe reutilizável. Isso pode ser especialmente útil em situações como loggin, autenticação, validação de entrada e muito mais.
 
-## Metaclasses
+## Teoria das Metaclasses(avançado)
 
 Em Python, metaclasses são classes especiais que definem o comportamento de outras classes, conhecidas como "classes de instância". Basicamente, uma metaclasse é uma classe de uma classe, o que significa que ela controla como as classes são criadas e se comportam. As metaclasses são uma parte avançada da linguagem Python e não são frequentemente utilizadas na programação cotidiana, mas podem ser poderosas quando necessário.
 

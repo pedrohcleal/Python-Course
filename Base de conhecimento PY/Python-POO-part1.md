@@ -271,3 +271,35 @@ No contexto de programação orientada a objetos, as fábricas (factories) e o u
    Neste exemplo, o parâmetro `cls` é usado no método de classe `criar_veiculo` para criar instâncias da classe atual (`Veiculo` ou `Carro`) com base na classe que o chama.
 
 Em resumo, fábricas são usadas para criar objetos de forma mais flexível e encapsulada, enquanto o parâmetro `cls` é usado em métodos de classe e fábricas para se referir à classe atual, tornando-os úteis em situações em que a herança está envolvida ou quando você precisa criar instâncias de classes dinamicamente.
+
+## Uso de getters em classes
+
+Em Python, você pode usar getters em classes de programação orientada a objetos (POO) para acessar atributos privados de uma classe de maneira controlada. Embora Python não tenha modificadores de acesso como em algumas outras linguagens de programação (como `private` ou `protected`), é uma convenção em Python que atributos que começam com um sublinhado (`_`) sejam considerados como "privados" e não devem ser acessados diretamente fora da classe. Para acessar esses atributos, você pode usar métodos getters.
+
+Aqui está um exemplo simples de como criar e usar um getter em uma classe em Python:
+
+```python
+class Pessoa:
+    def __init__(self, nome, idade):
+        self._nome = nome  # Atributo "privado" com um sublinhado
+        self._idade = idade
+
+    # Getter para o atributo "nome"
+    def get_nome(self):
+        return self._nome
+
+    # Getter para o atributo "idade"
+    def get_idade(self):
+        return self._idade
+
+# Criar uma instância da classe Pessoa
+pessoa = Pessoa("João", 30)
+
+# Usar os getters para acessar os atributos "nome" e "idade"
+print("Nome:", pessoa.get_nome())
+print("Idade:", pessoa.get_idade())
+```
+
+Neste exemplo, `_nome` e `_idade` são atributos considerados "privados", e seus valores são acessados apenas por meio de métodos getters `get_nome` e `get_idade`. Usar getters permite que você tenha mais controle sobre o acesso aos atributos da classe, o que pode ser útil para implementar lógica de validação ou manipulação dos dados antes de serem retornados.
+
+É importante mencionar que, em Python, essa convenção de "atributos privados" é apenas uma convenção, e ainda é possível acessar esses atributos diretamente se necessário. No entanto, é geralmente considerado uma boa prática usar getters e setters para manter a encapsulação e fornecer um ponto de acesso controlado aos atributos da classe.

@@ -107,3 +107,95 @@ print(p1 == p2)  # Saída: True
 ```
 
 Neste exemplo, a dataclass `Point` possui os atributos `x` e `y`, e os métodos especiais, como `__init__`, `__repr__` e `__eq__`, são gerados automaticamente. Isso torna a criação e manipulação de objetos `Point` muito mais simples e concisa.
+
+## __init__ e __pos__init__ em Dataclasses
+
+Na dataclasses do Python, o método `__post_init__` é uma extensão personalizada que você pode definir em sua classe para executar código adicional após a inicialização dos atributos, complementando o método `__init__`. Vamos entender as diferenças entre esses dois métodos:
+
+1. **`__init__`**:
+   - O método `__init__` é gerado automaticamente para você quando você utiliza o decorador `@dataclass` em uma classe.
+   - Este método é responsável pela inicialização dos atributos da classe a partir dos argumentos passados para o construtor.
+   - Ele é chamado automaticamente quando você cria uma instância da classe.
+   - Qualquer código de inicialização personalizado que você queira executar deve ser colocado dentro deste método.
+
+2. **`__post_init__`**:
+   - O método `__post_init__` é um método personalizado que você pode definir em sua classe dataclass. Ele não é gerado automaticamente.
+   - Este método é chamado automaticamente pelo Python após a inicialização dos atributos no método `__init__`.
+   - É útil para executar código adicional após a criação da instância, quando todos os atributos já foram inicializados.
+   - Você pode usá-lo, por exemplo, para realizar validações ou cálculos que dependem dos valores dos atributos.
+
+Aqui está um exemplo que ilustra como usar `__post_init__` em uma dataclass:
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Rectangle:
+    width: int
+    height: int
+    area: int = None
+
+    def __post_init__(self):
+        if self.area is None:
+            self.area = self.width * self.height
+
+# Uso da dataclass
+r = Rectangle(5, 10)
+print(r.area)  # Saída: 50
+
+# Outra maneira de usar a dataclass, fornecendo a área explicitamente
+r2 = Rectangle(3, 7, 21)
+print(r2.area)  # Saída: 21
+```
+
+Neste exemplo, a classe `Rectangle` possui três atributos: `width`, `height` e `area`. O cálculo da área é feito automaticamente no método `__post_init__`, caso o valor de `area` não seja fornecido durante a criação da instância.
+
+Em resumo, `__init__` é usado para a inicialização padrão dos atributos, enquanto `__post_init__` é uma maneira de adicionar lógica personalizada após a inicialização padrão dos atributos em uma dataclass.
+
+## Opções em dataclasses
+
+As data classes em Python são uma funcionalidade introduzida na versão 3.7 da linguagem para simplificar a criação de classes que são principalmente usadas para armazenar dados. Elas automatizam a criação de métodos especiais, como `__init__()`, `__repr__()`, `__eq__()`, e `__hash__()`, com base nos campos definidos na classe. Além disso, você pode personalizar ainda mais o comportamento das data classes usando várias opções. Aqui estão algumas das opções que podem ser usadas ao criar data classes em Python:
+
+1. `frozen`:
+   Ao definir uma data class como "congelada" (frozen), você torna seus objetos imutáveis, ou seja, seus campos não podem ser modificados após a criação do objeto. Isso é útil para garantir a integridade dos dados e facilitar a comparação de objetos.
+
+   Exemplo:
+   ```python
+   from dataclasses import dataclass
+
+   @dataclass(frozen=True)
+   class Point:
+       x: int
+       y: int
+   ```
+
+2. `init`:
+   Você pode desativar a geração automática do método `__init__()` definindo `init=False`. Isso é útil se você deseja fornecer sua própria implementação do método de inicialização.
+
+   Exemplo:
+   ```python
+   from dataclasses import dataclass
+
+   @dataclass(init=False)
+   class Person:
+       name: str
+       age: int
+
+       def __init__(self, name: str, age: int):
+           self.name = name
+           self.age = age
+   ```
+
+3. `repr`:
+   Da mesma forma, você pode desativar a geração automática do método `__repr__()` definindo `repr=False`. Isso permite que você forneça sua própria implementação do método de representação em string.
+
+4. `eq`:
+   Você pode desativar a geração automática do método `__eq__()` definindo `eq=False`. Isso permite que você forneça sua própria implementação do método de comparação de igualdade.
+
+5. `order`:
+   Ao definir `order=True`, você ativa a geração automática dos métodos `__lt__()`, `__le__()`, `__gt__()`, e `__ge__()`, permitindo que você compare objetos da data class usando operadores de comparação, como `<`, `<=`, `>`, e `>=`.
+
+6. `unsafe_hash`:
+   Por padrão, as data classes geram automaticamente um método `__hash__()` seguro, o que é adequado para objetos imutáveis. No entanto, se você quiser desativar a geração automática do método `__hash__()`, pode definir `unsafe_hash=True`.
+
+Essas opções permitem personalizar o comportamento das data classes de acordo com as necessidades específicas do seu programa. Elas fornecem flexibilidade na criação de classes de dados simples e eficazes em Python.

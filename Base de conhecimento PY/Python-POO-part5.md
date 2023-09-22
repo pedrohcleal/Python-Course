@@ -199,3 +199,51 @@ As data classes em Python são uma funcionalidade introduzida na versão 3.7 da 
    Por padrão, as data classes geram automaticamente um método `__hash__()` seguro, o que é adequado para objetos imutáveis. No entanto, se você quiser desativar a geração automática do método `__hash__()`, pode definir `unsafe_hash=True`.
 
 Essas opções permitem personalizar o comportamento das data classes de acordo com as necessidades específicas do seu programa. Elas fornecem flexibilidade na criação de classes de dados simples e eficazes em Python.
+
+## Valor padrão e field em Dataclasses
+
+Dentro de dataclasses em Python, você pode especificar valores padrão para os atributos de classe usando a opção `default` e personalizar ainda mais os atributos usando o campo `field`. Vamos discutir esses dois conceitos:
+
+1. **Valor Padrão (Default)**:
+   - A opção `default` permite que você atribua um valor padrão a um atributo da dataclass, de modo que, se nenhum valor for fornecido durante a criação da instância, o valor padrão será utilizado.
+   - Isso é útil quando você deseja fornecer um valor padrão para um atributo, mas ainda deseja permitir que ele seja substituído quando necessário.
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Point:
+    x: int
+    y: int = 0  # Valor padrão de 0 para o atributo y
+
+p1 = Point(1)  # O valor padrão de y (0) será utilizado
+print(p1)  # Saída: Point(x=1, y=0)
+
+p2 = Point(2, 3)  # Fornecendo valores para x e y
+print(p2)  # Saída: Point(x=2, y=3)
+```
+
+2. **Campo (Field)**:
+   - O campo `field` permite que você personalize ainda mais os atributos da dataclass, definindo opções específicas para cada atributo.
+   - Você pode usar `field` para configurar coisas como o valor padrão, a ordem de impressão, se o atributo deve ser incluído em métodos gerados automaticamente (como `__eq__` e `__repr__`), entre outros.
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Person:
+    name: str
+    age: int = field(default=30)  # Valor padrão de 30 para age
+
+p1 = Person("Alice")
+print(p1)  # Saída: Person(name='Alice', age=30)
+
+p2 = Person("Bob", 25)
+print(p2)  # Saída: Person(name='Bob', age=25)
+```
+
+No exemplo acima, o atributo `age` tem um valor padrão definido usando `field(default=30)`, e o valor padrão é usado quando nenhum valor é fornecido. Além disso, você pode personalizar outros aspectos do atributo usando `field`, como a ordem em que os atributos são impressos, o que é útil se você quiser controlar a aparência da representação textual da classe.
+
+Em resumo, os valores padrão e o campo `field` são recursos poderosos das dataclasses em Python que permitem personalizar e tornar suas classes de armazenamento de dados mais flexíveis e eficientes.
+
+

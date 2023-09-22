@@ -246,4 +246,37 @@ No exemplo acima, o atributo `age` tem um valor padrão definido usando `field(d
 
 Em resumo, os valores padrão e o campo `field` são recursos poderosos das dataclasses em Python que permitem personalizar e tornar suas classes de armazenamento de dados mais flexíveis e eficientes.
 
+## namedtuples POO
 
+Em Python, um namedtuple é uma estrutura de dados especial que faz parte do módulo `collections`. Namedtuples são uma forma de criar classes leves e imutáveis para armazenar dados, onde cada campo (ou atributo) tem um nome associado. Eles são úteis quando você precisa criar objetos simples para armazenar um conjunto fixo de valores relacionados, como coordenadas, registros de banco de dados, pontos em um plano cartesiano, etc.
+
+A principal característica de uma namedtuple é que ela combina a conveniência de um dicionário (acesso aos campos por nome) com a eficiência de uma tupla (imutabilidade). Isso significa que você pode acessar os valores dos campos usando seus nomes, mas não pode modificar esses valores após criar uma instância da namedtuple.
+
+Aqui está como você pode criar e usar namedtuples em Python:
+
+```python
+from collections import namedtuple
+
+# Definir uma namedtuple chamada 'Ponto' com campos 'x' e 'y'
+Ponto = namedtuple('Ponto', ['x', 'y'])
+
+# Criar uma instância de Ponto
+p1 = Ponto(1, 2)
+
+# Acessar os campos por nome
+print(p1.x)  # Saída: 1
+print(p1.y)  # Saída: 2
+
+# Você também pode acessar os campos usando índices, como em tuplas normais
+print(p1[0])  # Saída: 1
+print(p1[1])  # Saída: 2
+
+# Namedtuples são imutáveis, então isso não funcionará:
+# p1.x = 3  # Isso lançaria um erro 'AttributeError'
+
+# Você pode criar novas instâncias de namedtuples com _replace
+p2 = p1._replace(x=3)
+print(p2)  # Saída: Ponto(x=3, y=2)
+```
+
+Namedtuples são frequentemente usadas para criar classes de dados simples e legíveis, especialmente quando você está lidando com estruturas de dados pequenas e imutáveis. Eles fornecem uma maneira conveniente de nomear os campos dos objetos e garantir que esses objetos não sejam modificados acidentalmente.

@@ -280,3 +280,61 @@ print(p2)  # Saída: Ponto(x=3, y=2)
 ```
 
 Namedtuples são frequentemente usadas para criar classes de dados simples e legíveis, especialmente quando você está lidando com estruturas de dados pequenas e imutáveis. Eles fornecem uma maneira conveniente de nomear os campos dos objetos e garantir que esses objetos não sejam modificados acidentalmente.
+
+## Criando sua própria lista com iterable, iterator e sequence (collections.abc)
+
+Para criar sua própria lista com suporte para iteráveis, iteradores e sequências (usando a biblioteca `collections.abc`), você pode criar uma classe personalizada que herda de `collections.abc.MutableSequence`. Isso fornecerá os métodos necessários para sua classe se comportar como uma sequência mutável. Além disso, você precisará implementar os métodos especiais `__getitem__`, `__setitem__`, `__delitem__`, e `__len__` para que sua classe funcione corretamente.
+
+Aqui está um exemplo de como criar uma lista personalizada:
+
+```python
+from collections.abc import MutableSequence
+
+class CustomList(MutableSequence):
+    def __init__(self, *args):
+        self.elements = list(args)
+
+    def __getitem__(self, index):
+        return self.elements[index]
+
+    def __setitem__(self, index, value):
+        self.elements[index] = value
+
+    def __delitem__(self, index):
+        del self.elements[index]
+
+    def __len__(self):
+        return len(self.elements)
+
+    def insert(self, index, value):
+        self.elements.insert(index, value)
+
+    def __iter__(self):
+        return iter(self.elements)
+
+    def __contains__(self, value):
+        return value in self.elements
+
+    def __str__(self):
+        return str(self.elements)
+
+# Exemplo de uso:
+custom_list = CustomList(1, 2, 3, 4)
+print(custom_list)  # Saída: [1, 2, 3, 4]
+
+custom_list.append(5)
+print(custom_list)  # Saída: [1, 2, 3, 4, 5]
+
+for item in custom_list:
+    print(item)  # Saída: 1 2 3 4 5
+
+print(len(custom_list))  # Saída: 5
+
+custom_list[2] = 6
+print(custom_list)  # Saída: [1, 2, 6, 4, 5]
+
+del custom_list[1]
+print(custom_list)  # Saída: [1, 6, 4, 5]
+```
+
+Neste exemplo, a classe `CustomList` herda de `MutableSequence` e implementa todos os métodos necessários para que a lista personalizada se comporte como uma sequência mutável. Você também pode adicionar métodos personalizados conforme necessário para atender aos requisitos específicos da sua lista personalizada.

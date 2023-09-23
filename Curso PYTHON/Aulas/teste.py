@@ -10,6 +10,4 @@ def alphabet_position(text):
         continue
     print(dict_numb)
 
-
-
 print(alphabet_position('abc'))

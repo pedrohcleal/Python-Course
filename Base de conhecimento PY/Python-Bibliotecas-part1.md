@@ -151,3 +151,39 @@ data_hora_utc = datetime.now(pytz.UTC)
 ```
 
 O uso do módulo `pytz` é altamente recomendado sempre que você precisar trabalhar com fusos horários em Python, pois ele oferece um suporte completo e preciso para questões relacionadas a datas e horas em todo o mundo. Certifique-se de instalar a biblioteca `pytz` antes de usá-la em seu projeto, o que pode ser feito usando uma ferramenta de gerenciamento de pacotes, como o `pip`.
+
+## Biblioteca Calendar
+
+A biblioteca `calendar` em Python é um módulo integrado que fornece funcionalidades para lidar com datas e calendários. Ela oferece uma variedade de funções para criar, manipular e exibir informações relacionadas a datas, incluindo geração de calendários mensais ou anuais, determinação do dia da semana, verificação de anos bissextos e muito mais.
+
+Aqui estão algumas das principais funções e classes fornecidas pela biblioteca `calendar`:
+
+1. **calendar.month(year, month, w=2, l=1):** Esta função gera um calendário mensal para o ano e mês especificados. Você pode ajustar o tamanho das colunas e o número de linhas usando os parâmetros `w` e `l`. Por padrão, ele retorna uma representação de calendário com duas colunas e uma linha por semana.
+
+2. **calendar.month_name e calendar.day_name:** Essas listas contêm os nomes dos meses e dos dias da semana em inglês, respectivamente. Elas podem ser usadas para converter números em nomes de meses ou dias da semana.
+
+3. **calendar.isleap(year):** Esta função verifica se um determinado ano (especificado como argumento) é bissexto, retornando `True` se for e `False` caso contrário.
+
+4. **calendar.weekday(year, month, day):** Retorna o dia da semana como um número inteiro (0 para segunda-feira, 6 para domingo) para a data especificada.
+
+5. **calendar.monthcalendar(year, month):** Retorna uma lista de listas representando o mês especificado. Cada sublista corresponde a uma semana e contém os dias do mês ou zeros se o dia estiver fora do mês.
+
+6. **calendar.prcal(year, w=2, l=1, c=6, m=3):** Esta função imprime um calendário anual para o ano especificado. Os parâmetros `w`, `l`, `c` e `m` controlam o formato da saída.
+
+7. **calendar.prmonth(year, month, w=2, l=1):** Esta função imprime um calendário mensal para o ano e mês especificados. Você pode ajustar o tamanho das colunas e o número de linhas usando os parâmetros `w` e `l`.
+
+Aqui está um exemplo simples de uso da biblioteca `calendar` para imprimir um calendário mensal:
+
+```python
+import calendar
+
+ano = 2023
+mes = 9
+
+cal = calendar.month(ano, mes)
+print(cal)
+```
+
+Isso imprimirá o calendário para setembro de 2023 na saída padrão.
+
+A biblioteca `calendar` é útil quando você precisa trabalhar com datas e calendários em seus programas Python e deseja gerar informações de calendário ou calcular informações relacionadas a datas de forma fácil e eficiente.

@@ -98,3 +98,64 @@ Aqui estão algumas das operações de caminho mais comuns:
    ```
 
 Essas operações de caminho são essenciais ao lidar com arquivos e diretórios em Python, pois garantem que seu código seja portátil e funcione corretamente em diferentes sistemas operacionais. Elas ajudam a evitar erros relacionados à formatação de caminhos de arquivo e tornam seu código mais robusto.
+
+###  ```os.listdir()```
+
+A função `os.listdir()` é uma função do módulo `os` na biblioteca padrão do Python que é usada para listar os arquivos e diretórios em um determinado diretório especificado. Ela retorna uma lista de strings, onde cada elemento da lista representa um item (arquivo ou diretório) no diretório fornecido. Esta função é útil quando você precisa recuperar informações sobre os itens contidos em um diretório específico em seu sistema de arquivos.
+
+Aqui está a sintaxe básica da função `os.listdir()`:
+
+```python
+import os
+
+lista_de_itens = os.listdir(caminho_do_diretorio)
+```
+
+Onde:
+- `caminho_do_diretorio` é o caminho absoluto ou relativo do diretório que você deseja listar.
+
+Exemplo de uso:
+
+```python
+import os
+
+# Listando os itens (arquivos e diretórios) em um diretório
+diretorio = "/caminho/para/seu/diretorio"
+itens = os.listdir(diretorio)
+
+# Exibindo os itens listados
+for item in itens:
+    print(item)
+```
+
+Lembre-se de que os nomes dos itens listados são apenas strings e não incluem automaticamente o caminho completo. Se você precisar do caminho completo para cada item, você pode combiná-los usando `os.path.join()`:
+
+```python
+import os
+
+diretorio = "/caminho/para/seu/diretorio"
+itens = os.listdir(diretorio)
+
+# Exibindo os itens listados com caminho completo
+for item in itens:
+    caminho_completo = os.path.join(diretorio, item)
+    print(caminho_completo)
+```
+
+Tenha em mente que a função `os.listdir()` não classifica os itens listados em ordem alfabética por padrão. Se você precisar de uma lista ordenada, pode usar a função `sorted()` para classificar a lista de itens retornados:
+
+```python
+import os
+
+diretorio = "/caminho/para/seu/diretorio"
+itens = os.listdir(diretorio)
+
+# Ordenando os itens listados em ordem alfabética
+itens_ordenados = sorted(itens)
+
+# Exibindo os itens listados ordenados
+for item in itens_ordenados:
+    print(item)
+```
+
+Em resumo, `os.listdir()` é uma função útil para listar e acessar os itens (arquivos e diretórios) em um diretório específico no sistema de arquivos. Ela é amplamente utilizada em tarefas de manipulação de arquivos e diretórios em Python.

@@ -38,7 +38,7 @@ Aqui estão algumas das funcionalidades mais comuns que você pode realizar com 
 
 O módulo `os` é uma parte essencial da linguagem Python e é amplamente utilizado em aplicativos que precisam interagir com o sistema operacional em um nível mais baixo. No entanto, vale ressaltar que, em sistemas operacionais diferentes, algumas funcionalidades do `os` podem se comportar de maneira diferente devido às diferenças nos sistemas. Portanto, ao escrever código que depende do módulo `os`, é importante considerar a portabilidade e testar em diferentes sistemas operacionais, se necessário.
 
-### ´´´os.patch´´´
+### ```os.patch```
 
 As operações de caminho, também conhecidas como operações de gerenciamento de caminhos de arquivo, são operações que permitem manipular caminhos de arquivo de forma eficaz e portátil em Python. Essas operações são frequentemente usadas para construir, manipular e verificar caminhos de arquivo e diretório de maneira que seja compatível com diferentes sistemas operacionais, como Windows, Linux e macOS. As operações de caminho são realizadas principalmente usando o módulo `os.path` da biblioteca padrão do Python.
 

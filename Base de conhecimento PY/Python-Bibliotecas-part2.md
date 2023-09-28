@@ -1,5 +1,5 @@
-## Bibliotecas Py Part2
-# Módulo OS
+# Bibliotecas Py Part2
+## Módulo OS
 
 O módulo `os` em Python é uma biblioteca padrão que fornece uma interface para interagir com funcionalidades específicas do sistema operacional. Ele permite que você acesse e manipule informações sobre o ambiente do sistema operacional, como diretórios, arquivos, processos e variáveis de ambiente. O módulo `os` é extremamente útil para escrever código que seja portátil e compatível com diferentes sistemas operacionais, uma vez que ele abstrai muitas das diferenças específicas do sistema.
 

@@ -159,3 +159,44 @@ for item in itens_ordenados:
 ```
 
 Em resumo, `os.listdir()` é uma função útil para listar e acessar os itens (arquivos e diretórios) em um diretório específico no sistema de arquivos. Ela é amplamente utilizada em tarefas de manipulação de arquivos e diretórios em Python.
+
+### `os.stat`& `os.path.getsize`
+
+Em Python, os módulos `os` e `os.path` oferecem funcionalidades para trabalhar com informações sobre arquivos e diretórios no sistema de arquivos do seu sistema operacional. Duas funções úteis relacionadas a isso são `os.stat` e `os.path.getsize`. Vou descrever cada uma delas separadamente:
+
+1. `os.stat`:
+   - A função `os.stat` permite que você obtenha informações detalhadas sobre um arquivo ou diretório, como tamanho, permissões, data de criação e modificação, e muito mais.
+   - Ela retorna um objeto `os.stat_result` que contém uma variedade de atributos, que podem ser acessados usando métodos ou atributos do objeto.
+   - Aqui está um exemplo de uso básico:
+
+     ```python
+     import os
+
+     # Obtém informações sobre um arquivo
+     file_info = os.stat('exemplo.txt')
+
+     # Acessa os atributos do objeto os.stat_result
+     print(f'Tamanho do arquivo: {file_info.st_size} bytes')
+     print(f'Permissões: {file_info.st_mode}')
+     print(f'Data de modificação: {file_info.st_mtime}')
+     ```
+
+   - Neste exemplo, `file_info.st_size` retorna o tamanho do arquivo em bytes, `file_info.st_mode` retorna as permissões do arquivo e `file_info.st_mtime` retorna a data de modificação do arquivo em segundos desde a época (Unix timestamp).
+
+2. `os.path.getsize`:
+   - A função `os.path.getsize` é uma função mais simples que se concentra exclusivamente em obter o tamanho de um arquivo em bytes.
+   - Ela recebe como argumento o caminho para um arquivo e retorna o tamanho desse arquivo em bytes.
+   - Aqui está um exemplo de uso:
+
+     ```python
+     import os
+
+     # Obtém o tamanho de um arquivo usando os.path.getsize
+     file_size = os.path.getsize('exemplo.txt')
+
+     print(f'Tamanho do arquivo: {file_size} bytes')
+     ```
+
+   - Diferentemente de `os.stat`, `os.path.getsize` retorna diretamente o tamanho do arquivo em bytes, o que é útil quando você precisa apenas dessa informação específica e não deseja lidar com todos os outros atributos retornados por `os.stat`.
+
+Ambas as funções são úteis para trabalhar com informações de arquivo e diretório em Python, e a escolha entre elas depende das suas necessidades específicas. Se você precisar de informações detalhadas, `os.stat` é mais adequado, enquanto `os.path.getsize` é uma opção mais simples quando você só precisa do tamanho de um arquivo.

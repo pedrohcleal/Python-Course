@@ -200,3 +200,69 @@ Em Python, os módulos `os` e `os.path` oferecem funcionalidades para trabalhar 
    - Diferentemente de `os.stat`, `os.path.getsize` retorna diretamente o tamanho do arquivo em bytes, o que é útil quando você precisa apenas dessa informação específica e não deseja lidar com todos os outros atributos retornados por `os.stat`.
 
 Ambas as funções são úteis para trabalhar com informações de arquivo e diretório em Python, e a escolha entre elas depende das suas necessidades específicas. Se você precisar de informações detalhadas, `os.stat` é mais adequado, enquanto `os.path.getsize` é uma opção mais simples quando você só precisa do tamanho de um arquivo.
+
+### ``` SHUTIL ````
+
+O módulo `shutil` é uma biblioteca padrão do Python que oferece várias funções para lidar com operações de alto nível em arquivos e diretórios, como copiar, mover, renomear e excluir. Para utilizá-lo, você precisa importar o módulo `shutil` no seu código Python. Aqui estão alguns exemplos de como utilizar o `shutil`:
+
+1. Copiar um arquivo:
+
+```python
+import shutil
+
+origem = "arquivo_origem.txt"
+destino = "arquivo_destino.txt"
+
+shutil.copy(origem, destino)
+```
+
+2. Copiar um diretório inteiro:
+
+```python
+import shutil
+
+origem = "/caminho/para/diretorio_origem"
+destino = "/caminho/para/diretorio_destino"
+
+shutil.copytree(origem, destino)
+```
+
+3. Mover um arquivo:
+
+```python
+import shutil
+
+origem = "arquivo_origem.txt"
+destino = "novo_caminho/arquivo_destino.txt"
+
+shutil.move(origem, destino)
+```
+
+4. Renomear um arquivo ou diretório:
+
+```python
+import shutil
+
+antigo_nome = "arquivo_antigo.txt"
+novo_nome = "arquivo_novo.txt"
+
+shutil.move(antigo_nome, novo_nome)
+```
+
+5. Excluir um arquivo ou diretório:
+
+```python
+import shutil
+
+arquivo_para_excluir = "arquivo_para_excluir.txt"
+
+# Para excluir um arquivo
+shutil.remove(arquivo_para_excluir)
+
+diretorio_para_excluir = "diretorio_para_excluir"
+
+# Para excluir um diretório e todo o seu conteúdo
+shutil.rmtree(diretorio_para_excluir)
+```
+
+Tenha cuidado ao usar o `shutil`, especialmente com funções de exclusão, pois elas podem apagar permanentemente arquivos e diretórios. Certifique-se de que você está usando essas funções com cuidado e fazendo cópias de segurança dos seus dados importantes, se necessário.

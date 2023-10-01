@@ -266,3 +266,66 @@ shutil.rmtree(diretorio_para_excluir)
 ```
 
 Tenha cuidado ao usar o `shutil`, especialmente com funções de exclusão, pois elas podem apagar permanentemente arquivos e diretórios. Certifique-se de que você está usando essas funções com cuidado e fazendo cópias de segurança dos seus dados importantes, se necessário.
+
+### Apagando, copiando, movendo e renomeando pastas com Python
+
+Para pagar, renomear e copiar pastas utilizando a biblioteca `os` e `shutil` em Python, você pode seguir os passos abaixo:
+
+1. **Importar as bibliotecas:**
+
+```python
+import os
+import shutil
+```
+
+2. **Pagar uma pasta:**
+
+Para excluir uma pasta e todo o seu conteúdo, você pode usar a função `os.rmdir()` para pastas vazias ou `shutil.rmtree()` para pastas com conteúdo. Aqui está um exemplo usando `shutil.rmtree()`:
+
+```python
+pasta_para_apagar = 'caminho/para/sua/pasta'
+
+# Certifique-se de que a pasta existe antes de tentar apagar
+if os.path.exists(pasta_para_apagar):
+    shutil.rmtree(pasta_para_apagar)
+    print(f'A pasta {pasta_para_apagar} foi apagada com sucesso.')
+else:
+    print(f'A pasta {pasta_para_apagar} não existe.')
+```
+
+3. **Renomear uma pasta:**
+
+Para renomear uma pasta, você pode usar a função `os.rename()`. Aqui está um exemplo:
+
+```python
+pasta_antiga = 'caminho/para/sua/pasta/antiga'
+pasta_nova = 'caminho/para/sua/pasta/nova'
+
+# Certifique-se de que a pasta antiga existe antes de tentar renomear
+if os.path.exists(pasta_antiga):
+    os.rename(pasta_antiga, pasta_nova)
+    print(f'A pasta foi renomeada para {pasta_nova}.')
+else:
+    print(f'A pasta {pasta_antiga} não existe.')
+```
+
+4. **Copiar uma pasta:**
+
+Para copiar uma pasta e todo o seu conteúdo, você pode usar a função `shutil.copytree()`. Aqui está um exemplo:
+
+```python
+pasta_origem = 'caminho/para/sua/pasta/origem'
+pasta_destino = 'caminho/para/sua/pasta/destino'
+
+# Certifique-se de que a pasta de origem existe antes de tentar copiar
+if os.path.exists(pasta_origem):
+    try:
+        shutil.copytree(pasta_origem, pasta_destino)
+        print(f'A pasta foi copiada para {pasta_destino}.')
+    except Exception as e:
+        print(f"Erro ao copiar a pasta: {str(e)}")
+else:
+    print(f'A pasta de origem {pasta_origem} não existe.')
+```
+
+Certifique-se de ajustar os caminhos das pastas (`pasta_para_apagar`, `pasta_antiga`, `pasta_nova`, `pasta_origem` e `pasta_destino`) de acordo com sua estrutura de diretórios e necessidades específicas. Além disso, esteja ciente de que operações de exclusão e cópia de pastas podem ser irreversíveis, então use-as com cuidado e faça backup de seus dados importantes antes de executar esses comandos.

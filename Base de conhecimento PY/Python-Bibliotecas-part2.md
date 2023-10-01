@@ -201,7 +201,7 @@ Em Python, os módulos `os` e `os.path` oferecem funcionalidades para trabalhar 
 
 Ambas as funções são úteis para trabalhar com informações de arquivo e diretório em Python, e a escolha entre elas depende das suas necessidades específicas. Se você precisar de informações detalhadas, `os.stat` é mais adequado, enquanto `os.path.getsize` é uma opção mais simples quando você só precisa do tamanho de um arquivo.
 
-### ```SHUTIL````
+### ```SHUTIL```
 
 O módulo `shutil` é uma biblioteca padrão do Python que oferece várias funções para lidar com operações de alto nível em arquivos e diretórios, como copiar, mover, renomear e excluir. Para utilizá-lo, você precisa importar o módulo `shutil` no seu código Python. Aqui estão alguns exemplos de como utilizar o `shutil`:
 

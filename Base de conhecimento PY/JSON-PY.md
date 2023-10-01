@@ -150,6 +150,86 @@ with open("novo_arquivo.txt", "w") as novo_arquivo:
 
 Lembrando que usar o bloco `with` é recomendado para garantir que o arquivo seja fechado corretamente após o uso.
 
+## Conversão de dados JSON -> Python
+
+Em Python, você pode converter dados JSON para tipos de dados Python usando o módulo `json`. O módulo `json` oferece funções para serializar (conversão de Python para JSON) e desserializar (conversão de JSON para Python) dados JSON. Aqui estão algumas das conversões mais comuns de JSON para tipos de dados Python:
+
+1. **JSON para Dicionário (Python Dictionary):**
+   
+   Use `json.loads()` para converter um objeto JSON em um dicionário Python.
+
+   ```python
+   import json
+
+   json_str = '{"nome": "João", "idade": 30}'
+   data = json.loads(json_str)
+
+   # Resultado: data é agora um dicionário Python
+   ```
+
+2. **JSON para Lista (Python List):**
+
+   Use `json.loads()` para converter um array JSON em uma lista Python.
+
+   ```python
+   import json
+
+   json_str = '[1, 2, 3, 4, 5]'
+   data = json.loads(json_str)
+
+   # Resultado: data é agora uma lista Python
+   ```
+
+3. **JSON para String:**
+
+   Não é necessário converter explicitamente uma string JSON em uma string Python, pois as strings JSON são representadas como strings Python.
+
+   ```python
+   json_str = '"Isso é uma string JSON"'
+   # json_str é uma string Python
+   ```
+
+4. **JSON para Número (int, float):**
+
+   Use `json.loads()` para converter um número JSON em um número Python.
+
+   ```python
+   import json
+
+   json_str = '42'
+   data = json.loads(json_str)
+
+   # Resultado: data é agora um número Python
+   ```
+
+5. **JSON para Booleano:**
+
+   Use `json.loads()` para converter um valor JSON booleano em um valor Python booleano.
+
+   ```python
+   import json
+
+   json_str = 'true'
+   data = json.loads(json_str)
+
+   # Resultado: data é agora True (booleano Python)
+   ```
+
+6. **JSON para None (Nulo):**
+
+   Use `json.loads()` para converter o valor JSON nulo em `None` em Python.
+
+   ```python
+   import json
+
+   json_str = 'null'
+   data = json.loads(json_str)
+
+   # Resultado: data é agora None (nulo Python)
+   ```
+
+Essas são as conversões básicas que você pode realizar ao converter dados JSON para tipos de dados Python. Lembre-se de que a estrutura e o tipo de dados no JSON devem corresponder ao que você espera para evitar erros durante a conversão.
+
 ## JSON - Salvando e carregando classe
 ### Salvar
 Passo a passo como você pode salvar uma classe Python como um arquivo JSON de forma didática. Para fazer isso, você precisa seguir os seguintes passos:

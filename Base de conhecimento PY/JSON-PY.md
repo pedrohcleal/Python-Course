@@ -237,6 +237,62 @@ print(objeto_python['cidades_visitadas'])  # Saída: ['Nova York', 'Londres', 'T
 
 A deserialização de JSON em objetos Python é uma operação comum ao lidar com APIs da web, armazenamento de dados ou troca de informações estruturadas em aplicativos Python. É importante notar que a deserialização pode gerar exceções se o JSON não estiver bem formatado ou não corresponder à estrutura esperada pelo seu código Python, portanto, é recomendável manipular erros adequadamente ao realizar a deserialização.
 
+##  json.dump, json.load, json.dumps e  json.loads
+`json.dump` e `json.load` são funções da biblioteca JSON em Python que permitem lidar com a serialização e desserialização de dados JSON, enquanto `json.dumps` e `json.loads` são funções relacionadas que trabalham com strings JSON em vez de arquivos.
+
+1. `json.dump`:
+   - `json.dump(obj, fp, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)`
+   - Esta função é usada para serializar um objeto Python para um arquivo JSON.
+   - `obj`: O objeto Python que você deseja serializar.
+   - `fp`: O arquivo (ou objeto de arquivo compatível) onde os dados JSON serão gravados.
+   - Os argumentos opcionais fornecem várias opções para controlar o processo de serialização, como recuo, classificação de chaves, manipulação de valores especiais (como NaN), etc.
+
+2. `json.load`:
+   - `json.load(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)`
+   - Esta função é usada para desserializar dados JSON de um arquivo.
+   - `fp`: O arquivo (ou objeto de arquivo compatível) de onde os dados JSON serão lidos.
+   - Os argumentos opcionais permitem controlar o processo de desserialização, como a conversão de tipos especiais, manipulação de pares de objetos, etc.
+
+3. `json.dumps`:
+   - `json.dumps(obj, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)`
+   - Esta função converte um objeto Python em uma string JSON.
+   - `obj`: O objeto Python que você deseja serializar em formato JSON.
+   - Os argumentos opcionais fornecem opções semelhantes às de `json.dump`, como recuo, classificação de chaves, manipulação de valores especiais, etc.
+
+4. `json.loads`:
+   - `json.loads(s, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)`
+   - Esta função converte uma string JSON em um objeto Python.
+   - `s`: A string JSON que você deseja desserializar.
+   - Os argumentos opcionais permitem controlar o processo de desserialização, como a conversão de tipos especiais, manipulação de pares de objetos, etc.
+
+Exemplo de uso:
+
+```python
+import json
+
+# Exemplo de serialização usando json.dump
+data = {"nome": "João", "idade": 30}
+with open("dados.json", "w") as arquivo:
+    json.dump(data, arquivo)
+
+# Exemplo de desserialização usando json.load
+with open("dados.json", "r") as arquivo:
+    dados_lidos = json.load(arquivo)
+    print(dados_lidos)  # Saída: {"nome": "João", "idade": 30}
+
+# Exemplo de serialização para string usando json.dumps
+data = {"nome": "Maria", "idade": 25}
+json_string = json.dumps(data)
+print(json_string)  # Saída: '{"nome": "Maria", "idade": 25}'
+
+# Exemplo de desserialização de uma string usando json.loads
+json_string = '{"nome": "Carlos", "idade": 35}'
+dados_parseados = json.loads(json_string)
+print(dados_parseados)  # Saída: {"nome": "Carlos", "idade": 35}
+```
+
+Essas funções são úteis para trabalhar com dados JSON em Python, seja lendo e gravando em arquivos ou manipulando strings JSON diretamente.
+
 ## JSON - Salvando e carregando classe
 ### Salvar
 Passo a passo como você pode salvar uma classe Python como um arquivo JSON de forma didática. Para fazer isso, você precisa seguir os seguintes passos:

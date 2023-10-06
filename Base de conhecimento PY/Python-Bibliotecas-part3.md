@@ -95,3 +95,43 @@ Aqui está uma descrição de cada uma dessas classes:
    Neste exemplo, usamos `DictReader` para ler os dados do arquivo CSV e acessamos os valores de cada linha usando as chaves dos dicionários correspondentes aos nomes das colunas.
 
 O uso de `DictWriter` e `DictReader` torna a leitura e escrita de dados CSV mais legível e mais fácil de trabalhar, especialmente quando você tem dados CSV com muitas colunas ou precisa realizar manipulações complexas em seus dados tabulares.
+
+## Biblioteca Random
+
+A biblioteca `random` no Python é um módulo embutido que fornece funcionalidades para gerar números aleatórios. Essa biblioteca é amplamente utilizada em uma variedade de aplicações, desde jogos até simulações e análises estatísticas. Aqui estão algumas das principais funções e recursos oferecidos pela biblioteca `random`:
+
+1. Geração de Números Aleatórios:
+   - `random.random()`: Retorna um número de ponto flutuante no intervalo [0, 1).
+
+2. Geração de Inteiros Aleatórios:
+   - `random.randint(a, b)`: Retorna um número inteiro no intervalo [a, b], incluindo ambos os limites.
+   - `random.randrange(start, stop, step)`: Retorna um número aleatório a partir de um intervalo definido por `start`, `stop` e `step`.
+
+3. Amostragem Aleatória:
+   - `random.choice(sequence)`: Retorna um elemento aleatório de uma sequência.
+   - `random.choices(population, weights=None, k=1)`: Retorna uma lista de `k` elementos amostrados aleatoriamente de uma população, com ou sem pesos.
+   - `random.sample(population, k)`: Retorna uma lista de `k` elementos exclusivos amostrados aleatoriamente de uma população.
+
+4. Embaralhamento de Sequências:
+   - `random.shuffle(sequence)`: Embaralha uma sequência, como uma lista, de forma aleatória in-place.
+
+5. Geradores de Números Aleatórios Personalizados:
+   - `random.seed(seed)`: Define a semente (seed) para o gerador de números aleatórios, permitindo a reproducibilidade dos resultados.
+   - `random.Random()`: Permite criar objetos `Random` personalizados para controle mais granular sobre a geração de números aleatórios.
+
+6. Distribuições Estatísticas:
+   - `random.uniform(a, b)`: Gera um número de ponto flutuante uniformemente distribuído no intervalo [a, b].
+   - `random.gauss(mu, sigma)`: Gera números seguindo uma distribuição normal (gaussiana) com média `mu` e desvio padrão `sigma`.
+
+A biblioteca `random` é útil para adicionar aleatoriedade aos seus programas e simulações. No entanto, é importante lembrar que os números gerados são pseudoaleatórios e dependem de uma semente inicial (seed). Portanto, se você precisar de resultados reproduzíveis, deve definir a semente usando `random.seed()`.
+
+Aqui está um exemplo simples de como usar a biblioteca `random` para gerar um número inteiro aleatório:
+
+```python
+import random
+
+numero_aleatorio = random.randint(1, 100)
+print(numero_aleatorio)
+```
+
+Este código gerará e imprimirá um número inteiro aleatório entre 1 e 100.

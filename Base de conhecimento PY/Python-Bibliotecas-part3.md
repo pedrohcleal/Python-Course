@@ -135,3 +135,41 @@ print(numero_aleatorio)
 ```
 
 Este código gerará e imprimirá um número inteiro aleatório entre 1 e 100.
+
+## Secrets -> Segurança
+
+O módulo `secrets` no Python é uma biblioteca que oferece uma maneira segura de gerar números e sequências de caracteres aleatórios para aplicações que requerem alta segurança, como geração de senhas, tokens de autenticação, chaves de criptografia e similares. A principal diferença entre o módulo `secrets` e o módulo `random` é que o `secrets` é projetado para ser criptograficamente seguro, enquanto o `random` é mais adequado para fins não criptográficos.
+
+Aqui estão algumas das funções e recursos oferecidos pelo módulo `secrets`:
+
+1. Geração de Sequências Aleatórias:
+   - `secrets.randbelow(n)`: Gera um número inteiro aleatório no intervalo [0, n), de forma criptograficamente segura.
+
+2. Geração de Bytes Aleatórios:
+   - `secrets.token_bytes(n)`: Gera `n` bytes aleatórios seguros.
+
+3. Geração de Strings Aleatórios:
+   - `secrets.token_hex(nbytes=None)`: Gera uma string hexadecimal aleatória de `nbytes` bytes ou de tamanho padrão se `nbytes` não for especificado.
+   - `secrets.token_urlsafe(nbytes=None)`: Gera uma string aleatória adequada para uso em URLs, de `nbytes` bytes ou de tamanho padrão se `nbytes` não for especificado.
+
+4. Geração de Senhas Seguras:
+   - `secrets.choice(seq)`: Escolhe um elemento aleatório de uma sequência.
+   - `secrets.randbits(k)`: Gera `k` bits aleatórios seguros como um número inteiro.
+
+O módulo `secrets` é particularmente útil em cenários nos quais a segurança é uma preocupação primordial. Ele usa fontes de entropia do sistema operacional subjacente para gerar números e sequências aleatórios, tornando-os adequados para criptografia e autenticação. Além disso, o módulo `secrets` é uma escolha melhor do que o módulo `random` para a geração de senhas, uma vez que os resultados gerados são menos previsíveis e mais seguros.
+
+Aqui está um exemplo simples de como usar o módulo `secrets` para gerar uma senha segura:
+
+```python
+import secrets
+import string
+
+# Defina os caracteres possíveis para a senha
+caracteres = string.ascii_letters + string.digits + string.punctuation
+
+# Gere uma senha segura com 12 caracteres
+senha_segura = ''.join(secrets.choice(caracteres) for _ in range(12))
+print(senha_segura)
+```
+
+Este código irá gerar uma senha aleatória de 12 caracteres que inclui letras maiúsculas, letras minúsculas, dígitos e caracteres especiais.

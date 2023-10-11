@@ -212,3 +212,6 @@ Aqui estão alguns exemplos de como a biblioteca locale pode ser usada em aplica
 * Um aplicativo de viagem pode usar a biblioteca locale para exibir informações de fuso horário e clima.
 
 A biblioteca locale é um recurso poderoso que pode ser usado para tornar os aplicativos Python mais abrangentes e acessíveis a um público global.
+
+## Variáveis de ambiente
+

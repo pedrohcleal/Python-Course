@@ -1,2 +1,0 @@
-# Bibliotecas PY part3
-

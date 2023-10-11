@@ -174,6 +174,8 @@ print(senha_segura)
 
 Este código irá gerar uma senha aleatória de 12 caracteres que inclui letras maiúsculas, letras minúsculas, dígitos e caracteres especiais.
 
+## Locale lib
+
 A biblioteca locale em Python fornece serviços de internacionalização, permitindo que os programas Python sejam adaptados para diferentes idiomas e regiões.
 
 A biblioteca define um conjunto de variáveis ​​globais que representam as configurações de localidade atuais, como o idioma, o fuso horário e o sistema de numeração. Essas variáveis ​​podem ser usadas para formatar e interpretar dados de acordo com as convenções locais.

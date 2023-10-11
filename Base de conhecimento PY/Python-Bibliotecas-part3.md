@@ -215,3 +215,65 @@ A biblioteca locale é um recurso poderoso que pode ser usado para tornar os apl
 
 ## Variáveis de ambiente
 
+Vou descrever as bibliotecas `os.getenv`, `os.environ` e `python-dotenv` em Python:
+
+1. `os.getenv`:
+   - `os.getenv` é uma função da biblioteca padrão `os` em Python que permite acessar variáveis de ambiente do sistema operacional. Ela é usada para recuperar o valor de uma variável de ambiente específica.
+   - Sintaxe: `os.getenv(nome_da_variável, valor_padrão)`
+   - `nome_da_variável` é o nome da variável de ambiente que você deseja recuperar.
+   - `valor_padrão` (opcional) é o valor que será retornado se a variável de ambiente não estiver definida.
+
+   Exemplo:
+   ```python
+   import os
+
+   valor = os.getenv('VARIAVEL_DE_AMBIENTE', 'Valor_Padrão')
+   print(valor)
+   ```
+
+2. `os.environ`:
+   - `os.environ` é um dicionário que representa todas as variáveis de ambiente disponíveis no sistema operacional no qual o Python está sendo executado. Você pode acessar as variáveis de ambiente diretamente através desse dicionário.
+   - `os.environ` fornece um mapeamento de nomes de variáveis de ambiente para seus valores.
+   
+   Exemplo:
+   ```python
+   import os
+
+   # Acessando uma variável de ambiente específica
+   valor = os.environ['VARIAVEL_DE_AMBIENTE']
+   print(valor)
+
+   # Listando todas as variáveis de ambiente
+   for chave, valor in os.environ.items():
+       print(f'{chave}: {valor}')
+   ```
+
+3. `python-dotenv`:
+   - `python-dotenv` é uma biblioteca Python que facilita o carregamento de variáveis de ambiente a partir de arquivos de configuração, como o formato `.env`. Isso é útil para manter informações sensíveis ou configurações em um arquivo separado e carregá-las em seu aplicativo de maneira segura.
+   - Para usar `python-dotenv`, você precisa instalar a biblioteca e criar um arquivo `.env` com suas variáveis de ambiente.
+
+   Exemplo de arquivo `.env`:
+   ```
+   API_KEY=your_api_key
+   DEBUG=True
+   SECRET_KEY=my_secret_key
+   ```
+
+   Exemplo de uso em Python:
+   ```python
+   from dotenv import load_dotenv
+
+   # Carrega as variáveis de ambiente do arquivo .env
+   load_dotenv()
+
+   import os
+
+   # Acesse as variáveis de ambiente carregadas
+   api_key = os.getenv('API_KEY')
+   debug = os.getenv('DEBUG')
+   secret_key = os.getenv('SECRET_KEY')
+
+   print(api_key, debug, secret_key)
+   ```
+
+   O `python-dotenv` ajuda a manter as configurações do seu aplicativo separadas do código-fonte e a facilitar a configuração e a manutenção de variáveis de ambiente em diferentes ambientes, como desenvolvimento, teste e produção.

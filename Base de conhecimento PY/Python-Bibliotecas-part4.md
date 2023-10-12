@@ -155,3 +155,97 @@ pip install requests
 ```
 
 Depois de instalado, você pode começar a usá-lo em seus projetos Python para interagir com recursos da web de forma eficiente e amigável.
+### Envio de Requisições HTTP
+
+O envio de requisições HTTP na biblioteca `requests` em Python é uma tarefa fundamental ao interagir com serviços web, consumir APIs ou realizar operações de comunicação com recursos na internet. A biblioteca `requests` simplifica esse processo, tornando-o fácil de entender e usar. Abaixo estão as etapas básicas para enviar requisições HTTP com o `requests`:
+
+1. **Importe a biblioteca `requests`**:
+
+   Para começar, você precisa importar o módulo `requests` no seu código Python. Você pode fazer isso da seguinte forma:
+
+   ```python
+   import requests
+   ```
+
+2. **Envie uma solicitação HTTP**:
+
+   Agora, você pode usar as funções disponíveis no módulo `requests` para enviar solicitações HTTP. As solicitações HTTP mais comuns incluem GET, POST, PUT e DELETE. Veja como fazer cada uma delas:
+
+   - **GET Request**:
+
+     Para fazer uma solicitação GET e recuperar dados de um servidor web, use o método `requests.get()`:
+
+     ```python
+     response = requests.get('https://api.example.com/data')
+     ```
+
+   - **POST Request**:
+
+     Para enviar dados para um servidor, use o método `requests.post()`. Você pode fornecer dados no corpo da solicitação, como um dicionário, uma lista ou uma string:
+
+     ```python
+     data = {'key': 'value'}
+     response = requests.post('https://api.example.com/endpoint', data=data)
+     ```
+
+   - **PUT Request**:
+
+     Para atualizar recursos no servidor, use o método `requests.put()` de forma semelhante ao POST, mas para solicitações PUT:
+
+     ```python
+     data = {'key': 'new_value'}
+     response = requests.put('https://api.example.com/resource/123', data=data)
+     ```
+
+   - **DELETE Request**:
+
+     Para excluir recursos no servidor, use o método `requests.delete()`:
+
+     ```python
+     response = requests.delete('https://api.example.com/resource/123')
+     ```
+
+3. **Acesse a resposta HTTP**:
+
+   Após enviar a solicitação, você pode acessar a resposta HTTP para obter informações, como o conteúdo da resposta, o código de status, os cabeçalhos e muito mais. Por exemplo:
+
+   - Para acessar o conteúdo da resposta:
+
+     ```python
+     response.text  # Contém o conteúdo da resposta (geralmente em formato de texto)
+     ```
+
+   - Para verificar o código de status:
+
+     ```python
+     response.status_code  # Contém o código de status da resposta (por exemplo, 200 para sucesso)
+     ```
+
+   - Para acessar os cabeçalhos da resposta:
+
+     ```python
+     response.headers  # Contém os cabeçalhos da resposta em um dicionário
+     ```
+
+A biblioteca `requests` é muito flexível e fornece recursos adicionais para lidar com autenticação, sessões, manipulação de cookies e redirecionamento. É amplamente utilizada para interagir com serviços web, consumir APIs e automatizar tarefas de comunicação com recursos na internet. Certifique-se de lidar com possíveis erros ou exceções que possam ocorrer durante a comunicação com o servidor, para garantir que seu código seja robusto e seguro.
+### https.server
+
+Parece que você está tentando iniciar o servidor HTTP embutido do Python (`http.server`) com algumas opções específicas. No comando que você forneceu, você está tentando:
+
+1. Definir o diretório raiz do servidor como `.\aula190_site\`.
+2. Definir a porta como `3333`.
+
+No entanto, há um pequeno problema no comando que você forneceu: a porta deve ser especificada antes do diretório. Aqui está o comando corrigido:
+
+```bash
+python -m http.server 3333 -d .\aula190_site\
+```
+
+Neste comando:
+
+- `python -m http.server` inicia o servidor HTTP embutido.
+- `3333` define a porta na qual o servidor escutará.
+- `-d .\aula190_site\` define o diretório raiz a partir do qual os arquivos serão servidos.
+
+Certifique-se de que o diretório `aula190_site` exista no diretório atual e que os arquivos que deseja servir estejam dentro desse diretório. Após executar o comando corrigido, você deve poder acessar os arquivos do diretório `aula190_site` em um navegador digitando `http://localhost:3333` no endereço. Certifique-se de que o servidor seja iniciado sem erros e que os arquivos no diretório estejam configurados corretamente.
+

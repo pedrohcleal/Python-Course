@@ -53,3 +53,54 @@ else:
 ```
 
 Este script verifica se foram passados argumentos na linha de comando e os imprime. Caso contrário, exibe uma mensagem informando que nenhum argumento foi passado.
+
+## argparse
+
+`argparse` é um módulo em Python que permite que você processe argumentos de linha de comando de uma maneira conveniente e eficiente. Ele é frequentemente usado para criar interfaces de linha de comando para programas Python, tornando mais fácil para os usuários interagir com o seu programa fornecendo argumentos ao executá-lo a partir da linha de comando.
+
+Aqui estão os conceitos básicos sobre como usar o `argparse` em Python:
+
+1. **Importação do módulo `argparse`**:
+   Comece importando o módulo `argparse` no seu código.
+
+   ```python
+   import argparse
+   ```
+
+2. **Criação de um objeto `ArgumentParser`**:
+   Em seguida, crie um objeto `ArgumentParser` que será usado para definir os argumentos que seu programa aceitará.
+
+   ```python
+   parser = argparse.ArgumentParser(description='Descrição do seu programa')
+   ```
+
+3. **Definição de argumentos**:
+   Use o objeto `parser` para definir os argumentos que o seu programa aceitará. Você pode adicionar argumentos posicionais, argumentos opcionais (com ou sem valores padrão) e outros tipos de argumentos. Por exemplo:
+
+   ```python
+   parser.add_argument('arquivo', help='Nome do arquivo de entrada')
+   parser.add_argument('--verbose', '-v', action='store_true', help='Ativar modo verboso')
+   parser.add_argument('--output', '-o', default='output.txt', help='Nome do arquivo de saída')
+   ```
+
+4. **Parsagem dos argumentos**:
+   Use `parser.parse_args()` para analisar os argumentos da linha de comando. Ele retornará um objeto que contém os valores dos argumentos definidos anteriormente.
+
+   ```python
+   args = parser.parse_args()
+   ```
+
+5. **Acesso aos valores dos argumentos**:
+   Você pode acessar os valores dos argumentos a partir do objeto `args` gerado pela função `parse_args()`.
+
+   ```python
+   print(args.arquivo)
+   if args.verbose:
+       print('Modo verboso ativado.')
+   print(f'Arquivo de saída: {args.output}')
+   ```
+
+6. **Execução do programa**:
+   Agora, você pode usar os valores dos argumentos para executar as ações necessárias no seu programa.
+
+Geralmente, o `argparse` fornece funcionalidades poderosas para manipulação de argumentos de linha de comando, incluindo validação de tipos de dados, ajuda automática e mensagens de erro. Ele é uma ferramenta essencial ao criar scripts Python que interagem com o usuário via linha de comando.

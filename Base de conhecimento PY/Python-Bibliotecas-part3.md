@@ -277,3 +277,61 @@ Vou descrever as bibliotecas `os.getenv`, `os.environ` e `python-dotenv` em Pyth
    ```
 
    O `python-dotenv` ajuda a manter as configurações do seu aplicativo separadas do código-fonte e a facilitar a configuração e a manutenção de variáveis de ambiente em diferentes ambientes, como desenvolvimento, teste e produção.
+
+## ZIP lib
+
+O módulo `zipfile` em Python é uma biblioteca integrada que permite criar, ler, gravar e manipular arquivos zip. Arquivos zip são arquivos compactados que podem conter um ou mais arquivos e diretórios. O módulo `zipfile` fornece uma maneira fácil de trabalhar com esses arquivos compactados em Python. Aqui estão algumas funcionalidades comuns do `zipfile`:
+
+1. **Criando um arquivo ZIP**:
+   Você pode criar um novo arquivo zip usando o `zipfile` da seguinte maneira:
+
+   ```python
+   import zipfile
+
+   with zipfile.ZipFile('arquivo.zip', 'w') as zipf:
+       zipf.write('arquivo.txt')
+       zipf.write('pasta/')
+   ```
+
+2. **Extraindo arquivos ZIP**:
+   Para extrair arquivos de um arquivo ZIP, você pode usar o seguinte código:
+
+   ```python
+   with zipfile.ZipFile('arquivo.zip', 'r') as zipf:
+       zipf.extractall('pasta_destino')
+   ```
+
+3. **Listando conteúdo do arquivo ZIP**:
+   Você pode listar o conteúdo de um arquivo ZIP sem extraí-lo:
+
+   ```python
+   with zipfile.ZipFile('arquivo.zip', 'r') as zipf:
+       zipf.printdir()
+   ```
+
+4. **Adicionando arquivos a um arquivo ZIP existente**:
+   Para adicionar arquivos a um arquivo ZIP existente, use o modo `'a'` (append):
+
+   ```python
+   with zipfile.ZipFile('arquivo.zip', 'a') as zipf:
+       zipf.write('novo_arquivo.txt')
+   ```
+
+5. **Lendo arquivos diretamente do arquivo ZIP**:
+   Você pode ler o conteúdo de um arquivo diretamente do arquivo ZIP sem extrair, usando o método `read`:
+
+   ```python
+   with zipfile.ZipFile('arquivo.zip', 'r') as zipf:
+       with zipf.open('arquivo.txt') as file:
+           content = file.read()
+   ```
+
+6. **Excluindo arquivos do arquivo ZIP**:
+   Você pode excluir arquivos de um arquivo ZIP com o método `extract`:
+
+   ```python
+   with zipfile.ZipFile('arquivo.zip', 'a') as zipf:
+       zipf.extract('arquivo.txt')
+   ```
+
+O módulo `zipfile` oferece muitos outros recursos e funcionalidades para trabalhar com arquivos ZIP em Python. É uma ferramenta útil para compactar, descompactar e manipular arquivos ZIP em seus projetos Python. Certifique-se de verificar a documentação oficial do Python para obter informações mais detalhadas e exemplos adicionais: https://docs.python.org/3/library/zipfile.html

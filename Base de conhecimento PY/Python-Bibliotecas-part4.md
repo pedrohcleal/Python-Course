@@ -104,3 +104,54 @@ Aqui estão os conceitos básicos sobre como usar o `argparse` em Python:
    Agora, você pode usar os valores dos argumentos para executar as ações necessárias no seu programa.
 
 Geralmente, o `argparse` fornece funcionalidades poderosas para manipulação de argumentos de linha de comando, incluindo validação de tipos de dados, ajuda automática e mensagens de erro. Ele é uma ferramenta essencial ao criar scripts Python que interagem com o usuário via linha de comando.
+
+## Requests lib
+
+O módulo `requests` em Python é uma biblioteca popular para fazer solicitações HTTP de forma simples e eficiente. Ele permite que os desenvolvedores enviem requisições HTTP para servidores web e recebam as respostas de forma fácil, proporcionando uma maneira conveniente de interagir com recursos na web, como fazer solicitações a APIs, baixar conteúdo da web, enviar dados para servidores, e muito mais.
+
+Aqui estão algumas funcionalidades-chave do módulo `requests`:
+
+1. **Envio de Requisições HTTP**: O `requests` permite enviar solicitações HTTP, como GET, POST, PUT, DELETE e muitos outros, usando funções simples e legíveis. Por exemplo:
+
+```python
+import requests
+
+response = requests.get('https://www.example.com')
+```
+
+2. **Tratamento de Respostas HTTP**: O módulo permite acessar facilmente os dados retornados em uma resposta HTTP. Isso inclui o conteúdo da resposta, cabeçalhos, status code e outros detalhes da resposta:
+
+```python
+print(response.text)  # Conteúdo da resposta
+print(response.status_code)  # Código de status (e.g., 200 para OK)
+print(response.headers)  # Cabeçalhos da resposta
+```
+
+3. **Envio de Dados**: É possível enviar dados com solicitações POST e PUT, que são frequentemente usadas ao interagir com APIs. Por exemplo, enviando um JSON:
+
+```python
+import requests
+
+data = {'key': 'value'}
+response = requests.post('https://www.example.com/api', json=data)
+```
+
+4. **Autenticação**: O `requests` oferece suporte a diferentes métodos de autenticação, como autenticação básica (HTTP Basic Auth) e autenticação baseada em tokens.
+
+5. **Sessões**: A biblioteca permite manter sessões para manter o estado entre várias solicitações, o que pode ser útil ao lidar com autenticação persistente ou gerenciamento de cookies.
+
+6. **Manipulação de Cookies**: Você pode facilmente acessar e gerenciar cookies nas solicitações, o que é útil ao lidar com autenticação baseada em cookies.
+
+7. **Tratamento de Redirecionamento**: O `requests` segue automaticamente redirecionamentos, tornando mais fácil lidar com recursos que redirecionam para outras URLs.
+
+8. **Manipulação de Erros**: A biblioteca lida com erros de solicitação de forma apropriada, tornando mais fácil capturar exceções e tratar problemas de rede ou servidor.
+
+O módulo `requests` é amplamente utilizado em muitos projetos Python e é uma escolha popular para tarefas de comunicação com a web devido à sua simplicidade, flexibilidade e documentação abrangente.
+
+Para começar a usar o `requests`, você precisa instalá-lo (caso ainda não esteja instalado) e, em seguida, importá-lo no seu código. Você pode instalar o `requests` usando o `pip`:
+
+```bash
+pip install requests
+```
+
+Depois de instalado, você pode começar a usá-lo em seus projetos Python para interagir com recursos da web de forma eficiente e amigável.

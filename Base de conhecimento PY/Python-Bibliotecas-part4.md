@@ -370,3 +370,30 @@ Aqui está um exemplo passo a passo de como realizar web scraping usando essas d
    Uma vez que você tenha extraído os dados desejados, você pode processá-los ou armazená-los da maneira que preferir. Por exemplo, você pode salvá-los em um arquivo, armazená-los em um banco de dados, ou usá-los para análise.
 
 Lembre-se de que ao realizar web scraping, é importante respeitar os termos de serviço dos sites que você está acessando e considerar questões de ética e legalidade. Alguns sites podem proibir a extração de dados ou impor limites à taxa de solicitações. Certifique-se de cumprir essas diretrizes para evitar problemas legais ou bloqueios.
+
+### Encondig BS4
+
+Em Beautiful Soup 4 (bs4), a manipulação de encoding é uma parte importante quando você está trabalhando com páginas da web que podem estar em diferentes conjuntos de caracteres (charsets). Aqui estão algumas informações sobre como o Beautiful Soup 4 lida com encoding:
+
+1. **Deteção de encoding automática:** Beautiful Soup é capaz de detectar automaticamente o encoding da página web. Ele faz isso examinando o `<meta>` tag no cabeçalho do documento HTML e, se não encontrar, olhando para o encoding declarado na resposta HTTP. Isso ajuda a garantir que os caracteres sejam interpretados corretamente.
+
+2. **Conversão para Unicode:** Beautiful Soup converte automaticamente os dados da página web em Unicode. Isso é importante porque o Python lida com strings em Unicode, permitindo que você trabalhe com texto de forma consistente, independentemente do encoding original da página web.
+
+3. **Especificar um encoding manualmente:** Em alguns casos, você pode precisar especificar manualmente o encoding, especialmente se o documento HTML não contiver informações de codificação válidas ou se você souber o encoding que deve ser usado. Você pode fazer isso ao criar o objeto BeautifulSoup, passando o argumento `from_encoding`:
+
+   ```python
+   soup = BeautifulSoup(html, 'html.parser', from_encoding='iso-8859-1')
+   ```
+
+   Neste exemplo, `from_encoding` é usado para especificar o encoding ISO-8859-1. Lembre-se de que é importante usar essa opção com cuidado e apenas quando necessário.
+
+4. **Codificação de saída:** Quando você deseja salvar os dados analisados, você deve codificá-los no encoding apropriado. Por exemplo, para salvar os dados em um arquivo, você pode usar:
+
+   ```python
+   with open('output.html', 'w', encoding='utf-8') as file:
+       file.write(soup.prettify())
+   ```
+
+   Neste exemplo, os dados são codificados em UTF-8, que é amplamente utilizado para codificação de texto na web.
+
+Em resumo, Beautiful Soup 4 é projetado para facilitar a manipulação de encoding ao lidar com páginas da web. Ele faz um bom trabalho na deteção automática de encoding e conversão para Unicode, mas também oferece a flexibilidade de especificar o encoding manualmente quando necessário. Certifique-se de estar ciente do encoding ao trabalhar com dados da web para garantir que o texto seja interpretado e exibido corretamente.

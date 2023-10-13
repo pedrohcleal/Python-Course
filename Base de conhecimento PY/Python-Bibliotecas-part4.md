@@ -249,3 +249,55 @@ Neste comando:
 
 Certifique-se de que o diretório `aula190_site` exista no diretório atual e que os arquivos que deseja servir estejam dentro desse diretório. Após executar o comando corrigido, você deve poder acessar os arquivos do diretório `aula190_site` em um navegador digitando `http://localhost:3333` no endereço. Certifique-se de que o servidor seja iniciado sem erros e que os arquivos no diretório estejam configurados corretamente.
 
+## BeatifulSoup lib
+
+Beautiful Soup é uma biblioteca Python muito popular para análise de documentos HTML e XML. Ela é amplamente utilizada para extrair dados de páginas da web, raspar informações de sites e realizar tarefas de web scraping. Beautiful Soup cria uma árvore analisável a partir de um documento HTML ou XML, tornando a extração de dados e a navegação através da estrutura do documento mais fácil e conveniente.
+
+Aqui estão alguns conceitos e recursos-chave do BeautifulSoup:
+
+1. Análise de documentos: Beautiful Soup ajuda na análise de documentos HTML ou XML, permitindo que você acesse facilmente elementos, atributos e texto.
+
+2. Navegação na árvore: A biblioteca fornece várias maneiras de navegar pela estrutura do documento, como buscar elementos por tag, classe, id, ou mesmo usando seletores CSS.
+
+3. Extração de dados: Você pode extrair facilmente informações de um documento, como texto, atributos de elementos e dados de tabelas.
+
+4. Modificação de documentos: Beautiful Soup permite fazer modificações no documento, como adicionar ou remover elementos, alterar atributos ou texto.
+
+5. Parsing: Beautiful Soup suporta diferentes analisadores, como "html.parser," "lxml," e "html5lib," o que a torna flexível para lidar com documentos HTML diversos.
+
+Aqui está um exemplo simples de como usar Beautiful Soup para analisar um documento HTML:
+
+```python
+from bs4 import BeautifulSoup
+
+html_doc = """
+<html>
+<head>
+    <title>Exemplo de BeautifulSoup</title>
+</head>
+<body>
+    <p class="paragrafo">Este é um exemplo de BeautifulSoup.</p>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+</body>
+</html>
+"""
+
+# Criar um objeto BeautifulSoup
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+# Acessar elementos
+title = soup.title
+paragraph = soup.find('p', class_='paragrafo')
+items = soup.find_all('li')
+
+# Imprimir o texto dos elementos
+print(title.text)
+print(paragraph.text)
+for item in items:
+    print(item.text)
+```
+
+Beautiful Soup é uma ferramenta poderosa para tarefas de web scraping, permitindo que você extraia dados de páginas da web de maneira eficiente. No entanto, lembre-se sempre de seguir as leis e políticas de acesso aos dados de sites da web ao usá-lo.

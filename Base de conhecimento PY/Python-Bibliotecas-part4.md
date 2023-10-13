@@ -301,3 +301,72 @@ for item in items:
 ```
 
 Beautiful Soup é uma ferramenta poderosa para tarefas de web scraping, permitindo que você extraia dados de páginas da web de maneira eficiente. No entanto, lembre-se sempre de seguir as leis e políticas de acesso aos dados de sites da web ao usá-lo.
+
+## Web Scraping com Python usando requests e bs4 BeautifulSoup
+
+O web scraping com Python, usando as bibliotecas `requests` e `Beautiful Soup` (ou `bs4`), é uma técnica para extrair informações de páginas da web de forma automatizada. O `requests` é usado para fazer solicitações HTTP para obter o conteúdo da página web, e o `Beautiful Soup` ajuda a analisar e extrair os dados desejados do HTML ou XML da página.
+
+Aqui está um exemplo passo a passo de como realizar web scraping usando essas duas bibliotecas:
+
+1. Instalação das bibliotecas:
+   Certifique-se de ter as bibliotecas `requests` e `beautifulsoup4` instaladas. Você pode instalá-las com o pip:
+
+   ```
+   pip install requests
+   pip install beautifulsoup4
+   ```
+
+2. Importação das bibliotecas:
+   No início do seu script, importe as bibliotecas necessárias:
+
+   ```python
+   import requests
+   from bs4 import BeautifulSoup
+   ```
+
+3. Fazer uma solicitação HTTP:
+   Use o `requests` para obter o conteúdo HTML de uma página da web. Por exemplo:
+
+   ```python
+   url = 'https://exemplo.com'
+   response = requests.get(url)
+   ```
+
+4. Analisar o conteúdo da página com BeautifulSoup:
+   Crie um objeto BeautifulSoup passando o conteúdo HTML e um analisador como argumentos. Um analisador pode ser 'html.parser', 'lxml', ou 'html5lib'. Por exemplo:
+
+   ```python
+   soup = BeautifulSoup(response.text, 'html.parser')
+   ```
+
+5. Navegar e extrair dados:
+   Use os recursos do BeautifulSoup para navegar na estrutura do documento HTML e extrair os dados desejados. Alguns exemplos de operações comuns:
+
+   - Para encontrar um elemento por tag:
+
+     ```python
+     element = soup.find('tag')
+     ```
+
+   - Para encontrar todos os elementos com uma determinada classe:
+
+     ```python
+     elements = soup.find_all('tag', class_='nome_da_classe')
+     ```
+
+   - Para acessar o texto de um elemento:
+
+     ```python
+     text = element.text
+     ```
+
+   - Para acessar os atributos de um elemento:
+
+     ```python
+     attribute = element['atributo']
+     ```
+
+6. Processar e armazenar os dados:
+   Uma vez que você tenha extraído os dados desejados, você pode processá-los ou armazená-los da maneira que preferir. Por exemplo, você pode salvá-los em um arquivo, armazená-los em um banco de dados, ou usá-los para análise.
+
+Lembre-se de que ao realizar web scraping, é importante respeitar os termos de serviço dos sites que você está acessando e considerar questões de ética e legalidade. Alguns sites podem proibir a extração de dados ou impor limites à taxa de solicitações. Certifique-se de cumprir essas diretrizes para evitar problemas legais ou bloqueios.

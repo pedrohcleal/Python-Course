@@ -70,3 +70,34 @@ A função `subprocess.run()` é usada para executar comandos e controlar proces
 12. **`check`**: Um valor booleano que determina se um código de saída diferente de zero deve levantar uma exceção. Se definido como `True`, uma exceção `CalledProcessError` será levantada se o processo terminar com um código de saída diferente de zero.
 
 Esses são os principais argumentos da função `subprocess.run()`. Eles permitem controlar diversos aspectos da execução do processo, desde a entrada e saída até o comportamento em relação a erros e exceções.
+
+### Exemplo de aplicação
+
+Exemplo simples de aplicação do `subprocess.run()` para executar um comando externo. Neste exemplo, usaremos o comando `ls` para listar o conteúdo de um diretório e capturaremos a saída.
+
+```python
+import subprocess
+
+# Comando a ser executado (listar arquivos e diretórios no diretório atual)
+comando = ["ls", "-l"]
+
+# Executa o comando e captura a saída
+resultado = subprocess.run(comando, stdout=subprocess.PIPE, text=True)
+
+# Verifica se a execução do comando foi bem-sucedida (código de saída zero)
+if resultado.returncode == 0:
+    print("Saída do comando:")
+    print(resultado.stdout)
+else:
+    print("O comando falhou. Código de saída:", resultado.returncode)
+```
+
+Neste exemplo:
+
+1. Definimos o comando a ser executado como uma lista de strings, onde `"ls"` é o comando e `"-l"` é um argumento para listar os arquivos e diretórios de forma detalhada.
+
+2. Usamos `subprocess.run()` para executar o comando e capturamos a saída padrão (`stdout`) definindo `stdout=subprocess.PIPE`. Também usamos `text=True` para indicar que queremos a saída como texto.
+
+3. Verificamos se o código de saída (`returncode`) do comando foi zero (o que indica que a execução foi bem-sucedida) e, em seguida, imprimimos a saída capturada. Caso contrário, informamos que o comando falhou e exibimos o código de saída.
+
+Lembre-se de que este é apenas um exemplo simples. A biblioteca `subprocess` é extremamente flexível e pode ser usada para executar uma ampla variedade de comandos e realizar tarefas mais complexas, como interagir com a entrada e saída do processo, redirecionar para arquivos, definir variáveis de ambiente e muito mais.

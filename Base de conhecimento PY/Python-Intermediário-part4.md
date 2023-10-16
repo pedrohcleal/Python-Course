@@ -372,6 +372,22 @@ Lembre-se de que o uso de `*` para importar todos os itens de um módulo não é
 
 Os módulos são uma parte fundamental da modularidade e reutilização de código em Python. Eles ajudam a manter seus programas organizados, facilitando a manutenção e a colaboração em projetos de programação.
 
+### Módulos da Biblioteca Padrão:
+
+Python possui uma rica biblioteca padrão com diversos módulos que abrangem funcionalidades como operações matemáticas, manipulação de strings, acesso ao sistema operacional, trabalho com datas, entre muitos outros. Alguns exemplos de módulos da biblioteca padrão incluem:
+
+- `math`: Fornece funções matemáticas.
+- `os`: Permite acessar funcionalidades específicas do sistema operacional.
+- `datetime`: Oferece suporte para trabalhar com datas e horários.
+- `random`: Permite gerar números aleatórios.
+- `json`: Facilita a leitura e gravação de dados no formato JSON.
+
+Esses módulos são amplamente utilizados e podem ser importados em qualquer programa Python sem a necessidade de instalação adicional.
+
+Além da biblioteca padrão, Python também possui uma vasta quantidade de módulos de terceiros disponíveis, que podem ser instalados através do gerenciador de pacotes `pip`. Esses módulos adicionais fornecem recursos adicionais que podem ser incorporados aos seus projetos, expandindo significativamente as capacidades da linguagem Python.
+
+Em resumo, os módulos em Python são uma forma poderosa de organizar, reutilizar e compartilhar código. Eles facilitam a modularização de programas e permitem que você tire proveito da biblioteca padrão e de módulos de terceiros para resolver uma ampla variedade de problemas de programação.
+
 ## Modularização
 
 A modularização em Python refere-se à prática de dividir um programa em partes menores e mais gerenciáveis, chamadas de módulos, a fim de facilitar a organização, a manutenção e a reutilização do código. A modularização é uma abordagem fundamental na programação, pois permite que você crie componentes independentes que podem ser combinados para construir sistemas complexos.

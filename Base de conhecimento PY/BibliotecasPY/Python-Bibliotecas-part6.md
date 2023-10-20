@@ -289,3 +289,59 @@ Aqui estão os principais métodos e conceitos relacionados ao uso de `Lock` em 
    ```
 
 Os Locks são uma ferramenta poderosa para controlar o acesso a recursos compartilhados em ambientes de programação concorrente em Python. Eles ajudam a evitar condições de corrida, garantindo que apenas uma thread por vez acesse partes críticas do código. No entanto, ao usá-los, é importante ter cuidado para evitar deadlocks e garantir que os Locks sejam liberados de forma apropriada.
+
+## Multiprocessing lib
+
+A biblioteca `multiprocessing` em Python é uma alternativa à biblioteca `threading` que lida com programação concorrente por meio do uso de processos em vez de threads. Ela permite a execução de código em paralelo, explorando os múltiplos núcleos da CPU e superando a limitação do Global Interpreter Lock (GIL) que restringe a concorrência em threads no Python padrão (CPython).
+
+Aqui estão alguns conceitos e funcionalidades relacionados à biblioteca `multiprocessing`:
+
+1. **Processos**: A biblioteca `multiprocessing` usa processos em vez de threads. Cada processo tem seu próprio espaço de endereço de memória, permitindo que as variáveis compartilhadas sejam usadas com segurança. Isso é especialmente útil para tarefas que são intensivas em CPU.
+
+2. **Criando Processos**: A criação de processos é fácil com `multiprocessing`. Você pode criar um processo instanciando a classe `multiprocessing.Process` e especificando a função ou método a ser executado em paralelo.
+
+   ```python
+   import multiprocessing
+
+   def minha_funcao(arg):
+       # Código da função
+       pass
+
+   processo = multiprocessing.Process(target=minha_funcao, args=(arg,))
+   ```
+
+3. **Métodos Principais**:
+   - `start()`: Inicia a execução do processo.
+   - `join([timeout])`: Espera até que o processo termine. O argumento `timeout` é opcional e define o tempo máximo de espera.
+   - `is_alive()`: Verifica se o processo está em execução.
+
+4. **Comunicação entre Processos**: A biblioteca `multiprocessing` fornece várias formas de comunicação entre processos, incluindo:
+   - **Pipes**: Usados para a comunicação bidirecional entre processos.
+   - **Filas**: Implementam filas seguras para troca de dados entre processos.
+   - **Valores Compartilhados**: Permite que processos compartilhem valores (inteiros, flutuantes, etc.) de forma segura.
+   - **Arrays Compartilhados**: Similar aos valores compartilhados, mas permite arrays de dados compartilhados.
+
+5. **Pool de Processos**: A classe `multiprocessing.Pool` fornece um mecanismo conveniente para criar um conjunto de processos que podem ser usados para executar várias tarefas de forma concorrente. Isso é útil quando você precisa paralelizar um grande número de tarefas.
+
+   ```python
+   from multiprocessing import Pool
+
+   def minha_funcao(arg):
+       # Código da função
+       pass
+
+   with Pool(processes=4) as pool:
+       resultados = pool.map(minha_funcao, lista_de_argumentos)
+   ```
+
+6. **Gerenciamento de Processos**: A biblioteca `multiprocessing` inclui funcionalidades para gerenciar o ciclo de vida dos processos, como reiniciar ou finalizar processos.
+
+   ```python
+   processo.start()
+   processo.terminate()
+   processo.join()
+   ```
+
+7. **Contextos**: O módulo `multiprocessing` fornece diferentes contextos para a criação de processos, como `multiprocessing.get_context('spawn')` ou `multiprocessing.get_context('fork')`. Esses contextos permitem controlar a maneira como os processos são criados e herdam recursos do processo pai.
+
+Em resumo, a biblioteca `multiprocessing` é uma poderosa ferramenta para implementar programação concorrente em Python, especialmente quando você precisa paralelizar tarefas que são intensivas em CPU. Ela supera o GIL e permite que você aproveite os recursos de múltiplos núcleos da CPU de forma mais eficaz. No entanto, ao usar `multiprocessing`, você também deve considerar questões de comunicação e sincronização entre processos para garantir um código seguro e eficiente.

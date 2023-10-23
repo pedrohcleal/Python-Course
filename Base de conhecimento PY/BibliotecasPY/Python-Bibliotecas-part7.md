@@ -58,3 +58,81 @@ output_pdf.close()
 ```
 
 Lembre-se de que, como o PyPDF2 é uma biblioteca de terceiros, é importante verificar a documentação atualizada e a compatibilidade com a versão do Python que você está usando, bem como considerar alternativas mais recentes, como o PyMuPDF ou pdfplumber, que podem oferecer funcionalidades adicionais e melhor desempenho.
+
+### Métodos na lib
+
+A biblioteca PyPDF2 oferece uma variedade de métodos para trabalhar com documentos PDF. Abaixo estão alguns dos métodos mais comuns disponíveis na biblioteca PyPDF2:
+
+1. **`PdfFileReader()`**: Este método é usado para criar um objeto `PdfFileReader`, que permite a leitura de um arquivo PDF existente.
+
+```python
+pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+```
+
+2. **`getDocumentInfo()`**: Retorna informações gerais sobre o documento PDF, como título, autor, criador, produtor, etc.
+
+```python
+document_info = pdf_reader.getDocumentInfo()
+```
+
+3. **`getNumPages()`**: Retorna o número de páginas no documento PDF.
+
+```python
+num_pages = pdf_reader.getNumPages()
+```
+
+4. **`getPage(page_number)`**: Retorna um objeto de página específico com base no número da página.
+
+```python
+page = pdf_reader.getPage(page_number)
+```
+
+5. **`extractText()`**: Extrai o texto de uma página ou de todo o documento PDF, dependendo de como é usado.
+
+```python
+text = page.extractText()
+```
+
+6. **`PdfFileWriter()`**: Este método é usado para criar um objeto `PdfFileWriter`, que permite a criação de um novo documento PDF para escrita.
+
+```python
+pdf_writer = PyPDF2.PdfFileWriter()
+```
+
+7. **`addPage(page)`**: Adiciona uma página ao objeto `PdfFileWriter`, que pode ser usada para criar um novo documento PDF ou mesclar páginas de outros documentos.
+
+```python
+pdf_writer.addPage(page)
+```
+
+8. **`write(output_file)`**: Salva o conteúdo do objeto `PdfFileWriter` em um arquivo PDF de saída.
+
+```python
+pdf_writer.write(output_file)
+```
+
+9. **`mergePage(page)`**: Mescla o conteúdo da página especificada com a página atual no objeto `PdfFileWriter`. Isso é usado para mesclar páginas de diferentes documentos.
+
+```python
+pdf_writer.mergePage(page)
+```
+
+10. **`encrypt(user_pwd, owner_pwd)`**: Criptografa o documento PDF com senhas de usuário e proprietário.
+
+```python
+pdf_writer.encrypt(user_password, owner_password)
+```
+
+11. **`addBookmark(title, page_num, parent=None)`**: Adiciona um marcador (bookmark) a um documento PDF para facilitar a navegação.
+
+```python
+pdf_writer.addBookmark('Título do Marcador', page_number)
+```
+
+12. **`insertPage(page, page_number)`**: Insere uma página em uma posição específica no documento PDF.
+
+```python
+pdf_writer.insertPage(page, page_number)
+```
+
+Estes são apenas alguns dos métodos disponíveis na biblioteca PyPDF2. Você pode explorar mais funcionalidades e métodos na documentação oficial ou utilizando a função `help(PyPDF2)` no Python para obter uma lista completa dos métodos e classes disponíveis.

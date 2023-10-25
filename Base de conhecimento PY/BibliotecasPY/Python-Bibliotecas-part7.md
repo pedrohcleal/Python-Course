@@ -192,3 +192,95 @@ Aqui estão alguns exemplos de operações comuns que você pode realizar com um
 
 Os `deque` são uma escolha poderosa quando você precisa de estruturas de dados flexíveis para manipulação de filas, pilhas ou buffers com alta eficiência. Eles são especialmente úteis em situações onde você está frequentemente adicionando ou removendo elementos nas extremidades da coleção.
 
+## Biblioteca openpyxl
+
+O `openpyxl` é uma biblioteca de código aberto em Python que permite a leitura e gravação de arquivos no formato Excel (.xlsx). Ela é uma ferramenta muito útil para lidar com planilhas e automação de tarefas que envolvem a manipulação de dados em planilhas do Microsoft Excel. Aqui estão alguns aspectos importantes sobre o `openpyxl`:
+
+1. **Leitura e Escrita de Planilhas**: Com o `openpyxl`, você pode abrir arquivos Excel existentes, ler seus conteúdos e até mesmo criar novos arquivos Excel do zero. Isso é útil para automatizar tarefas que envolvem a geração de relatórios, análise de dados e muito mais.
+
+2. **Suporte ao Formato .xlsx**: O `openpyxl` é projetado especificamente para lidar com arquivos no formato .xlsx, que é o formato de arquivo Excel mais recente e amplamente utilizado. Isso significa que você pode trabalhar com arquivos Excel modernos sem problemas de compatibilidade.
+
+3. **Manipulação de Planilhas e Células**: A biblioteca permite a criação, exclusão e edição de planilhas em um arquivo Excel. Você pode também ler e escrever dados em células individuais, definir estilos, cores de células, bordas e muito mais.
+
+4. **Gráficos e Imagens**: O `openpyxl` suporta a inclusão de gráficos e imagens em planilhas, permitindo criar relatórios e apresentações visualmente atraentes.
+
+5. **Fórmulas**: Você pode definir fórmulas em células, permitindo a automação de cálculos complexos e a atualização automática dos resultados conforme os dados são modificados.
+
+6. **Estilos e Formatação**: A biblioteca oferece recursos para aplicar estilos e formatação às células, como fonte, alinhamento, cores de preenchimento, etc.
+
+7. **Manipulação de Gráficos**: O `openpyxl` permite a manipulação de gráficos existentes em uma planilha, a criação de novos gráficos e a configuração de suas propriedades.
+
+8. **Compatibilidade com Pandas**: O `openpyxl` é frequentemente usado em conjunto com a biblioteca Pandas para converter dados entre DataFrames do Pandas e planilhas do Excel.
+
+9. **Documentação e Comunidade Ativa**: O `openpyxl` possui uma documentação detalhada e uma comunidade ativa de desenvolvedores, o que torna mais fácil aprender e resolver problemas relacionados a planilhas em Python.
+
+Para começar a usar o `openpyxl`, você precisará instalá-lo (se ainda não estiver instalado) e importá-lo em seu código Python. Em seguida, você pode abrir um arquivo Excel, manipular seus dados e salvar as alterações. Aqui está um exemplo simples de como você pode abrir um arquivo Excel e ler dados de uma planilha:
+
+```python
+import openpyxl
+
+# Abrir um arquivo Excel
+workbook = openpyxl.load_workbook('exemplo.xlsx')
+
+# Selecionar uma planilha
+sheet = workbook['Planilha1']
+
+# Ler dados de uma célula
+data = sheet['A1'].value
+
+# Imprimir o valor da célula
+print(data)
+
+# Fechar o arquivo
+workbook.close()
+```
+
+O `openpyxl` é uma ferramenta poderosa para a manipulação de planilhas em Python e é amplamente utilizado em tarefas de automação de escritório e análise de dados.
+
+### Métodos na lib
+
+O `openpyxl` oferece uma ampla variedade de métodos para lidar com planilhas do Excel. Abaixo estão alguns dos principais métodos e funcionalidades que você pode usar com essa biblioteca:
+
+1. **Carregando um Arquivo Excel**:
+   - `openpyxl.load_workbook(nome_do_arquivo)`: Este método é usado para abrir um arquivo Excel (.xlsx) existente e carregar seu conteúdo para ser manipulado.
+
+2. **Acessando Planilhas**:
+   - `workbook.sheetnames`: Retorna uma lista com os nomes de todas as planilhas no arquivo.
+   - `workbook['nome_da_planilha']`: Permite selecionar uma planilha específica para trabalhar.
+
+3. **Manipulando Células**:
+   - `sheet['A1']`: Acessa uma célula específica pela referência da coluna e linha.
+   - `cell.value`: Obtém ou define o valor de uma célula.
+   - `cell.row`: Retorna o número da linha da célula.
+   - `cell.column`: Retorna a letra da coluna da célula.
+   - `sheet.cell(row=n, column=m)`: Acessa uma célula com base nos números da linha e da coluna.
+
+4. **Escrita de Dados**:
+   - `sheet['A1'] = valor`: Permite definir um valor em uma célula específica.
+
+5. **Leitura de Dados**:
+   - `valor = sheet['A1'].value`: Obtém o valor de uma célula específica.
+
+6. **Estilos e Formatação**:
+   - `cell.font = Font(name='Arial', bold=True)`: Define o estilo de fonte de uma célula.
+   - `cell.alignment = Alignment(horizontal='center', vertical='center')`: Define a formatação de alinhamento da célula.
+   - `cell.fill = PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type='solid')`: Define o preenchimento de fundo da célula.
+   - `cell.border = Border(left=Side(border_style='thin', color='000000'))`: Define as bordas da célula.
+
+7. **Fórmulas**:
+   - `cell.formula = 'A2 + B2'`: Permite definir uma fórmula em uma célula.
+   - `cell.calculate_value()`: Calcula o valor da fórmula em uma célula.
+
+8. **Inserção e Exclusão de Linhas e Colunas**:
+   - `sheet.insert_rows(n, amount)`: Insere n linhas na planilha.
+   - `sheet.delete_rows(n, amount)`: Exclui n linhas da planilha.
+   - `sheet.insert_cols(n, amount)`: Insere n colunas na planilha.
+   - `sheet.delete_cols(n, amount)`: Exclui n colunas da planilha.
+
+9. **Salvando Alterações**:
+   - `workbook.save(nome_do_arquivo)`: Salva as alterações feitas no arquivo Excel.
+
+10. **Gráficos**:
+    - `openpyxl.chart`: O `openpyxl` permite criar e manipular gráficos em planilhas do Excel.
+
+Esses são apenas alguns dos principais métodos e funcionalidades fornecidos pela biblioteca `openpyxl`. A documentação oficial do `openpyxl` oferece informações detalhadas sobre esses métodos, exemplos de uso e recursos adicionais que você pode explorar para atender às suas necessidades específicas ao trabalhar com planilhas no Python.

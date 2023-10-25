@@ -284,3 +284,40 @@ O `openpyxl` oferece uma ampla variedade de métodos para lidar com planilhas do
     - `openpyxl.chart`: O `openpyxl` permite criar e manipular gráficos em planilhas do Excel.
 
 Esses são apenas alguns dos principais métodos e funcionalidades fornecidos pela biblioteca `openpyxl`. A documentação oficial do `openpyxl` oferece informações detalhadas sobre esses métodos, exemplos de uso e recursos adicionais que você pode explorar para atender às suas necessidades específicas ao trabalhar com planilhas no Python.
+
+## Lib Pillow
+
+A biblioteca Pillow, anteriormente conhecida como PIL (Python Imaging Library), é uma biblioteca de processamento de imagens em Python. Ela fornece uma ampla gama de funcionalidades para abrir, manipular e salvar imagens em vários formatos. O Pillow é uma escolha popular para tarefas relacionadas a processamento de imagens em Python devido à sua facilidade de uso e ampla compatibilidade com diversos formatos de imagem.
+
+Aqui estão algumas das funcionalidades e recursos mais comuns da biblioteca Pillow:
+
+1. **Abertura e Salvamento de Imagens:** O Pillow permite abrir imagens de vários formatos, como JPEG, PNG, BMP, GIF, TIFF, e muitos outros. Além disso, você pode salvar imagens em diferentes formatos após processá-las.
+
+2. **Manipulação de Imagens:** O Pillow oferece uma variedade de funções para modificar imagens, como redimensionar, cortar, girar, inverter e aplicar filtros. Você pode combinar várias operações para criar efeitos mais complexos.
+
+3. **Processamento de Pixels:** O Pillow permite acessar e modificar pixels individuais em uma imagem, o que é útil para realizar operações personalizadas.
+
+4. **Adição de Texto e Elementos Gráficos:** Você pode adicionar texto, formas e outros elementos gráficos a imagens usando o Pillow.
+
+5. **Conversão de Cores:** A biblioteca oferece funções para converter imagens entre diferentes modos de cores, como RGB, escala de cinza, entre outros.
+
+6. **Filtros e Efeitos:** O Pillow inclui vários filtros e efeitos, como desfoque, nitidez, sepia, entre outros, que podem ser aplicados às imagens.
+
+7. **Suporte a Transparência:** Você pode trabalhar com imagens que têm informações de transparência, como imagens PNG com fundo transparente.
+
+Aqui está um exemplo simples de como usar o Pillow para abrir uma imagem e redimensioná-la:
+
+```python
+from PIL import Image
+
+# Abrir uma imagem
+imagem = Image.open("exemplo.jpg")
+
+# Redimensionar a imagem para 300x300 pixels
+imagem_redimensionada = imagem.resize((300, 300))
+
+# Salvar a imagem redimensionada
+imagem_redimensionada.save("exemplo_redimensionado.jpg")
+```
+
+O Pillow é uma ferramenta versátil para processamento de imagens em Python e é amplamente utilizado em diversas aplicações, como processamento de fotos, geração de gráficos, criação de miniaturas, edição de imagens, entre outras. Certifique-se de instalar o Pillow em seu ambiente Python antes de utilizá-lo, o que pode ser feito com o comando `pip install pillow`.

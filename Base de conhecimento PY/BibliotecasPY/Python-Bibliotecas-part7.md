@@ -136,3 +136,59 @@ pdf_writer.insertPage(page, page_number)
 ```
 
 Estes são apenas alguns dos métodos disponíveis na biblioteca PyPDF2. Você pode explorar mais funcionalidades e métodos na documentação oficial ou utilizando a função `help(PyPDF2)` no Python para obter uma lista completa dos métodos e classes disponíveis.
+
+## Deque
+
+A biblioteca `deque` em Python é parte da biblioteca padrão e fornece uma estrutura de dados chamada deque, que é uma abreviação de "double-ended queue" (fila de duas extremidades). Ela é uma coleção ordenada de elementos que suporta eficientemente a inserção e remoção de elementos tanto no início quanto no final da coleção. Isso a torna uma escolha útil quando você precisa implementar uma fila, pilha ou buffer com alta performance.
+
+A principal característica do `deque` é a sua capacidade de operações de inserção e remoção em tempo constante (O(1)) tanto no início quanto no final da fila, o que a diferencia de uma lista comum, que tem complexidade O(n) para inserções no início. Isso faz com que os `deque` sejam especialmente úteis em situações onde a ordem dos elementos é importante e onde você precisa adicionar ou remover elementos rapidamente em ambas as extremidades.
+
+Aqui estão alguns exemplos de operações comuns que você pode realizar com um `deque` em Python:
+
+1. **Criação de um deque:**
+   Você pode criar um `deque` vazio da seguinte maneira:
+   ```python
+   from collections import deque
+   d = deque()
+   ```
+
+2. **Inserção de elementos:**
+   Você pode inserir elementos no final do `deque` usando o método `append()` ou no início usando o método `appendleft()`.
+
+   ```python
+   d.append(1)        # Insere 1 no final
+   d.appendleft(2)    # Insere 2 no início
+   ```
+
+3. **Remoção de elementos:**
+   Você pode remover elementos do final do `deque` usando o método `pop()` ou do início usando o método `popleft()`.
+
+   ```python
+   x = d.pop()        # Remove e retorna o último elemento
+   y = d.popleft()    # Remove e retorna o primeiro elemento
+   ```
+
+4. **Acessando elementos:**
+   Você pode acessar elementos de um `deque` como se fosse uma lista.
+
+   ```python
+   primeiro_elemento = d[0]
+   ```
+
+5. **Tamanho do deque:**
+   Você pode obter o tamanho do `deque` usando a função `len()`.
+
+   ```python
+   tamanho = len(d)
+   ```
+
+6. **Iteração:**
+   Você pode iterar sobre os elementos de um `deque` da mesma forma que faria com uma lista.
+
+   ```python
+   for item in d:
+       print(item)
+   ```
+
+Os `deque` são uma escolha poderosa quando você precisa de estruturas de dados flexíveis para manipulação de filas, pilhas ou buffers com alta eficiência. Eles são especialmente úteis em situações onde você está frequentemente adicionando ou removendo elementos nas extremidades da coleção.
+

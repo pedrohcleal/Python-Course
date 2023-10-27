@@ -109,3 +109,43 @@ app.exec_()
 ```
 
 Neste exemplo, estamos criando uma janela principal (`QMainWindow`) com um `QWidget` central e usando um layout vertical (`QVBoxLayout`) para organizar um rótulo e um botão dentro do `QWidget`. Quando o botão é clicado, a função `on_button_click` é chamada para alterar o texto do rótulo. O uso de layouts garante que os widgets sejam posicionados e redimensionados automaticamente à medida que a janela é redimensionada.
+
+## QmainWindow e centralWidget
+
+`QMainWindow` é uma classe fundamental na biblioteca Qt (e, portanto, no PySide6) que representa uma janela principal de um aplicativo de desktop. Ela fornece um quadro completo para a criação de aplicativos com uma interface de usuário rica e geralmente inclui elementos comuns, como barras de menu, barras de ferramentas, barras de status e uma área central onde o conteúdo principal do aplicativo é exibido. 
+
+Aqui estão algumas características e funcionalidades importantes do `QMainWindow`:
+
+1. **Estrutura da Janela:** `QMainWindow` fornece uma estrutura de janela completa que inclui uma barra de título, botões de minimizar, maximizar e fechar, além de suporte a redimensionamento e movimentação da janela.
+
+2. **Barras de Menu:** Você pode adicionar barras de menu à janela principal para organizar as funcionalidades do aplicativo em menus e submenus.
+
+3. **Barras de Ferramentas:** `QMainWindow` suporta a adição de barras de ferramentas, permitindo que você coloque botões de ação e outros controles na parte superior da janela para acesso rápido.
+
+4. **Barra de Status:** Uma barra de status opcional na parte inferior da janela pode ser usada para exibir informações do aplicativo, mensagens de status e outras informações relevantes.
+
+5. **Central Widget:** O `QMainWindow` geralmente inclui um widget central, conhecido como `centralWidget`, onde o conteúdo principal do aplicativo é exibido. Isso permite que você coloque qualquer widget ou layout no centro da janela, como uma área de desenho, uma planilha ou uma interface de usuário complexa.
+
+Aqui está um exemplo simples de como criar uma `QMainWindow` com um `centralWidget` em PySide6:
+
+```python
+import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget
+
+app = QApplication(sys.argv)
+
+window = QMainWindow()
+window.setWindowTitle("Exemplo QMainWindow com Central Widget")
+window.setGeometry(100, 100, 400, 200)
+
+central_widget = QWidget()
+window.setCentralWidget(central_widget)  # Definindo o QWidget central da janela
+
+button = QPushButton("Clique em mim!", central_widget)
+button.setGeometry(150, 80, 100, 30)
+
+window.show()
+app.exec_()
+```
+
+Neste exemplo, criamos uma janela principal (`QMainWindow`) e definimos um `centralWidget` personalizado (um `QWidget`) que contém um botão. O `centralWidget` é a área onde você pode adicionar e organizar elementos de interface de usuário específicos do seu aplicativo. O botão é posicionado dentro do `centralWidget`. Isso ilustra o uso do `centralWidget` como um espaço para a interface de usuário principal do aplicativo.

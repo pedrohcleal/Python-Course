@@ -56,3 +56,56 @@ app.exec_()
 ```
 
 Neste exemplo, quando o botão é clicado, a função `on_button_click` será chamada, exibindo "Botão clicado!" no console.
+
+## Qwidget e Qlayout
+
+`QWidget` e `QLayout` são componentes essenciais ao desenvolver interfaces gráficas com a biblioteca Qt, que também se aplicam ao PySide6. 
+
+**QWidget:**
+
+`QWidget` é a classe base para todos os elementos gráficos no Qt, incluindo janelas, botões, caixas de texto, etc. Um `QWidget` é uma área retangular na qual você pode exibir ou interagir com elementos gráficos. Ele é o bloco de construção fundamental para qualquer aplicação baseada em Qt. 
+
+Características principais do `QWidget`:
+
+- Pode conter outros widgets, formando uma hierarquia de widgets.
+- Manipula eventos de mouse, teclado e outros eventos de interação do usuário.
+- É o "canvas" onde você pode desenhar gráficos personalizados e fazer a renderização.
+- Pode ser usado como uma janela principal (top-level), um elemento em uma janela principal ou como um widget embutido em outras aplicações.
+
+**QLayout:**
+
+`QLayout` é uma classe que ajuda a organizar e posicionar widgets dentro de um `QWidget`. Ele é usado para criar estruturas de layout que determinam como os widgets são organizados e redimensionados à medida que a janela é redimensionada. O Qt fornece vários tipos de layouts, como `QVBoxLayout` (layout vertical), `QHBoxLayout` (layout horizontal) e `QGridLayout` (layout em grade), entre outros.
+
+Exemplo básico de como usar `QWidget` e `QLayout` em um aplicativo PySide6:
+
+```python
+import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
+
+def on_button_click():
+    label.setText("Botão clicado!")
+
+app = QApplication(sys.argv)
+
+window = QMainWindow()
+window.setGeometry(100, 100, 400, 200)
+
+central_widget = QWidget()
+window.setCentralWidget(central_widget)  # Definindo o QWidget central da janela
+
+layout = QVBoxLayout()
+central_widget.setLayout(layout)  # Definindo um layout vertical para o QWidget central
+
+button = QPushButton("Clique em mim!")
+button.clicked.connect(on_button_click)
+
+label = QLabel("Olá, PySide6!")
+
+layout.addWidget(label)  # Adicionando o rótulo ao layout
+layout.addWidget(button)  # Adicionando o botão ao layout
+
+window.show()
+app.exec_()
+```
+
+Neste exemplo, estamos criando uma janela principal (`QMainWindow`) com um `QWidget` central e usando um layout vertical (`QVBoxLayout`) para organizar um rótulo e um botão dentro do `QWidget`. Quando o botão é clicado, a função `on_button_click` é chamada para alterar o texto do rótulo. O uso de layouts garante que os widgets sejam posicionados e redimensionados automaticamente à medida que a janela é redimensionada.

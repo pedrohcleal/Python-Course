@@ -1,4 +1,4 @@
-# Part1 PySide6
+# PySide6 p1
 
 ## Qapplication e QPushButton de Pyside6.qtwidgets
 

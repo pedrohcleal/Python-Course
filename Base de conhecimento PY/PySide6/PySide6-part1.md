@@ -149,3 +149,58 @@ app.exec_()
 ```
 
 Neste exemplo, criamos uma janela principal (`QMainWindow`) e definimos um `centralWidget` personalizado (um `QWidget`) que contém um botão. O `centralWidget` é a área onde você pode adicionar e organizar elementos de interface de usuário específicos do seu aplicativo. O botão é posicionado dentro do `centralWidget`. Isso ilustra o uso do `centralWidget` como um espaço para a interface de usuário principal do aplicativo.
+
+## Signals e Slots
+
+Signals e slots são um mecanismo fundamental da biblioteca Qt, que também se aplica ao PySide6, para permitir a comunicação e a interação entre objetos em uma aplicação. Eles são usados para responder a eventos e acionar ações de maneira flexível e desacoplada. O conceito de signals e slots é uma parte central do sistema de eventos e manipulação de eventos do Qt.
+
+Aqui está uma descrição de signals e slots:
+
+**Signals (Sinais):**
+
+- **Signals** são emitidos por objetos quando ocorre um evento específico. Por exemplo, um botão pode emitir um sinal quando é clicado, ou um objeto pode emitir um sinal quando uma operação é concluída.
+
+- Os signals servem como notificações que indicam que algo aconteceu em um objeto. Eles não contêm informações específicas sobre como responder ao evento, apenas indicam que o evento ocorreu.
+
+- Os signals são declarados usando a macro `SIGNAL` no Qt. Por exemplo, o sinal de clique de um botão é declarado como `clicked()`, e um sinal personalizado pode ser declarado com a sintaxe `SIGNAL(minhaAcao())`.
+
+**Slots (Fendas):**
+
+- **Slots** são funções ou métodos que podem ser conectados a sinais. Eles respondem a um sinal específico executando uma ação desejada.
+
+- Os slots são as ações que você deseja que ocorram quando um sinal é emitido. Eles são os controladores que respondem aos eventos.
+
+- Os slots são declarados como funções comuns, e você pode definir suas próprias funções para responder a sinais.
+
+**Conexão de Sinais e Fendas:**
+
+- A conexão de um sinal a um slot é feita usando a função `connect`. Você associa um sinal a um slot para que, quando o sinal é emitido, o slot correspondente seja executado.
+
+- Quando um sinal é emitido, todos os slots conectados a ele serão chamados em resposta ao sinal.
+
+Exemplo de como usar signals e slots em PySide6:
+
+```python
+from PySide6.QtCore import Signal, QObject
+
+class MinhaClasse(QObject):
+    meu_sinal = Signal(str)
+
+    def __init__(self):
+        super().__init__()
+
+    def emitir_sinal(self):
+        self.meu_sinal.emit("Olá do sinal!")
+
+def meu_slot(texto):
+    print("Slot recebeu:", texto)
+
+objeto = MinhaClasse()
+objeto.meu_sinal.connect(meu_slot)  # Conectando o sinal ao slot
+
+objeto.emitir_sinal()  # Isso emitirá o sinal, que acionará o slot
+```
+
+Neste exemplo, temos uma classe personalizada `MinhaClasse` com um sinal `meu_sinal` e um slot `meu_slot`. Quando `emitir_sinal` é chamado, o sinal é emitido com a mensagem "Olá do sinal!". Em seguida, conectamos o sinal ao slot usando `connect`. Quando o sinal é emitido, o slot `meu_slot` é chamado e imprime a mensagem recebida.
+
+O uso de signals e slots é uma maneira poderosa e flexível de projetar a lógica de interação em aplicativos Qt e PySide6, permitindo uma comunicação desacoplada e um design modular.

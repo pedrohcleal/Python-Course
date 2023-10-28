@@ -204,3 +204,93 @@ objeto.emitir_sinal()  # Isso emitirá o sinal, que acionará o slot
 Neste exemplo, temos uma classe personalizada `MinhaClasse` com um sinal `meu_sinal` e um slot `meu_slot`. Quando `emitir_sinal` é chamado, o sinal é emitido com a mensagem "Olá do sinal!". Em seguida, conectamos o sinal ao slot usando `connect`. Quando o sinal é emitido, o slot `meu_slot` é chamado e imprime a mensagem recebida.
 
 O uso de signals e slots é uma maneira poderosa e flexível de projetar a lógica de interação em aplicativos Qt e PySide6, permitindo uma comunicação desacoplada e um design modular.
+
+## Classes no PySide6
+
+No PySide6, as classes são amplamente utilizadas para criar interfaces gráficas, janelas, widgets e outros elementos da interface do usuário. O PySide6 segue uma abordagem orientada a objetos para o desenvolvimento de GUI, onde você cria classes personalizadas para definir a aparência e o comportamento dos elementos da interface gráfica. Aqui estão algumas maneiras de usar classes no PySide6:
+
+1. **Criando uma janela personalizada**:
+
+   Você pode criar uma janela personalizada estendendo a classe `QMainWindow`:
+
+   ```python
+   from PySide6.QtWidgets import QMainWindow, QApplication
+
+   class MinhaJanela(QMainWindow):
+       def __init__(self):
+           super().__init__()
+           self.setWindowTitle('Minha Janela Personalizada')
+
+   app = QApplication([])
+   janela = MinhaJanela()
+   janela.show()
+   app.exec()
+   ```
+
+2. **Criando widgets personalizados**:
+
+   Você pode criar widgets personalizados estendendo as classes de widgets disponíveis no PySide6, como `QWidget`, `QPushButton`, `QLabel`, etc. Por exemplo, para criar um botão personalizado:
+
+   ```python
+   from PySide6.QtWidgets import QPushButton, QApplication
+
+   class MeuBotao(QPushButton):
+       def __init__(self, texto):
+           super().__init__(texto)
+           self.setStyleSheet('font-size: 16px;')
+
+   app = QApplication([])
+   botao = MeuBotao('Clique em Mim')
+   botao.show()
+   app.exec()
+   ```
+
+3. **Definindo comportamento com slots e signals**:
+
+   Você pode definir métodos como slots em suas classes para responder a eventos de widgets. Você também pode usar os sinais (signals) dos widgets para conectar esses slots. Por exemplo, para criar uma janela com um botão que mostra uma mensagem quando clicado:
+
+   ```python
+   from PySide6.QtWidgets import QMainWindow, QPushButton, QApplication, QLabel
+
+   class MinhaJanela(QMainWindow):
+       def __init__(self):
+           super().__init()
+           self.setWindowTitle('Janela com Botão')
+           self.botao = QPushButton('Clique em Mim')
+           self.label = QLabel()
+           self.setCentralWidget(self.label)
+           self.botao.clicked.connect(self.mostrar_mensagem)
+
+       def mostrar_mensagem(self):
+           self.label.setText('Botão Clicado!')
+
+   app = QApplication([])
+   janela = MinhaJanela()
+   janela.show()
+   app.exec()
+   ```
+
+4. **Gerenciando layouts com classes**:
+
+   Você pode criar classes para gerenciar layouts complexos. Por exemplo, criar uma classe que organize widgets em um layout de grade:
+
+   ```python
+   from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QApplication
+
+   class MeuLayout(QWidget):
+       def __init__(self):
+           super().__init__()
+           layout = QGridLayout()
+           label1 = QLabel('Label 1')
+           label2 = QLabel('Label 2')
+           layout.addWidget(label1, 0, 0)
+           layout.addWidget(label2, 0, 1)
+           self.setLayout(layout)
+
+   app = QApplication([])
+   janela = MeuLayout()
+   janela.show()
+   app.exec()
+   ```
+
+Esses são apenas alguns exemplos de como você pode usar classes para criar interfaces gráficas personalizadas no PySide6. O uso de classes torna o código mais organizado e reutilizável, o que é fundamental para o desenvolvimento de aplicativos de GUI mais complexos.

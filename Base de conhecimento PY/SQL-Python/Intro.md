@@ -202,3 +202,36 @@ O uso de placeholders é uma prática importante ao executar consultas SQL para 
    ```
 
 Usar placeholders é uma prática fundamental para evitar problemas de segurança, como SQL Injection, pois a biblioteca `sqlite3` lida com a formatação segura dos valores para você, garantindo que os dados sejam tratados corretamente.
+
+## Executemany
+
+O método `executemany` é uma função oferecida pela biblioteca `sqlite3` em Python que permite executar a mesma consulta SQL várias vezes com diferentes conjuntos de parâmetros de maneira eficiente. Isso é útil quando você deseja inserir múltiplos registros em uma tabela com a mesma consulta SQL, evitando a necessidade de executar a consulta várias vezes manualmente.
+
+A assinatura do método `executemany` é a seguinte:
+
+```python
+cursor.executemany(consulta, sequencia_de_parametros)
+```
+
+- `cursor`: Um objeto de cursor que representa a conexão com o banco de dados.
+- `consulta`: A consulta SQL que você deseja executar. A consulta deve conter os placeholders `?` que serão substituídos pelos parâmetros da sequência de parâmetros.
+- `sequencia_de_parametros`: Uma sequência iterável (geralmente uma lista de tuplas) que contém os parâmetros que serão usados para substituir os placeholders na consulta.
+
+A principal vantagem do método `executemany` é a eficiência. Em vez de executar a mesma consulta várias vezes em um loop, você pode usar `executemany` para consolidar a execução de várias consultas em uma única operação. Isso reduz a sobrecarga de comunicação com o banco de dados e pode melhorar significativamente o desempenho ao inserir grandes quantidades de dados.
+
+Aqui está um exemplo de uso do `executemany` para inserir vários registros em uma tabela:
+
+```python
+registros = [
+    ('Alice', 30),
+    ('Bob', 25),
+    ('Carol', 28)
+]
+
+consulta = "INSERT INTO minha_tabela (nome, idade) VALUES (?, ?)"
+
+cursor.executemany(consulta, registros)
+conn.commit()
+```
+
+Neste exemplo, a consulta SQL é executada três vezes com diferentes conjuntos de parâmetros, com base nos valores contidos na lista `registros`. Os registros são inseridos na tabela `minha_tabela` de uma só vez, melhorando a eficiência em comparação com a execução da consulta em um loop. Certifique-se de chamar `commit` para salvar as alterações no banco de dados após a execução do `executemany`.

@@ -283,3 +283,66 @@ Quando você executa uma consulta SELECT no SQLite3 em Python, você obtém um c
    ```
 
 Dependendo do tamanho do conjunto de resultados e da quantidade de dados que você deseja recuperar, você pode escolher o método mais apropriado. Certifique-se de chamar `execute` antes de chamar qualquer um desses métodos para executar sua consulta SELECT. Além disso, é importante lembrar de chamar `commit` se você tiver realizado modificações no banco de dados que precisam ser confirmadas.
+
+## CRUD
+
+O CRUD é um acrônimo que representa as quatro operações básicas de manipulação de dados em um banco de dados: Create (Criação), Read (Leitura), Update (Atualização) e Delete (Exclusão). O SQLite3 em Python oferece suporte a essas operações para gerenciar dados em um banco de dados. Abaixo, descrevo como realizar cada uma dessas operações, incluindo a exclusão com e sem a cláusula WHERE:
+
+1. **CREATE (Criação)**:
+
+   Para criar registros em uma tabela, você pode usar o comando SQL `INSERT INTO`. Aqui está um exemplo de como criar um novo registro:
+
+   ```python
+   cursor.execute("INSERT INTO minha_tabela (nome, idade) VALUES (?, ?)", ('Alice', 30))
+   conn.commit()
+   ```
+
+   Este comando insere um novo registro na tabela `minha_tabela` com os valores 'Alice' e 30 para as colunas `nome` e `idade`, respectivamente.
+
+2. **READ (Leitura)**:
+
+   Para ler dados de uma tabela, você pode usar o comando SQL `SELECT`. Aqui está um exemplo de como ler todos os registros de uma tabela:
+
+   ```python
+   cursor.execute("SELECT * FROM minha_tabela")
+   registros = cursor.fetchall()
+   for registro in registros:
+       print(registro)
+   ```
+
+   Isso recuperará todos os registros da tabela `minha_tabela` e os exibirá no console.
+
+3. **UPDATE (Atualização)**:
+
+   Para atualizar dados em uma tabela, você pode usar o comando SQL `UPDATE`. Aqui está um exemplo de como atualizar um registro com base em uma condição:
+
+   ```python
+   cursor.execute("UPDATE minha_tabela SET idade = ? WHERE nome = ?", (31, 'Alice'))
+   conn.commit()
+   ```
+
+   Este comando atualiza a idade de registros na tabela `minha_tabela` onde o nome é 'Alice' para 31.
+
+4. **DELETE (Exclusão) - Sem WHERE**:
+
+   Para excluir todos os registros de uma tabela, você pode usar o comando SQL `DELETE`. No entanto, tenha cuidado ao usar essa operação, pois ela excluirá todos os registros da tabela. Aqui está um exemplo:
+
+   ```python
+   cursor.execute("DELETE FROM minha_tabela")
+   conn.commit()
+   ```
+
+   Isso excluirá todos os registros da tabela `minha_tabela`.
+
+5. **DELETE (Exclusão) - Com WHERE**:
+
+   Para excluir registros específicos com base em uma condição, você pode usar o comando SQL `DELETE` com a cláusula `WHERE`. Aqui está um exemplo:
+
+   ```python
+   cursor.execute("DELETE FROM minha_tabela WHERE idade < 30")
+   conn.commit()
+   ```
+
+   Este comando excluirá todos os registros da tabela `minha_tabela` onde a idade for menor que 30.
+
+Lembre-se de que é importante chamar `commit()` após a execução de comandos de atualização (CREATE, UPDATE, DELETE) para confirmar as alterações no banco de dados. Além disso, use com cautela a exclusão de registros, especialmente sem uma cláusula WHERE, para evitar perda de dados indesejada.

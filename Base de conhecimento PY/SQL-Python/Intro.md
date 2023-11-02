@@ -113,3 +113,41 @@ conn.commit()
 
 Lembre-se de que, antes de executar comandos de inserção, você deve ter uma conexão aberta com o banco de dados e um cursor associado a essa conexão. Certifique-se também de que a tabela na qual você está inserindo os dados já tenha sido criada com as colunas apropriadas.
 
+## Como excluir dados da tabela, limpar por inteira e resetar sequencia da tabulação
+
+Para excluir dados de uma tabela no SQLite usando Python, você pode usar o comando SQL `DELETE`. Você pode excluir registros específicos ou limpar a tabela inteira. Para redefinir a sequência da tabela, você pode usar o comando SQL `UPDATE`. Aqui estão exemplos de como fazer isso:
+
+1. Excluir registros específicos:
+
+   Você pode excluir registros com base em condições específicas. Suponhamos que você queira excluir todos os registros onde a coluna `idade` seja igual a 30:
+
+   ```python
+   cursor.execute("DELETE FROM minha_tabela WHERE idade = 30")
+   conn.commit()
+   ```
+
+   Isso exclui todos os registros em `minha_tabela` onde a idade é igual a 30.
+
+2. Limpar a tabela inteira:
+
+   Para excluir todos os registros da tabela e, essencialmente, limpá-la completamente, você pode fazer o seguinte:
+
+   ```python
+   cursor.execute("DELETE FROM minha_tabela")
+   conn.commit()
+   ```
+
+   Isso excluirá todos os registros da tabela `minha_tabela`.
+
+3. Resetar a sequência da tabela (reiniciar o contador de autoincremento):
+
+   Se a tabela tem uma coluna com uma sequência automática (geralmente uma coluna `INTEGER PRIMARY KEY`), você pode redefinir a sequência (reiniciar o contador de autoincremento) da seguinte maneira:
+
+   ```python
+   cursor.execute("DELETE FROM sqlite_sequence WHERE name='minha_tabela'")
+   conn.commit()
+   ```
+
+   Isso excluirá a entrada correspondente na tabela `sqlite_sequence` para a tabela `minha_tabela`, o que fará com que o contador de sequência seja redefinido quando você inserir um novo registro na tabela.
+
+Lembre-se de que é importante chamar `commit` após a execução do comando `DELETE` para confirmar as alterações no banco de dados. Certifique-se de que você tem uma conexão aberta com o banco de dados e um cursor associado a essa conexão antes de executar os comandos.

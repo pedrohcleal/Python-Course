@@ -235,3 +235,51 @@ conn.commit()
 ```
 
 Neste exemplo, a consulta SQL é executada três vezes com diferentes conjuntos de parâmetros, com base nos valores contidos na lista `registros`. Os registros são inseridos na tabela `minha_tabela` de uma só vez, melhorando a eficiência em comparação com a execução da consulta em um loop. Certifique-se de chamar `commit` para salvar as alterações no banco de dados após a execução do `executemany`.
+
+## SELECT do SQL com fetch no SQLite3
+
+Quando você executa uma consulta SELECT no SQLite3 em Python, você obtém um conjunto de resultados como resposta. Para recuperar os dados desse conjunto de resultados, você pode usar métodos como `fetchone()`, `fetchall()`, ou até mesmo iterar diretamente pelo cursor. Aqui está uma descrição desses métodos:
+
+1. `fetchone()`: Este método é usado para recuperar a próxima linha do conjunto de resultados como uma tupla. Se não houver mais linhas a serem recuperadas, ele retornará `None`. Você pode chamar `fetchone()` repetidamente para recuperar cada linha do resultado.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM minha_tabela")
+   primeira_linha = cursor.fetchone()
+   segunda_linha = cursor.fetchone()
+   ```
+
+2. `fetchall()`: Este método é usado para recuperar todas as linhas do conjunto de resultados como uma lista de tuplas. Cada tupla representa uma linha de dados. Se não houver resultados, ele retornará uma lista vazia.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM minha_tabela")
+   resultados = cursor.fetchall()
+   for linha in resultados:
+       print(linha)
+   ```
+
+3. Iterar diretamente pelo cursor: Você pode iterar diretamente pelo cursor usando um loop `for`. Isso permite que você percorra as linhas do conjunto de resultados uma por uma sem a necessidade de chamar `fetchone()` explicitamente.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM minha_tabela")
+   for linha in cursor:
+       print(linha)
+   ```
+
+   Quando você itera diretamente pelo cursor, ele se comporta como um iterável e automaticamente chama `fetchone()` para você.
+
+4. Usando `fetchmany()`: Você também pode usar `fetchmany(n)` para recuperar um número específico de linhas do conjunto de resultados de uma só vez. Por exemplo, `fetchmany(5)` recuperaria as próximas 5 linhas como uma lista de tuplas.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM minha_tabela")
+   primeiras_cinco_linhas = cursor.fetchmany(5)
+   ```
+
+Dependendo do tamanho do conjunto de resultados e da quantidade de dados que você deseja recuperar, você pode escolher o método mais apropriado. Certifique-se de chamar `execute` antes de chamar qualquer um desses métodos para executar sua consulta SELECT. Além disso, é importante lembrar de chamar `commit` se você tiver realizado modificações no banco de dados que precisam ser confirmadas.

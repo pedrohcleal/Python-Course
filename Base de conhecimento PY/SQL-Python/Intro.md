@@ -151,3 +151,54 @@ Para excluir dados de uma tabela no SQLite usando Python, você pode usar o coma
    Isso excluirá a entrada correspondente na tabela `sqlite_sequence` para a tabela `minha_tabela`, o que fará com que o contador de sequência seja redefinido quando você inserir um novo registro na tabela.
 
 Lembre-se de que é importante chamar `commit` após a execução do comando `DELETE` para confirmar as alterações no banco de dados. Certifique-se de que você tem uma conexão aberta com o banco de dados e um cursor associado a essa conexão antes de executar os comandos.
+
+## Placeholders (segurança)
+
+O uso de placeholders é uma prática importante ao executar consultas SQL para aumentar a segurança e evitar ataques de SQL Injection. Em Python, você pode usar placeholders com a biblioteca `sqlite3` para garantir que os valores sejam escapados e tratados corretamente. Abaixo estão as etapas para usar placeholders ao executar consultas SQL no SQLite com Python:
+
+1. Importe a biblioteca `sqlite3` e conecte-se ao banco de dados:
+
+   ```python
+   import sqlite3
+
+   conn = sqlite3.connect('nome_do_banco_de_dados.db')
+   cursor = conn.cursor()
+   ```
+
+   Substitua `'nome_do_banco_de_dados.db'` pelo nome do seu banco de dados.
+
+2. Use placeholders na consulta SQL:
+
+   Ao criar sua consulta SQL, substitua os valores que você deseja inserir por placeholders `?`. Por exemplo:
+
+   ```python
+   nome = 'Alice'
+   idade = 30
+   cursor.execute("INSERT INTO minha_tabela (nome, idade) VALUES (?, ?)", (nome, idade))
+   ```
+
+   Os placeholders `?` serão preenchidos com os valores de `nome` e `idade`. Isso garante que os valores sejam devidamente escapados e evita possíveis injeções de SQL.
+
+3. Use placeholders com segurança em consultas dinâmicas:
+
+   Se você estiver criando consultas SQL dinâmicas, certifique-se de que as variáveis sejam passadas corretamente usando placeholders. Por exemplo:
+
+   ```python
+   nome = 'Alice'
+   idade = 30
+   consulta = "INSERT INTO minha_tabela (nome, idade) VALUES (?, ?)"
+   cursor.execute(consulta, (nome, idade))
+   ```
+
+   Certifique-se de que as variáveis usadas nos placeholders sejam passadas como uma tupla no segundo argumento de `execute`.
+
+4. Comitar as alterações e fechar a conexão:
+
+   Após executar a consulta, não se esqueça de chamar `commit` para salvar as alterações e, em seguida, fechar a conexão:
+
+   ```python
+   conn.commit()
+   conn.close()
+   ```
+
+Usar placeholders é uma prática fundamental para evitar problemas de segurança, como SQL Injection, pois a biblioteca `sqlite3` lida com a formatação segura dos valores para você, garantindo que os dados sejam tratados corretamente.

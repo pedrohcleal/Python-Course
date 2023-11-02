@@ -346,3 +346,64 @@ O CRUD é um acrônimo que representa as quatro operações básicas de manipula
    Este comando excluirá todos os registros da tabela `minha_tabela` onde a idade for menor que 30.
 
 Lembre-se de que é importante chamar `commit()` após a execução de comandos de atualização (CREATE, UPDATE, DELETE) para confirmar as alterações no banco de dados. Além disso, use com cautela a exclusão de registros, especialmente sem uma cláusula WHERE, para evitar perda de dados indesejada.
+
+## Update
+
+A operação UPDATE em SQL é usada para modificar registros existentes em uma tabela. Você pode atualizar valores em uma ou mais colunas de uma ou várias linhas de acordo com uma condição específica. A cláusula WHERE é comumente usada para especificar quais registros devem ser atualizados.
+
+A sintaxe básica de uma consulta SQL UPDATE é a seguinte:
+
+```sql
+UPDATE nome_da_tabela
+SET coluna1 = valor1, coluna2 = valor2, ...
+WHERE condição;
+```
+
+- `nome_da_tabela`: O nome da tabela na qual você deseja realizar a atualização.
+- `coluna1`, `coluna2`, ...: As colunas que você deseja atualizar.
+- `valor1`, `valor2`, ...: Os novos valores que você deseja atribuir às colunas especificadas.
+- `condição`: A condição que determina quais registros devem ser atualizados. Se você omitir a cláusula WHERE, todos os registros na tabela serão afetados.
+
+Aqui estão alguns exemplos de como usar a operação UPDATE com o SQLite3 em Python:
+
+1. Atualização de um único registro com uma condição:
+
+   ```python
+   cursor.execute("UPDATE minha_tabela SET idade = 31 WHERE nome = 'Alice'")
+   conn.commit()
+   ```
+
+   Este comando atualiza a coluna `idade` para 31 onde o nome é 'Alice' na tabela `minha_tabela`.
+
+2. Atualização de vários registros com base em uma condição:
+
+   ```python
+   cursor.execute("UPDATE minha_tabela SET idade = 31 WHERE idade < 30")
+   conn.commit()
+   ```
+
+   Neste exemplo, a idade é atualizada para 31 em todos os registros onde a idade for inferior a 30 na tabela `minha_tabela`.
+
+3. Atualização de várias colunas:
+
+   Você pode atualizar várias colunas ao mesmo tempo:
+
+   ```python
+   cursor.execute("UPDATE minha_tabela SET nome = 'Bob', idade = 32 WHERE nome = 'Alice'")
+   conn.commit()
+   ```
+
+   Isso atualiza o nome para 'Bob' e a idade para 32 onde o nome é 'Alice'.
+
+4. Atualização com base em uma subconsulta:
+
+   Você pode usar uma subconsulta na cláusula SET para atualizar com base em valores de outra tabela:
+
+   ```python
+   cursor.execute("UPDATE minha_tabela SET idade = (SELECT idade FROM outra_tabela WHERE nome = 'Alice') WHERE nome = 'Bob'")
+   conn.commit()
+   ```
+
+   Este comando atualiza a idade de 'Bob' com base no valor correspondente de 'Alice' em outra tabela.
+
+Lembre-se de chamar `commit()` após a execução da operação UPDATE para confirmar as alterações no banco de dados. Use com cuidado a operação UPDATE, pois ela pode afetar vários registros e é importante garantir que a cláusula WHERE restrinja a atualização aos registros desejados.

@@ -1,4 +1,4 @@
-# Intro Python + SQL
+# SQLite + Python
 
 O SQLite é um sistema de gerenciamento de banco de dados relacional (RDBMS) embutido, que significa que não requer um servidor ou configurações complexas para ser usado. O SQLite é muito popular no desenvolvimento de aplicativos devido à sua simplicidade, eficiência e facilidade de uso. No Python, você pode usar a biblioteca `sqlite3` para interagir com bancos de dados SQLite.
 

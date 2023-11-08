@@ -195,3 +195,83 @@ Para evitar injeção de SQL ao usar placeholders em consultas SQL, você está 
    Eduque sua equipe de desenvolvimento sobre as melhores práticas de segurança em relação às consultas SQL e à prevenção de injeção de SQL.
 
 Lembrando que a prevenção da injeção de SQL é uma parte crítica da segurança de aplicativos da web. Ao seguir as melhores práticas, você reduz significativamente o risco de vulnerabilidades desse tipo.
+
+## Como inserir valor usando dicionarios ou só utilizando iteráveis
+
+Para inserir valores em um banco de dados MySQL usando o `pymysql`, você pode usar dicionários ou iteráveis, como listas ou tuplas, dependendo de como você deseja fornecer os valores dos campos na sua consulta SQL. A seguir, mostrarei como inserir valores usando ambas as abordagens.
+
+Usando um dicionário:
+```python
+import pymysql
+
+# Dados a serem inseridos
+data = {
+    'campo1': 'valor1',
+    'campo2': 'valor2',
+    'campo3': 42
+}
+
+# Estabeleça uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    # Crie um cursor
+    cursor = connection.cursor()
+    
+    # Construa a consulta SQL inserindo valores do dicionário
+    table_name = 'sua_tabela'
+    columns = ', '.join(data.keys())
+    values = ', '.join(['%s'] * len(data))
+    query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
+    
+    # Execute a consulta com os valores do dicionário
+    cursor.execute(query, tuple(data.values()))
+    
+    # Faça o commit para aplicar as alterações
+    connection.commit()
+
+except pymysql.Error as e:
+    print(f"Erro ao inserir dados na tabela: {e}")
+
+finally:
+    # Feche o cursor e a conexão
+    cursor.close()
+    connection.close()
+```
+
+Usando uma lista ou tupla:
+```python
+import pymysql
+
+# Dados a serem inseridos como uma lista ou tupla
+data = ('valor1', 'valor2', 42)
+
+# Estabeleça uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    # Crie um cursor
+    cursor = connection.cursor()
+    
+    # Construa a consulta SQL inserindo valores da lista/tupla
+    table_name = 'sua_tabela'
+    query = f"INSERT INTO {table_name} (campo1, campo2, campo3) VALUES (%s, %s, %s)"
+    
+    # Execute a consulta com os valores da lista/tupla
+    cursor.execute(query, data)
+    
+    # Faça o commit para aplicar as alterações
+    connection.commit()
+
+except pymysql.Error as e:
+    print(f"Erro ao inserir dados na tabela: {e}")
+
+finally:
+    # Feche o cursor e a conexão
+    cursor.close()
+    connection.close()
+```
+
+Ambas as abordagens são válidas, e você pode escolher a que melhor se adapte ao seu cenário específico. A chave é garantir que os valores correspondam aos campos na tabela na ordem correta e usar placeholders (%s) para evitar a injeção de SQL. Certifique-se de lidar com exceções e realizar operações de forma segura, incluindo o uso do `commit` para confirmar as alterações no banco de dados e o fechamento adequado dos cursores e conexões para evitar vazamentos de recursos.
+
+

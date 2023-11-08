@@ -140,3 +140,58 @@ No `pymysql`, que é uma biblioteca Python usada para interagir com bancos de da
    Neste exemplo, você deve adaptar a estrutura da tabela e os valores que deseja inserir de acordo com suas necessidades.
 
 Lembre-se de que, ao executar operações que modificam o banco de dados, como o `TRUNCATE` ou `INSERT`, é importante lidar com exceções e realizar operações de forma segura, incluindo o uso do `commit` para confirmar as alterações no banco de dados e o fechamento adequado dos cursores e conexões para evitar vazamentos de recursos.
+
+## Como evitar sql injection ao usar placeholders
+
+Para evitar injeção de SQL ao usar placeholders em consultas SQL, você está no caminho certo, pois o uso de placeholders é uma das práticas mais eficazes para proteger seu código contra esse tipo de ataque. No entanto, você deve seguir algumas diretrizes específicas ao usar placeholders para garantir a segurança de suas consultas. Aqui estão algumas dicas:
+
+1. **Use Bibliotecas Seguras**:
+
+   Em vez de construir manualmente suas consultas SQL com strings interpoladas, use bibliotecas de acesso a banco de dados que suportam placeholders. A maioria das bibliotecas modernas, incluindo o `pymysql`, suporta essa funcionalidade. Ao usar essas bibliotecas, você delega a responsabilidade de lidar com os placeholders de maneira segura.
+
+2. **Não Concatene Dados Não Confiáveis**:
+
+   Nunca concatene diretamente dados de entrada do usuário em consultas SQL. Em vez disso, forneça os valores como argumentos separados para a função de execução da consulta. Por exemplo, não faça o seguinte:
+
+   ```python
+   user_input = request.form['username']
+   cursor.execute(f"SELECT * FROM users WHERE username = '{user_input}'")
+   ```
+
+   Em vez disso, use placeholders:
+
+   ```python
+   user_input = request.form['username']
+   cursor.execute("SELECT * FROM users WHERE username = %s", (user_input,))
+   ```
+
+3. **Evite Dados Não Sanitizados**:
+
+   Certifique-se de que os dados de entrada do usuário sejam devidamente sanitizados antes de usá-los em consultas. Isso inclui a validação e limpeza dos dados para remover qualquer característica maliciosa. No entanto, a melhor prática é confiar nos placeholders e não depender da sanitização.
+
+4. **Use Parâmetros Nomeados**:
+
+   Além dos marcadores de posição posicionais, algumas bibliotecas de acesso a banco de dados também suportam marcadores de posição nomeados. Isso pode tornar seu código mais legível e seguro, pois você faz referência aos valores por nome em vez de posição. Por exemplo:
+
+   ```python
+   user_input = request.form['username']
+   cursor.execute("SELECT * FROM users WHERE username = %(name)s", {'name': user_input})
+   ```
+
+5. **Limite as Permissões do Banco de Dados**:
+
+   Certifique-se de que sua aplicação tenha permissões mínimas no banco de dados. Evite conceder privilégios de superusuário, pois isso pode permitir que atacantes potenciais façam mais danos em caso de sucesso na injeção de SQL.
+
+6. **Auditoria e Monitoramento**:
+
+   Implemente auditoria e monitoramento de consultas SQL em seu aplicativo para identificar atividades suspeitas ou tentativas de injeção de SQL.
+
+7. **Atualizações e Patches**:
+
+   Mantenha sua biblioteca de acesso a banco de dados atualizada para garantir que qualquer correção de segurança seja aplicada.
+
+8. **Treinamento e Conscientização**:
+
+   Eduque sua equipe de desenvolvimento sobre as melhores práticas de segurança em relação às consultas SQL e à prevenção de injeção de SQL.
+
+Lembrando que a prevenção da injeção de SQL é uma parte crítica da segurança de aplicativos da web. Ao seguir as melhores práticas, você reduz significativamente o risco de vulnerabilidades desse tipo.

@@ -274,4 +274,55 @@ finally:
 
 Ambas as abordagens são válidas, e você pode escolher a que melhor se adapte ao seu cenário específico. A chave é garantir que os valores correspondam aos campos na tabela na ordem correta e usar placeholders (%s) para evitar a injeção de SQL. Certifique-se de lidar com exceções e realizar operações de forma segura, incluindo o uso do `commit` para confirmar as alterações no banco de dados e o fechamento adequado dos cursores e conexões para evitar vazamentos de recursos.
 
+## Fetchall & Fetchone
 
+No contexto do acesso a bancos de dados com bibliotecas como o `pymysql`, os métodos `cursor.execute`, `cursor.fetchall` e `cursor.fetchone` são usados para executar consultas SQL e recuperar resultados do banco de dados. Aqui está uma descrição de cada um deles:
+
+1. **`cursor.execute(query, params=None)`**:
+
+   O método `cursor.execute` é usado para executar uma consulta SQL no banco de dados. Ele aceita dois argumentos principais:
+
+   - `query`: Uma string contendo a consulta SQL que você deseja executar. Você pode usar marcadores de posição (%s) na consulta para substituí-los por valores fornecidos em uma tupla ou dicionário (o argumento `params`).
+
+   - `params` (opcional): Um valor que pode ser uma tupla ou um dicionário contendo os valores que serão substituídos nos marcadores de posição na consulta. Por exemplo, se a sua consulta contiver `%s` como marcador de posição, você pode fornecer uma tupla de valores que corresponderão aos marcadores de posição na ordem em que aparecem na consulta.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT * FROM tabela WHERE coluna1 = %s AND coluna2 = %s", (valor1, valor2))
+   ```
+
+   Após a execução bem-sucedida da consulta, você pode prosseguir para recuperar os resultados.
+
+2. **`cursor.fetchall()`**:
+
+   O método `cursor.fetchall` é usado para recuperar todos os resultados de uma consulta SQL que foi executada com `cursor.execute`. Ele retorna os resultados como uma lista de tuplas, onde cada tupla representa uma linha do conjunto de resultados. Se a consulta não retornar nenhum resultado, o método `fetchall` retornará uma lista vazia.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM pessoas")
+   resultados = cursor.fetchall()
+   for resultado in resultados:
+       print(resultado[0], resultado[1])
+   ```
+
+   Neste exemplo, `resultados` conterá uma lista de tuplas, onde cada tupla contém o nome e a idade de uma pessoa da tabela.
+
+3. **`cursor.fetchone()`**:
+
+   O método `cursor.fetchone` é usado para recuperar apenas a próxima linha do conjunto de resultados de uma consulta. Ele retorna uma única tupla representando a próxima linha de resultados. Se não houver mais resultados, o método retornará `None`.
+
+   Exemplo:
+
+   ```python
+   cursor.execute("SELECT nome, idade FROM pessoas")
+   resultado = cursor.fetchone()
+   while resultado is not None:
+       print(resultado[0], resultado[1])
+       resultado = cursor.fetchone()
+   ```
+
+   Neste exemplo, `fetchone` é usado para recuperar uma linha de cada vez em um loop até que não haja mais resultados.
+
+Esses métodos são fundamentais ao trabalhar com bancos de dados em Python e são usados para executar consultas, recuperar dados do banco de dados e iterar sobre os resultados. É importante lembrar de fechar o cursor e a conexão adequadamente após a conclusão de todas as operações para evitar vazamentos de recursos.

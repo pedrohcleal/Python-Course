@@ -38,9 +38,13 @@
    - `str.isdigit()`: Verifica se a string contém apenas dígitos.
    - `str.isalpha()`: Verifica se a string contém apenas letras.
    - `str.isalnum()`: Verifica se a string contém apenas letras e dígitos.
-   - `isspace()`: Verifica se todos os caracteres na string são espaços em branco.
-   - `isupper()`: Verifica se todos os caracteres na string são maiúsculos.
-   - `islower()`: Verifica se todos os caracteres na string são minúsculos.
+   - `str.isspace()`: Verifica se todos os caracteres na string são espaços em branco.
+   - `str.isupper()`: Verifica se todos os caracteres na string são maiúsculos.
+   - `str.islower()`: Verifica se todos os caracteres na string são minúsculos.
+   - `str.istitle()`: Retorna True se a string está em formato de título (cada palavra começa com maiúscula).
+   - `str.isspace()`: Retorna True se todos os caracteres na string são espaços em branco.
+   - `str.isdecimal()`: Retorna True se todos os caracteres na string são decimais (0-9).
+
 
 ### Comandos de CONDIÇÃO:
 

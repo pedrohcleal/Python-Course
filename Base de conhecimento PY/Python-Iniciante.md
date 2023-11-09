@@ -38,9 +38,11 @@
    - `str.isdigit()`: Verifica se a string contém apenas dígitos.
    - `str.isalpha()`: Verifica se a string contém apenas letras.
    - `str.isalnum()`: Verifica se a string contém apenas letras e dígitos.
+   - `isspace()`: Verifica se todos os caracteres na string são espaços em branco.
+   - `isupper()`: Verifica se todos os caracteres na string são maiúsculos.
+   - `islower()`: Verifica se todos os caracteres na string são minúsculos.
 
 ### Comandos de CONDIÇÃO:
-Em Python, os comandos de condição são usados para executar blocos de código com base em condições lógicas. Os comandos de condição mais comuns são:
 
 1. Comando `if`:
    O comando `if` é usado para executar um bloco de código se uma condição for avaliada como verdadeira.
@@ -124,6 +126,17 @@ for elemento in sequência:
         continue
     # código a ser executado, que será ignorado se a condição for verdadeira
 ```
+
+6. Comando "for" + "enumerate":
+   
+```python
+frutas = ['maçã', 'banana', 'uva', 'laranja']
+
+for indice, fruta in enumerate(frutas):
+    print(f'Índice: {indice}, Fruta: {fruta}')
+```
+
+O `enumerate` é usado para obter tanto o índice quanto o valor da fruta ao percorrer a lista `frutas`. O loop `for` então exibe essa informação de uma forma formatada.
 
 Esses são os principais comandos de repetição em Python. Eles permitem que você execute um bloco de código várias vezes ou itere sobre elementos em uma sequência.
 

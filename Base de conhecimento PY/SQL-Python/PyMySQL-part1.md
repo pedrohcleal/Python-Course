@@ -366,3 +366,35 @@ finally:
 No exemplo acima, `campo1` e `campo2` são os campos na tabela pelos quais você deseja filtrar os registros a serem deletados. `valores_para_deletar` é uma tupla contendo os valores que correspondem aos critérios da cláusula `WHERE`. Isso permite deletar registros que tenham o valor 'valor1' no `campo1` e 'valor2' no `campo2`.
 
 Ao usar placeholders, os valores são passados separadamente da consulta SQL, o que previne a injeção de SQL, uma vez que o banco de dados trata os valores como dados, não como parte da própria consulta. Certifique-se de ajustar os campos, valores e condições conforme necessário para a sua situação específica.
+
+## ```pymysql.cursors.DictCursor```
+
+No `pymysql`, o `DictCursor` é uma variação do cursor que retorna os resultados das consultas como dicionários em vez de tuplas padrão. Isso significa que em vez de acessar os valores por índice, você pode acessá-los por nome de coluna, o que muitas vezes torna o código mais legível e mais fácil de entender. Aqui está como usar o `DictCursor`:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost',
+                             user='seu_usuario',
+                             password='sua_senha',
+                             db='seu_banco_de_dados',
+                             cursorclass=pymysql.cursors.DictCursor)  # Especifica o uso de DictCursor
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando DictCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+        results = cursor.fetchall()
+
+        for row in results:
+            # Os resultados são retornados como dicionários
+            print(row['nome_da_coluna'])
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+Ao usar `pymysql.cursors.DictCursor`, o objeto de cursor retornado pela conexão executará consultas SQL e retornará os resultados como dicionários. Isso permite acessar os valores recuperados pelos nomes das colunas, facilitando a compreensão do código, especialmente em consultas mais complexas ou ao lidar com grandes conjuntos de dados.

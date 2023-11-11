@@ -326,3 +326,43 @@ No contexto do acesso a bancos de dados com bibliotecas como o `pymysql`, os mé
    Neste exemplo, `fetchone` é usado para recuperar uma linha de cada vez em um loop até que não haja mais resultados.
 
 Esses métodos são fundamentais ao trabalhar com bancos de dados em Python e são usados para executar consultas, recuperar dados do banco de dados e iterar sobre os resultados. É importante lembrar de fechar o cursor e a conexão adequadamente após a conclusão de todas as operações para evitar vazamentos de recursos.
+
+## DELETE, WHERE e placeholders com PyMySQL
+
+Para apagar valores de uma tabela em um banco de dados MySQL usando o `pymysql`, você pode empregar a cláusula `DELETE` juntamente com a cláusula `WHERE` para especificar as condições dos registros a serem removidos. A utilização de placeholders ajuda a prevenir a injeção de SQL ao passar parâmetros para a consulta. Aqui está um exemplo de como fazer isso:
+
+```python
+import pymysql
+
+# Dados para a cláusula WHERE (valores a serem deletados)
+valores_para_deletar = ('valor1', 'valor2')
+
+# Estabelecer uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    # Criar um cursor
+    cursor = connection.cursor()
+
+    # Construir a consulta DELETE com WHERE e placeholders
+    table_name = 'sua_tabela'
+    query = f"DELETE FROM {table_name} WHERE campo1 = %s AND campo2 = %s"
+
+    # Executar a consulta DELETE com os valores dos placeholders
+    cursor.execute(query, valores_para_deletar)
+
+    # Fazer o commit para aplicar as alterações
+    connection.commit()
+
+except pymysql.Error as e:
+    print(f"Erro ao deletar dados da tabela: {e}")
+
+finally:
+    # Fechar o cursor e a conexão
+    cursor.close()
+    connection.close()
+```
+
+No exemplo acima, `campo1` e `campo2` são os campos na tabela pelos quais você deseja filtrar os registros a serem deletados. `valores_para_deletar` é uma tupla contendo os valores que correspondem aos critérios da cláusula `WHERE`. Isso permite deletar registros que tenham o valor 'valor1' no `campo1` e 'valor2' no `campo2`.
+
+Ao usar placeholders, os valores são passados separadamente da consulta SQL, o que previne a injeção de SQL, uma vez que o banco de dados trata os valores como dados, não como parte da própria consulta. Certifique-se de ajustar os campos, valores e condições conforme necessário para a sua situação específica.

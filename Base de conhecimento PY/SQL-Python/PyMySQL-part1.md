@@ -505,6 +505,8 @@ finally:
 
 `scroll()` é útil para situações em que você precisa percorrer grandes conjuntos de resultados de maneira eficiente, movendo o cursor para posições específicas ao invés de carregar todos os resultados de uma vez na memória do cliente.
 
+## `rowcount`, `rownumber` e `lastrowid`
+
 `rowcount`, `rownumber` e `lastrowid` são atributos ou métodos associados a conexões ou cursores em bibliotecas de acesso a banco de dados. Cada um deles fornece informações diferentes relacionadas aos resultados de consultas executadas em um banco de dados.
 
 ### `rowcount`
@@ -550,7 +552,5 @@ try:
 finally:
     connection.close()
 ```
-
-## rowcount, rownumber e lastrowid
 
 Estes atributos e métodos fornecem informações úteis e específicas sobre as operações realizadas em bancos de dados, permitindo obter dados como o número de linhas afetadas, o ID do último registro inserido ou, em alguns contextos, o número de linha dentro de um conjunto de resultados retornado pela consulta.

@@ -504,3 +504,53 @@ finally:
 ```
 
 `scroll()` é útil para situações em que você precisa percorrer grandes conjuntos de resultados de maneira eficiente, movendo o cursor para posições específicas ao invés de carregar todos os resultados de uma vez na memória do cliente.
+
+`rowcount`, `rownumber` e `lastrowid` são atributos ou métodos associados a conexões ou cursores em bibliotecas de acesso a banco de dados. Cada um deles fornece informações diferentes relacionadas aos resultados de consultas executadas em um banco de dados.
+
+### `rowcount`
+
+`rowcount` é um atributo disponível em objetos de cursor em várias bibliotecas de acesso a banco de dados, incluindo o `pymysql`. Ele retorna o número de linhas afetadas pela operação SQL mais recente executada com o cursor. Para operações de seleção (como `SELECT`), `rowcount` pode não retornar um valor preciso, ou seja, pode retornar `-1` ou `0` em muitos casos, já que não se aplica a operações de busca.
+
+Exemplo de uso:
+
+```python
+import pymysql
+
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM sua_tabela WHERE id = 10")
+        print(cursor.rowcount)  # Número de linhas afetadas pela operação DELETE
+
+finally:
+    connection.close()
+```
+
+### `rownumber`
+
+O conceito de `rownumber` não está diretamente associado a bibliotecas de acesso a banco de dados como o `pymysql`. No entanto, em contextos SQL, pode ser usado para denotar uma função que atribui um número de linha sequencial a cada linha de um conjunto de resultados, mas isso é mais comum em bancos de dados como o PostgreSQL, SQL Server ou Oracle.
+
+### `lastrowid`
+
+`lastrowid` é um atributo específico do `pymysql`. Ele retorna o ID do último registro inserido em uma tabela com uma coluna autoincrementável (como uma chave primária autoincrementável) após uma operação de `INSERT`. Este atributo é útil quando se deseja recuperar o ID do último registro inserido.
+
+Exemplo de uso:
+
+```python
+import pymysql
+
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO sua_tabela (nome) VALUES ('Novo registro')")
+        print(cursor.lastrowid)  # ID do último registro inserido
+
+finally:
+    connection.close()
+```
+
+## rowcount, rownumber e lastrowid
+
+Estes atributos e métodos fornecem informações úteis e específicas sobre as operações realizadas em bancos de dados, permitindo obter dados como o número de linhas afetadas, o ID do último registro inserido ou, em alguns contextos, o número de linha dentro de um conjunto de resultados retornado pela consulta.

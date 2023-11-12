@@ -398,3 +398,109 @@ finally:
 ```
 
 Ao usar `pymysql.cursors.DictCursor`, o objeto de cursor retornado pela conexão executará consultas SQL e retornará os resultados como dicionários. Isso permite acessar os valores recuperados pelos nomes das colunas, facilitando a compreensão do código, especialmente em consultas mais complexas ou ao lidar com grandes conjuntos de dados.
+
+#  `SSCursor`, `SSDictCursor` e `scroll.()`
+
+No contexto do `pymysql`, as opções `SSCursor` e `SSDictCursor` são tipos especiais de cursores que oferecem funcionalidades específicas para manipular grandes conjuntos de resultados no banco de dados.
+
+### SSCursor
+
+`SSCursor`, ou "Server Side Cursor", é um cursor no `pymysql` que é otimizado para recuperar grandes conjuntos de resultados sem armazenar todos os resultados na memória do cliente de uma vez. Em vez disso, ele faz uso de um cursor do lado do servidor para percorrer os resultados à medida que são necessários, minimizando a quantidade de memória usada.
+
+Exemplo de uso:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSCursor
+)
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando SSCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Permite iterar sobre os resultados sem carregar todos os resultados de uma vez
+        for row in cursor:
+            print(row)
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+### SSDictCursor
+
+`SSDictCursor`, ou "Server Side DictCursor", é uma variante do `SSCursor` que, além de usar o cursor do lado do servidor, também retorna os resultados como dicionários. Isso oferece a vantagem de acessar os valores das colunas pelo nome em vez de índices numéricos, facilitando a leitura e manipulação dos dados.
+
+Exemplo de uso:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSDictCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSDictCursor
+)
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando SSDictCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Iterar sobre os resultados retornados como dicionários
+        for row in cursor:
+            print(row)
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+### Scroll
+
+`scroll()` é um método que pode ser utilizado com os cursores SSCursor e SSDictCursor para navegar pelos resultados. Ele permite mover o cursor para uma posição específica nos resultados. Por exemplo, você pode mover o cursor para uma posição relativa ao início dos resultados ou uma posição relativa à posição atual.
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSCursor
+)
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Mover para a terceira linha (posição 2, considerando 0-index)
+        cursor.scroll(2, mode='absolute')
+        result = cursor.fetchone()
+        print(result)
+
+        # Mover para a segunda linha a partir da posição atual
+        cursor.scroll(2, mode='relative')
+        result = cursor.fetchone()
+        print(result)
+
+finally:
+    connection.close()
+```
+
+`scroll()` é útil para situações em que você precisa percorrer grandes conjuntos de resultados de maneira eficiente, movendo o cursor para posições específicas ao invés de carregar todos os resultados de uma vez na memória do cliente.

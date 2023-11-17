@@ -179,3 +179,76 @@ No Django, o sistema de URLs desempenha um papel fundamental na correspondência
   ```
 
 O sistema de URLs do Django oferece flexibilidade para organizar e estruturar as URLs de um aplicativo web de maneira clara e eficiente. Ele também facilita a manutenção e expansão de projetos à medida que crescem em complexidade.
+
+## Alinhamento de URL
+
+No Django, a organização e o alinhamento de URLs geralmente são tratados no arquivo `urls.py` de cada aplicativo, bem como no arquivo `urls.py` do projeto. Aqui estão algumas práticas comuns para organizar e alinhar URLs de maneira clara e legível:
+
+1. **Indentação e Alinhamento:**
+   - Use uma indentação consistente para tornar o código fácil de ler. Normalmente, uma indentação de 4 espaços é preferida, mas pode variar dependendo das preferências da equipe.
+
+   ```python
+   from django.urls import path
+   from . import views
+
+   urlpatterns = [
+       path('url1/', views.view1, name='name1'),
+       path('url2/', views.view2, name='name2'),
+       path('url3/', views.view3, name='name3'),
+   ]
+   ```
+
+2. **Quebras de Linha:**
+   - Se a lista de URLs estiver ficando muito longa, considere usar quebras de linha para tornar o código mais legível.
+
+   ```python
+   urlpatterns = [
+       path('url1/', views.view1, name='name1'),
+       path('url2/', views.view2, name='name2'),
+       path('url3/', views.view3, name='name3'),
+       # ... muitas outras URLs ...
+   ]
+   ```
+
+3. **Uso de `include`:**
+   - Ao usar o `include` para incluir URLs de outros aplicativos, você pode manter as definições de URLs do aplicativo alinhadas.
+
+   ```python
+   from django.urls import path, include
+   from . import views
+
+   urlpatterns = [
+       path('app1/', include('app1.urls')),
+       path('app2/', include('app2.urls')),
+       # ...
+   ]
+   ```
+
+4. **Uso de Grupos de URLs (`path()` ou `re_path()`):**
+   - À medida que sua aplicação cresce, você pode começar a usar grupos de URLs para organizar ainda mais seu código. Isso pode ajudar a manter as URLs relacionadas alinhadas.
+
+   ```python
+   from django.urls import path, re_path
+   from . import views
+
+   urlpatterns = [
+       path('group1/', [
+           path('url1/', views.view1, name='name1'),
+           path('url2/', views.view2, name='name2'),
+       ]),
+       re_path(r'^group2/(?P<param>\d+)/$', views.group2_view, name='group2_name'),
+       # ...
+   ]
+   ```
+
+5. **Comentários:**
+   - Adicione comentários conforme necessário para documentar a finalidade de grupos de URLs ou URLs individuais.
+
+   ```python
+   urlpatterns = [
+       path('url1/', views.view1, name='name1'),  # Esta URL faz algo específico
+       # ...
+   ]
+   ```
+
+Lembre-se de que a clareza e a legibilidade são fundamentais. Escolha um estilo que faça sentido para você e sua equipe, mantenha a consistência e ajuste conforme necessário à medida que o projeto evolui. O objetivo é garantir que outros desenvolvedores (e você mesmo no futuro) possam entender facilmente a estrutura de URLs do seu aplicativo.

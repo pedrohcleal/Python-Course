@@ -75,3 +75,95 @@ def my_view(request):
 ```
 
 É importante usar os códigos de status de respostas HTTP corretamente para fornecer informações úteis aos clientes e servidores.
+
+## URLs
+
+No Django, as URLs são usadas para mapear URLs para vistas. Elas são definidas no arquivo `urls.py` do seu projeto Django.
+
+O arquivo `urls.py` contém uma lista de padrões de URLs. Cada padrão de URL consiste em uma expressão regular e uma função de visualização. Quando um cliente solicita uma URL, o Django compara a URL com os padrões de URLs. Se uma correspondência for encontrada, a função de visualização correspondente é chamada.
+
+**Expressões regulares**
+
+As expressões regulares são usadas para definir o formato das URLs que devem corresponder a um padrão. Elas são uma forma poderosa de definir padrões complexos.
+
+Para obter mais informações sobre expressões regulares, consulte a documentação do Python.
+
+**Funções de visualização**
+
+As funções de visualização são usadas para gerar a resposta para uma solicitação de URL. Elas são funções Python que recebem um objeto `HttpRequest` como entrada e retornam um objeto `HttpResponse` como saída.
+
+Para obter mais informações sobre funções de visualização, consulte a documentação do Django.
+
+**Exemplos de URLs**
+
+Aqui estão alguns exemplos de URLs que podem ser definidas no Django:
+
+```python
+# URL para a página inicial
+path('', views.home, name='home')
+
+# URL para a página de contato
+path('contato/', views.contato, name='contato')
+
+# URL para a página de listagem de produtos
+path('produtos/', views.produtos_list, name='produtos')
+
+# URL para a página de detalhes de um produto
+path('produtos/<int:produto_id>/', views.produto_details, name='produto_details')
+```
+
+No primeiro exemplo, a URL `/` é mapeada para a função de visualização `home`. Esta função de visualização é responsável por gerar a página inicial do site.
+
+No segundo exemplo, a URL `/contato/` é mapeada para a função de visualização `contato`. Esta função de visualização é responsável por gerar a página de contato do site.
+
+No terceiro exemplo, a URL `/produtos/` é mapeada para a função de visualização `produtos_list`. Esta função de visualização é responsável por gerar uma lista de produtos.
+
+No quarto exemplo, a URL `/produtos/<int:produto_id>/` é mapeada para a função de visualização `produto_details`. Esta função de visualização é responsável por gerar os detalhes de um produto específico.
+
+**Separando as URLs em arquivos diferentes**
+
+Se o seu projeto Django for grande, você pode querer separar as URLs em arquivos diferentes. Isso pode tornar o código mais organizado e fácil de manter.
+
+Para fazer isso, você pode criar um arquivo `urls.py` para cada aplicação do seu projeto. Em seguida, você pode importar os arquivos `urls.py` das aplicações em seu arquivo `urls.py` principal.
+
+**Exemplo**
+
+Aqui está um exemplo de como separar as URLs em arquivos diferentes:
+
+```python
+# urls.py principal
+
+from django.urls import include, path
+
+from core import urls as core_urls
+from produtos import urls as produtos_urls
+
+urlpatterns = [
+    path('', include(core_urls)),
+    path('produtos/', include(produtos_urls)),
+]
+
+# core/urls.py
+
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+
+# produtos/urls.py
+
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.produtos_list, name='produtos'),
+    path('<int:produto_id>/', views.produto_details, name='produto_details'),
+]
+```
+
+Neste exemplo, o arquivo `urls.py` principal importa os arquivos `urls.py` das aplicações `core` e `produtos`. O arquivo `core/urls.py` contém as URLs para a página inicial do site. O arquivo `produtos/urls.py` contém as URLs para a listagem e os detalhes de produtos.
+

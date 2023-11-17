@@ -75,3 +75,6 @@ def my_view(request):
 ```
 
 É importante usar os códigos de status de respostas HTTP corretamente para fornecer informações úteis aos clientes e servidores.
+
+##  httprequests e http response
+

@@ -126,3 +126,69 @@ No contexto de templates no Django, "partials" refere-se a trechos de código HT
 - **Nomeando Convenções:** O uso de nomes que começam com um sublinhado (`_`) para partials é uma convenção comum, mas não é obrigatório. O importante é escolher um sistema que faça sentido para sua equipe e manter a consistência.
 
 O uso de partials e `include` é uma prática recomendada no desenvolvimento web Django, facilitando a criação de templates mais limpos, organizados e fáceis de manter.
+
+## Arquivos estáticos
+
+Em Django, os arquivos estáticos são recursos como imagens, arquivos CSS, JavaScript e outros tipos de arquivos que não são gerados dinamicamente pelo servidor web, mas permanecem inalterados durante a execução da aplicação. Esses arquivos são servidos diretamente pelo servidor web, sem processamento pela aplicação Django.
+
+Os arquivos estáticos são essenciais para adicionar estilos, scripts e outros recursos visuais e interativos às páginas web. Aqui está uma descrição dos principais componentes relacionados aos arquivos estáticos em um projeto Django:
+
+### 1. **Diretório `static`:**
+   - Em cada aplicativo Django, você pode criar um diretório chamado `static` para armazenar seus arquivos estáticos. Este diretório deve estar localizado no mesmo nível que o diretório `templates`.
+
+     ```plaintext
+     meu_app/
+     ├── static/
+     │   └── meu_app/
+     │       ├── css/
+     │       │   └── style.css
+     │       └── js/
+     │           └── script.js
+     └── templates/
+         └── meu_app/
+             └── template.html
+     ```
+
+### 2. **Definição de Arquivos Estáticos no HTML:**
+   - Para incluir arquivos estáticos em seus templates HTML, use a tag `{% load static %}` para carregar o conjunto de tags estáticas do Django. Em seguida, use a tag `{% static %}` para construir a URL do arquivo estático.
+
+     ```html
+     {% load static %}
+
+     <!DOCTYPE html>
+     <html>
+     <head>
+         <link rel="stylesheet" type="text/css" href="{% static 'meu_app/css/style.css' %}">
+     </head>
+     <body>
+         <!-- Conteúdo da página -->
+         <script src="{% static 'meu_app/js/script.js' %}"></script>
+     </body>
+     </html>
+     ```
+
+### 3. **Configurações em `settings.py`:**
+   - O arquivo de configuração `settings.py` do seu projeto Django contém configurações relacionadas a arquivos estáticos. Verifique se a configuração `STATIC_URL` está configurada corretamente. O valor padrão é `'/static/'`.
+
+     ```python
+     # settings.py
+
+     STATIC_URL = '/static/'
+     ```
+
+### 4. **Coleta de Arquivos Estáticos para Produção:**
+   - Para aplicativos em produção, você deve coletar todos os arquivos estáticos em um diretório centralizado. Use o comando `collectstatic` para realizar essa tarefa.
+
+     ```bash
+     python manage.py collectstatic
+     ```
+
+   - Isso copiará todos os arquivos estáticos de todos os aplicativos para o diretório definido em `STATIC_ROOT` em seu arquivo `settings.py`.
+
+### 5. **Uso de `whitenoise` ou Servidores de Arquivos Estáticos:**
+   - Em ambientes de produção, você pode optar por usar o middleware `whitenoise` ou servidores web dedicados (como Nginx ou Apache) para servir arquivos estáticos de maneira mais eficiente.
+
+### 6. **Arquivos Estáticos no Django Admin:**
+   - O Django Admin também lida automaticamente com os arquivos estáticos necessários para sua interface. Certifique-se de que a URL `/static/admin/` está configurada corretamente para que os estilos e scripts do Django Admin sejam carregados corretamente.
+
+O uso adequado de arquivos estáticos é crucial para criar interfaces web atraentes e interativas. Ao seguir as convenções do Django para arquivos estáticos, você garante uma organização clara e eficiente desses recursos em seu projeto.

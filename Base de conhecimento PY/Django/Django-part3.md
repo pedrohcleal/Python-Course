@@ -67,3 +67,62 @@ Neste exemplo:
 - O conteúdo do bloco `title` em `page.html` substitui o conteúdo do bloco `title` em `base.html`, e assim por diante.
 
 Quando você renderiza `page.html`, ele incluirá a estrutura de `base.html` e substituirá ou adicionar o conteúdo específico definido no próprio template `page.html`. Isso proporciona uma maneira eficaz de organizar e reutilizar código em seus projetos Django.
+
+## partials e include para separar trechos de templates
+
+No contexto de templates no Django, "partials" refere-se a trechos de código HTML ou blocos de conteúdo que são separados e reutilizados em vários templates. A diretiva `include` é uma ferramenta fundamental para implementar partials, permitindo que você inclua o conteúdo de um arquivo em um local específico de outro template. Isso é útil para evitar a duplicação de código e manter uma estrutura de código modular e fácil de manter.
+
+### Implementando Partials com `include`:
+
+1. **Criação de Partial (ex. `_header.html`):**
+   - Crie um arquivo HTML que contenha o trecho de código que você deseja reutilizar. Nomeie-o com um prefixo de sublinhado para indicar que é um partial.
+
+     ```html
+     <!-- _header.html -->
+
+     <header>
+         <h1>Meu Site</h1>
+         <nav>
+             <!-- Menu de navegação -->
+         </nav>
+     </header>
+     ```
+
+2. **Uso de `include` em Outro Template:**
+   - Em outros templates onde você deseja incluir esse trecho, use a tag `{% include %}`.
+
+     ```html
+     <!-- outro_template.html -->
+
+     {% include '_header.html' %}
+
+     <div id="content">
+         <h2>Conteúdo da Página</h2>
+         <p>Este é o conteúdo específico da página.</p>
+     </div>
+
+     <footer>
+         <p>&copy; 2023 Meu Site</p>
+     </footer>
+     ```
+
+3. **Renderização Final:**
+   - Quando o template `outro_template.html` é renderizado, o conteúdo do arquivo `_header.html` é incluído no local onde a tag `{% include '_header.html' %}` foi colocada.
+
+### Vantagens:
+
+- **Reutilização de Código:** Ao usar partials e `include`, você pode reutilizar facilmente trechos de código em vários templates, evitando a duplicação e tornando o código mais limpo e modular.
+
+- **Manutenção Simples:** Se você precisar fazer alterações no trecho de código que está sendo reutilizado, só precisará fazer essa alteração em um único local (no arquivo partial), e as mudanças serão refletidas em todos os lugares onde o partial é incluído.
+
+### Considerações Adicionais:
+
+- **Variáveis e Contexto:** Você também pode passar variáveis para partials usando o argumento `with` na tag `{% include %}`. Isso permite personalizar o conteúdo do partial com base no contexto do template pai.
+
+   ```html
+   {% include '_header.html' with user=usuario %}
+   ```
+
+- **Nomeando Convenções:** O uso de nomes que começam com um sublinhado (`_`) para partials é uma convenção comum, mas não é obrigatório. O importante é escolher um sistema que faça sentido para sua equipe e manter a consistência.
+
+O uso de partials e `include` é uma prática recomendada no desenvolvimento web Django, facilitando a criação de templates mais limpos, organizados e fáceis de manter.

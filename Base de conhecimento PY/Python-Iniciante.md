@@ -28,10 +28,6 @@
    # Fatiamento
    sub_string = minha_string[7:13]       # 'é incrí'
    substring_invertida = minha_string[::-1]  # '!levnírcni é nohtyP'
-   
-   print(primeiro_caractere, quinto_caractere, ultimo_caractere)
-   print(sub_string)
-   print(substring_invertida)
    ```
 5. Busca e substituição:
    - `str.find()`: Retorna o índice da primeira ocorrência de uma substring.

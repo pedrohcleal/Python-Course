@@ -16,25 +16,43 @@
 3. Acesso a caracteres e fatiamento de strings:
    - Indexação: Acessa um caractere específico da string usando um índice.
    - Fatiamento: Seleciona uma parte da string com base em intervalos.
-
-4. Busca e substituição:
+   ```python
+   # Exemplo de acesso a caracteres e fatiamento em strings
+   minha_string = "Python é incrível!"
+   
+   # Acesso a caracteres
+   primeiro_caractere = minha_string[0]  # 'P'
+   quinto_caractere = minha_string[4]    # 'o'
+   ultimo_caractere = minha_string[-1]   # '!'
+   
+   # Fatiamento
+   sub_string = minha_string[7:13]       # 'é incrí'
+   substring_invertida = minha_string[::-1]  # '!levnírcni é nohtyP'
+   
+   print(primeiro_caractere, quinto_caractere, ultimo_caractere)
+   print(sub_string)
+   print(substring_invertida)
+   ```
+5. Busca e substituição:
    - `str.find()`: Retorna o índice da primeira ocorrência de uma substring.
    - `str.rfind()`: Retorna o índice da última ocorrência de uma substring.
    - `str.startswith()`: Verifica se uma string começa com uma substring.
    - `str.endswith()`: Verifica se uma string termina com uma substring.
    - `str.replace()`: Substitui todas as ocorrências de uma substring por outra.
 
-5. Separação e junção:
+6. Separação e junção:
    - `str.split()`: Divide a string em uma lista de substrings com base em um separador.
    - `str.splitlines()`: Divide a string em uma lista de substrings em quebras de linha.
    - `str.join()`: Concatena uma lista de strings usando a string como separador.
+   - `str.zfill(width)`: preenche uma string com zeros à esquerda para atingir o comprimento.
 
-6. Remoção de espaços em branco:
+
+7. Remoção de espaços em branco:
    - `str.strip()`: Remove espaços em branco no início e no final da string.
    - `str.lstrip()`: Remove espaços em branco no início da string.
    - `str.rstrip()`: Remove espaços em branco no final da string.
 
-7. Verificação de tipo de caracteres:
+8. Verificação de tipo de caracteres:
    - `str.isdigit()`: Verifica se a string contém apenas dígitos.
    - `str.isalpha()`: Verifica se a string contém apenas letras.
    - `str.isalnum()`: Verifica se a string contém apenas letras e dígitos.

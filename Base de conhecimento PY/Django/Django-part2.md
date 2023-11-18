@@ -252,3 +252,114 @@ No Django, a organização e o alinhamento de URLs geralmente são tratados no a
    ```
 
 Lembre-se de que a clareza e a legibilidade são fundamentais. Escolha um estilo que faça sentido para você e sua equipe, mantenha a consistência e ajuste conforme necessário à medida que o projeto evolui. O objetivo é garantir que outros desenvolvedores (e você mesmo no futuro) possam entender facilmente a estrutura de URLs do seu aplicativo.
+
+## Apps
+
+No Django, os "apps" (aplicações) são módulos reutilizáveis que encapsulam funcionalidades específicas e podem ser conectados a vários projetos Django. Cada aplicativo geralmente consiste em modelos, visualizações, URLs, arquivos estáticos e outros componentes necessários para realizar uma funcionalidade específica. Aqui estão as etapas básicas para criar e usar aplicativos no Django:
+
+### Criando um Aplicativo:
+
+1. **Usando o Comando `startapp`:**
+   - O Django fornece um comando de gerenciamento para criar um novo aplicativo. No terminal, execute o seguinte comando:
+
+     ```bash
+     python manage.py startapp nome_do_app
+     ```
+
+   Isso criará uma estrutura de diretórios para o seu aplicativo.
+
+2. **Configuração Básica:**
+   - Dentro do diretório do aplicativo, você encontrará arquivos como `models.py`, `views.py`, `urls.py`, entre outros. Esses arquivos são usados para definir modelos de banco de dados, lógica de visualização e mapeamento de URLs para visualizações, respectivamente.
+
+### Registrando o Aplicativo no Projeto:
+
+1. **Adicionando ao `INSTALLED_APPS`:**
+   - No arquivo `settings.py` do seu projeto, há uma lista chamada `INSTALLED_APPS`. Adicione o nome do seu aplicativo a essa lista para registrá-lo no projeto.
+
+     ```python
+     INSTALLED_APPS = [
+         # ...
+         'nome_do_app',
+     ]
+     ```
+
+### Utilizando o Aplicativo:
+
+1. **Criando Modelos:**
+   - No arquivo `models.py` do seu aplicativo, você pode definir modelos de banco de dados. Exemplo:
+
+     ```python
+     from django.db import models
+
+     class MeuModelo(models.Model):
+         campo1 = models.CharField(max_length=100)
+         campo2 = models.IntegerField()
+     ```
+
+2. **Migrando o Banco de Dados:**
+   - Após definir seus modelos, você precisa criar e aplicar as migrações ao banco de dados.
+
+     ```bash
+     python manage.py makemigrations
+     python manage.py migrate
+     ```
+
+3. **Criando Visualizações e URLs:**
+   - No arquivo `views.py` do seu aplicativo, defina funções de visualização. No arquivo `urls.py`, mapeie URLs para essas visualizações.
+
+     ```python
+     # views.py
+     from django.shortcuts import render
+     from .models import MeuModelo
+
+     def minha_visualizacao(request):
+         dados = MeuModelo.objects.all()
+         return render(request, 'template.html', {'dados': dados})
+     ```
+
+     ```python
+     # urls.py
+     from django.urls import path
+     from . import views
+
+     urlpatterns = [
+         path('minha-url/', views.minha_visualizacao, name='minha_url'),
+     ]
+     ```
+
+4. **Configurando URLs do Aplicativo no Projeto:**
+   - No arquivo `urls.py` do seu projeto, inclua as URLs do seu aplicativo.
+
+     ```python
+     # urls.py do projeto
+     from django.contrib import admin
+     from django.urls import path, include
+
+     urlpatterns = [
+         path('admin/', admin.site.urls),
+         path('meu_app/', include('nome_do_app.urls')),
+     ]
+     ```
+
+### Utilizando Templates e Arquivos Estáticos:
+
+1. **Criando Diretório `templates`:**
+   - Se o seu aplicativo usar templates, crie um diretório `templates` dentro do diretório do seu aplicativo e coloque seus arquivos HTML lá.
+
+2. **Criando Diretório `static`:**
+   - Se o seu aplicativo precisar de arquivos estáticos (CSS, JavaScript, imagens), crie um diretório `static` dentro do diretório do seu aplicativo.
+
+   ```plaintext
+   nome_do_app/
+   ├── static/
+   │   └── nome_do_app/
+   │       ├── css/
+   │       └── js/
+   └── templates/
+       └── nome_do_app/
+           └── template.html
+   ```
+
+### Conclusão:
+
+Ao seguir esses passos, você cria e utiliza um aplicativo no Django. Isso permite que você modularize seu código, promovendo a reutilização e a organização eficiente. Lembre-se de que o Django segue o princípio do "batteries-included", fornecendo muitas ferramentas e convenções para facilitar o desenvolvimento web.

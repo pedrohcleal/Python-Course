@@ -192,3 +192,122 @@ Os arquivos estáticos são essenciais para adicionar estilos, scripts e outros 
    - O Django Admin também lida automaticamente com os arquivos estáticos necessários para sua interface. Certifique-se de que a URL `/static/admin/` está configurada corretamente para que os estilos e scripts do Django Admin sejam carregados corretamente.
 
 O uso adequado de arquivos estáticos é crucial para criar interfaces web atraentes e interativas. Ao seguir as convenções do Django para arquivos estáticos, você garante uma organização clara e eficiente desses recursos em seu projeto.
+
+## Uso de context para enviar dados para  dentro dos templates do django
+
+No Django, o contexto é uma maneira de enviar dados do lado do servidor para o template, permitindo que você renderize dinamicamente informações específicas em suas páginas web. O contexto é geralmente uma estrutura de dados, como um dicionário, que contém pares de chave-valor representando variáveis que podem ser acessadas no template.
+
+### Passando Contexto para Templates:
+
+1. **Usando `render` em Funções de Visualização:**
+   - Ao usar a função `render` para renderizar um template em uma função de visualização, você pode passar um dicionário como contexto.
+
+     ```python
+     from django.shortcuts import render
+
+     def minha_visualizacao(request):
+         contexto = {'nome': 'João', 'idade': 25}
+         return render(request, 'template.html', contexto)
+     ```
+
+2. **Usando `Context` em Classes de Visualização:**
+   - Se você estiver usando classes de visualização baseadas em `View`, pode usar a classe `Context` para definir o contexto.
+
+     ```python
+     from django.views import View
+     from django.http import HttpResponse
+     from django.template import Context, loader
+
+     class MinhaView(View):
+         def get(self, request):
+             contexto = {'nome': 'Maria', 'idade': 30}
+             template = loader.get_template('template.html')
+             return HttpResponse(template.render(contexto, request))
+     ```
+
+### Acessando Contexto em Templates:
+
+1. **Uso de Variáveis no Template:**
+   - No template, você pode acessar as variáveis definidas no contexto usando a sintaxe `{{ nome_da_variavel }}`.
+
+     ```html
+     <!-- template.html -->
+
+     <p>Nome: {{ nome }}</p>
+     <p>Idade: {{ idade }}</p>
+     ```
+
+2. **Estruturas de Controle:**
+   - Você pode usar estruturas de controle como `{% if %}`, `{% for %}`, etc., para tomar decisões ou iterar sobre dados do contexto.
+
+     ```html
+     <!-- template.html -->
+
+     {% if idade >= 18 %}
+         <p>Este usuário é maior de idade.</p>
+     {% else %}
+         <p>Este usuário é menor de idade.</p>
+     {% endif %}
+     ```
+
+3. **Acesso a Atributos de Objetos:**
+   - Se o contexto contiver objetos, você pode acessar seus atributos usando a notação de ponto.
+
+     ```python
+     # views.py
+
+     class Pessoa:
+         def __init__(self, nome, idade):
+             self.nome = nome
+             self.idade = idade
+
+     def minha_visualizacao(request):
+         pessoa = Pessoa(nome='Ana', idade=22)
+         contexto = {'usuario': pessoa}
+         return render(request, 'template.html', contexto)
+     ```
+
+     ```html
+     <!-- template.html -->
+
+     <p>Nome: {{ usuario.nome }}</p>
+     <p>Idade: {{ usuario.idade }}</p>
+     ```
+
+### Passando Contexto Adicional Globalmente:
+
+- Às vezes, pode ser útil passar dados específicos para todos os templates em todas as visualizações. Para isso, você pode usar um context processor. Um context processor é uma função que adiciona variáveis ao contexto global.
+
+   ```python
+   # meu_app/context_processors.py
+
+   def informacoes_globais(request):
+       return {'informacao_global': 'Essa é uma informação global.'}
+   ```
+
+   Adicione isso ao `context_processors` em `settings.py`:
+
+   ```python
+   # settings.py
+
+   TEMPLATES = [
+       {
+           'BACKEND': 'django.template.backends.django.DjangoTemplates',
+           'DIRS': [os.path.join(BASE_DIR, 'templates')],
+           'APP_DIRS': True,
+           'OPTIONS': {
+               'context_processors': [
+                   # ...
+                   'meu_app.context_processors.informacoes_globais',
+               ],
+           },
+       },
+   ]
+   ```
+
+   Agora, `informacao_global` estará disponível em todos os templates.
+
+### Conclusão:
+
+O uso de contexto no Django é fundamental para fornecer dados dinâmicos aos seus templates, permitindo que você crie páginas web personalizadas e interativas. Certifique-se de escolher um nome de variável claro e siga as práticas recomendadas para manter seus templates organizados e fáceis de entender.
+

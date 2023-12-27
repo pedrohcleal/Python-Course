@@ -155,3 +155,35 @@ Principais pontos a considerar sobre `doctest`:
 
 O `doctest` é uma ferramenta poderosa para manter a documentação e os testes sempre alinhados, tornando o desenvolvimento mais eficiente e reduzindo a possibilidade de desatualizações na documentação.
 
+### verbose=true  (doctests)
+
+A opção `verbose` no módulo `doctest` é usada para especificar se a saída do teste deve incluir informações detalhadas sobre os testes executados. Quando `verbose` é definido como `True`, o `doctest` imprime informações adicionais durante a execução dos testes, como exemplos testados, falhas encontradas e estatísticas.
+
+Aqui está um exemplo de como usar a opção `verbose` com o método `testmod()`:
+
+```python
+import doctest
+
+def soma(a, b):
+    """
+    Esta função retorna a soma de dois números.
+
+    Exemplos:
+    
+    >>> soma(2, 3)
+    5
+
+    >>> soma(-1, 1)
+    0
+    """
+    return a + b
+
+if __name__ == "__main__":
+    doctest.testmod(verbose=True)
+```
+
+Neste exemplo, `verbose=True` é passado para `testmod()`, o que significa que informações detalhadas sobre a execução dos testes serão impressas no console. Isso pode ser útil para depurar problemas em casos de teste ou entender melhor como o `doctest` está processando os exemplos interativos no código.
+
+Sem a opção `verbose`, o `doctest` ainda executará os testes, mas a saída será mais concisa, indicando apenas se os testes foram bem-sucedidos ou se houve falhas.
+
+A saída do teste pode incluir informações sobre exemplos testados, falhas e estatísticas de execução, proporcionando uma visão geral mais detalhada do processo de teste quando `verbose` é configurado como `True`.

@@ -258,3 +258,29 @@ if __name__ == '__main__':
 Neste exemplo, o teste verifica se uma função `verifica_paridade` está correta para uma lista de entradas. Se algum caso falhar, o `subTest()` fornece detalhes específicos sobre qual entrada causou a falha.
 
 O uso de `subTest()` é uma prática recomendada quando você deseja manter a execução de testes e identificar todas as falhas, mesmo quando ocorrem em diferentes partes de um método de teste. Isso ajuda a tornar os testes mais robustos e informativos.
+
+##  Métodos de configuração e limpeza - `unittest`
+
+import unittest
+
+class TestExemplo(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Configuração prévia para todos os testes na classe
+        print("Configurando a classe de teste")
+
+    @classmethod
+    def tearDownClass(cls):
+        # Limpeza após todos os testes na classe
+        print("Limpando a classe de teste")
+
+    def test_um(self):
+        # Teste 1
+        self.assertTrue(True)
+
+    def test_dois(self):
+        # Teste 2
+        self.assertFalse(False)
+
+if __name__ == '__main__':
+    unittest.main()

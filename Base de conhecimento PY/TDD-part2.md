@@ -121,3 +121,84 @@ As asserções desempenham um papel crucial nos testes unitários usando o módu
    ```
 
 Estes são apenas alguns dos métodos de asserção disponíveis no módulo `unittest`. Eles permitem que você construa testes claros e precisos para verificar o comportamento esperado do seu código. Ao usar as asserções apropriadas, você pode tornar seus testes mais robustos e informativos, facilitando a identificação e correção de problemas no código.
+
+## TDD + Unittest
+
+O Test-Driven Development (TDD) é uma metodologia de desenvolvimento de software que enfatiza a criação de testes antes da implementação do código. O objetivo é garantir que o código seja funcional e atenda aos requisitos definidos pelos testes desde o início do processo de desenvolvimento. O módulo `unittest` em Python é frequentemente utilizado no contexto do TDD para criar e executar testes de unidade.
+
+A abordagem básica do TDD pode ser resumida em três etapas: "Red-Green-Refactor".
+
+1. **Red (Vermelho):** Escrever um teste que falhe, indicando que a funcionalidade ainda não foi implementada ou está incorreta.
+
+   Exemplo (usando `unittest`):
+   ```python
+   import unittest
+
+   class TestSoma(unittest.TestCase):
+       def test_soma_positivos(self):
+           self.assertEqual(soma(2, 3), 5)
+   ```
+
+   Neste ponto, a função `soma` ainda não está implementada, então o teste falhará.
+
+2. **Green (Verde):** Implementar o código mínimo necessário para fazer o teste passar.
+
+   Exemplo:
+   ```python
+   def soma(a, b):
+       return a + b
+   ```
+
+   Agora, ao executar o teste, ele deve passar porque a funcionalidade mínima foi implementada.
+
+3. **Refactor (Refatorar):** Melhorar o código, mantendo os testes verdes.
+
+   Exemplo:
+   ```python
+   def soma(a, b):
+       # Adicionada uma verificação de tipos
+       if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+           return a + b
+       else:
+           raise ValueError("Ambos os argumentos devem ser números.")
+   ```
+
+   Ao refatorar, é possível melhorar a qualidade do código sem alterar seu comportamento. Os testes garantem que as alterações não quebrem a funcionalidade existente.
+
+**Vantagens do TDD com unittest:**
+
+1. **Garantia de Qualidade:** O TDD garante que o código seja testado continuamente à medida que é desenvolvido, reduzindo a probabilidade de erros.
+
+2. **Design Incremental:** O desenvolvimento é feito em pequenos incrementos, com testes validando cada passo. Isso leva a um design mais modular e coeso.
+
+3. **Documentação Viva:** Os testes servem como documentação atualizada e pronta para uso, demonstrando como o código deve ser usado.
+
+4. **Refatoração Segura:** A presença de testes facilita a refatoração do código, pois os testes fornecem feedback imediato sobre a integridade do código após as alterações.
+
+**Exemplo Completo:**
+
+```python
+import unittest
+
+def soma(a, b):
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        return a + b
+    else:
+        raise ValueError("Ambos os argumentos devem ser números.")
+
+class TestSoma(unittest.TestCase):
+    def test_soma_positivos(self):
+        self.assertEqual(soma(2, 3), 5)
+
+    def test_soma_negativos(self):
+        self.assertEqual(soma(-2, -5), -7)
+
+    def test_soma_invalida(self):
+        with self.assertRaises(ValueError):
+            soma("abc", 5)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+Este é um exemplo simples de TDD usando `unittest`. Cada teste é escrito antes da implementação correspondente, garantindo que o código seja validado em relação aos requisitos específicos definidos pelos testes.

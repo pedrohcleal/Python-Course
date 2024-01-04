@@ -61,3 +61,63 @@ if __name__ == '__main__':
 Ao executar este script, `unittest` descobrirá automaticamente as classes e métodos de teste e executará os testes, exibindo a saída no console.
 
 O `unittest` é uma ferramenta poderosa para criar e executar testes unitários em Python, ajudando a garantir a qualidade e confiabilidade do código.
+
+## `assert`
+
+As asserções desempenham um papel crucial nos testes unitários usando o módulo `unittest` em Python. As asserções são afirmações que verificam se determinadas condições são verdadeiras e, se não forem, geram falhas nos testes. O módulo `unittest` fornece vários métodos de asserção para verificar diferentes condições. Aqui estão alguns dos métodos de asserção mais comuns:
+
+1. **`assertEqual(a, b, msg=None)`:**
+   - Verifica se `a` é igual a `b`.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertEqual(soma(2, 3), 5, "A soma de 2 e 3 deve ser 5")
+   ```
+
+2. **`assertNotEqual(a, b, msg=None)`:**
+   - Verifica se `a` não é igual a `b`.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertNotEqual(soma(2, 3), 6, "A soma de 2 e 3 não deve ser 6")
+   ```
+
+3. **`assertTrue(expr, msg=None)`:**
+   - Verifica se a expressão `expr` é verdadeira.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertTrue(len([1, 2, 3]) == 3, "A lista deve ter 3 elementos")
+   ```
+
+4. **`assertFalse(expr, msg=None)`:**
+   - Verifica se a expressão `expr` é falsa.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertFalse(2 + 2 == 5, "A soma de 2 e 2 não deve ser 5")
+   ```
+
+5. **`assertIsNone(expr, msg=None)`:**
+   - Verifica se a expressão `expr` é `None`.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertIsNone(funcao_retorna_none(), "A função deve retornar None")
+   ```
+
+6. **`assertIsNotNone(expr, msg=None)`:**
+   - Verifica se a expressão `expr` não é `None`.
+   - Se a condição não for verdadeira, a mensagem opcional `msg` será exibida.
+
+   Exemplo:
+   ```python
+   self.assertIsNotNone(funcao_retorna_alguma_coisa(), "A função não deve retornar None")
+   ```
+
+Estes são apenas alguns dos métodos de asserção disponíveis no módulo `unittest`. Eles permitem que você construa testes claros e precisos para verificar o comportamento esperado do seu código. Ao usar as asserções apropriadas, você pode tornar seus testes mais robustos e informativos, facilitando a identificação e correção de problemas no código.

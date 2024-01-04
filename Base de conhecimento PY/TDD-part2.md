@@ -261,6 +261,59 @@ O uso de `subTest()` é uma prática recomendada quando você deseja manter a ex
 
 ##  Métodos de configuração e limpeza - `unittest`
 
+No módulo `unittest` em Python, a configuração e limpeza de testes são realizadas por métodos especiais que podem ser definidos em uma classe de teste. Esses métodos são chamados automaticamente antes e depois da execução de cada teste, proporcionando um ambiente controlado e consistente para a execução dos testes. Os principais métodos são `setUp()`, `tearDown()`, `setUpClass()`, e `tearDownClass()`.
+
+### `setUp()` e `tearDown()`:
+
+- **`setUp(self)`:**
+  - Método chamado antes da execução de cada teste.
+  - Utilizado para configurar condições prévias necessárias para a execução do teste.
+
+- **`tearDown(self)`:**
+  - Método chamado após a execução de cada teste.
+  - Utilizado para realizar limpeza ou restaurar o ambiente após a execução do teste.
+
+Exemplo:
+
+```python
+import unittest
+
+class TestExemplo(unittest.TestCase):
+    def setUp(self):
+        # Configuração prévia para todos os testes
+        self.lista = [1, 2, 3]
+
+    def tearDown(self):
+        # Limpeza após cada teste
+        self.lista = []
+
+    def test_soma_elementos(self):
+        # Teste que usa a lista configurada em setUp
+        resultado = sum(self.lista)
+        self.assertEqual(resultado, 6)
+
+    def test_tamanho_lista(self):
+        # Outro teste que usa a lista configurada em setUp
+        tamanho = len(self.lista)
+        self.assertEqual(tamanho, 3)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+### `setUpClass()` e `tearDownClass()`:
+
+- **`setUpClass(cls)`:**
+  - Método chamado uma vez antes da execução de todos os testes na classe.
+  - Utilizado para configurações que afetam todos os testes na classe.
+
+- **`tearDownClass(cls)`:**
+  - Método chamado uma vez após a execução de todos os testes na classe.
+  - Utilizado para limpeza ou restauração após todos os testes.
+
+Exemplo:
+
+```python
 import unittest
 
 class TestExemplo(unittest.TestCase):
@@ -284,3 +337,6 @@ class TestExemplo(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+```
+
+Esses métodos de configuração e limpeza fornecem uma maneira de criar um ambiente controlado e previsível para a execução dos testes, garantindo que condições prévias necessárias sejam estabelecidas e que a limpeza seja realizada após a execução dos testes. Isso é fundamental para garantir a reprodutibilidade e a confiabilidade dos testes.

@@ -202,3 +202,59 @@ if __name__ == '__main__':
 ```
 
 Este é um exemplo simples de TDD usando `unittest`. Cada teste é escrito antes da implementação correspondente, garantindo que o código seja validado em relação aos requisitos específicos definidos pelos testes.
+
+## `subTest`
+
+O método `subTest()` é uma funcionalidade útil no módulo `unittest` em Python, que permite a execução de subtestes dentro de um método de teste. Ele é particularmente útil quando você deseja executar várias verificações dentro de um único método de teste e obter informações específicas sobre falhas, em vez de abortar o teste na primeira falha.
+
+A estrutura básica do `subTest()` é a seguinte:
+
+```python
+import unittest
+
+class MeuTeste(unittest.TestCase):
+    def test_subteste(self):
+        with self.subTest():
+            # Código do subteste 1
+            self.assertEqual(1 + 1, 2)
+
+        with self.subTest():
+            # Código do subteste 2
+            self.assertEqual(2 * 3, 6)
+
+        with self.subTest():
+            # Código do subteste 3
+            self.assertEqual(8 / 2, 4)
+```
+
+Aqui estão alguns pontos importantes sobre o uso do `subTest()`:
+
+1. **Falhas Isoladas:** Se um subteste falhar, o restante do teste continuará sendo executado. Isso é útil para identificar todas as falhas no teste de uma vez, em vez de interromper na primeira falha.
+
+2. **Identificação Detalhada:** Quando um subteste falha, a mensagem de erro inclui informações detalhadas sobre qual subteste específico falhou. Isso facilita a localização e correção de problemas.
+
+3. **Uso em Estruturas de Dados Iteráveis:** O `subTest()` é frequentemente usado em loops, especialmente ao testar várias entradas ou casos de borda. Isso ajuda a garantir que todas as iterações sejam executadas, mesmo que uma delas falhe.
+
+Aqui está um exemplo mais prático usando `subTest()` em um loop:
+
+```python
+import unittest
+
+def verifica_paridade(numero):
+    return numero % 2 == 0
+
+class TestVerificaParidade(unittest.TestCase):
+    def test_verifica_paridade(self):
+        entradas = [2, 3, 8, 5, 10]
+
+        for entrada in entradas:
+            with self.subTest(entrada=entrada):
+                self.assertTrue(verifica_paridade(entrada), f"{entrada} deveria ser par.")
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+Neste exemplo, o teste verifica se uma função `verifica_paridade` está correta para uma lista de entradas. Se algum caso falhar, o `subTest()` fornece detalhes específicos sobre qual entrada causou a falha.
+
+O uso de `subTest()` é uma prática recomendada quando você deseja manter a execução de testes e identificar todas as falhas, mesmo quando ocorrem em diferentes partes de um método de teste. Isso ajuda a tornar os testes mais robustos e informativos.

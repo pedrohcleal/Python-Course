@@ -326,3 +326,231 @@ No contexto do acesso a bancos de dados com bibliotecas como o `pymysql`, os mé
    Neste exemplo, `fetchone` é usado para recuperar uma linha de cada vez em um loop até que não haja mais resultados.
 
 Esses métodos são fundamentais ao trabalhar com bancos de dados em Python e são usados para executar consultas, recuperar dados do banco de dados e iterar sobre os resultados. É importante lembrar de fechar o cursor e a conexão adequadamente após a conclusão de todas as operações para evitar vazamentos de recursos.
+
+## DELETE, WHERE e placeholders com PyMySQL
+
+Para apagar valores de uma tabela em um banco de dados MySQL usando o `pymysql`, você pode empregar a cláusula `DELETE` juntamente com a cláusula `WHERE` para especificar as condições dos registros a serem removidos. A utilização de placeholders ajuda a prevenir a injeção de SQL ao passar parâmetros para a consulta. Aqui está um exemplo de como fazer isso:
+
+```python
+import pymysql
+
+# Dados para a cláusula WHERE (valores a serem deletados)
+valores_para_deletar = ('valor1', 'valor2')
+
+# Estabelecer uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    # Criar um cursor
+    cursor = connection.cursor()
+
+    # Construir a consulta DELETE com WHERE e placeholders
+    table_name = 'sua_tabela'
+    query = f"DELETE FROM {table_name} WHERE campo1 = %s AND campo2 = %s"
+
+    # Executar a consulta DELETE com os valores dos placeholders
+    cursor.execute(query, valores_para_deletar)
+
+    # Fazer o commit para aplicar as alterações
+    connection.commit()
+
+except pymysql.Error as e:
+    print(f"Erro ao deletar dados da tabela: {e}")
+
+finally:
+    # Fechar o cursor e a conexão
+    cursor.close()
+    connection.close()
+```
+
+No exemplo acima, `campo1` e `campo2` são os campos na tabela pelos quais você deseja filtrar os registros a serem deletados. `valores_para_deletar` é uma tupla contendo os valores que correspondem aos critérios da cláusula `WHERE`. Isso permite deletar registros que tenham o valor 'valor1' no `campo1` e 'valor2' no `campo2`.
+
+Ao usar placeholders, os valores são passados separadamente da consulta SQL, o que previne a injeção de SQL, uma vez que o banco de dados trata os valores como dados, não como parte da própria consulta. Certifique-se de ajustar os campos, valores e condições conforme necessário para a sua situação específica.
+
+## ```pymysql.cursors.DictCursor```
+
+No `pymysql`, o `DictCursor` é uma variação do cursor que retorna os resultados das consultas como dicionários em vez de tuplas padrão. Isso significa que em vez de acessar os valores por índice, você pode acessá-los por nome de coluna, o que muitas vezes torna o código mais legível e mais fácil de entender. Aqui está como usar o `DictCursor`:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados
+connection = pymysql.connect(host='localhost',
+                             user='seu_usuario',
+                             password='sua_senha',
+                             db='seu_banco_de_dados',
+                             cursorclass=pymysql.cursors.DictCursor)  # Especifica o uso de DictCursor
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando DictCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+        results = cursor.fetchall()
+
+        for row in results:
+            # Os resultados são retornados como dicionários
+            print(row['nome_da_coluna'])
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+Ao usar `pymysql.cursors.DictCursor`, o objeto de cursor retornado pela conexão executará consultas SQL e retornará os resultados como dicionários. Isso permite acessar os valores recuperados pelos nomes das colunas, facilitando a compreensão do código, especialmente em consultas mais complexas ou ao lidar com grandes conjuntos de dados.
+
+#  `SSCursor`, `SSDictCursor` e `scroll.()`
+
+No contexto do `pymysql`, as opções `SSCursor` e `SSDictCursor` são tipos especiais de cursores que oferecem funcionalidades específicas para manipular grandes conjuntos de resultados no banco de dados.
+
+### SSCursor
+
+`SSCursor`, ou "Server Side Cursor", é um cursor no `pymysql` que é otimizado para recuperar grandes conjuntos de resultados sem armazenar todos os resultados na memória do cliente de uma vez. Em vez disso, ele faz uso de um cursor do lado do servidor para percorrer os resultados à medida que são necessários, minimizando a quantidade de memória usada.
+
+Exemplo de uso:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSCursor
+)
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando SSCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Permite iterar sobre os resultados sem carregar todos os resultados de uma vez
+        for row in cursor:
+            print(row)
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+### SSDictCursor
+
+`SSDictCursor`, ou "Server Side DictCursor", é uma variante do `SSCursor` que, além de usar o cursor do lado do servidor, também retorna os resultados como dicionários. Isso oferece a vantagem de acessar os valores das colunas pelo nome em vez de índices numéricos, facilitando a leitura e manipulação dos dados.
+
+Exemplo de uso:
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSDictCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSDictCursor
+)
+
+try:
+    # Criar um cursor
+    with connection.cursor() as cursor:
+        # Executar uma consulta usando SSDictCursor
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Iterar sobre os resultados retornados como dicionários
+        for row in cursor:
+            print(row)
+
+finally:
+    # Fechar a conexão
+    connection.close()
+```
+
+### Scroll
+
+`scroll()` é um método que pode ser utilizado com os cursores SSCursor e SSDictCursor para navegar pelos resultados. Ele permite mover o cursor para uma posição específica nos resultados. Por exemplo, você pode mover o cursor para uma posição relativa ao início dos resultados ou uma posição relativa à posição atual.
+
+```python
+import pymysql.cursors
+
+# Estabelecer uma conexão com o banco de dados usando SSCursor
+connection = pymysql.connect(
+    host='localhost',
+    user='seu_usuario',
+    password='sua_senha',
+    db='seu_banco_de_dados',
+    cursorclass=pymysql.cursors.SSCursor
+)
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM sua_tabela")
+
+        # Mover para a terceira linha (posição 2, considerando 0-index)
+        cursor.scroll(2, mode='absolute')
+        result = cursor.fetchone()
+        print(result)
+
+        # Mover para a segunda linha a partir da posição atual
+        cursor.scroll(2, mode='relative')
+        result = cursor.fetchone()
+        print(result)
+
+finally:
+    connection.close()
+```
+
+`scroll()` é útil para situações em que você precisa percorrer grandes conjuntos de resultados de maneira eficiente, movendo o cursor para posições específicas ao invés de carregar todos os resultados de uma vez na memória do cliente.
+
+## `rowcount`, `rownumber` e `lastrowid`
+
+`rowcount`, `rownumber` e `lastrowid` são atributos ou métodos associados a conexões ou cursores em bibliotecas de acesso a banco de dados. Cada um deles fornece informações diferentes relacionadas aos resultados de consultas executadas em um banco de dados.
+
+### `rowcount`
+
+`rowcount` é um atributo disponível em objetos de cursor em várias bibliotecas de acesso a banco de dados, incluindo o `pymysql`. Ele retorna o número de linhas afetadas pela operação SQL mais recente executada com o cursor. Para operações de seleção (como `SELECT`), `rowcount` pode não retornar um valor preciso, ou seja, pode retornar `-1` ou `0` em muitos casos, já que não se aplica a operações de busca.
+
+Exemplo de uso:
+
+```python
+import pymysql
+
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM sua_tabela WHERE id = 10")
+        print(cursor.rowcount)  # Número de linhas afetadas pela operação DELETE
+
+finally:
+    connection.close()
+```
+
+### `rownumber`
+
+O conceito de `rownumber` não está diretamente associado a bibliotecas de acesso a banco de dados como o `pymysql`. No entanto, em contextos SQL, pode ser usado para denotar uma função que atribui um número de linha sequencial a cada linha de um conjunto de resultados, mas isso é mais comum em bancos de dados como o PostgreSQL, SQL Server ou Oracle.
+
+### `lastrowid`
+
+`lastrowid` é um atributo específico do `pymysql`. Ele retorna o ID do último registro inserido em uma tabela com uma coluna autoincrementável (como uma chave primária autoincrementável) após uma operação de `INSERT`. Este atributo é útil quando se deseja recuperar o ID do último registro inserido.
+
+Exemplo de uso:
+
+```python
+import pymysql
+
+connection = pymysql.connect(host='localhost', user='seu_usuario', password='sua_senha', db='seu_banco_de_dados')
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO sua_tabela (nome) VALUES ('Novo registro')")
+        print(cursor.lastrowid)  # ID do último registro inserido
+
+finally:
+    connection.close()
+```
+
+Estes atributos e métodos fornecem informações úteis e específicas sobre as operações realizadas em bancos de dados, permitindo obter dados como o número de linhas afetadas, o ID do último registro inserido ou, em alguns contextos, o número de linha dentro de um conjunto de resultados retornado pela consulta.

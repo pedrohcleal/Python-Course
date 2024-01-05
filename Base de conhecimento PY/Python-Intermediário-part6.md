@@ -1,5 +1,56 @@
 # Python Intermediário part 6
 
+## Método `reverse`  e função `reversed()`:
+
+Em Python, o método `reverse()` e a função `reversed()` são utilizados para inverter a ordem dos elementos em uma lista. No entanto, eles têm algumas diferenças importantes em termos de como são aplicados.
+
+### Método `reverse()`:
+
+O método `reverse()` é um método das listas em Python. Ele inverte a ordem dos elementos da lista in-place, ou seja, a própria lista é modificada e nenhum novo objeto é criado. A sintaxe básica é a seguinte:
+
+```python
+lista.reverse()
+```
+
+Exemplo:
+
+```python
+frutas = ['maçã', 'banana', 'laranja']
+frutas.reverse()
+print(frutas)
+```
+
+Saída:
+
+```
+['laranja', 'banana', 'maçã']
+```
+
+### Função `reversed()`:
+
+A função `reversed()` é uma função embutida que retorna um objeto iterável reverso. Essa função não modifica a lista original; ela cria e retorna um novo objeto iterável reverso. Se você quiser uma lista invertida, pode convertê-la novamente em uma lista usando a função `list()`. A sintaxe básica é a seguinte:
+
+```python
+reversed_lista = reversed(iterável)
+```
+
+Exemplo:
+
+```python
+frutas = ['maçã', 'banana', 'laranja']
+frutas_invertidas = list(reversed(frutas))
+print(frutas_invertidas)
+```
+
+Saída:
+
+```
+['laranja', 'banana', 'maçã']
+```
+
+Portanto, enquanto o método `reverse()` modifica a lista original, a função `reversed()` cria um novo objeto iterável reverso sem modificar a lista original. A escolha entre eles depende dos requisitos específicos do seu código.
+
+
 ## filter()
 A função `filter()` é outra função integrada em Python que permite filtrar elementos de uma sequência (como uma lista, tupla ou outro iterável) com base em uma função de teste. Ela retorna um iterador contendo os elementos da sequência original que passam no teste definido pela função.
 

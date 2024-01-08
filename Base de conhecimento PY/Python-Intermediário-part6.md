@@ -299,6 +299,97 @@ A sintaxe básica para type annotations envolve o uso do operador de dois pontos
 
 É importante observar que as anotações de tipo são uma adição opcional ao Python, e o interpretador Python não faz verificações de tipo em tempo de execução com base nessas anotações. Portanto, a responsabilidade de garantir a conformidade com os tipos especificados recai sobre o desenvolvedor e as ferramentas de análise estática que podem ser usadas durante o desenvolvimento.
 
+### Temas relacionados:
+
+1. **Annotations Básicas no Python:**
+   - Annotations são informações opcionais associadas a variáveis, parâmetros de função e valores de retorno que indicam o tipo de dado esperado. Por exemplo:
+     ```python
+     x: int = 5
+     ```
+
+2. **Parâmetros de Funções e Métodos:**
+   - As annotations podem ser usadas nos parâmetros de funções para indicar os tipos esperados. Exemplo:
+     ```python
+     def soma(a: int, b: int) -> int:
+         return a + b
+     ```
+
+3. **Listas:**
+   - Annotations podem ser aplicadas a elementos de listas para indicar o tipo dos elementos.
+     ```python
+     lista: List[int] = [1, 2, 3]
+     ```
+
+4. **Dicionários:**
+   - Da mesma forma, dicionários podem ter type annotations para indicar os tipos das chaves e valores.
+     ```python
+     dicionario: Dict[str, int] = {'um': 1, 'dois': 2}
+     ```
+
+5. **Conjuntos (Sets):**
+   - Conjuntos podem ter type annotations da mesma forma, indicando o tipo dos elementos.
+     ```python
+     conjunto: Set[float] = {1.0, 2.5, 3.7}
+     ```
+
+6. **Type Alias:**
+   - Type Alias é usado para criar um nome alternativo para um tipo existente, facilitando a leitura do código.
+     ```python
+     MeuTipo = List[str]
+     variavel: MeuTipo = ['a', 'b', 'c']
+     ```
+
+7. **Type Union:**
+   - Type Union é usado quando uma variável pode ter mais de um tipo.
+     ```python
+     from typing import Union
+     variavel: Union[int, str] = 10
+     ```
+
+8. **Optional Types:**
+   - Optional é usado para indicar que um parâmetro ou variável pode ser do tipo especificado ou `None`.
+     ```python
+     from typing import Optional
+     variavel: Optional[str] = None
+     ```
+
+9. **isinstance:**
+   - A função `isinstance` é usada para verificar se uma variável é de um determinado tipo.
+     ```python
+     x = 10
+     if isinstance(x, int):
+         print("x é um inteiro")
+     ```
+
+10. **Callable:**
+    - Annotations para funções que indicam que a variável é uma função e especificam os tipos dos argumentos e retorno.
+      ```python
+      from typing import Callable
+      def aplicar(funcao: Callable[[int, int], int], a: int, b: int) -> int:
+          return funcao(a, b)
+      ```
+
+11. **TypeVar:**
+    - TypeVar é usado para criar variáveis de tipo genérico que podem ser usadas em várias partes do código.
+      ```python
+      from typing import TypeVar
+      T = TypeVar('T')
+      def identidade(x: T) -> T:
+          return x
+      ```
+
+12. **Classes São Tipos:**
+    - Classes podem ser usadas como tipos em Type Annotations para indicar o tipo de uma variável.
+      ```python
+      class Pessoa:
+          nome: str
+          idade: int
+
+      pessoa: Pessoa = Pessoa()
+      ```
+
+Essas são algumas das principais aplicações de Type Annotations em Python, proporcionando mais clareza e verificação estática de tipos no código.
+
 ## Type hints
 
 Type hints são uma forma de indicar ao interpretador Python o tipo de dados esperado para variáveis, argumentos de função e valores de retorno. Embora Python seja uma linguagem de tipagem dinâmica, ou seja, os tipos são atribuídos em tempo de execução, as type hints fornecem uma maneira de adicionar informações de tipo opcional ao código fonte.

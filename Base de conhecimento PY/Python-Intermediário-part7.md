@@ -1,7 +1,6 @@
 # Part 7
 
 ## Structural Pattern Match
-Em Python, o "Structural Pattern Matching" (também conhecido como "Structural Pattern Matching" ou simplesmente "Pattern Matching") é uma funcionalidade introduzida na versão 3.10 da linguagem. Essa característica permite que você faça correspondências complexas de padrões em dados, tornando o código mais conciso e expressivo.
 
 O "Structural Pattern Matching" é especialmente útil quando se trabalha com tipos de dados complexos, como listas, tuplas, dicionários e objetos personalizados. Ele oferece uma sintaxe mais limpa para realizar verificações de padrões em dados, substituindo as estruturas tradicionais como if-elif-else e switch-case.
 

@@ -339,7 +339,51 @@ def dobrar_elementos(valores: List[int]) -> List[int]:
 
 Esses hints são opcionais e não afetam o comportamento do código em tempo de execução, mas são valiosos para a legibilidade e manutenção do código, especialmente em projetos grandes e colaborativos.
 
-### MyPy
+Vamos criar um exemplo simples que abrange alguns dos principais casos de uso da biblioteca `typing`. Vamos criar uma função que recebe uma lista de inteiros e retorna uma tupla contendo a soma e a média dos valores.
+
+```python
+from typing import List, Tuple
+
+def calcular_soma_e_media(valores: List[int]) -> Tuple[int, float]:
+    total = sum(valores)
+    media = total / len(valores) if valores else 0.0
+    return total, media
+
+# Exemplo de uso
+numeros = [1, 2, 3, 4, 5]
+
+# Chamada da função
+soma, media = calcular_soma_e_media(numeros)
+
+# Impressão dos resultados
+print(f"Soma: {soma}")
+print(f"Média: {media}")
+```
+
+Neste exemplo, utilizamos alguns dos tipos fornecidos pela biblioteca `typing`:
+
+1. **`List[int]`**: Indica que a função `calcular_soma_e_media` recebe uma lista de inteiros.
+2. **`Tuple[int, float]`**: Indica que a função retorna uma tupla contendo um inteiro (soma) e um float (média).
+
+A utilização desses type hints não afeta o comportamento em tempo de execução, mas fornece informações úteis para ferramentas de análise estática, como o `mypy`, e também para outros desenvolvedores que possam revisar o código.
+
+Além disso, podemos usar `Optional` para indicar que a lista pode ser `None`, e `Union` para expressar que a média pode ser `float` ou `int`:
+
+```python
+from typing import List, Optional, Tuple, Union
+
+def calcular_soma_e_media(valores: Optional[List[int]]) -> Tuple[int, Union[float, int]]:
+    if valores:
+        total = sum(valores)
+        media = total / len(valores)
+        return total, media
+    else:
+        return 0, 0
+```
+
+Este é um exemplo básico, mas à medida que o código se torna mais complexo, o uso de type hints pode ser extremamente valioso para manter a clareza e prevenir erros relacionados a tipos.
+
+## MyPy
 O `mypy` é um verificador de tipos estático para Python que utiliza type hints para analisar e validar o código em busca de erros relacionados a tipos. Ele é uma ferramenta de análise estática que permite aos desenvolvedores detectar possíveis problemas de tipos antes mesmo de executar o código.
 
 Principais características do `mypy`:

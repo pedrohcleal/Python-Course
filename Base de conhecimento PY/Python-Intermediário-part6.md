@@ -298,3 +298,79 @@ A sintaxe básica para type annotations envolve o uso do operador de dois pontos
 - **Documentação automática**: Ferramentas de documentação, como o Sphinx, podem usar anotações de tipo para gerar documentação automática mais detalhada.
 
 É importante observar que as anotações de tipo são uma adição opcional ao Python, e o interpretador Python não faz verificações de tipo em tempo de execução com base nessas anotações. Portanto, a responsabilidade de garantir a conformidade com os tipos especificados recai sobre o desenvolvedor e as ferramentas de análise estática que podem ser usadas durante o desenvolvimento.
+
+## Type hints
+
+Type hints são uma forma de indicar ao interpretador Python o tipo de dados esperado para variáveis, argumentos de função e valores de retorno. Embora Python seja uma linguagem de tipagem dinâmica, ou seja, os tipos são atribuídos em tempo de execução, as type hints fornecem uma maneira de adicionar informações de tipo opcional ao código fonte.
+
+O módulo `typing` introduziu uma série de tipos que podem ser usados para fornecer hints sobre os tipos. Alguns exemplos incluem:
+
+1. **Tipos Básicos:**
+   - `int`
+   - `float`
+   - `str`
+   - `bool`
+
+2. **Contêineres Genéricos:**
+   - `List[T]`: Lista de elementos do tipo `T`.
+   - `Tuple[T1, T2, ...]`: Tupla com elementos dos tipos especificados.
+   - `Dict[K, V]`: Dicionário com chaves do tipo `K` e valores do tipo `V`.
+
+3. **Tipos Especiais:**
+   - `Any`: Qualquer tipo.
+   - `Union[T1, T2, ...]`: Pode ser de qualquer tipo especificado na união.
+
+4. **Tipos de Função:**
+   - `Callable[..., ReturnType]`: Representa uma função que pode ser chamada com argumentos do tipo `...` e retorna `ReturnType`.
+   - `Optional[T]`: Indica que um valor pode ser do tipo `T` ou `None`.
+
+Ao usar type hints, os desenvolvedores podem tornar o código mais legível e facilitar a manutenção. Além disso, ferramentas externas, como o linter `mypy`, podem verificar o código em busca de inconsistências de tipos antes mesmo de ser executado.
+
+Exemplo de uso de type hints:
+
+```python
+def calcular_area(base: float, altura: float) -> float:
+    return base * altura
+
+# Uso de type hints em uma lista
+def dobrar_elementos(valores: List[int]) -> List[int]:
+    return [valor * 2 for valor in valores]
+```
+
+Esses hints são opcionais e não afetam o comportamento do código em tempo de execução, mas são valiosos para a legibilidade e manutenção do código, especialmente em projetos grandes e colaborativos.
+
+### MyPy
+O `mypy` é um verificador de tipos estático para Python que utiliza type hints para analisar e validar o código em busca de erros relacionados a tipos. Ele é uma ferramenta de análise estática que permite aos desenvolvedores detectar possíveis problemas de tipos antes mesmo de executar o código.
+
+Principais características do `mypy`:
+
+1. **Análise Estática:**
+   - O `mypy` analisa o código fonte sem a necessidade de executá-lo. Ele verifica se as type hints estão sendo seguidas corretamente e se não há inconsistências de tipos.
+
+2. **Suporte a Type Hints:**
+   - O `mypy` é projetado para trabalhar em conjunto com type hints, que são uma adição ao Python 3.5 e posterior. Ele faz uso dessas dicas de tipo para verificar a consistência do código.
+
+3. **Integração com Editores de Código:**
+   - Muitos editores de código, como Visual Studio Code, PyCharm e outros, oferecem integração direta com o `mypy`. Isso permite que os desenvolvedores vejam os erros de tipo enquanto estão escrevendo o código.
+
+4. **Personalização:**
+   - O `mypy` oferece opções de configuração que permitem aos desenvolvedores ajustar as verificações de tipos de acordo com as necessidades do projeto.
+
+5. **Suporte a Tipos Avançados:**
+   - Além dos tipos básicos, o `mypy` suporta tipos mais avançados, como tipos genéricos, tipos de função e muito mais.
+
+Para utilizar o `mypy`, primeiro, é necessário instalá-lo através do pip:
+
+```bash
+pip install mypy
+```
+
+Em seguida, é possível executar o `mypy` no código Python, fornecendo o caminho para o arquivo ou diretório que deseja verificar:
+
+```bash
+mypy seu_codigo.py
+```
+
+O `mypy` gerará mensagens de erro se encontrar problemas relacionados a tipos. Isso pode incluir variáveis com tipos incompatíveis, uso incorreto de funções, entre outros.
+
+O uso do `mypy` é especialmente útil em projetos grandes e complexos, onde a detecção precoce de erros de tipos pode economizar tempo e facilitar a manutenção do código.

@@ -123,3 +123,87 @@ Os metacaracteres em expressões regulares são caracteres especiais com signifi
 14. **`\b` e `\B`**: Corresponde à posição de uma fronteira de palavra (`\b`) ou a uma posição que não é uma fronteira de palavra (`\B`).
 
 Esses são apenas alguns dos metacaracteres básicos em expressões regulares. Eles proporcionam uma poderosa linguagem para definir padrões de busca em strings de forma flexível e eficiente. Quando você combina esses metacaracteres, pode criar padrões complexos que atendem a uma variedade de cenários de busca e manipulação de strings.
+
+## Quantificadores
+
+Os quantificadores em expressões regulares são metacaracteres que especificam o número de ocorrências de um caractere, grupo ou classe de caracteres em um padrão. Eles permitem que você descreva a quantidade de vezes que um elemento específico deve ocorrer para que um padrão seja considerado correspondente. Aqui estão alguns dos quantificadores mais comuns:
+
+1. **`*` (Asterisco)**: Corresponde a zero ou mais ocorrências do elemento anterior. Por exemplo, o padrão `ab*c` corresponderá a "ac", "abc", "abbc", "abbbc", etc.
+
+   ```python
+   import re
+
+   pattern = re.compile(r'ab*c')
+   result = pattern.match('ac')
+   print(result)  # Corresponde
+
+   result = pattern.match('abbc')
+   print(result)  # Corresponde
+   ```
+
+2. **`+` (Sinal de Adição)**: Corresponde a uma ou mais ocorrências do elemento anterior. Por exemplo, o padrão `ab+c` corresponderá a "abc", "abbc", "abbbc", etc.
+
+   ```python
+   import re
+
+   pattern = re.compile(r'ab+c')
+   result = pattern.match('abc')
+   print(result)  # Corresponde
+
+   result = pattern.match('ac')
+   print(result)  # Não corresponde
+   ```
+
+3. **`?` (Ponto de Interrogação)**: Torna o elemento anterior opcional, correspondendo a zero ou uma ocorrência. Por exemplo, o padrão `ab?c` corresponderá a "ac" e "abc".
+
+   ```python
+   import re
+
+   pattern = re.compile(r'ab?c')
+   result = pattern.match('ac')
+   print(result)  # Corresponde
+
+   result = pattern.match('abc')
+   print(result)  # Corresponde
+   ```
+
+4. **`{n}`**: Corresponde exatamente a n ocorrências do elemento anterior. Por exemplo, o padrão `a{3}` corresponderá a "aaa".
+
+   ```python
+   import re
+
+   pattern = re.compile(r'a{3}')
+   result = pattern.match('aaa')
+   print(result)  # Corresponde
+
+   result = pattern.match('aa')
+   print(result)  # Não corresponde
+   ```
+
+5. **`{n,}`**: Corresponde a n ou mais ocorrências do elemento anterior. Por exemplo, o padrão `a{2,}` corresponderá a "aa", "aaa", "aaaa", etc.
+
+   ```python
+   import re
+
+   pattern = re.compile(r'a{2,}')
+   result = pattern.match('aa')
+   print(result)  # Corresponde
+
+   result = pattern.match('a')
+   print(result)  # Não corresponde
+   ```
+
+6. **`{n,m}`**: Corresponde a pelo menos n e no máximo m ocorrências do elemento anterior. Por exemplo, o padrão `a{2,4}` corresponderá a "aa", "aaa" e "aaaa".
+
+   ```python
+   import re
+
+   pattern = re.compile(r'a{2,4}')
+   result = pattern.match('aaa')
+   print(result)  # Corresponde
+
+   result = pattern.match('aaaaa')
+   print(result)  # Não corresponde
+   ```
+
+Os quantificadores permitem que você crie padrões mais flexíveis e generalizados, facilitando a manipulação e busca em strings com base nas regras específicas de repetição de elementos. É importante observar que os quantificadores podem ser combinados com outros metacaracteres para criar padrões mais complexos.

@@ -1,5 +1,7 @@
 # Expressão regulares
 
+## Intro
+
 Expressões regulares (também conhecidas como regex ou regexp) são sequências de caracteres que formam um padrão de pesquisa. Elas são utilizadas para realizar operações de busca, correspondência e manipulação de strings com base em padrões específicos. Em Python, o módulo `re` fornece suporte para expressões regulares.
 
 Aqui estão alguns conceitos e funcionalidades básicos relacionados a expressões regulares em Python:

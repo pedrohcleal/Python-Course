@@ -89,3 +89,37 @@ print(result.group(3))  # Retorna a parte correspondente ao terceiro grupo
 ```
 
 Esses são apenas conceitos básicos sobre expressões regulares em Python. Elas são poderosas e flexíveis, permitindo a criação de padrões complexos para manipulação eficaz de strings.
+
+## Meta caracteres:
+
+Os metacaracteres em expressões regulares são caracteres especiais com significados específicos, proporcionando flexibilidade e poder na definição de padrões de busca. Aqui estão alguns dos metacaracteres mais comuns:
+
+1. **`.` (ponto)**: Corresponde a qualquer caractere, exceto uma nova linha. Por exemplo, o padrão `a.c` corresponderá a "abc", "adc", etc.
+
+2. **`^`**: Corresponde ao início da string. Por exemplo, o padrão `^abc` corresponderá a "abc" apenas se estiver no início da string.
+
+3. **`$`**: Corresponde ao final da string. Por exemplo, o padrão `abc$` corresponderá a "abc" apenas se estiver no final da string.
+
+4. **`*`**: Corresponde a zero ou mais ocorrências do caractere anterior. Por exemplo, o padrão `ab*c` corresponderá a "ac", "abc", "abbc", etc.
+
+5. **`+`**: Corresponde a uma ou mais ocorrências do caractere anterior. Por exemplo, o padrão `ab+c` corresponderá a "abc", "abbc", "abbbc", etc.
+
+6. **`?`**: Torna o caractere anterior opcional (zero ou uma ocorrência). Por exemplo, o padrão `ab?c` corresponderá a "ac" e "abc".
+
+7. **`[]`**: Define uma classe de caracteres. Corresponde a qualquer caractere dentro dos colchetes. Por exemplo, `[aeiou]` corresponde a qualquer vogal.
+
+8. **`[^ ]`**: Corresponde a qualquer caractere que não esteja dentro dos colchetes. Por exemplo, `[^0-9]` corresponde a qualquer caractere que não seja um dígito.
+
+9. **`|` (barra vertical)**: Funciona como um operador lógico "OU". Por exemplo, o padrão `a|b` corresponde a "a" ou "b".
+
+10. **`()`**: Cria grupos de captura. Os parênteses são usados para agrupar partes de um padrão. Por exemplo, `(ab)+` corresponderá a "ab", "abab", "ababab", etc.
+
+11. **`\` (barra invertida)**: Escapa um metacaractere, permitindo que ele seja tratado como um caractere literal. Por exemplo, `\\` corresponde a uma barra invertida.
+
+12. **`{ }`**: Especifica um número exato de ocorrências do caractere anterior. Por exemplo, `a{3}` corresponde a "aaa".
+
+13. **`*?`, `+?`, `??`**: Versões não-gulosas (lazy) dos quantificadores `*`, `+`, e `?`. Eles correspondem ao menor número possível de caracteres.
+
+14. **`\b` e `\B`**: Corresponde à posição de uma fronteira de palavra (`\b`) ou a uma posição que não é uma fronteira de palavra (`\B`).
+
+Esses são apenas alguns dos metacaracteres básicos em expressões regulares. Eles proporcionam uma poderosa linguagem para definir padrões de busca em strings de forma flexível e eficiente. Quando você combina esses metacaracteres, pode criar padrões complexos que atendem a uma variedade de cenários de busca e manipulação de strings.

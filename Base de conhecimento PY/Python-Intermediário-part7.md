@@ -1,5 +1,71 @@
 # Part 7
 
+## Structural Pattern Match
+
+O "Structural Pattern Matching" é especialmente útil quando se trabalha com tipos de dados complexos, como listas, tuplas, dicionários e objetos personalizados. Ele oferece uma sintaxe mais limpa para realizar verificações de padrões em dados, substituindo as estruturas tradicionais como if-elif-else e switch-case.
+
+Aqui estão alguns conceitos-chave relacionados ao "Structural Pattern Matching" em Python:
+
+1. **Padrões Simples:**
+   Você pode usar padrões simples para corresponder valores diretamente. Por exemplo:
+   ```python
+   match valor:
+       case 1:
+           print("Valor é 1")
+       case "texto":
+           print("Valor é 'texto'")
+       case _:
+           print("Correspondência padrão para qualquer outro valor")
+   ```
+
+2. **Padrões de Sequência:**
+   É possível fazer correspondência de padrões em listas, tuplas e strings de maneira mais concisa:
+   ```python
+   match lista:
+       case [1, 2, 3]:
+           print("Lista é [1, 2, 3]")
+       case [x, y, *restante]:
+           print(f"Primeiros dois elementos são {x} e {y}, o restante é {restante}")
+   ```
+
+3. **Padrões de Estrutura:**
+   Você pode fazer correspondência de padrões em objetos personalizados com facilidade:
+   ```python
+   class Ponto:
+       def __init__(self, x, y):
+           self.x = x
+           self.y = y
+
+   ponto = Ponto(1, 2)
+
+   match ponto:
+       case Ponto(0, 0):
+           print("Ponto está na origem")
+       case Ponto(x, y):
+           print(f"Ponto não está na origem, coordenadas ({x}, {y})")
+   ```
+
+4. **Padrões de Correspondência Aninhados:**
+   É possível fazer correspondências aninhadas para lidar com estruturas mais complexas:
+   ```python
+   match valor:
+       case {"chave": {"subchave": 42}}:
+           print("Valor corresponde ao padrão aninhado")
+   ```
+
+5. **Guardas:**
+   Você pode adicionar condições chamadas "guardas" para realizar verificações adicionais durante a correspondência de padrões:
+   ```python
+   match valor:
+       case x if x > 0:
+           print(f"Valor positivo: {x}")
+   ```
+
+6. **Padrões Personalizados:**
+   Você pode criar padrões personalizados definindo métodos especiais em suas classes ou usando funções de padrão personalizado.
+
+O "Structural Pattern Matching" em Python oferece uma maneira mais expressiva e limpa de lidar com lógica condicional complexa, tornando o código mais legível e menos sujeito a erros. Essa funcionalidade contribui para a evolução contínua da linguagem, proporcionando aos desenvolvedores mais ferramentas para escrever código Python eficiente e elegante.
+
 ## Problemas dos parametros mutáveis em funções
 
 Em Python, os parâmetros mutáveis em funções podem levar a comportamentos inesperados e erros difíceis de depurar. Os problemas decorrem da natureza mutável desses parâmetros, como listas ou dicionários, que podem ser alterados dentro da função sem que a chamada original perceba essas mudanças. Aqui estão alguns dos principais problemas associados aos parâmetros mutáveis em funções:

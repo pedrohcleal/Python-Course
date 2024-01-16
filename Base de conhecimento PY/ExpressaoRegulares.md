@@ -207,3 +207,38 @@ Os quantificadores em expressões regulares são metacaracteres que especificam 
    ```
 
 Os quantificadores permitem que você crie padrões mais flexíveis e generalizados, facilitando a manipulação e busca em strings com base nas regras específicas de repetição de elementos. É importante observar que os quantificadores podem ser combinados com outros metacaracteres para criar padrões mais complexos.
+
+### greedy e non-greedy(lazy)
+
+Os conceitos de "greedy" (ganancioso) e "non-greedy" (não ganancioso ou "lazy") referem-se ao comportamento dos quantificadores em expressões regulares. Esses quantificadores determinam quantas vezes um caractere, grupo ou classe de caracteres deve ocorrer para ser considerado uma correspondência.
+
+- **Greedy (Ganancioso):**
+  - Quantificadores são por padrão gananciosos. Eles tentam corresponder ao maior número possível de caracteres enquanto ainda mantêm uma correspondência válida.
+  - O quantificador greedy padrão é representado por `*`, `+`, e `?`.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'<.*>')
+    result = pattern.search('<foo> <bar> <baz>')
+    print(result.group())  # Correspondência gananciosa: '<foo> <bar> <baz>'
+    ```
+
+- **Non-Greedy (Lazy):**
+  - Para tornar um quantificador não ganancioso, você pode adicionar um `?` após os quantificadores gananciosos `*`, `+`, ou `?`.
+  - Isso faz com que o quantificador correspondente ao menor número possível de caracteres, satisfazendo ainda a condição de correspondência.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'<.*?>')
+    result = pattern.search('<foo> <bar> <baz>')
+    print(result.group())  # Correspondência não gananciosa: '<foo>'
+    ```
+
+Ao adicionar `?` após um quantificador, você indica que ele deve ser lazy (não ganancioso). No exemplo acima, o padrão `<.*?>` corresponde ao menor número possível de caracteres entre `<` e `>`, resultando em correspondências não gananciosas.
+
+A distinção entre ganancioso e não ganancioso é crucial ao lidar com padrões em que existem várias correspondências possíveis na string. O uso apropriado desses quantificadores ajuda a evitar correspondências indesejadas e a obter os resultados desejados em expressões regulares complexas.
+

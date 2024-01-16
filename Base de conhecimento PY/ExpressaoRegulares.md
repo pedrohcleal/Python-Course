@@ -242,3 +242,67 @@ Ao adicionar `?` após um quantificador, você indica que ele deve ser lazy (nã
 
 A distinção entre ganancioso e não ganancioso é crucial ao lidar com padrões em que existem várias correspondências possíveis na string. O uso apropriado desses quantificadores ajuda a evitar correspondências indesejadas e a obter os resultados desejados em expressões regulares complexas.
 
+## Grupos e Retrovisores
+
+Grupos e retrovisores são recursos avançados em expressões regulares que proporcionam maior controle e flexibilidade ao criar padrões de busca. Vamos entender cada um deles:
+
+### 1. Grupos:
+
+Os grupos em expressões regulares são criados usando parênteses `()` e servem para agrupar partes do padrão. Eles oferecem vários benefícios:
+
+- **Agrupamento de elementos:**
+  - Permitem agrupar caracteres ou padrões inteiros para aplicar quantificadores ou operadores a eles.
+  
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'(ab)+')
+    result = pattern.match('ababab')
+    print(result.group())  # Correspondência: 'ababab'
+    ```
+
+- **Captura de grupos:**
+  - Facilitam a captura de partes específicas do padrão. Você pode acessar esses grupos após uma correspondência usando o método `group()` do objeto de correspondência.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'(\d{2})/(\d{2})/(\d{4})')
+    result = pattern.match('15/01/2022')
+    print(result.group(1))  # Dia: '15'
+    print(result.group(2))  # Mês: '01'
+    print(result.group(3))  # Ano: '2022'
+    ```
+
+### 2. Retrovisores:
+
+Os retrovisores permitem se referir a grupos já capturados dentro da própria expressão regular. Eles são úteis para criar padrões mais complexos ou referenciar repetições de padrões anteriormente capturados.
+
+- **Referência a grupos:**
+  - Utiliza `\n` onde `n` é o número do grupo que você deseja referenciar. Por exemplo, `\1` refere-se ao primeiro grupo, `\2` ao segundo, e assim por diante.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'(\w+) and \1')
+    result = pattern.search('apple and apple')
+    print(result.group())  # Correspondência: 'apple and apple'
+    ```
+
+- **Uso em substituições:**
+  - Também podem ser usados ao realizar substituições em strings usando a função `re.sub()`.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'(\d{2})/(\d{2})/(\d{4})')
+    result = pattern.sub(r'\2-\1-\3', '15/01/2022')
+    print(result)  # Substituição: '01-15-2022'
+    ```
+
+O uso eficiente de grupos e retrovisores torna as expressões regulares mais poderosas e expressivas, permitindo a criação de padrões complexos e a manipulação eficaz de strings. Esses recursos são particularmente úteis em situações em que é necessário lidar com partes específicas de um padrão ou fazer referência a partes anteriormente capturadas.
+

@@ -306,3 +306,76 @@ Os retrovisores permitem se referir a grupos já capturados dentro da própria e
 
 O uso eficiente de grupos e retrovisores torna as expressões regulares mais poderosas e expressivas, permitindo a criação de padrões complexos e a manipulação eficaz de strings. Esses recursos são particularmente úteis em situações em que é necessário lidar com partes específicas de um padrão ou fazer referência a partes anteriormente capturadas.
 
+## Shorthands e Flags
+
+**Shorthands (Atalhos):**
+
+Os shorthands em expressões regulares são atalhos ou códigos abreviados que representam classes de caracteres comuns. Eles simplificam a escrita de padrões e tornam as expressões regulares mais concisas. Alguns dos shorthands mais comuns incluem:
+
+1. **`\d`**: Corresponde a qualquer dígito decimal (equivalente a `[0-9]`).
+
+2. **`\D`**: Corresponde a qualquer caractere que não seja um dígito (equivalente a `[^0-9]`).
+
+3. **`\w`**: Corresponde a qualquer caractere alfanumérico (equivalente a `[a-zA-Z0-9_]`).
+
+4. **`\W`**: Corresponde a qualquer caractere que não seja alfanumérico (equivalente a `[^a-zA-Z0-9_]`).
+
+5. **`\s`**: Corresponde a qualquer caractere de espaço em branco (equivalente a `[ \t\n\r\f\v]`).
+
+6. **`\S`**: Corresponde a qualquer caractere que não seja de espaço em branco (equivalente a `[^ \t\n\r\f\v]`).
+
+Esses atalhos podem ser úteis para simplificar padrões e tornar as expressões regulares mais legíveis.
+
+**Flags:**
+
+As flags em expressões regulares são modificadores que alteram o comportamento padrão de uma expressão regular. Em Python, as flags são passadas como argumentos adicionais nas funções do módulo `re`. Algumas das flags mais comuns incluem:
+
+1. **`re.IGNORECASE` ou `re.I`**: Ignora diferenças entre maiúsculas e minúsculas durante a correspondência.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'python', re.IGNORECASE)
+    result = pattern.match('Python')
+    print(result.group())  # Correspondência: 'Python'
+    ```
+
+2. **`re.MULTILINE` ou `re.M`**: Permite que os metacaracteres `^` e `$` correspondam ao início e ao final de cada linha em vez de toda a string.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'^\d+', re.MULTILINE)
+    result = pattern.findall('123\n456\n789')
+    print(result)  # Correspondência: ['123', '456', '789']
+    ```
+
+3. **`re.DOTALL` ou `re.S`**: Faz com que o ponto (`.`) corresponda a qualquer caractere, incluindo quebras de linha (`\n`).
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'a.b', re.DOTALL)
+    result = pattern.match('a\nb')
+    print(result.group())  # Correspondência: 'a\nb'
+    ```
+
+4. **`re.VERBOSE` ou `re.X`**: Permite que você escreva expressões regulares de maneira mais legível, ignorando espaços em branco e permitindo comentários.
+
+    Exemplo:
+    ```python
+    import re
+
+    pattern = re.compile(r'''
+                        \d +  # Dígitos
+                        \s *  # Espaços em branco opcionais
+                        [a-z]+  # Letras minúsculas
+                        ''', re.VERBOSE)
+    result = pattern.match('123 abc')
+    print(result.group())  # Correspondência: '123 abc'
+    ```
+
+Essas flags proporcionam flexibilidade e controle adicional sobre o comportamento das expressões regulares em Python. Pode-se combinar múltiplas flags usando o operador de bit `|` (ou).

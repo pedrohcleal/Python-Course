@@ -489,3 +489,56 @@ Explicação da regex:
 - `$`: Âncora de final da string.
 
 Essa expressão regular verifica se um endereço IPv4 está no formato correto. No entanto, vale mencionar que, embora a regex valide o formato do endereço, ela não verifica se o valor numérico de cada bloco está no intervalo apropriado. Por exemplo, "192.168.500.1" seria considerado válido pela regex, pois segue o formato IPv4, mas é um endereço inválido em termos de valor numérico. Para verificar completamente a validade de um endereço IPv4, seria necessário realizar verificações adicionais além do escopo de uma expressão regular.
+
+## Como validar CPF
+
+A validação de um CPF (Cadastro de Pessoa Física) pode ser realizada com uma expressão regular que verifica se o formato do CPF está correto. O CPF no Brasil tem um formato específico com pontos e traços, e existem algoritmos adicionais para verificar a validade numérica do CPF. Aqui está uma expressão regular para validar o formato do CPF em Python:
+
+```python
+import re
+
+def validar_cpf(cpf):
+    # Remove pontos e traços do CPF
+    cpf = re.sub(r'[^0-9]', '', cpf)
+    
+    # Verifica se o CPF possui 11 dígitos
+    if len(cpf) != 11:
+        return False
+
+    # Expressão regular para validar o formato do CPF
+    pattern = re.compile(r'^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$')
+    if not pattern.match(cpf):
+        return False
+
+    # Verificação do dígito verificador
+    cpf_numeros = [int(d) for d in cpf[:-2]]
+    dv1, dv2 = map(int, cpf[-2:])
+    
+    # Cálculo do primeiro dígito verificador
+    total = sum((i + 1) * n for i, n in enumerate(cpf_numeros))
+    resto = total % 11
+    resultado1 = 11 - resto if resto > 1 else 0
+
+    # Cálculo do segundo dígito verificador
+    cpf_numeros.append(resultado1)
+    total = sum((i + 1) * n for i, n in enumerate(cpf_numeros))
+    resto = total % 11
+    resultado2 = 11 - resto if resto > 1 else 0
+
+    # Verifica se os dígitos verificadores calculados coincidem com os fornecidos
+    return resultado1 == dv1 and resultado2 == dv2
+
+# Exemplos de uso:
+print(validar_cpf('123.456.789-09'))  # True
+print(validar_cpf('98765432100'))    # False (formato inválido)
+print(validar_cpf('111.222.333-44'))  # False (CPF inválido numericamente)
+```
+
+Explicação do código:
+
+1. Remove os pontos e traços do CPF usando `re.sub` para ficar apenas com os dígitos.
+2. Verifica se o CPF tem 11 dígitos.
+3. Utiliza uma expressão regular para verificar o formato do CPF.
+4. Realiza o cálculo dos dígitos verificadores e compara com os fornecidos no CPF.
+
+É importante mencionar que essa validação não verifica se o CPF é válido no contexto legal (não verifica se o número pertence a uma pessoa real), apenas se está no formato correto e tem dígitos verificadores válidos.

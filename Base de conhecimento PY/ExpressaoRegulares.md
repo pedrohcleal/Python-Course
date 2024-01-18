@@ -379,3 +379,81 @@ As flags em expressões regulares são modificadores que alteram o comportamento
     ```
 
 Essas flags proporcionam flexibilidade e controle adicional sobre o comportamento das expressões regulares em Python. Pode-se combinar múltiplas flags usando o operador de bit `|` (ou).
+
+##  Lookahead e Lookbehind
+
+Lookahead e lookbehind são técnicas avançadas em expressões regulares que permitem fazer correspondências com base na presença ou ausência de determinados padrões à frente (lookahead) ou atrás (lookbehind) da posição atual na string. Essas construções não consomem caracteres na string de entrada durante a correspondência.
+
+### 1. Lookahead Positivo (Positive Lookahead):
+
+O lookahead positivo verifica se um padrão está presente à frente da posição atual na string sem consumir caracteres na correspondência principal.
+
+- **Sintaxe:** `X(?=Y)`
+- **Significado:** Corresponde a "X" apenas se "X" é seguido por "Y".
+
+Exemplo:
+```python
+import re
+
+pattern = re.compile(r'\d(?=[a-z])')
+result = pattern.findall('1a 2b 3c')
+print(result)  # Correspondência: ['1', '2', '3']
+```
+
+Neste exemplo, `\d(?=[a-z])` corresponde a um dígito (`\d`) apenas se estiver seguido por uma letra minúscula (`[a-z]`).
+
+### 2. Lookahead Negativo (Negative Lookahead):
+
+O lookahead negativo verifica se um padrão não está presente à frente da posição atual na string.
+
+- **Sintaxe:** `X(?!Y)`
+- **Significado:** Corresponde a "X" apenas se "X" não é seguido por "Y".
+
+Exemplo:
+```python
+import re
+
+pattern = re.compile(r'\d(?!a)')
+result = pattern.findall('1a 2b 3c')
+print(result)  # Correspondência: ['2', '3']
+```
+
+Aqui, `\d(?!a)` corresponde a um dígito (`\d`) apenas se não estiver seguido pela letra "a".
+
+### 3. Lookbehind Positivo (Positive Lookbehind):
+
+O lookbehind positivo verifica se um padrão está presente atrás da posição atual na string.
+
+- **Sintaxe:** `(?<=Y)X`
+- **Significado:** Corresponde a "X" apenas se "X" é precedido por "Y".
+
+Exemplo:
+```python
+import re
+
+pattern = re.compile(r'(?<=@)\w+')
+result = pattern.findall('user1@example.com user2@example.com')
+print(result)  # Correspondência: ['example', 'example']
+```
+
+Aqui, `(?<=@)\w+` corresponde a uma sequência de caracteres alfanuméricos apenas se estiver precedida pelo caractere "@", capturando assim os domínios de e-mail.
+
+### 4. Lookbehind Negativo (Negative Lookbehind):
+
+O lookbehind negativo verifica se um padrão não está presente atrás da posição atual na string.
+
+- **Sintaxe:** `(?<!Y)X`
+- **Significado:** Corresponde a "X" apenas se "X" não é precedido por "Y".
+
+Exemplo:
+```python
+import re
+
+pattern = re.compile(r'(?<!\d)\w+')
+result = pattern.findall('1abc 2def 3ghi')
+print(result)  # Correspondência: ['abc', 'def', 'ghi']
+```
+
+Neste exemplo, `(?<!\d)\w+` corresponde a uma sequência de caracteres alfanuméricos apenas se não estiver precedida por um dígito.
+
+As construções de lookahead e lookbehind oferecem maior flexibilidade na criação de padrões de busca mais sofisticados, levando em consideração o contexto à frente ou atrás de uma posição específica na string.

@@ -457,3 +457,35 @@ print(result)  # Correspondência: ['abc', 'def', 'ghi']
 Neste exemplo, `(?<!\d)\w+` corresponde a uma sequência de caracteres alfanuméricos apenas se não estiver precedida por um dígito.
 
 As construções de lookahead e lookbehind oferecem maior flexibilidade na criação de padrões de busca mais sofisticados, levando em consideração o contexto à frente ou atrás de uma posição específica na string.
+
+## Como validar IPV4
+
+Validar um endereço IPv4 com expressões regulares pode ser feito com uma regex que verifica se o padrão do endereço está correto. Um endereço IPv4 é composto por quatro números inteiros separados por pontos, onde cada número está no intervalo de 0 a 255. Aqui está uma expressão regular em Python para validar um endereço IPv4:
+
+```python
+import re
+
+def validar_ipv4(ip):
+    pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})$')
+    return bool(pattern.match(ip))
+
+# Exemplos de uso:
+print(validar_ipv4('192.168.0.1'))  # True
+print(validar_ipv4('256.0.0.1'))     # False
+print(validar_ipv4('abc.def.ghi.jkl'))  # False
+```
+
+Explicação da regex:
+
+- `^`: Âncora de início da string.
+- `( ... )`: Grupo de captura para cada bloco de número separado por ponto.
+- `(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})`: Esta parte corresponde a cada bloco de número. Aqui está uma explicação mais detalhada:
+  - `25[0-5]`: Representa números de 250 a 255.
+  - `2[0-4][0-9]`: Representa números de 200 a 249.
+  - `[0-1]?[0-9]{1,2}`: Representa números de 0 a 199, permitindo zero à esquerda.
+- `\.`: Corresponde ao ponto que separa os blocos de números.
+- `{3}`: Indica que precisamos de exatamente três ocorrências dos blocos de números e pontos.
+- `(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})`: Corresponde ao último bloco de número.
+- `$`: Âncora de final da string.
+
+Essa expressão regular verifica se um endereço IPv4 está no formato correto. No entanto, vale mencionar que, embora a regex valide o formato do endereço, ela não verifica se o valor numérico de cada bloco está no intervalo apropriado. Por exemplo, "192.168.500.1" seria considerado válido pela regex, pois segue o formato IPv4, mas é um endereço inválido em termos de valor numérico. Para verificar completamente a validade de um endereço IPv4, seria necessário realizar verificações adicionais além do escopo de uma expressão regular.

@@ -542,3 +542,5 @@ Explicação do código:
 4. Realiza o cálculo dos dígitos verificadores e compara com os fornecidos no CPF.
 
 É importante mencionar que essa validação não verifica se o CPF é válido no contexto legal (não verifica se o número pertence a uma pessoa real), apenas se está no formato correto e tem dígitos verificadores válidos.
+
+## Validar número de telefone

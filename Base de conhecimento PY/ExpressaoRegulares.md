@@ -636,3 +636,35 @@ Explicação da expressão regular:
 - `$`: Âncora de final da string.
 
 Essa expressão regular verifica a presença de todos os critérios necessários para uma senha forte. Certifique-se de ajustar conforme necessário com base nas políticas específicas de senha da sua aplicação.
+
+## Validar email
+
+Validar um endereço de e-mail usando expressões regulares pode ser um desafio devido à complexidade das especificações do formato de e-mail. Uma expressão regular para validação de e-mail pode capturar muitos casos, mas não todos, porque os endereços de e-mail podem ser bastante flexíveis. Aqui está um exemplo básico em Python:
+
+```python
+import re
+
+def validar_email(email):
+    # Expressão regular para validar o formato do e-mail
+    pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    return bool(pattern.match(email))
+
+# Exemplo de uso:
+email = "usuario@example.com"
+if validar_email(email):
+    print("E-mail válido")
+else:
+    print("E-mail inválido")
+```
+
+Explicação da expressão regular:
+
+- `^[a-zA-Z0-9._%+-]+`: Começa com um ou mais caracteres alfanuméricos, pontos, underscores, porcentagens, sinais de adição ou hifens.
+- `@`: O símbolo "@" é obrigatório.
+- `[a-zA-Z0-9.-]+`: Seguido por um ou mais caracteres alfanuméricos, pontos ou hifens.
+- `\.`: O ponto antes do domínio é obrigatório.
+- `[a-zA-Z]{2,}$`: O domínio deve ter pelo menos dois caracteres alfabéticos no final.
+
+Esta expressão regular aborda muitos casos comuns, mas ainda assim não é uma validação completa de um endereço de e-mail. Para uma validação mais rigorosa, considerando a especificação completa de endereços de e-mail (como definido pelo RFC 5322), pode ser mais apropriado usar bibliotecas ou funções específicas de validação de e-mail disponíveis em várias linguagens de programação.
+
+Lembre-se de que a validação do formato do e-mail não verifica se o endereço de e-mail é válido em termos de entrega ou se pertence a um usuário real. Essa validação apenas verifica se o endereço de e-mail está no formato esperado.

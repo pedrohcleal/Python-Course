@@ -543,4 +543,66 @@ Explicação do código:
 
 É importante mencionar que essa validação não verifica se o CPF é válido no contexto legal (não verifica se o número pertence a uma pessoa real), apenas se está no formato correto e tem dígitos verificadores válidos.
 
-## Validar número de telefone
+## Validar senha forte de usuário
+
+Validar senhas fortes é uma prática importante para garantir a segurança das contas de usuário. Uma senha forte geralmente possui requisitos como comprimento mínimo, uso de caracteres especiais, letras maiúsculas e minúsculas, e números. Aqui estão algumas dicas sobre como criar uma validação de senha forte em Python:
+
+1. **Comprimento Mínimo:**
+   - Defina um comprimento mínimo para a senha.
+
+2. **Caracteres Especiais:**
+   - Exija a presença de caracteres especiais, como `!`, `@`, `#`, etc.
+
+3. **Letras Maiúsculas e Minúsculas:**
+   - Exija a presença de letras maiúsculas e minúsculas na senha.
+
+4. **Números:**
+   - Exija a presença de números na senha.
+
+5. **Não Use Informações Pessoais:**
+   - Evite senhas que sejam facilmente relacionadas a informações pessoais, como nomes, datas de nascimento, etc.
+
+6. **Evite Sequências Comuns:**
+   - Evite sequências comuns de caracteres, como "123" ou "abc".
+
+Aqui está um exemplo simples de uma função em Python que valida senhas fortes com base nessas diretrizes:
+
+```python
+import re
+
+def validar_senha_forte(senha):
+    # Comprimento mínimo de 8 caracteres
+    if len(senha) < 8:
+        return False
+
+    # Pelo menos uma letra maiúscula
+    if not re.search(r'[A-Z]', senha):
+        return False
+
+    # Pelo menos uma letra minúscula
+    if not re.search(r'[a-z]', senha):
+        return False
+
+    # Pelo menos um número
+    if not re.search(r'\d', senha):
+        return False
+
+    # Pelo menos um caractere especial
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', senha):
+        return False
+
+    # Não permite sequências de 3 caracteres consecutivos
+    if re.search(r'(.)\1\1', senha):
+        return False
+
+    return True
+
+# Exemplo de uso:
+senha = "Senha123!"
+if validar_senha_forte(senha):
+    print("Senha válida")
+else:
+    print("Senha fraca")
+```
+
+Este é um exemplo básico, e você pode ajustar os critérios conforme necessário. Considere as políticas de senha recomendadas para a aplicação específica ao definir os requisitos de senha forte. Lembre-se de que a segurança das senhas é uma parte essencial da proteção das contas dos usuários.

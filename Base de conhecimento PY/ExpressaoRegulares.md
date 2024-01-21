@@ -606,3 +606,33 @@ else:
 ```
 
 Este é um exemplo básico, e você pode ajustar os critérios conforme necessário. Considere as políticas de senha recomendadas para a aplicação específica ao definir os requisitos de senha forte. Lembre-se de que a segurança das senhas é uma parte essencial da proteção das contas dos usuários.
+
+Para criar uma única expressão regular que valide todos os critérios mencionados anteriormente (comprimento mínimo, caracteres especiais, letras maiúsculas e minúsculas, números, e evite sequências comuns), você pode combinar esses requisitos em uma única regex. Aqui está uma expressão regular que atende a esses critérios:
+
+```python
+import re
+
+def validar_senha_forte(senha):
+    pattern = re.compile(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])(?!.*(.)\1\1)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$')
+    return bool(pattern.match(senha))
+
+# Exemplo de uso:
+senha = "Senha123!"
+if validar_senha_forte(senha):
+    print("Senha válida")
+else:
+    print("Senha fraca")
+```
+
+Explicação da expressão regular:
+
+- `^`: Âncora de início da string.
+- `(?=.*[A-Z])`: Pelo menos uma letra maiúscula.
+- `(?=.*[a-z])`: Pelo menos uma letra minúscula.
+- `(?=.*\d)`: Pelo menos um número.
+- `(?=.*[!@#$%^&*(),.?":{}|<>])`: Pelo menos um caractere especial.
+- `(?!.*(.)\1\1)`: Evita sequências de 3 caracteres consecutivos.
+- `[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}`: Caracteres permitidos (letras maiúsculas e minúsculas, dígitos e caracteres especiais), com um comprimento mínimo de 8.
+- `$`: Âncora de final da string.
+
+Essa expressão regular verifica a presença de todos os critérios necessários para uma senha forte. Certifique-se de ajustar conforme necessário com base nas políticas específicas de senha da sua aplicação.

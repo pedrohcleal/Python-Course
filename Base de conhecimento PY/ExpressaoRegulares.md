@@ -489,3 +489,182 @@ Explicação da regex:
 - `$`: Âncora de final da string.
 
 Essa expressão regular verifica se um endereço IPv4 está no formato correto. No entanto, vale mencionar que, embora a regex valide o formato do endereço, ela não verifica se o valor numérico de cada bloco está no intervalo apropriado. Por exemplo, "192.168.500.1" seria considerado válido pela regex, pois segue o formato IPv4, mas é um endereço inválido em termos de valor numérico. Para verificar completamente a validade de um endereço IPv4, seria necessário realizar verificações adicionais além do escopo de uma expressão regular.
+
+## Como validar CPF
+
+A validação de um CPF (Cadastro de Pessoa Física) pode ser realizada com uma expressão regular que verifica se o formato do CPF está correto. O CPF no Brasil tem um formato específico com pontos e traços, e existem algoritmos adicionais para verificar a validade numérica do CPF. Aqui está uma expressão regular para validar o formato do CPF em Python:
+
+```python
+import re
+
+def validar_cpf(cpf):
+    # Remove pontos e traços do CPF
+    cpf = re.sub(r'[^0-9]', '', cpf)
+    
+    # Verifica se o CPF possui 11 dígitos
+    if len(cpf) != 11:
+        return False
+
+    # Expressão regular para validar o formato do CPF
+    pattern = re.compile(r'^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$')
+    if not pattern.match(cpf):
+        return False
+
+    # Verificação do dígito verificador
+    cpf_numeros = [int(d) for d in cpf[:-2]]
+    dv1, dv2 = map(int, cpf[-2:])
+    
+    # Cálculo do primeiro dígito verificador
+    total = sum((i + 1) * n for i, n in enumerate(cpf_numeros))
+    resto = total % 11
+    resultado1 = 11 - resto if resto > 1 else 0
+
+    # Cálculo do segundo dígito verificador
+    cpf_numeros.append(resultado1)
+    total = sum((i + 1) * n for i, n in enumerate(cpf_numeros))
+    resto = total % 11
+    resultado2 = 11 - resto if resto > 1 else 0
+
+    # Verifica se os dígitos verificadores calculados coincidem com os fornecidos
+    return resultado1 == dv1 and resultado2 == dv2
+
+# Exemplos de uso:
+print(validar_cpf('123.456.789-09'))  # True
+print(validar_cpf('98765432100'))    # False (formato inválido)
+print(validar_cpf('111.222.333-44'))  # False (CPF inválido numericamente)
+```
+
+Explicação do código:
+
+1. Remove os pontos e traços do CPF usando `re.sub` para ficar apenas com os dígitos.
+2. Verifica se o CPF tem 11 dígitos.
+3. Utiliza uma expressão regular para verificar o formato do CPF.
+4. Realiza o cálculo dos dígitos verificadores e compara com os fornecidos no CPF.
+
+É importante mencionar que essa validação não verifica se o CPF é válido no contexto legal (não verifica se o número pertence a uma pessoa real), apenas se está no formato correto e tem dígitos verificadores válidos.
+
+## Validar senha forte de usuário
+
+Validar senhas fortes é uma prática importante para garantir a segurança das contas de usuário. Uma senha forte geralmente possui requisitos como comprimento mínimo, uso de caracteres especiais, letras maiúsculas e minúsculas, e números. Aqui estão algumas dicas sobre como criar uma validação de senha forte em Python:
+
+1. **Comprimento Mínimo:**
+   - Defina um comprimento mínimo para a senha.
+
+2. **Caracteres Especiais:**
+   - Exija a presença de caracteres especiais, como `!`, `@`, `#`, etc.
+
+3. **Letras Maiúsculas e Minúsculas:**
+   - Exija a presença de letras maiúsculas e minúsculas na senha.
+
+4. **Números:**
+   - Exija a presença de números na senha.
+
+5. **Não Use Informações Pessoais:**
+   - Evite senhas que sejam facilmente relacionadas a informações pessoais, como nomes, datas de nascimento, etc.
+
+6. **Evite Sequências Comuns:**
+   - Evite sequências comuns de caracteres, como "123" ou "abc".
+
+Aqui está um exemplo simples de uma função em Python que valida senhas fortes com base nessas diretrizes:
+
+```python
+import re
+
+def validar_senha_forte(senha):
+    # Comprimento mínimo de 8 caracteres
+    if len(senha) < 8:
+        return False
+
+    # Pelo menos uma letra maiúscula
+    if not re.search(r'[A-Z]', senha):
+        return False
+
+    # Pelo menos uma letra minúscula
+    if not re.search(r'[a-z]', senha):
+        return False
+
+    # Pelo menos um número
+    if not re.search(r'\d', senha):
+        return False
+
+    # Pelo menos um caractere especial
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', senha):
+        return False
+
+    # Não permite sequências de 3 caracteres consecutivos
+    if re.search(r'(.)\1\1', senha):
+        return False
+
+    return True
+
+# Exemplo de uso:
+senha = "Senha123!"
+if validar_senha_forte(senha):
+    print("Senha válida")
+else:
+    print("Senha fraca")
+```
+
+Este é um exemplo básico, e você pode ajustar os critérios conforme necessário. Considere as políticas de senha recomendadas para a aplicação específica ao definir os requisitos de senha forte. Lembre-se de que a segurança das senhas é uma parte essencial da proteção das contas dos usuários.
+
+Para criar uma única expressão regular que valide todos os critérios mencionados anteriormente (comprimento mínimo, caracteres especiais, letras maiúsculas e minúsculas, números, e evite sequências comuns), você pode combinar esses requisitos em uma única regex. Aqui está uma expressão regular que atende a esses critérios:
+
+```python
+import re
+
+def validar_senha_forte(senha):
+    pattern = re.compile(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])(?!.*(.)\1\1)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$')
+    return bool(pattern.match(senha))
+
+# Exemplo de uso:
+senha = "Senha123!"
+if validar_senha_forte(senha):
+    print("Senha válida")
+else:
+    print("Senha fraca")
+```
+
+Explicação da expressão regular:
+
+- `^`: Âncora de início da string.
+- `(?=.*[A-Z])`: Pelo menos uma letra maiúscula.
+- `(?=.*[a-z])`: Pelo menos uma letra minúscula.
+- `(?=.*\d)`: Pelo menos um número.
+- `(?=.*[!@#$%^&*(),.?":{}|<>])`: Pelo menos um caractere especial.
+- `(?!.*(.)\1\1)`: Evita sequências de 3 caracteres consecutivos.
+- `[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}`: Caracteres permitidos (letras maiúsculas e minúsculas, dígitos e caracteres especiais), com um comprimento mínimo de 8.
+- `$`: Âncora de final da string.
+
+Essa expressão regular verifica a presença de todos os critérios necessários para uma senha forte. Certifique-se de ajustar conforme necessário com base nas políticas específicas de senha da sua aplicação.
+
+## Validar email
+
+Validar um endereço de e-mail usando expressões regulares pode ser um desafio devido à complexidade das especificações do formato de e-mail. Uma expressão regular para validação de e-mail pode capturar muitos casos, mas não todos, porque os endereços de e-mail podem ser bastante flexíveis. Aqui está um exemplo básico em Python:
+
+```python
+import re
+
+def validar_email(email):
+    # Expressão regular para validar o formato do e-mail
+    pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    return bool(pattern.match(email))
+
+# Exemplo de uso:
+email = "usuario@example.com"
+if validar_email(email):
+    print("E-mail válido")
+else:
+    print("E-mail inválido")
+```
+
+Explicação da expressão regular:
+
+- `^[a-zA-Z0-9._%+-]+`: Começa com um ou mais caracteres alfanuméricos, pontos, underscores, porcentagens, sinais de adição ou hifens.
+- `@`: O símbolo "@" é obrigatório.
+- `[a-zA-Z0-9.-]+`: Seguido por um ou mais caracteres alfanuméricos, pontos ou hifens.
+- `\.`: O ponto antes do domínio é obrigatório.
+- `[a-zA-Z]{2,}$`: O domínio deve ter pelo menos dois caracteres alfabéticos no final.
+
+Esta expressão regular aborda muitos casos comuns, mas ainda assim não é uma validação completa de um endereço de e-mail. Para uma validação mais rigorosa, considerando a especificação completa de endereços de e-mail (como definido pelo RFC 5322), pode ser mais apropriado usar bibliotecas ou funções específicas de validação de e-mail disponíveis em várias linguagens de programação.
+
+Lembre-se de que a validação do formato do e-mail não verifica se o endereço de e-mail é válido em termos de entrega ou se pertence a um usuário real. Essa validação apenas verifica se o endereço de e-mail está no formato esperado.

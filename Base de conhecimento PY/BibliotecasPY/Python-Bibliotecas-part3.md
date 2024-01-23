@@ -335,3 +335,61 @@ O módulo `zipfile` em Python é uma biblioteca integrada que permite criar, ler
    ```
 
 O módulo `zipfile` oferece muitos outros recursos e funcionalidades para trabalhar com arquivos ZIP em Python. É uma ferramenta útil para compactar, descompactar e manipular arquivos ZIP em seus projetos Python. Certifique-se de verificar a documentação oficial do Python para obter informações mais detalhadas e exemplos adicionais: https://docs.python.org/3/library/zipfile.html
+
+## collections
+
+Em Python, a biblioteca padrão `collections` fornece alternativas especializadas e de alto desempenho para tipos de contêineres básicos, como listas, dicionários, conjuntos e tuplas. Essa biblioteca é projetada para oferecer implementações eficientes de estruturas de dados comumente usadas em programação.
+
+Aqui estão alguns dos principais componentes da biblioteca `collections`:
+
+1. **namedtuple:**
+   - O `namedtuple` cria tuplas nomeadas, o que significa que você pode acessar elementos da tupla usando nomes de campo, tornando o código mais legível. É útil quando você precisa de uma estrutura de dados simples e imutável.
+
+   Exemplo:
+   ```python
+   from collections import namedtuple
+
+   Point = namedtuple('Point', ['x', 'y'])
+   p = Point(x=1, y=2)
+   print(p.x, p.y)  # Saída: 1 2
+   ```
+
+2. **Counter:**
+   - O `Counter` é uma subclasse de dicionário que conta o número de ocorrências de elementos. Pode ser útil para contar a frequência de itens em uma lista ou iterável.
+
+   Exemplo:
+   ```python
+   from collections import Counter
+
+   lista = [1, 2, 3, 1, 2, 1, 4, 5, 4]
+   contagem = Counter(lista)
+   print(contagem)  # Saída: Counter({1: 3, 2: 2, 4: 2, 3: 1, 5: 1})
+   ```
+
+3. **deque:**
+   - O `deque` é uma lista de dupla extremidade (double-ended queue), o que significa que você pode adicionar ou remover elementos eficientemente tanto no início quanto no final da lista.
+
+   Exemplo:
+   ```python
+   from collections import deque
+
+   d = deque([1, 2, 3])
+   d.append(4)       # Adiciona ao final
+   d.appendleft(0)   # Adiciona ao início
+   print(d)          # Saída: deque([0, 1, 2, 3, 4])
+   ```
+
+4. **defaultdict:**
+   - O `defaultdict` é uma subclasse de dicionário que aceita uma função (ou tipo) como argumento para fornecer um valor padrão para chaves ausentes.
+
+   Exemplo:
+   ```python
+   from collections import defaultdict
+
+   d = defaultdict(int)
+   d['a'] += 1
+   d['b'] += 2
+   print(d)  # Saída: defaultdict(<class 'int'>, {'a': 1, 'b': 2})
+   ```
+
+Estes são apenas alguns exemplos das funcionalidades oferecidas pela biblioteca `collections` em Python. Ela é uma ferramenta valiosa para lidar com diferentes tipos de estruturas de dados de forma mais eficiente e conveniente.

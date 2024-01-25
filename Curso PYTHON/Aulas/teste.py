@@ -11,14 +11,6 @@ def luck_check(st):
     
     if len(st)%2 != 0:
         del list_st[math.floor(len(st)/2)]
-    
-    """for x in range(int(len(list_st)/2)):
-        soma1 += int(list_st[x])
-        print(soma1)
-    
-    for x in range(int(len(list_st)/2),len(list_st)):
-        soma2 += int(list_st[x])
-        print(soma2)"""
         
     for x in range(len(list_st)):
         if x < int(len(list_st)/2):

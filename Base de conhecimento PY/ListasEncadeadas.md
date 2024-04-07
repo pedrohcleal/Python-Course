@@ -205,7 +205,7 @@ Para resolver desafios envolvendo lógica de programação com listas encadeadas
 
 Ao aplicar essas técnicas de forma inteligente e considerar cuidadosamente os requisitos e restrições do problema, você pode resolver eficientemente diversos desafios envolvendo lógica de programação com listas encadeadas.
 
-# Exemplos:
+### Exemplos:
 
 1. **Uso de Ponteiros Inteligentes**:
    - Em Python, a gestão de memória é tratada automaticamente. No entanto, é importante garantir que não haja vazamentos de memória, especialmente ao lidar com estruturas de dados complexas como listas encadeadas. Aqui está um exemplo de como usar um gerenciamento cuidadoso de referências ao inserir um nó em uma lista encadeada:

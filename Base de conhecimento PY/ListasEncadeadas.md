@@ -1,4 +1,4 @@
-# ListasEncadeadas
+# Listas Encadeadas
 
 Uma lista encadeada em Python é uma estrutura de dados linear composta por nós. Cada nó contém um valor e um ponteiro (ou referência) para o próximo nó na sequência. Ao contrário das listas em Python (como `list`), onde os elementos são armazenados sequencialmente na memória, em uma lista encadeada, os nós podem ser espalhados aleatoriamente na memória, conectados apenas por meio de ponteiros.
 

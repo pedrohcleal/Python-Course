@@ -1,46 +1,126 @@
 # Listas Encadeadas
 
-Uma lista encadeada em Python é uma estrutura de dados linear composta por nós. Cada nó contém um valor e um ponteiro (ou referência) para o próximo nó na sequência. Ao contrário das listas em Python (como `list`), onde os elementos são armazenados sequencialmente na memória, em uma lista encadeada, os nós podem ser espalhados aleatoriamente na memória, conectados apenas por meio de ponteiros.
+Listas encadeadas são estruturas de dados fundamentais na ciência da computação que consistem em uma coleção de nós onde cada nó contém um valor e uma referência (ou ponteiro) para o próximo nó na sequência. Essa estrutura permite inserções e remoções eficientes, especialmente no início da lista, e é útil em várias aplicações onde operações dinâmicas são frequentes.
 
-As listas encadeadas em Python podem ser implementadas usando classes. Aqui está um exemplo básico de como definir uma lista encadeada:
+### Tipos de Listas Encadeadas
+
+1. **Lista Encadeada Simples (Singly Linked List)**:
+   - Cada nó contém um valor e uma referência para o próximo nó.
+   - O último nó aponta para `None`, indicando o fim da lista.
+
+2. **Lista Duplamente Encadeada (Doubly Linked List)**:
+   - Cada nó contém um valor, uma referência para o próximo nó e uma referência para o nó anterior.
+   - Permite navegação em ambas as direções, do início para o fim e vice-versa.
+
+3. **Lista Circular (Circular Linked List)**:
+   - O último nó aponta de volta para o primeiro nó, formando um círculo.
+   - Pode ser simples ou duplamente encadeada.
+
+### Implementação de Lista Encadeada Simples em Python
+
+Vamos ver um exemplo de como implementar uma lista encadeada simples em Python.
+
+#### Definindo o Nó
+
+Primeiro, definimos uma classe para representar um nó na lista encadeada:
 
 ```python
-class ListNode:
-    def __init__(self, value):
-        self.value = value
+class Node:
+    def __init__(self, data):
+        self.data = data
         self.next = None
 ```
 
-Nesta definição:
+#### Definindo a Lista Encadeada
 
-- `ListNode` é a classe que representa um nó na lista encadeada.
-- O método `__init__` é um construtor que é chamado quando um novo objeto `ListNode` é criado. Ele inicializa o valor do nó e o ponteiro `next` como `None`, indicando que inicialmente o nó não está conectado a nenhum outro nó.
-
-Para criar uma lista encadeada, você cria uma instância da classe `ListNode` para cada elemento e os conecta através dos ponteiros `next`. Aqui está um exemplo de como criar uma lista encadeada com três nós:
+Agora, definimos a classe para a lista encadeada:
 
 ```python
-# Criando nós
-node1 = ListNode(1)
-node2 = ListNode(2)
-node3 = ListNode(3)
+class LinkedList:
+    def __init__(self):
+        self.head = None
 
-# Conectando os nós
-node1.next = node2
-node2.next = node3
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        last_node = self.head
+        while last_node.next:
+            last_node = last_node.next
+        last_node.next = new_node
+
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def delete_with_value(self, data):
+        if not self.head:
+            return
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+        current_node = self.head
+        while current_node.next and current_node.next.data != data:
+            current_node = current_node.next
+        if current_node.next:
+            current_node.next = current_node.next.next
+
+    def print_list(self):
+        current_node = self.head
+        while current_node:
+            print(current_node.data, end=" -> ")
+            current_node = current_node.next
+        print("None")
 ```
 
-Neste exemplo, `node1` é o primeiro nó, `node2` é o segundo nó e `node3` é o terceiro nó. Cada nó contém um valor e um ponteiro para o próximo nó na sequência.
+### Operações Básicas
 
-Para percorrer uma lista encadeada, geralmente começamos com o primeiro nó (cabeça) e iteramos sobre os nós usando os ponteiros `next` até chegarmos ao último nó. Aqui está um exemplo de como iterar sobre a lista encadeada criada acima:
+1. **Adicionar um Elemento (Append)**:
+   - A função `append` adiciona um novo nó ao final da lista.
+   - Se a lista estiver vazia, o novo nó se torna o cabeçalho (`head`).
+
+2. **Adicionar um Elemento no Início (Prepend)**:
+   - A função `prepend` insere um novo nó no início da lista.
+
+3. **Remover um Elemento (Delete with Value)**:
+   - A função `delete_with_value` remove o primeiro nó que contém o valor especificado.
+
+4. **Imprimir a Lista**:
+   - A função `print_list` percorre a lista e imprime os valores dos nós.
+
+### Exemplo de Uso
 
 ```python
-current_node = node1  # Começa com o primeiro nó (cabeça)
-while current_node is not None:
-    print(current_node.value)
-    current_node = current_node.next
+# Criando uma nova lista encadeada
+ll = LinkedList()
+
+# Adicionando elementos
+ll.append(1)
+ll.append(2)
+ll.append(3)
+
+# Inserindo no início
+ll.prepend(0)
+
+# Imprimindo a lista
+ll.print_list()  # Saída: 0 -> 1 -> 2 -> 3 -> None
+
+# Removendo um elemento
+ll.delete_with_value(2)
+
+# Imprimindo a lista novamente
+ll.print_list()  # Saída: 0 -> 1 -> 3 -> None
 ```
 
-Este código irá imprimir os valores dos nós da lista encadeada: 1, 2 e 3. Quando `current_node.next` é `None`, sabemos que alcançamos o final da lista encadeada.
+### Considerações Finais
+
+- Listas encadeadas são úteis para situações onde há muitas inserções e remoções de elementos.
+- Ao contrário das listas Python nativas (`list`), listas encadeadas não têm acesso direto aos elementos pelo índice, o que pode tornar algumas operações menos eficientes.
+- A implementação de uma lista encadeada pode ser estendida para suportar operações mais avançadas, como a inversão da lista, a busca de elementos e a inserção em posições específicas.
+
+As listas encadeadas são uma ferramenta poderosa e flexível, essencial para muitos algoritmos e estruturas de dados avançadas.
 
 ## Operações em listas encadeadas:
 

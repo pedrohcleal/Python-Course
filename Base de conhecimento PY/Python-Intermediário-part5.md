@@ -193,6 +193,66 @@ Bob 30
 Carol Desconhecido
 ```
 
+## bin(), odr(), chr() , hex(), oct(), eval()
+
+Em Python, as funções `bin()`, `ord()`, `chr()`, `hex()`, `oct()` e `eval()` são úteis em diversas situações de conversão de dados e execução dinâmica de código. Aqui está uma descrição de cada uma delas:
+
+### 1. `bin()`
+A função `bin()` converte um número inteiro em sua representação binária, retornando uma string que começa com '0b'.
+
+**Exemplo:**
+```python
+bin(10)  # Retorna '0b1010'
+```
+
+### 2. `ord()`
+A função `ord()` recebe um caractere (uma string de um único caractere) e retorna o número inteiro representando o valor Unicode desse caractere.
+
+**Exemplo:**
+```python
+ord('A')  # Retorna 65
+ord('€')  # Retorna 8364
+```
+
+### 3. `chr()`
+A função `chr()` é o inverso de `ord()`. Ela recebe um número inteiro representando um valor Unicode e retorna o caractere correspondente.
+
+**Exemplo:**
+```python
+chr(65)  # Retorna 'A'
+chr(8364)  # Retorna '€'
+```
+
+### 4. `hex()`
+A função `hex()` converte um número inteiro em sua representação hexadecimal, retornando uma string que começa com '0x'.
+
+**Exemplo:**
+```python
+hex(255)  # Retorna '0xFF'
+```
+
+### 5. `oct()`
+A função `oct()` converte um número inteiro em sua representação octal, retornando uma string que começa com '0o'.
+
+**Exemplo:**
+```python
+oct(8)  # Retorna '0o10'
+```
+
+### 6. `eval()`
+A função `eval()` interpreta uma string passada a ela como uma expressão Python e a avalia. É uma função poderosa e deve ser usada com cautela, pois a execução de código arbitrário pode representar um risco de segurança.
+
+**Exemplo:**
+```python
+x = 1
+eval('x + 1')  # Retorna 2
+```
+
+**Nota de Segurança:**
+Evite usar `eval()` com entradas de usuário ou qualquer fonte não confiável, pois pode permitir a execução de código malicioso.
+
+Essas funções fornecem formas flexíveis de conversão entre diferentes sistemas de numeração e manipulação de valores numéricos e de caracteres, além de possibilitar a avaliação dinâmica de expressões Python.
+
 ## Função Count - itertools
 
 A função `count` da biblioteca `itertools` em Python gera um iterador que produz uma sequência infinita de valores inteiros começando a partir de um valor inicial (padrão é 0) e incrementando em um passo (padrão é 1). Como a sequência é infinita, é necessário limitar o uso dessa função com alguma condição de parada, caso contrário, ela continuará gerando valores indefinidamente.

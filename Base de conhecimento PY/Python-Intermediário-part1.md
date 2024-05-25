@@ -148,69 +148,7 @@ Neste segundo exemplo, usamos a função `key` para extrair o comprimento de cad
 
 No seu código original, a função `key` é usada nas chamadas a `sorted()` para extrair os valores das chaves `'nome'` e `'sobrenome'` de cada dicionário da lista, e é com base nesses valores que os dicionários são ordenados alfabeticamente.
 As funções em Python são um dos conceitos mais poderosos da linguagem, permitindo que você crie blocos de código reutilizáveis e organizados para resolver tarefas específicas. Com funções bem projetadas, você pode criar programas mais modulares, fáceis de manter e extensíveis.
-## Escopo Global & Local
 
-Em Python, escopo refere-se à visibilidade e acessibilidade de variáveis em diferentes partes do código. Existem dois tipos principais de escopo em Python: escopo global e escopo local.
-
-### Escopo Global:
-
-Variáveis declaradas fora de qualquer função ou bloco de código têm escopo global. Isso significa que elas podem ser acessadas de qualquer lugar no programa, incluindo dentro de funções. Para criar uma variável global, basta declará-la fora de todas as funções, no nível mais alto do programa.
-
-Exemplo de variável global:
-
-```python
-# Variável global
-nome = "João"
-
-def saudacao():
-    # A variável 'nome' pode ser acessada dentro da função, pois é global
-    print(f"Olá, {nome}!")
-
-saudacao()  # Output: Olá, João!
-```
-
-As variáveis globais são úteis quando você deseja que uma variável seja compartilhada e acessível em diferentes partes do programa. No entanto, é importante ter cuidado ao modificar variáveis globais dentro de funções, pois isso pode levar a resultados inesperados e dificultar o entendimento do código.
-
-### Escopo Local:
-
-Variáveis declaradas dentro de uma função têm escopo local e são acessíveis apenas dentro dessa função. Elas não podem ser acessadas fora da função em que foram definidas. Isso significa que uma variável local só é válida e acessível dentro do bloco de código da função em que foi definida.
-
-Exemplo de variável local:
-
-```python
-def saudacao():
-    # Variável local
-    nome = "Maria"
-    print(f"Olá, {nome}!")
-
-saudacao()  # Output: Olá, Maria!
-
-# Tentar acessar a variável 'nome' fora da função causará um erro:
-# print(nome)  # NameError: name 'nome' is not defined
-```
-
-As variáveis locais são usadas para armazenar valores temporários dentro de uma função, permitindo que você realize operações com esses valores sem interferir com outras partes do programa.
-
-### Acessando Variáveis Globais Dentro de Funções:
-
-Se você precisar acessar uma variável global dentro de uma função, é possível fazê-lo usando a palavra-chave `global` antes do nome da variável. Isso permite que você modifique a variável global dentro da função.
-
-Exemplo:
-
-```python
-contador = 0
-
-def incrementar_contador():
-    global contador
-    contador += 1
-
-incrementar_contador()
-print(contador)  # Output: 1
-```
-
-No entanto, é recomendável usar variáveis globais com cautela, pois elas podem tornar o código menos legível e mais difícil de depurar. Em muitos casos, é preferível passar variáveis como argumentos para funções ou retornar valores relevantes em vez de usar variáveis globais.
-
-Em resumo, o escopo global refere-se ao acesso a variáveis em todo o programa, enquanto o escopo local refere-se ao acesso apenas dentro de uma função. O uso adequado de escopos ajuda a manter o código organizado e facilita a manutenção do programa.
 
 ## Empacotamento e Desempacotamento em Funções
 

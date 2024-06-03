@@ -237,3 +237,153 @@ db.commit()
 ### Conclusão
 
 Pydantic é uma ferramenta poderosa para garantir a integridade dos dados em várias etapas do desenvolvimento de software, desde a validação de entradas de APIs até o processamento de grandes volumes de dados. Sua flexibilidade e integração com as funcionalidades do Python moderno fazem dela uma escolha popular para desenvolvedores que buscam robustez e facilidade na manipulação de dados.
+
+# Basic
+
+Pydantic oferece uma série de funções básicas que são essenciais para a validação, parsing e manipulação de dados. Aqui estão algumas das funções e características principais:
+
+### 1. **BaseModel**
+
+`BaseModel` é a classe fundamental de Pydantic, a partir da qual todos os modelos de dados são derivados. Ela fornece a infraestrutura para validação, parsing e serialização de dados.
+
+```python
+from pydantic import BaseModel
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    idade: int
+    email: str
+```
+
+### 2. **Validação Automática**
+
+Pydantic valida automaticamente os dados de entrada conforme os tipos definidos nos modelos. Se os dados não corresponderem aos tipos esperados, um `ValidationError` é levantado.
+
+```python
+try:
+    usuario = Usuario(id='um', nome='João', idade='trinta', email='joao@example.com')
+except ValidationError as e:
+    print(e)
+```
+
+### 3. **Parsing e Conversão de Tipos**
+
+Pydantic é capaz de converter tipos de dados automaticamente. Por exemplo, strings podem ser convertidas para inteiros se forem compatíveis.
+
+```python
+usuario = Usuario(id='1', nome='João', idade='30', email='joao@example.com')
+print(usuario)
+```
+
+### 4. **Serialização**
+
+Pydantic facilita a serialização de modelos para formatos como JSON, utilizando métodos como `json()` e `dict()`.
+
+```python
+usuario = Usuario(id=1, nome='João', idade=30, email='joao@example.com')
+print(usuario.json())
+print(usuario.dict())
+```
+
+### 5. **Validação Personalizada**
+
+Pydantic permite a definição de validadores personalizados através do decorador `@validator`. Esses validadores podem ser usados para impor restrições adicionais aos dados.
+
+```python
+from pydantic import validator
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    idade: int
+    email: str
+
+    @validator('idade')
+    def idade_minima(cls, v):
+        if v < 18:
+            raise ValueError('Idade deve ser maior ou igual a 18')
+        return v
+```
+
+### 6. **Modelos Aninhados**
+
+Pydantic permite a criação de modelos aninhados, onde um modelo pode conter outros modelos, facilitando a representação de estruturas de dados complexas.
+
+```python
+class Endereco(BaseModel):
+    rua: str
+    cidade: str
+    cep: str
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    endereco: Endereco
+
+endereco = Endereco(rua='Rua A', cidade='Cidade B', cep='12345-678')
+usuario = Usuario(id=1, nome='João', endereco=endereco)
+print(usuario)
+```
+
+### 7. **Configuração de Modelos**
+
+A classe interna `Config` permite configurar opções avançadas para os modelos, como permitir valores extra, usar aliases, imutabilidade, entre outros.
+
+```python
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    idade: int
+    email: str
+
+    class Config:
+        allow_mutation = False
+```
+
+### 8. **Campos Opcionais e Valores Padrão**
+
+Pydantic permite definir campos opcionais usando `Optional` e definir valores padrão para os campos.
+
+```python
+from typing import Optional
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    idade: Optional[int] = None
+    email: str = 'email@exemplo.com'
+```
+
+### 9. **Validação de Campos Complexos**
+
+Pydantic suporta validação de campos complexos, como listas e dicionários, com verificações automáticas de tipos.
+
+```python
+from typing import List
+
+class Usuario(BaseModel):
+    id: int
+    nome: str
+    amigos: List[str]
+
+usuario = Usuario(id=1, nome='João', amigos=['Maria', 'Pedro'])
+print(usuario)
+```
+
+### 10. **Uso de Anotações de Tipo**
+
+Pydantic utiliza as anotações de tipo do Python para definir e validar os dados, o que torna o código mais claro e fácil de manter.
+
+```python
+class Produto(BaseModel):
+    id: int
+    nome: str
+    preco: float
+```
+
+### Conclusão
+
+Pydantic oferece uma rica funcionalidade para trabalhar com dados de forma segura e eficiente, utilizando os tipos nativos do Python para garantir a integridade dos dados. Seja para validação simples ou para estruturas de dados complexas, Pydantic proporciona uma interface poderosa e fácil de usar.
+
+

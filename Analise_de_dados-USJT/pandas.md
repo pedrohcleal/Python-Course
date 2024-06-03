@@ -151,3 +151,94 @@ Esses são apenas alguns exemplos básicos de como você pode usar a biblioteca 
    ```
 
 É importante observar que, embora a iteração seja uma abordagem útil em muitos casos, o Pandas é otimizado para operações vetorizadas, que geralmente são mais eficientes e rápidas do que a iteração tradicional. Portanto, sempre que possível, é preferível usar operações vetorizadas em vez de iteração para manipular dados em Pandas.
+
+## Basic
+
+O pandas é uma biblioteca essencial em Python para análise de dados, oferecendo diversas funcionalidades para manipulação, limpeza, visualização e análise de dados. Aqui estão algumas das funções básicas mais usadas no pandas:
+
+### 1. **Importação e Exportação de Dados**
+   - `pd.read_csv()`: Lê um arquivo CSV e retorna um DataFrame.
+   - `pd.read_excel()`: Lê um arquivo Excel e retorna um DataFrame.
+   - `pd.to_csv()`: Exporta um DataFrame para um arquivo CSV.
+   - `pd.to_excel()`: Exporta um DataFrame para um arquivo Excel.
+
+### 2. **Criação de DataFrames e Series**
+   - `pd.DataFrame()`: Cria um DataFrame a partir de um dicionário, lista, matriz numpy ou outra estrutura de dados.
+   - `pd.Series()`: Cria uma Series, que é uma coluna única de dados, a partir de uma lista, dicionário, etc.
+
+### 3. **Visualização de Dados**
+   - `df.head()`: Mostra as primeiras linhas do DataFrame.
+   - `df.tail()`: Mostra as últimas linhas do DataFrame.
+   - `df.info()`: Mostra um resumo informativo sobre o DataFrame.
+   - `df.describe()`: Gera estatísticas descritivas sobre o DataFrame.
+
+### 4. **Seleção e Indexação de Dados**
+   - `df['coluna']`: Seleciona uma coluna do DataFrame.
+   - `df[['coluna1', 'coluna2']]`: Seleciona múltiplas colunas.
+   - `df.iloc[]`: Seleção de dados com base em posições (índices inteiros).
+   - `df.loc[]`: Seleção de dados com base em rótulos.
+
+### 5. **Manipulação de Dados**
+   - `df.drop()`: Remove colunas ou linhas especificadas.
+   - `df.rename()`: Renomeia colunas ou índices.
+   - `df.sort_values()`: Ordena o DataFrame por valores de uma ou mais colunas.
+   - `df.sort_index()`: Ordena o DataFrame pelo índice.
+
+### 6. **Tratamento de Dados Ausentes**
+   - `df.isna()`: Retorna um DataFrame booleano indicando valores ausentes.
+   - `df.dropna()`: Remove linhas ou colunas com valores ausentes.
+   - `df.fillna()`: Preenche valores ausentes com um valor especificado.
+
+### 7. **Operações de Agrupamento e Resumo**
+   - `df.groupby()`: Agrupa os dados por uma ou mais colunas.
+   - `df.agg()`: Aplica funções de agregação (como soma, média) aos grupos.
+   - `df.pivot_table()`: Cria tabelas dinâmicas para resumir os dados.
+
+### 8. **Mesclagem e Combinação de Dados**
+   - `pd.merge()`: Mescla dois DataFrames com base em uma chave comum.
+   - `pd.concat()`: Concatena múltiplos DataFrames ao longo de um eixo especificado.
+
+### 9. **Aplicação de Funções**
+   - `df.apply()`: Aplica uma função a cada coluna ou linha.
+   - `df.applymap()`: Aplica uma função a cada elemento de um DataFrame.
+   - `df.map()`: Aplica uma função a cada elemento de uma Series.
+
+### 10. **Plotagem de Dados**
+   - `df.plot()`: Gera gráficos a partir dos dados do DataFrame usando Matplotlib.
+
+### Exemplo Básico
+
+Aqui está um exemplo básico que demonstra algumas dessas funcionalidades:
+
+```python
+import pandas as pd
+
+# Criação de um DataFrame
+data = {
+    'Nome': ['Ana', 'Bruno', 'Carlos', 'Diana'],
+    'Idade': [23, 35, 22, 30],
+    'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba']
+}
+df = pd.DataFrame(data)
+
+# Visualização dos dados
+print(df.head())
+
+# Seleção de uma coluna
+idades = df['Idade']
+print(idades)
+
+# Filtragem de dados
+adultos = df[df['Idade'] > 25]
+print(adultos)
+
+# Adicionando uma nova coluna
+df['Ano de Nascimento'] = 2024 - df['Idade']
+print(df)
+
+# Agrupamento e resumo
+media_idade = df['Idade'].mean()
+print(f'Média de idade: {media_idade}')
+```
+
+Essas são apenas algumas das muitas funções que o pandas oferece para facilitar a análise e manipulação de dados.

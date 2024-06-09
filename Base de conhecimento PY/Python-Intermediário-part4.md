@@ -92,53 +92,91 @@ Nesse exemplo, a saída será "Value is falsy" porque o valor de `value` é zero
 
 É importante entender esses conceitos ao lidar com expressões condicionais e avaliações booleanas em Python, pois eles podem afetar o fluxo de controle do seu programa.
 
-## dir, hasattr e getattr
+##  `dir`, `hasattr`, `getattr`, `setattr` e `delattr`
 
-Funções `dir`, `hasattr` e `getattr` em Python.
+As funções `dir`, `hasattr`, `getattr`, `setattr` e `delattr` são utilitários poderosos em Python usados para inspeção e manipulação de atributos de objetos. Aqui está uma descrição detalhada de cada uma delas:
 
-1. **`dir()`**:
+### 1. `dir()`
+A função `dir()` é usada para obter uma lista dos atributos e métodos de um objeto. Se nenhum argumento for passado, ela retorna a lista dos nomes no escopo local atual.
 
-A função `dir()` é uma função embutida em Python que retorna uma lista de nomes de atributos e métodos de um objeto. Ela pode ser usada para explorar o conteúdo de um objeto e descobrir quais métodos e atributos estão disponíveis para ele. Se você chamar `dir()` sem argumentos, ela retornará uma lista dos nomes no escopo atual.
-
-Exemplo:
+**Exemplo de uso:**
 ```python
-my_list = [1, 2, 3]
-print(dir(my_list))
-```
-
-2. **`hasattr()`**:
-
-A função `hasattr()` é usada para verificar se um objeto possui um atributo específico. Ela recebe dois argumentos: o objeto e o nome do atributo como uma string. Ela retorna `True` se o objeto tiver o atributo e `False` caso contrário.
-
-Exemplo:
-```python
-class MyClass:
+class MinhaClasse:
     def __init__(self):
-        self.my_attribute = 42
+        self.atributo = 1
+    
+    def metodo(self):
+        pass
 
-obj = MyClass()
-
-print(hasattr(obj, 'my_attribute'))  # True
-print(hasattr(obj, 'nonexistent_attribute'))  # False
+obj = MinhaClasse()
+print(dir(obj))
 ```
-
-3. **`getattr()`**:
-
-A função `getattr()` é usada para obter o valor de um atributo de um objeto. Ela recebe três argumentos: o objeto, o nome do atributo como uma string e, opcionalmente, um valor padrão para retornar se o atributo não estiver presente no objeto. Se o atributo não existir e nenhum valor padrão for fornecido, `getattr()` lançará uma exceção AttributeError.
-
-Exemplo:
+**Saída:**
 ```python
-class Person:
-    def __init__(self, name):
-        self.name = name
-
-person = Person("Alice")
-
-print(getattr(person, 'name'))  # Retorna o valor do atributo 'name' ('Alice')
-print(getattr(person, 'age', 25))  # Retorna 25, pois 'age' não existe no objeto
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'atributo', 'metodo']
 ```
 
-Essas funções são úteis para inspecionar e interagir com objetos em tempo de execução, permitindo uma maior flexibilidade e dinamismo na programação Python.
+### 2. `hasattr()`
+A função `hasattr()` é usada para verificar se um objeto possui um atributo específico. Retorna `True` se o atributo existir, caso contrário, retorna `False`.
+
+**Exemplo de uso:**
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.atributo = 1
+
+obj = MinhaClasse()
+print(hasattr(obj, 'atributo'))  # True
+print(hasattr(obj, 'metodo'))    # False
+```
+
+### 3. `getattr()`
+A função `getattr()` é usada para obter o valor de um atributo de um objeto. Se o atributo não existir, pode-se fornecer um valor padrão a ser retornado.
+
+**Exemplo de uso:**
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.atributo = 1
+
+obj = MinhaClasse()
+print(getattr(obj, 'atributo'))       # 1
+print(getattr(obj, 'nao_existe', 42)) # 42
+```
+
+### 4. `setattr()`
+A função `setattr()` é usada para definir o valor de um atributo de um objeto. Se o atributo não existir, ele será criado.
+
+**Exemplo de uso:**
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.atributo = 1
+
+obj = MinhaClasse()
+setattr(obj, 'atributo', 42)
+print(obj.atributo)  # 42
+
+setattr(obj, 'novo_atributo', 'olá')
+print(obj.novo_atributo)  # olá
+```
+
+### 5. `delattr()`
+A função `delattr()` é usada para deletar um atributo de um objeto. Se o atributo não existir, uma exceção `AttributeError` será lançada.
+
+**Exemplo de uso:**
+```python
+class MinhaClasse:
+    def __init__(self):
+        self.atributo = 1
+
+obj = MinhaClasse()
+delattr(obj, 'atributo')
+
+print(hasattr(obj, 'atributo'))  # False
+```
+
+Essas funções são úteis quando você precisa trabalhar de maneira dinâmica com os atributos de objetos, especialmente em contextos onde os atributos não são conhecidos antecipadamente, como ao manipular objetos em bibliotecas de terceiros ou ao trabalhar com introspecção.
 
 ## Generator expression, Iterables e Iterators
 

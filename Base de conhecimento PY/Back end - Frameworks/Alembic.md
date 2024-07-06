@@ -98,3 +98,112 @@ Aqui está um exemplo básico de como você pode usar o Alembic em um projeto Py
 Para mais detalhes e recursos, você pode consultar a [documentação oficial do Alembic](https://alembic.sqlalchemy.org/en/latest/).
 
 O Alembic é uma ferramenta poderosa para gerenciar alterações em bancos de dados em projetos Python e é bastante utilizado em aplicações web e outras soluções que requerem um banco de dados relacional.
+
+## Migrations
+
+Alembic é uma ferramenta de migração de banco de dados para SQLAlchemy, o toolkit SQL para Python. Ela fornece um sistema simples e eficaz para gerenciar alterações no esquema de banco de dados. Migrações automáticas com Alembic podem simplificar bastante o processo de manter o banco de dados sincronizado com as alterações no código do aplicativo.
+
+Aqui está uma visão geral sobre como configurar e usar migrações automáticas com Alembic:
+
+### Configurando Alembic
+
+1. **Instalação**:
+   Primeiro, instale o Alembic usando pip:
+   ```sh
+   pip install alembic
+   ```
+
+2. **Inicialização**:
+   Inicialize Alembic no seu projeto:
+   ```sh
+   alembic init alembic
+   ```
+   Isso criará um diretório `alembic` e um arquivo de configuração `alembic.ini`.
+
+3. **Configuração**:
+   Edite o arquivo `alembic.ini` para configurar o banco de dados. Localize a linha `sqlalchemy.url` e configure-a com a URL do seu banco de dados:
+   ```ini
+   sqlalchemy.url = sqlite:///your_database.db  # Exemplo para SQLite
+   ```
+
+   No diretório `alembic`, edite o arquivo `env.py` para adicionar a conexão com seu modelo SQLAlchemy:
+   ```python
+   from myapp import mymodel  # Importe seu modelo aqui
+   target_metadata = mymodel.Base.metadata
+   ```
+
+### Criando e Aplicando Migrações
+
+1. **Criando uma Migração**:
+   Quando você fizer alterações no seu modelo SQLAlchemy, crie uma nova migração:
+   ```sh
+   alembic revision --autogenerate -m "Descrição da mudança"
+   ```
+   Isso gerará um script de migração no diretório `alembic/versions`.
+
+2. **Revisando e Editando Migração**:
+   Revise o script gerado no diretório `alembic/versions`. Alembic tentará detectar automaticamente as alterações no esquema, mas pode ser necessário ajustar o script manualmente para refletir corretamente as mudanças desejadas.
+
+3. **Aplicando Migrações**:
+   Aplique as migrações ao seu banco de dados:
+   ```sh
+   alembic upgrade head
+   ```
+   Isso aplicará todas as migrações pendentes até a última versão.
+
+### Gerenciamento de Migrações
+
+- **Verificar Status das Migrações**:
+  Para ver quais migrações foram aplicadas e o status atual, use:
+  ```sh
+  alembic current
+  ```
+
+- **Reverter Migrações**:
+  Se você precisar reverter uma migração, use:
+  ```sh
+  alembic downgrade -1
+  ```
+  Isso reverterá a última migração aplicada. Para reverter para uma versão específica, use:
+  ```sh
+  alembic downgrade <version>
+  ```
+
+### Exemplo Prático
+
+Suponha que você tenha um modelo `User` definido em SQLAlchemy:
+
+```python
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    age = Column(Integer)
+```
+
+Se você adicionar um novo campo `email` ao modelo `User`:
+
+```python
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    age = Column(Integer)
+    email = Column(String)  # Novo campo adicionado
+```
+
+Você criaria uma migração para refletir essa mudança:
+
+```sh
+alembic revision --autogenerate -m "Add email field to User"
+alembic upgrade head
+```
+
+### Conclusão
+
+Alembic facilita o gerenciamento de mudanças no esquema do banco de dados, permitindo que você mantenha o banco de dados em sincronia com as alterações do código de forma controlada e reprodutível. É uma ferramenta poderosa que, quando integrada ao SQLAlchemy, pode simplificar significativamente o desenvolvimento e a manutenção do banco de dados.

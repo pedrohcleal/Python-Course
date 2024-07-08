@@ -253,6 +253,50 @@ Evite usar `eval()` com entradas de usuário ou qualquer fonte não confiável, 
 
 Essas funções fornecem formas flexíveis de conversão entre diferentes sistemas de numeração e manipulação de valores numéricos e de caracteres, além de possibilitar a avaliação dinâmica de expressões Python.
 
+### `next()`
+A função `next()` é usada para obter o próximo item de um iterador. Um iterador é um objeto que representa uma sequência de valores e pode ser percorrido item por item. A função `next()` pode receber um segundo argumento opcional, que será retornado se o iterador não tiver mais itens.
+
+#### Sintaxe:
+```python
+next(iterator[, default])
+```
+
+#### Exemplo:
+```python
+# Usando next() com um iterador
+numbers = iter([1, 2, 3])
+print(next(numbers))  # Saída: 1
+print(next(numbers))  # Saída: 2
+print(next(numbers))  # Saída: 3
+# print(next(numbers))  # Isso levantaria uma StopIteration Exception
+
+# Usando next() com um valor padrão
+print(next(numbers, 'No more items'))  # Saída: No more items
+```
+
+### `all()`
+A função `all()` é usada para verificar se todos os elementos de um iterável (como uma lista, tupla ou conjunto) são verdadeiros. Se todos os elementos são verdadeiros (ou se o iterável está vazio), `all()` retorna `True`. Caso contrário, retorna `False`.
+
+#### Sintaxe:
+```python
+all(iterable)
+```
+
+#### Exemplo:
+```python
+# Usando all() com uma lista
+print(all([True, True, True]))     # Saída: True
+print(all([True, False, True]))    # Saída: False
+print(all([1, 2, 3]))              # Saída: True (todos os números não-zero são considerados verdadeiros)
+print(all([1, 0, 3]))              # Saída: False (0 é considerado falso)
+
+# Usando all() com uma lista vazia
+print(all([]))                     # Saída: True (uma lista vazia é considerada verdadeira)
+```
+
+Essas funções são úteis em diferentes contextos. `next()` é frequentemente usada ao trabalhar com iteradores e laços personalizados, enquanto `all()` é útil para validação e verificações de condições em coleções.
+
+
 ## Função Count - itertools
 
 A função `count` da biblioteca `itertools` em Python gera um iterador que produz uma sequência infinita de valores inteiros começando a partir de um valor inicial (padrão é 0) e incrementando em um passo (padrão é 1). Como a sequência é infinita, é necessário limitar o uso dessa função com alguma condição de parada, caso contrário, ela continuará gerando valores indefinidamente.

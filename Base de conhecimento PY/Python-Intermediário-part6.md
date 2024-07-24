@@ -127,6 +127,68 @@ print(soma_total_com_inicial)  # Saída: 25 (10 + 1 + 2 + 3 + 4 + 5)
 
 A função `reduce()` pode ser poderosa para situações em que você precisa combinar todos os elementos de uma sequência usando uma operação específica, como cálculos matemáticos ou manipulação de dados. No entanto, observe que a função `reduce()` não é tão comum quanto as funções `map()` e `filter()`, pois sua funcionalidade pode muitas vezes ser atingida de maneira mais clara e legível com loops simples ou list comprehensions.
 
+## Função embutida `any()`
+
+A função `any()` em Python é uma função embutida que retorna `True` se qualquer elemento de um iterável for verdadeiro. Caso contrário, retorna `False`. Essa função é particularmente útil quando você precisa verificar se pelo menos um item em uma lista, tupla ou qualquer outro iterável atende a uma determinada condição.
+
+### Sintaxe
+```python
+any(iterable)
+```
+
+### Parâmetros
+- **iterable**: Um iterável como lista, tupla, dicionário, etc.
+
+### Comportamento
+- A função `any()` percorre o iterável e verifica se algum dos elementos é verdadeiro.
+- Elementos que são considerados falsos em Python incluem `None`, `False`, `0`, valores vazios como `''`, `[]`, `()` e `{}`, entre outros.
+- Assim que a função encontra um elemento verdadeiro, ela retorna `True` imediatamente e não verifica os elementos restantes.
+- Se nenhum elemento for verdadeiro, a função retorna `False`.
+
+### Exemplos
+
+#### Com uma lista de valores booleanos
+```python
+values = [False, False, True, False]
+result = any(values)
+print(result)  # Saída: True
+```
+
+#### Com uma lista de números
+```python
+numbers = [0, 0, 1, 0]
+result = any(numbers)
+print(result)  # Saída: True
+```
+
+#### Com uma lista vazia
+```python
+empty_list = []
+result = any(empty_list)
+print(result)  # Saída: False
+```
+
+#### Com uma lista de strings
+```python
+strings = ['', 'hello', 'world']
+result = any(strings)
+print(result)  # Saída: True
+```
+
+### Uso com Compreensões de Lista
+Você pode usar `any()` em conjunto com compreensões de lista para verificar se qualquer elemento de uma coleção atende a uma condição específica.
+
+#### Exemplo com compreensão de lista
+```python
+numbers = [1, 2, 3, 4, 5]
+result = any(num > 3 for num in numbers)
+print(result)  # Saída: True
+```
+
+Neste exemplo, `any()` retorna `True` porque há elementos na lista `numbers` que são maiores que 3.
+
+A função `any()` é uma ferramenta poderosa para realizar verificações rápidas em coleções, simplificando o código e tornando-o mais legível.
+
 ## Funções recursivas 
 
 A recursão é um conceito fundamental na programação onde uma função se chama a si mesma para resolver um problema. A ideia é dividir um problema em subproblemas menores e, em seguida, resolver esses subproblemas, muitas vezes de forma idêntica à solução do problema original. No contexto do Python, as funções recursivas são aquelas que se invocam a si mesmas para realizar um determinado cálculo ou tarefa.

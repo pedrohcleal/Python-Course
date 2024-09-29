@@ -262,6 +262,11 @@ Este código cria uma lista encadeada a partir dos valores da lista e imprime os
 
 ### Como percorrer
 
+Para percorrer uma árvore binária em Python, você pode usar três métodos principais: **pré-ordem** (preorder), **in-ordem** (inorder) e **pós-ordem** (postorder). Cada método percorre a árvore em uma ordem específica.
+
+Aqui está uma implementação simples de uma árvore binária e os três tipos de travessias:
+
+```python
 # Definição do nó da árvore binária
 class Node:
     def __init__(self, value):
@@ -306,6 +311,14 @@ inorder_traversal(root)  # Saída: 4 2 5 1 3
 
 print("\nPós-ordem:")
 postorder_traversal(root)  # Saída: 4 5 2 3 1
+```
+
+### Descrição:
+1. **Pré-ordem (preorder)**: Visita o nó raiz primeiro, depois os nós da subárvore esquerda e, por fim, os da subárvore direita.
+2. **In-ordem (inorder)**: Visita os nós da subárvore esquerda primeiro, depois a raiz e, finalmente, os da subárvore direita.
+3. **Pós-ordem (postorder)**: Visita os nós da subárvore esquerda primeiro, depois os da direita, e, por último, a raiz.
+
+Essas funções percorrem a árvore de forma recursiva, visitando cada nó na ordem especificada.
 
 
 ## Dicas em desafios envolvendos listas encadeadas:

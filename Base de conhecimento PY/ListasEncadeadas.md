@@ -258,6 +258,56 @@ Neste exemplo:
 
 Este código cria uma lista encadeada a partir dos valores da lista e imprime os valores dos nós na lista encadeada resultante.
 
+## Arvores binárias
+
+### Como percorrer
+
+# Definição do nó da árvore binária
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+# Função para percorrer a árvore em pré-ordem (Raiz, Esquerda, Direita)
+def preorder_traversal(node):
+    if node:
+        print(node.value, end=' ')
+        preorder_traversal(node.left)
+        preorder_traversal(node.right)
+
+# Função para percorrer a árvore em in-ordem (Esquerda, Raiz, Direita)
+def inorder_traversal(node):
+    if node:
+        inorder_traversal(node.left)
+        print(node.value, end=' ')
+        inorder_traversal(node.right)
+
+# Função para percorrer a árvore em pós-ordem (Esquerda, Direita, Raiz)
+def postorder_traversal(node):
+    if node:
+        postorder_traversal(node.left)
+        postorder_traversal(node.right)
+        print(node.value, end=' ')
+
+# Exemplo de uso
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+# Percorrendo a árvore
+print("Pré-ordem:")
+preorder_traversal(root)  # Saída: 1 2 4 5 3
+
+print("\nIn-ordem:")
+inorder_traversal(root)  # Saída: 4 2 5 1 3
+
+print("\nPós-ordem:")
+postorder_traversal(root)  # Saída: 4 5 2 3 1
+
+
 ## Dicas em desafios envolvendos listas encadeadas:
 
 Para resolver desafios envolvendo lógica de programação com listas encadeadas de forma eficiente, é importante considerar algumas estratégias que podem otimizar o desempenho das operações. Abaixo estão algumas técnicas perfomáticas que podem ser úteis:
